@@ -9,14 +9,17 @@
 
 	<script>
 	$(document).ready(function(){
+		Time = Imagine.time;
 		Imagine({
 			element: $('#ball'),
 			update: function(){
 				//console.log(this.element);
-				var left = this.element.css('left');
-				//console.log(parseFloat(left));
+				var left = parseFloat(this.element.css('left'));
+				// console.log("left");
+				// console.log(parseFloat(left));
+				// console.log("delta");
 				// console.log(Imagine.time.deltaTime);
-				this.element.css('left', parseFloat(left));
+				this.element.css('left', left+Time.deltaTime);
 			}
 		})
 	})

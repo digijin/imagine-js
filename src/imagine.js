@@ -1,23 +1,16 @@
-// (function(test){
-// 	console.log(test);//asd
-// })("asd")
 
 var Imagine = function(params){
 	Imagine.engine.registerObject(params);
 	if(params.start){
 		params.start();
 	}
-	if(params.update){
-		params.update();
-	}
-	// console.log(Imagine.engine.registerObject);
-	// var test = "asd";
 }
 Imagine.objects = [];
 
 Imagine.time = {
 	deltaTime: 0,
 	currentTime: 0,
+	lastTime: 0,
 	startTime: 0
 }
 
@@ -30,14 +23,24 @@ Imagine.engine = function(){
 			inited = true;
 			var d = new Date();
 			Imagine.time.startTime = d.getTime();
+			Imagine.time.lastTime = Imagine.time.startTime;
 			updateId = setInterval(update, frameGap);
 		}
 	}
 	var updateId;
 	var update = function(){
-		//console.log("updating");
+		//update time;
+		var d = new Date();
+		var dt = d.getTime();
+		Imagine.time.currentTime = dt - Imagine.time.startTime;
+		// console.log(Imagine.time.currentTime);
+		// console.log(Imagine.time.lastTime);
+		Imagine.time.deltaTime = (Imagine.time.lastTime - Imagine.time.startTime)/1000;
+		Imagine.time.lastTime = dt;
+
 		Imagine.objects.forEach(function(obj){
 			//console.log(obj);
+			//todo: set script execution order
 			if(obj.update){
 				obj.update();
 			}
@@ -54,6 +57,7 @@ Imagine.engine = function(){
 		'registerObject':function(obj){
 			//console.log("registering");
 			Imagine.objects.push(obj);
-		}
+		},
+		forceUpdate: update
 	}
 }();

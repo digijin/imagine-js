@@ -1,4 +1,4 @@
-describe('reset', function(){
+describe('reset and kinda init', function(){
 	it('should clear objects after reset', function(){
 		Imagine({});
 		Imagine.engine.reset();
@@ -9,6 +9,11 @@ describe('reset', function(){
 		Imagine.time.startTime = 123;
 		Imagine.engine.reset();
 		expect(Imagine.time.startTime).not.toBe(123);
+	});
+
+	it("should set last time to start time", function(){
+		Imagine.engine.reset();
+		expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
 	})
 })
 
@@ -54,6 +59,7 @@ describe('basics', function(){
 		var obj = {update:function(){}};
 		spyOn(obj, 'update');
 		Imagine(obj);
+		Imagine.engine.forceUpdate();
 		expect(obj.update).toHaveBeenCalled();
 	});
 
