@@ -13,6 +13,13 @@
 		Imagine({
 			element: $('#ball'),
 			update: function(){
+
+				var speed = 30; 
+
+				var dt = Time.deltaTime;
+
+				//console.log(dt);
+
 				var left = parseFloat(this.element.css('left'));
 				var top = parseFloat(this.element.css('top'));
 
@@ -28,8 +35,8 @@
 					this.dirV = 1;
 				};
 
-				this.element.css('left', left+(Time.deltaTime*this.dirH));
-				this.element.css('top' , top +(Time.deltaTime*this.dirV));
+				this.element.css('left', left+(dt*this.dirH*speed));
+				this.element.css('top' , top +(dt*this.dirV*speed));
 				//this.element.css('top', top+Time.deltaTime);
 			},
 			dirH:1,

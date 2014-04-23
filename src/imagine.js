@@ -33,9 +33,9 @@ Imagine.engine = function(){
 		var d = new Date();
 		var dt = d.getTime();
 		Imagine.time.currentTime = dt - Imagine.time.startTime;
-		// console.log(Imagine.time.currentTime);
-		// console.log(Imagine.time.lastTime);
-		Imagine.time.deltaTime = (Imagine.time.lastTime - Imagine.time.startTime)/1000;
+		console.log(Imagine.time.startTime);
+		console.log(Imagine.time.lastTime);
+		Imagine.time.deltaTime = (dt - Imagine.time.lastTime)/1000;
 		Imagine.time.lastTime = dt;
 
 		Imagine.objects.forEach(function(obj){
