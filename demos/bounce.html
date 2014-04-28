@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script src="http://localhost:35729/livereload.js"></script>
 	<script src="../src/jquery-1.11.0.js"></script>
 	<script src="../src/imagine.js"></script>
+	<script src="http://localhost:35729/livereload.js"></script>
 
 	<script>
 	$(document).ready(function(){
@@ -25,13 +25,13 @@
 				var left = parseFloat(this.element.css('left'));
 				var top = parseFloat(this.element.css('top'));
 
-				if(left + this.element.width() >= this.element.parent().width()){
+				if(left + this.element.width() >= this.element.parent().width()-5){
 					this.dirH = -1;
 				}else if(left <=0){
 					this.dirH = 1;
 				};
 
-				if(top + this.element.height() >= this.element.parent().height()){
+				if(top + this.element.height() >= this.element.parent().height()-5){
 					this.dirV = -1;
 				}else if(top <=0){
 					this.dirV = 1;

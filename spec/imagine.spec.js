@@ -1,26 +1,15 @@
-describe('reset and kinda init', function(){
+describe('engine', function(){
+
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
+
 	it('should clear objects after reset', function(){
 		Imagine({});
 		Imagine.engine.reset();
 		expect(Imagine.objects.length).toBe(0);
 	});
 
-	it('should reset startTime after reset', function(){
-		Imagine.time.startTime = 123;
-		Imagine.engine.reset();
-		expect(Imagine.time.startTime).not.toBe(123);
-	});
-
-	it("should set last time to start time", function(){
-		Imagine.engine.reset();
-		expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
-	})
-})
-
-describe('basics', function(){
-	beforeEach(function() {
-		Imagine.engine.reset();
-	});
 
 	it("should define Imagine", function(){
 		expect(Imagine).toBeDefined();
@@ -30,14 +19,36 @@ describe('basics', function(){
 		expect(Imagine.engine).toBeDefined();
 	});
 
+});
 
+describe('input', function(){
+	var Input = Imagine.Input; 
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
+
+	it("should expose Imagine.Input", function(){
+		expect(Imagine.Input).toBeDefined();
+	});
+
+	it("should expose Imagine.Input.axes", function(){
+		expect(Imagine.Input.axes).toBeDefined();
+	});
+
+	it("should add stuff given to addAxis to axes", function(){
+		expect(Input.addAxis).toBeDefined();
+		var params = {"abc": 123};
+		Input.addAxis("test", params);
+		expect(Input.axes.test).toBeDefined();
+		expect(Input.axes.test).toEqual(params);
+	});
+
+	it("should map keycodes to certain keywords");
 
 });
 
 describe('objects', function(){
-	beforeEach(function() {
-		Imagine.engine.reset();
-	});
+
 
 	it("should expose Imagine.objects", function(){
 		expect(Imagine.objects).toBeDefined();	
@@ -46,7 +57,7 @@ describe('objects', function(){
 	it("should reset imagine between tests", function(){
 		expect(Imagine.objects.length).toBe(0);
 	});
-	
+
 	it("should add an object passed to Imagine() to engine objects", function(){
 		var obj = {test:"test"};
 		Imagine(obj);
@@ -66,6 +77,18 @@ describe('time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
+
+
+	it('should reset startTime after reset', function(){
+		Imagine.time.startTime = 123;
+		Imagine.engine.reset();
+		expect(Imagine.time.startTime).not.toBe(123);
+	});
+
+	it("should set last time to start time", function(){
+		Imagine.engine.reset();
+		expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
+	})
 
 	it("should call update", function(){
 		var obj = {update:function(){}};
