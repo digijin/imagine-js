@@ -43,7 +43,12 @@ describe('input', function(){
 		expect(Input.axes.test).toEqual(params);
 	});
 
-	it("should map keycodes to certain keywords");
+	it("should map keycodes to certain keywords", function(){
+		expect(Input.map(123)).toEqual(123);
+		expect(Input.map("left")).toEqual(37);
+		expect(Input.map("up")).toEqual(38);
+		expect(Input.map("40")).toEqual(40);
+	});
 
 	it("should call key function on objects on key events", function(){
 		var obj = {
@@ -60,6 +65,20 @@ describe('input', function(){
 		expect(obj.keydown).toHaveBeenCalled();
 		expect(obj.keyup).toHaveBeenCalled();
 
+	});
+
+	it("should track status of keys", function(){
+		Input.keydown(1);
+		expect(Input.isDown(1)).toBe(true);
+		expect(Input.isDown(2)).toBe(false);
+		Input.keyup(1);
+		expect(Input.isDown(1)).toBe(false);
+	});
+
+	it("should reset key status on engine reset", function(){
+		Input.keydown(1);
+		Imagine.engine.reset();
+		expect(Input.isDown(1)).toBe(false);
 	});
 
 });

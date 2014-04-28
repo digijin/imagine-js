@@ -91,7 +91,11 @@ Imagine.Input = function(){
 		//console.log(keyCode);
 	};
 
+	var keyStatus = {};
+
 	var keyup = function(keyCode){
+		keyCode = map(keyCode);
+		keyStatus[keyCode] = false;
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
 			if(obj.keyup){
@@ -99,8 +103,10 @@ Imagine.Input = function(){
 			}
 		}
 	};
-	
+
 	var keydown = function(keyCode){
+		keyCode = map(keyCode);
+		keyStatus[keyCode] = true;
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
 			if(obj.keydown){
@@ -129,9 +135,32 @@ Imagine.Input = function(){
 	var init = function(params){
 		var config = JSON.parse(JSON.stringify(defaults));	//extend params
 		axes = config.axes;
+		mapping = config.mapping;
 	};
 
+	var reset = function(){
+		keyStatus = {};
+	}
+
 	var mapping;
+
+	var map = function(key){
+		if(typeof key === "number"){
+			return key;
+		};
+		if(mapping.hasOwnProperty(key)){
+			return mapping[key];
+		};
+		return parseInt(key)
+	}
+
+	var isDown = function(keyCode){
+		keyCode = map(keyCode);
+		if(keyStatus.hasOwnProperty(keyCode)){
+			return keyStatus[keyCode];
+		}
+		return false;
+	}
 
 	// var getAxes = function(){
 	// 	return axes
@@ -144,7 +173,10 @@ Imagine.Input = function(){
 		},
 		keypress: keypress,
 		keyup: keyup,
-		keydown: keydown
+		keydown: keydown,
+		map: map,
+		isDown: isDown,
+		reset: reset
 	}
 }()
 
@@ -192,6 +224,7 @@ Imagine.engine = function(){
 	return {
 		'reset': function(){
 			Imagine.objects = [];
+			Imagine.Input.reset();
 			inited = false;
 			clearUpdate();
 			init();
