@@ -76,18 +76,38 @@ Imagine.Input = function(){
 	Imagine.addEvent(document, "keyup", function (e) {
 		e = e || window.event;
 		var keyCode =  e.keyCode ? e.keyCode : e.charCode;
-		console.log("up"+keyCode);
+		//console.log("up"+keyCode);
+		keyup(keyCode);
 	});
 
 	Imagine.addEvent(document, "keydown", function (e) {
 		e = e || window.event;
 		var keyCode =  e.keyCode ? e.keyCode : e.charCode;
-		console.log("down"+keyCode);
+		//console.log("down"+keyCode);
+		keydown(keyCode);
 	});
 
 	var keypress = function(keyCode){
 		//console.log(keyCode);
-	}
+	};
+
+	var keyup = function(keyCode){
+		for(var i = 0; i<Imagine.objects.length; i++){
+			obj = Imagine.objects[i];
+			if(obj.keyup){
+				obj.keyup(keyCode);
+			}
+		}
+	};
+	
+	var keydown = function(keyCode){
+		for(var i = 0; i<Imagine.objects.length; i++){
+			obj = Imagine.objects[i];
+			if(obj.keydown){
+				obj.keydown(keyCode);
+			}
+		}
+	};
 
 	var defaults = {
 		axes:{
@@ -122,7 +142,9 @@ Imagine.Input = function(){
 		addAxis: function(axisName, axis){
 			axes[axisName] = axis;
 		},
-		keypress: keypress
+		keypress: keypress,
+		keyup: keyup,
+		keydown: keydown
 	}
 }()
 

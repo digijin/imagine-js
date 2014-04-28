@@ -45,10 +45,30 @@ describe('input', function(){
 
 	it("should map keycodes to certain keywords");
 
+	it("should call key function on objects on key events", function(){
+		var obj = {
+			keydown:function(){},
+			keyup:function(){}
+		}
+		spyOn(obj, "keydown");
+		spyOn(obj, "keyup");
+		Imagine(obj);
+
+		Imagine.Input.keydown(1);
+		Imagine.Input.keydown(1);
+		Imagine.Input.keyup(1);
+		expect(obj.keydown).toHaveBeenCalled();
+		expect(obj.keyup).toHaveBeenCalled();
+
+	});
+
 });
 
 describe('objects', function(){
 
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
 
 	it("should expose Imagine.objects", function(){
 		expect(Imagine.objects).toBeDefined();	
@@ -78,7 +98,6 @@ describe('time', function(){
 		Imagine.engine.reset();
 	});
 
-
 	it('should reset startTime after reset', function(){
 		Imagine.time.startTime = 123;
 		Imagine.engine.reset();
@@ -101,7 +120,6 @@ describe('time', function(){
 	it("should define Time", function(){
 		expect(Imagine.time).toBeDefined();
 	});
-
 
 	it("should set time.currentTime to currentTime", function(){
 		var d = new Date();
