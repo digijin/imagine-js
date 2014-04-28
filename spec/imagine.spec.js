@@ -22,10 +22,6 @@ describe('basics', function(){
 		Imagine.engine.reset();
 	});
 
-	it("should define Time", function(){
-		expect(Imagine.time).toBeDefined();
-	});
-
 	it("should define Imagine", function(){
 		expect(Imagine).toBeDefined();
 	});
@@ -34,25 +30,41 @@ describe('basics', function(){
 		expect(Imagine.engine).toBeDefined();
 	});
 
+
+
+});
+
+describe('objects', function(){
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
+
 	it("should expose Imagine.objects", function(){
 		expect(Imagine.objects).toBeDefined();	
 	});
 
+	it("should reset imagine between tests", function(){
+		expect(Imagine.objects.length).toBe(0);
+	});
+	
 	it("should add an object passed to Imagine() to engine objects", function(){
 		var obj = {test:"test"};
 		Imagine(obj);
 		expect(Imagine.objects[0]).toBe(obj);
 	})
 
-	it("should reset imagine between tests", function(){
-		expect(Imagine.objects.length).toBe(0);
-	});
-
 	it("should call start on an object passed to imagine", function(){
 		var obj = {start:function(){}};
 		spyOn(obj, 'start');
 		Imagine(obj);
 		expect(obj.start).toHaveBeenCalled();
+	});
+
+})
+
+describe('time', function(){
+	beforeEach(function() {
+		Imagine.engine.reset();
 	});
 
 	it("should call update", function(){
@@ -63,13 +75,10 @@ describe('basics', function(){
 		expect(obj.update).toHaveBeenCalled();
 	});
 
-
-});
-
-describe('time', function(){
-	beforeEach(function() {
-		Imagine.engine.reset();
+	it("should define Time", function(){
+		expect(Imagine.time).toBeDefined();
 	});
+
 
 	it("should set time.currentTime to currentTime", function(){
 		var d = new Date();
@@ -77,6 +86,50 @@ describe('time', function(){
 		expect(Imagine.time.startTime).toBeLessThan(d.getTime()+100);
 	});
 
-	it("should update deltaTime properly");
+	it("should update deltaTime properly", function(done){
+		var counter = 0;
+		var obj = {
+			update: function(){
+				counter += Imagine.time.deltaTime;
+			}
+		}
+		spyOn(obj, "update").and.callThrough();
+		Imagine(obj);
+		setTimeout(function(){
+			expect(Imagine.time.deltaTime).toBeGreaterThan(0);
+			expect(obj.update).toHaveBeenCalled();
+			expect(counter).toBeGreaterThan(.4);
+			expect(counter).toBeLessThan(.5);
+			done();
+		}, 500);
+	});
 
-})
+	describe('fps', function(){
+		it('should let you get the fps', function(){
+			expect(Imagine.engine).toBeDefined();
+			expect(Imagine.engine.getFPS).toBeDefined();
+			expect(Imagine.engine.getFPS()).toBeGreaterThan(0);
+		});
+		it('should let you set the fps', function(){
+			expect(Imagine.engine.setFPS).toBeDefined();
+			var fps = 24;
+			if(fps === Imagine.engine.getFPS()){
+				fps = 12;
+			}
+			Imagine.engine.setFPS(fps);
+			expect(Imagine.engine.getFPS()).toEqual(fps);
+		});
+		it('should run at the fps you set it to', function(done){
+			
+			var obj = {update:function(){}};
+			spyOn(obj, 'update');
+			Imagine(obj);
+			Imagine.engine.setFPS(10);
+			setTimeout(function(){
+				expect(obj.update.calls.count()).toBeGreaterThan(2);
+				expect(obj.update.calls.count()).toBeLessThan(5);
+				done();
+			}, 420);
+		})
+	});
+});

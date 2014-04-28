@@ -10,15 +10,17 @@
 	<script>
 	$(document).ready(function(){
 		Time = Imagine.time;
+		Imagine.engine.setFPS(24);
 		Imagine({
 			element: $('#ball'),
+			start: function(){
+				this.element.css("left", this.element.parent().width()* Math.random());
+				this.element.css("top", this.element.parent().height() * Math.random());
+			},
 			update: function(){
 
-				var speed = 30; 
-
+				var speed = 100; 
 				var dt = Time.deltaTime;
-
-				//console.log(dt);
 
 				var left = parseFloat(this.element.css('left'));
 				var top = parseFloat(this.element.css('top'));
@@ -55,9 +57,10 @@
 		#ball{
 			width: 50px;
 			height: 50px;
-			border: 1px solid green;
+			border: 1px solid black;
 			position: absolute;
 			left: 0px;
+			border-radius: 25px;
 		}
 	</style>
 </head>
