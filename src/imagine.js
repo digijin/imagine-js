@@ -33,8 +33,6 @@ if (!window.console) console = {log: function() {}};
 		};
 }());
 
-
-
 var Imagine = function(params){
 	Imagine.engine.registerObject(params);
 	if(params.start){
@@ -51,9 +49,6 @@ Imagine.addEvent = function(element, eventName, callback) {
 		element["on" + eventName] = callback;
 	}
 }
-
-
-
 
 Imagine.objects = [];
 
@@ -175,7 +170,7 @@ Imagine.Input = function(){
 		return false;
 	};
 
-	var getButtonDown = function(keyCode){
+	var getKeyDown = function(keyCode){
 		keyCode = map(keyCode);
 		if(keyChanged.hasOwnProperty(keyCode)){
 			if(keyChanged[keyCode] == "down"){
@@ -185,7 +180,7 @@ Imagine.Input = function(){
 		return false;
 	}
 
-	var getButtonUp = function(keyCode){
+	var getKeyUp = function(keyCode){
 		keyCode = map(keyCode);
 		if(keyChanged.hasOwnProperty(keyCode)){
 			if(keyChanged[keyCode] == "up"){
@@ -216,8 +211,8 @@ Imagine.Input = function(){
 		isDown: isDown,
 		reset: reset,
 		update: update,
-		getButtonDown: getButtonDown,
-		getButtonUp: getButtonUp
+		getKeyDown: getKeyDown,
+		getKeyUp: getKeyUp
 	}
 }()
 

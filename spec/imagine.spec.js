@@ -1,4 +1,4 @@
-describe('engine', function(){
+describe('Engine', function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
@@ -20,7 +20,7 @@ describe('engine', function(){
 
 });
 
-describe('input', function(){
+describe('Input', function(){
 	var Input = Imagine.Input; 
 	beforeEach(function() {
 		Imagine.engine.reset();
@@ -81,51 +81,55 @@ describe('input', function(){
 
 	it("should reset key status on engine reset", function(){
 		Input.keydown("left");
+		Input.keyup("right");
 		Input.keydown(1);
+		Input.keyup(2);
 		Imagine.engine.reset();
 		expect(Input.isDown("left")).toBe(false);
+		expect(Input.isDown("right")).toBe(false);
 		expect(Input.isDown(1)).toBe(false);
+		expect(Input.isDown(2)).toBe(false);
 	});
 
 	it("should track the key changes between frames", function(){
-		expect(Input.getButtonDown).toBeDefined();
-		expect(Input.getButtonUp).toBeDefined();
+		expect(Input.getKeyDown).toBeDefined();
+		expect(Input.getKeyUp).toBeDefined();
 
-		expect(Input.getButtonDown("left")).toBe(false);
-		expect(Input.getButtonDown(1)).toBe(false);
+		expect(Input.getKeyDown("left")).toBe(false);
+		expect(Input.getKeyDown(1)).toBe(false);
 
-		expect(Input.getButtonUp("left")).toBe(false);
-		expect(Input.getButtonUp(1)).toBe(false);
+		expect(Input.getKeyUp("left")).toBe(false);
+		expect(Input.getKeyUp(1)).toBe(false);
 
 		Input.keydown("left");
 		Input.keydown(1);
 
 		Imagine.engine.forceUpdate();
 
-		expect(Input.getButtonDown("left")).toBe(true);
-		expect(Input.getButtonDown(1)).toBe(true);
+		expect(Input.getKeyDown("left")).toBe(true);
+		expect(Input.getKeyDown(1)).toBe(true);
 
 		Input.keyup("left");
 		Input.keyup(1);
 
 		Imagine.engine.forceUpdate();
 
-		expect(Input.getButtonDown("left")).toBe(false);
-		expect(Input.getButtonDown(1)).toBe(false);
+		expect(Input.getKeyDown("left")).toBe(false);
+		expect(Input.getKeyDown(1)).toBe(false);
 
-		expect(Input.getButtonUp("left")).toBe(true);
-		expect(Input.getButtonUp(1)).toBe(true);
+		expect(Input.getKeyUp("left")).toBe(true);
+		expect(Input.getKeyUp(1)).toBe(true);
 
 		Imagine.engine.forceUpdate();
-		
-		expect(Input.getButtonUp("left")).toBe(false);
-		expect(Input.getButtonUp(1)).toBe(false);
+
+		expect(Input.getKeyUp("left")).toBe(false);
+		expect(Input.getKeyUp(1)).toBe(false);
 	});
 
 
 });
 
-describe('objects', function(){
+describe('Objects', function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
@@ -206,7 +210,7 @@ describe('Time', function(){
 		}, 500);
 	});
 
-	describe('fps', function(){
+	describe('FPS', function(){
 		it('should let you get the fps', function(){
 			expect(Imagine.engine).toBeDefined();
 			expect(Imagine.engine.getFPS).toBeDefined();
