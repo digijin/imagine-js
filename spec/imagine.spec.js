@@ -81,6 +81,9 @@ describe('input', function(){
 		expect(Input.isDown(1)).toBe(false);
 	});
 
+	it("should track the key changes between frames");
+	
+
 });
 
 describe('objects', function(){
