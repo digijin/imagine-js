@@ -113,8 +113,15 @@ Imagine.Input = function(){
 
 	var keydown = function(keyCode){
 		keyCode = map(keyCode);
+		if(keyStatus.hasOwnProperty(keyCode)){
+			if(keyStatus[keyCode] !== true){
+				keyChanging[keyCode] = "down";
+			}
+		}else{
+			keyChanging[keyCode] = "down";
+		}
+		
 		keyStatus[keyCode] = true;
-		keyChanging[keyCode] = "down";
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
 			if(obj.keydown){
@@ -125,9 +132,13 @@ Imagine.Input = function(){
 
 	var defaults = {
 		axes:{
-			"horizontal": {
+			"Horizontal": {
 				positive: "left",
 				negative: "right"
+			},
+			"Vertical": {
+				positive: "up",
+				negative: "down"
 			}
 		},
 		mapping: {
@@ -192,6 +203,12 @@ Imagine.Input = function(){
 		return false;
 	};
 
+	var getAxis = function(axis){
+		var pos = isDown(axes[axis].positive);
+		var neg = isDown(axes[axis].negative);
+		return (pos?1:0) + (neg?-1:0);
+	};
+
 	var update = function(){
 		keyChanged = keyChanging;
 		keyChanging = {};
@@ -215,7 +232,8 @@ Imagine.Input = function(){
 		reset: reset,
 		update: update,
 		getKeyDown: getKeyDown,
-		getKeyUp: getKeyUp
+		getKeyUp: getKeyUp,
+		getAxis: getAxis
 	};
 }();
 

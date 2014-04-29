@@ -66,6 +66,8 @@ describe('Input', function(){
 
 	});
 
+	it("should ignore keydowns if the key is down");
+
 	it("should track status of keys", function(){
 		Input.keydown(1);
 		Input.keydown("left");
@@ -125,6 +127,31 @@ describe('Input', function(){
 		expect(Input.getKeyUp("left")).toBe(false);
 		expect(Input.getKeyUp(1)).toBe(false);
 	});
+
+	it("should assign keypressed to axes", function(){
+		expect(Input.getAxis).toBeDefined();
+
+		expect(Input.getAxis("Horizontal")).toBe(0);
+		
+		Input.keydown("left");
+		//Imagine.engine.forceUpdate();
+		
+		expect(Input.getAxis("Horizontal")).toBe(1);
+
+		Input.keydown("right");
+		//Imagine.engine.forceUpdate();
+
+		expect(Input.getAxis("Horizontal")).toBe(0);
+
+		Input.keyup("left");
+
+		expect(Input.getAxis("Horizontal")).toBe(-1);
+
+		Input.keyup("right");
+
+		expect(Input.getAxis("Horizontal")).toBe(0);
+
+	})
 
 
 });

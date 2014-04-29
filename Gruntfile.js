@@ -22,7 +22,7 @@ module.exports = function(grunt){
 			}
 		},
         jshint: {
-            all: ['Gruntfile.js', 'src/imagine.js']
+            all: ['Gruntfile.js', 'src/imagine.js', 'demos/**/*.js']
         }
 	});
 
