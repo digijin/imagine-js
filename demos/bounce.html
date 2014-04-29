@@ -10,6 +10,7 @@
 	<script>
 	$(document).ready(function(){
 		Time = Imagine.Time;
+		Input = Imagine.Input;
 		Imagine.engine.setFPS(24);
 		Imagine({
 			element: $('#ball'),
@@ -36,6 +37,20 @@
 				}else if(top <=0){
 					this.dirV = 1;
 				};
+
+				//a little interaction
+				if(Input.getKeyDown("left")){
+					this.dirH = -1;
+				}else if(Input.getKeyDown("right")){
+					this.dirH = 1;
+				}
+
+				//a little interaction
+				if(Input.getKeyDown("up")){
+					this.dirV = -1;
+				}else if(Input.getKeyDown("down")){
+					this.dirV = 1;
+				}
 
 				this.element.css('left', left+(dt*this.dirH*speed));
 				this.element.css('top' , top +(dt*this.dirV*speed));

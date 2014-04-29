@@ -39,6 +39,8 @@ var Imagine = function(params){
 	}
 };
 
+Imagine.objects = [];
+
 Imagine.addEvent = function(element, eventName, callback) {
 	if (element.addEventListener) {
 		element.addEventListener(eventName, callback, false);
@@ -49,7 +51,6 @@ Imagine.addEvent = function(element, eventName, callback) {
 	}
 };
 
-Imagine.objects = [];
 
 Imagine.Time = {
 	deltaTime: 0,
@@ -147,6 +148,8 @@ Imagine.Input = function(){
 
 	var reset = function(){
 		keyStatus = {};
+		keyChanging = {};
+		keyChanged = {};
 	};
 
 	var mapping;
@@ -208,6 +211,7 @@ Imagine.Input = function(){
 		keydown: keydown,
 		map: map,
 		isDown: isDown,
+		getKey: isDown,
 		reset: reset,
 		update: update,
 		getKeyDown: getKeyDown,
@@ -237,13 +241,10 @@ Imagine.engine = function(){
 
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
-		//Imagine.objects.forEach(function(obj){
-			//console.log(obj);
 			//todo: set script execution order
 			if(obj.update){
 				obj.update();
 			}
-		//});
 		}
 	};
 	var clearUpdate = function(){
@@ -264,7 +265,7 @@ Imagine.engine = function(){
 			//console.log("registering");
 			Imagine.objects.push(obj);
 		},
-		forceUpdate: update,
+		'forceUpdate': update,
 		'getFPS': function(){
 			return fps;
 		},
