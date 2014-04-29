@@ -10,7 +10,6 @@ describe('engine', function(){
 		expect(Imagine.objects.length).toBe(0);
 	});
 
-
 	it("should define Imagine", function(){
 		expect(Imagine).toBeDefined();
 	});
@@ -69,20 +68,60 @@ describe('input', function(){
 
 	it("should track status of keys", function(){
 		Input.keydown(1);
+		Input.keydown("left");
 		expect(Input.isDown(1)).toBe(true);
+		expect(Input.isDown("left")).toBe(true);
 		expect(Input.isDown(2)).toBe(false);
+		expect(Input.isDown("right")).toBe(false);
 		Input.keyup(1);
+		Input.keyup("left");
 		expect(Input.isDown(1)).toBe(false);
+		expect(Input.isDown("left")).toBe(false);
 	});
 
 	it("should reset key status on engine reset", function(){
+		Input.keydown("left");
 		Input.keydown(1);
 		Imagine.engine.reset();
+		expect(Input.isDown("left")).toBe(false);
 		expect(Input.isDown(1)).toBe(false);
 	});
 
-	it("should track the key changes between frames");
-	
+	it("should track the key changes between frames", function(){
+		expect(Input.getButtonDown).toBeDefined();
+		expect(Input.getButtonUp).toBeDefined();
+
+		expect(Input.getButtonDown("left")).toBe(false);
+		expect(Input.getButtonDown(1)).toBe(false);
+
+		expect(Input.getButtonUp("left")).toBe(false);
+		expect(Input.getButtonUp(1)).toBe(false);
+
+		Input.keydown("left");
+		Input.keydown(1);
+
+		Imagine.engine.forceUpdate();
+
+		expect(Input.getButtonDown("left")).toBe(true);
+		expect(Input.getButtonDown(1)).toBe(true);
+
+		Input.keyup("left");
+		Input.keyup(1);
+
+		Imagine.engine.forceUpdate();
+
+		expect(Input.getButtonDown("left")).toBe(false);
+		expect(Input.getButtonDown(1)).toBe(false);
+
+		expect(Input.getButtonUp("left")).toBe(true);
+		expect(Input.getButtonUp(1)).toBe(true);
+
+		Imagine.engine.forceUpdate();
+		
+		expect(Input.getButtonUp("left")).toBe(false);
+		expect(Input.getButtonUp(1)).toBe(false);
+	});
+
 
 });
 
@@ -104,7 +143,7 @@ describe('objects', function(){
 		var obj = {test:"test"};
 		Imagine(obj);
 		expect(Imagine.objects[0]).toBe(obj);
-	})
+	});
 
 	it("should call start on an object passed to imagine", function(){
 		var obj = {start:function(){}};
@@ -129,7 +168,7 @@ describe('time', function(){
 	it("should set last time to start time", function(){
 		Imagine.engine.reset();
 		expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
-	})
+	});
 
 	it("should call update", function(){
 		var obj = {update:function(){}};

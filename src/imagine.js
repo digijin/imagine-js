@@ -93,9 +93,14 @@ Imagine.Input = function(){
 
 	var keyStatus = {};
 
+	var keyChanging = {};
+
+	var keyChanged = {};
+
 	var keyup = function(keyCode){
 		keyCode = map(keyCode);
 		keyStatus[keyCode] = false;
+		keyChanging[keyCode] = "up";
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
 			if(obj.keyup){
@@ -107,6 +112,7 @@ Imagine.Input = function(){
 	var keydown = function(keyCode){
 		keyCode = map(keyCode);
 		keyStatus[keyCode] = true;
+		keyChanging[keyCode] = "down";
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
 			if(obj.keydown){
@@ -160,6 +166,31 @@ Imagine.Input = function(){
 			return keyStatus[keyCode];
 		}
 		return false;
+	};
+
+	var getButtonDown = function(keyCode){
+		keyCode = map(keyCode);
+		if(keyChanged.hasOwnProperty(keyCode)){
+			if(keyChanged[keyCode] == "down"){
+				return true;
+			};
+		};
+		return false;
+	}
+
+	var getButtonUp = function(keyCode){
+		keyCode = map(keyCode);
+		if(keyChanged.hasOwnProperty(keyCode)){
+			if(keyChanged[keyCode] == "up"){
+				return true;
+			};
+		};
+		return false;
+	}
+
+	var update = function(){
+		keyChanged = keyChanging;
+		keyChanging = {};
 	}
 
 	// var getAxes = function(){
@@ -176,7 +207,10 @@ Imagine.Input = function(){
 		keydown: keydown,
 		map: map,
 		isDown: isDown,
-		reset: reset
+		reset: reset,
+		update: update,
+		getButtonDown: getButtonDown,
+		getButtonUp: getButtonUp
 	}
 }()
 
@@ -199,10 +233,10 @@ Imagine.engine = function(){
 		var d = new Date();
 		var dt = d.getTime();
 		Imagine.time.currentTime = dt - Imagine.time.startTime;
-		// console.log(Imagine.time.startTime);
-		// console.log(Imagine.time.lastTime);
 		Imagine.time.deltaTime = (dt - Imagine.time.lastTime)/1000;
 		Imagine.time.lastTime = dt;
+
+		Imagine.Input.update();
 
 		for(var i = 0; i<Imagine.objects.length; i++){
 			obj = Imagine.objects[i];
