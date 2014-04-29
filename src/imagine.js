@@ -13,8 +13,7 @@ if (!window.console) console = {log: function() {}};
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
 	for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
 		window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-		window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
-								   || window[vendors[x]+'CancelRequestAnimationFrame'];
+		window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
 	}
  
 	if (!window.requestAnimationFrame)
@@ -38,7 +37,7 @@ var Imagine = function(params){
 	if(params.start){
 		params.start();
 	}
-}
+};
 
 Imagine.addEvent = function(element, eventName, callback) {
 	if (element.addEventListener) {
@@ -48,7 +47,7 @@ Imagine.addEvent = function(element, eventName, callback) {
 	} else {
 		element["on" + eventName] = callback;
 	}
-}
+};
 
 Imagine.objects = [];
 
@@ -64,7 +63,7 @@ Imagine.Time = {
 		Imagine.Time.deltaTime = (dt - Imagine.Time.lastTime)/1000;
 		Imagine.Time.lastTime = dt;
 	}
-}
+};
 
 Imagine.Input = function(){
 
@@ -148,19 +147,19 @@ Imagine.Input = function(){
 
 	var reset = function(){
 		keyStatus = {};
-	}
+	};
 
 	var mapping;
 
 	var map = function(key){
 		if(typeof key === "number"){
 			return key;
-		};
+		}
 		if(mapping.hasOwnProperty(key)){
 			return mapping[key];
-		};
-		return parseInt(key)
-	}
+		}
+		return parseInt(key);
+	};
 
 	var isDown = function(keyCode){
 		keyCode = map(keyCode);
@@ -175,25 +174,25 @@ Imagine.Input = function(){
 		if(keyChanged.hasOwnProperty(keyCode)){
 			if(keyChanged[keyCode] == "down"){
 				return true;
-			};
-		};
+			}
+		}
 		return false;
-	}
+	};
 
 	var getKeyUp = function(keyCode){
 		keyCode = map(keyCode);
 		if(keyChanged.hasOwnProperty(keyCode)){
 			if(keyChanged[keyCode] == "up"){
 				return true;
-			};
-		};
+			}
+		}
 		return false;
-	}
+	};
 
 	var update = function(){
 		keyChanged = keyChanging;
 		keyChanging = {};
-	}
+	};
 
 	// var getAxes = function(){
 	// 	return axes
@@ -213,8 +212,8 @@ Imagine.Input = function(){
 		update: update,
 		getKeyDown: getKeyDown,
 		getKeyUp: getKeyUp
-	}
-}()
+	};
+}();
 
 Imagine.engine = function(){
 	var fps = 12;
@@ -228,7 +227,7 @@ Imagine.engine = function(){
 			Imagine.Time.lastTime = Imagine.Time.startTime;
 			updateId = setInterval(update, frameGap);
 		}
-	}
+	};
 	var updateId;
 	var update = function(){
 		//update Time;
@@ -249,7 +248,7 @@ Imagine.engine = function(){
 	};
 	var clearUpdate = function(){
 		clearInterval(updateId);
-	}
+	};
 
 	init();
 
@@ -275,5 +274,5 @@ Imagine.engine = function(){
 			clearUpdate();
 			updateId = setInterval(update, frameGap);
 		}
-	}
+	};
 }();

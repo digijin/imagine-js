@@ -8,7 +8,7 @@ module.exports = function(grunt){
 				'spec/**/*.*',
 				'src/**/*.*'
 				],
-			tasks: ['jasmine'],
+			tasks: ['jasmine', 'jshint'],
 			options: {
 				livereload: true
 			}
@@ -20,11 +20,15 @@ module.exports = function(grunt){
 					specs: 'spec/**/*.spec.js'
 				}
 			}
-		}
+		},
+        jshint: {
+            all: ['Gruntfile.js', 'src/imagine.js']
+        }
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	grunt.registerTask('default', ['jasmine', 'watch']);
-}
+};
