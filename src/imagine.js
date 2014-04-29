@@ -133,8 +133,8 @@ Imagine.Input = function(){
 	var defaults = {
 		axes:{
 			"Horizontal": {
-				positive: "left",
-				negative: "right"
+				positive: "right",
+				negative: "left"
 			},
 			"Vertical": {
 				positive: "up",

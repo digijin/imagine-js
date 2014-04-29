@@ -136,7 +136,7 @@ describe('Input', function(){
 		Input.keydown("left");
 		//Imagine.engine.forceUpdate();
 		
-		expect(Input.getAxis("Horizontal")).toBe(1);
+		expect(Input.getAxis("Horizontal")).toBe(-1);
 
 		Input.keydown("right");
 		//Imagine.engine.forceUpdate();
@@ -145,13 +145,15 @@ describe('Input', function(){
 
 		Input.keyup("left");
 
-		expect(Input.getAxis("Horizontal")).toBe(-1);
+		expect(Input.getAxis("Horizontal")).toBe(1);
 
 		Input.keyup("right");
 
 		expect(Input.getAxis("Horizontal")).toBe(0);
 
-	})
+	});
+
+	it("should expose getButton");
 
 
 });
