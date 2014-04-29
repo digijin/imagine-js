@@ -154,20 +154,20 @@ describe('objects', function(){
 
 })
 
-describe('time', function(){
+describe('Time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
 
 	it('should reset startTime after reset', function(){
-		Imagine.time.startTime = 123;
+		Imagine.Time.startTime = 123;
 		Imagine.engine.reset();
-		expect(Imagine.time.startTime).not.toBe(123);
+		expect(Imagine.Time.startTime).not.toBe(123);
 	});
 
-	it("should set last time to start time", function(){
+	it("should set last Time to start Time", function(){
 		Imagine.engine.reset();
-		expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
+		expect(Imagine.Time.startTime).toBe(Imagine.Time.lastTime)
 	});
 
 	it("should call update", function(){
@@ -179,26 +179,26 @@ describe('time', function(){
 	});
 
 	it("should define Time", function(){
-		expect(Imagine.time).toBeDefined();
+		expect(Imagine.Time).toBeDefined();
 	});
 
 	it("should set time.currentTime to currentTime", function(){
 		var d = new Date();
-		expect(Imagine.time.startTime).toBeGreaterThan(d.getTime()-100);
-		expect(Imagine.time.startTime).toBeLessThan(d.getTime()+100);
+		expect(Imagine.Time.startTime).toBeGreaterThan(d.getTime()-100);
+		expect(Imagine.Time.startTime).toBeLessThan(d.getTime()+100);
 	});
 
 	it("should update deltaTime properly", function(done){
 		var counter = 0;
 		var obj = {
 			update: function(){
-				counter += Imagine.time.deltaTime;
+				counter += Imagine.Time.deltaTime;
 			}
 		}
 		spyOn(obj, "update").and.callThrough();
 		Imagine(obj);
 		setTimeout(function(){
-			expect(Imagine.time.deltaTime).toBeGreaterThan(0);
+			expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 			expect(obj.update).toHaveBeenCalled();
 			expect(counter).toBeGreaterThan(.4);
 			expect(counter).toBeLessThan(.5);

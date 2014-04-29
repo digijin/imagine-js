@@ -57,11 +57,18 @@ Imagine.addEvent = function(element, eventName, callback) {
 
 Imagine.objects = [];
 
-Imagine.time = {
+Imagine.Time = {
 	deltaTime: 0,
 	currentTime: 0,
 	lastTime: 0,
-	startTime: 0
+	startTime: 0,
+	update: function(){
+		var d = new Date();
+		var dt = d.getTime();
+		Imagine.Time.currentTime = dt - Imagine.Time.startTime;
+		Imagine.Time.deltaTime = (dt - Imagine.Time.lastTime)/1000;
+		Imagine.Time.lastTime = dt;
+	}
 }
 
 Imagine.Input = function(){
@@ -222,19 +229,15 @@ Imagine.engine = function(){
 		if(!inited){
 			inited = true;
 			var d = new Date();
-			Imagine.time.startTime = d.getTime();
-			Imagine.time.lastTime = Imagine.time.startTime;
+			Imagine.Time.startTime = d.getTime();
+			Imagine.Time.lastTime = Imagine.Time.startTime;
 			updateId = setInterval(update, frameGap);
 		}
 	}
 	var updateId;
 	var update = function(){
-		//update time;
-		var d = new Date();
-		var dt = d.getTime();
-		Imagine.time.currentTime = dt - Imagine.time.startTime;
-		Imagine.time.deltaTime = (dt - Imagine.time.lastTime)/1000;
-		Imagine.time.lastTime = dt;
+		//update Time;
+		Imagine.Time.update();
 
 		Imagine.Input.update();
 
