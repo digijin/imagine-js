@@ -51,6 +51,10 @@ $(document).ready(function(){
 							this.stage = "r";
 						}
 					}
+					if(top>200){
+						this.top = 0;
+						top = 0;
+					}
 					this.el.css('top', top);
 					break;
 				case "l":
