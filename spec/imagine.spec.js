@@ -256,10 +256,10 @@ describe('Time', function(){
 		setTimeout(function(){
 			expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 			expect(obj.update).toHaveBeenCalled();
-			expect(counter).toBeGreaterThan(.4);
-			expect(counter).toBeLessThan(.5);
+			expect(counter).toBeGreaterThan(.2);
+			expect(counter).toBeLessThan(.3);
 			done();
-		}, 500);
+		}, 300);
 	});
 
 	describe('FPS', function(){

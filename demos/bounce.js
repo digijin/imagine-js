@@ -12,7 +12,7 @@ $(document).ready(function(){
 		dirV:1,
 		update: function(){
 
-			var speed = 100; 
+			var speed = 200; 
 			var dt = Time.deltaTime;
 
 			var left = parseFloat(this.element.css('left'));
@@ -22,26 +22,28 @@ $(document).ready(function(){
 				this.dirH = -1;
 			}else if(left <=0){
 				this.dirH = 1;
-			}
+			} //HIT SIDE WALLS
 
 			if(top + this.element.height() >= this.element.parent().height()-5){
 				this.dirV = -1;
 			}else if(top <=0){
 				this.dirV = 1;
-			}
+			} //HIT TOP OR BOTTOM
+
+			this.dirV += dt * 0.4;//gravity
 
 			//a little interaction
 			if(Input.getKeyDown("left")){
-				this.dirH = -1;
+				this.dirH = -this.dirH;
 			}else if(Input.getKeyDown("right")){
-				this.dirH = 1;
+				this.dirH = this.dirH;
 			}
 
 			//a little interaction
 			if(Input.getKeyDown("up")){
-				this.dirV = -1;
+				this.dirV = -this.dirH;
 			}else if(Input.getKeyDown("down")){
-				this.dirV = 1;
+				this.dirV = this.dirH;
 			}
 
 			this.element.css('left', left+(dt*this.dirH*speed));
