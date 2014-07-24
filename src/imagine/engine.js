@@ -32,7 +32,7 @@ Imagine.engine = function(){
 		clearInterval(updateId);
 	};
 
-	init();
+	setTimeout(init, 0);//run init next frame
 
 	return {
 		'reset': function(){
