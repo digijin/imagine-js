@@ -19,31 +19,35 @@ $(document).ready(function(){
 			var top = parseFloat(this.element.css('top'));
 
 			if(left + this.element.width() >= this.element.parent().width()-5){
-				this.dirH = -1;
+				if(this.dirH>0)
+					this.dirH = -this.dirH;
 			}else if(left <=0){
-				this.dirH = 1;
+				if(this.dirH<0)
+					this.dirH = -this.dirH;
 			} //HIT SIDE WALLS
 
 			if(top + this.element.height() >= this.element.parent().height()-5){
-				this.dirV = -1;
+				if(this.dirV>0)
+					this.dirV = -this.dirV;
 			}else if(top <=0){
-				this.dirV = 1;
+				if(this.dirV<0)
+					this.dirV = -this.dirV;
 			} //HIT TOP OR BOTTOM
 
 			this.dirV += dt * 0.4;//gravity
 
 			//a little interaction
 			if(Input.getKeyDown("left")){
-				this.dirH = -this.dirH;
+				this.dirH -= 0.3;
 			}else if(Input.getKeyDown("right")){
-				this.dirH = this.dirH;
+				this.dirH += 0.3;
 			}
 
 			//a little interaction
 			if(Input.getKeyDown("up")){
-				this.dirV = -this.dirH;
+				this.dirV -=0.3;
 			}else if(Input.getKeyDown("down")){
-				this.dirV = this.dirH;
+				this.dirV +=0.3;
 			}
 
 			this.element.css('left', left+(dt*this.dirH*speed));
