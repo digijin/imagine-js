@@ -9,6 +9,16 @@ describe('Imagine', function(){
 	})
 })
 
+describe('Polyfills', function(){
+	it('requestAnimationFrame', function(){
+		expect(window.requestAnimationFrame).toBeDefined();
+	});
+
+	it('console.log', function(){
+		expect(console.log).toBeDefined();
+	});
+})
+
 describe('Engine', function(){
 
 	beforeEach(function() {
@@ -278,6 +288,25 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeLessThan(5);
 				done();
 			}, 420);
+		});
+
+		it('should use requestanimationframe if fps is 0', function(done){
+			var obj = {update:function(){}};
+
+			spyOn(obj, 'update');
+			Imagine(obj);
+			Imagine.engine.setFPS(0);
+			setTimeout(function(){
+				expect(obj.update.calls.count()).toBeGreaterThan(0);
+				
+				done();
+			}, 50)
+		});
+		it('should call requestAnimationFrame', function(){
+
+			spyOn(window, 'requestAnimationFrame');
+			Imagine.engine.setFPS(0);
+			expect(window.requestAnimationFrame).toHaveBeenCalled();
 		})
 	});
 });

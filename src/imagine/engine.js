@@ -27,6 +27,10 @@ Imagine.engine = function(){
 				obj.update();
 			}
 		}
+
+		if(fps==0){
+			requestAnimationFrame(update)
+		}
 	};
 	var clearUpdate = function(){
 		clearInterval(updateId);
@@ -52,9 +56,18 @@ Imagine.engine = function(){
 		},
 		'setFPS': function(newFPS){
 			fps = newFPS;
-			frameGap = 1000/fps;
 			clearUpdate();
-			updateId = setInterval(update, frameGap);
+			if(fps==0){
+				frameGap = 0;
+				updateId = requestAnimationFrame(update)
+			}else{
+				frameGap = 1000/fps;
+				updateId = setInterval(update, frameGap);
+			}
+			
+			
+			
+			
 		}
 	};
 }();

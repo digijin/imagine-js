@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	Time = Imagine.Time;
 	Input = Imagine.Input;
-	Imagine.engine.setFPS(24);
+	Imagine.engine.setFPS(0);
 	Imagine({
 		element: $('#ball'),
 		start: function(){
