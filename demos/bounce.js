@@ -8,6 +8,8 @@ $(document).ready(function(){
 			this.element.css("left", this.element.parent().width()* Math.random());
 			this.element.css("top", this.element.parent().height() * Math.random());
 		},
+		dirH:1,
+		dirV:1,
 		update: function(){
 
 			var speed = 100; 
@@ -45,9 +47,7 @@ $(document).ready(function(){
 			this.element.css('left', left+(dt*this.dirH*speed));
 			this.element.css('top' , top +(dt*this.dirV*speed));
 			//this.element.css('top', top+Time.deltaTime);
-		},
-		dirH:1,
-		dirV:1
+		}
 	});
 	Imagine({
 		element:$("#output"),
