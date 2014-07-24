@@ -1,9 +1,16 @@
 
 var Imagine = function(params){
-	Imagine.engine.registerObject(params);
-	if(params.start){
-		params.start();
+	if( Object.prototype.toString.call( params ) === '[object Array]' ) {
+	    for(var i=0; i<params.length; i++){
+	    	Imagine(params[i]);
+	    }
+	}else{
+		Imagine.engine.registerObject(params);
+		if(params.start){
+			params.start();
+		}
 	}
+	
 };
 
 Imagine.objects = [];

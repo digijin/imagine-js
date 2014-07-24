@@ -1,3 +1,14 @@
+describe('Imagine', function(){
+
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
+	it('should accept an array of objects', function(){
+		Imagine([{},{}])
+		expect(Imagine.objects.length).toBe(2);
+	})
+})
+
 describe('Engine', function(){
 
 	beforeEach(function() {
@@ -17,6 +28,8 @@ describe('Engine', function(){
 	it("should expose Imagine.engine", function(){
 		expect(Imagine.engine).toBeDefined();
 	});
+
+	
 
 });
 
