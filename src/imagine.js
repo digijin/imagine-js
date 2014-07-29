@@ -10,11 +10,12 @@ var Imagine = function(params){
 			params.start();
 		}
 		if(params.component){
-			for(var i=0; i<params.component.length; i++){
-				var obj = params.component[i];
-				console.log("asd");
-				if(obj.start){
-					obj.start()
+			for (var key in params.component) {
+				if (params.component.hasOwnProperty(key)) {
+					var obj = params.component[key];
+					if(obj.start){
+						obj.start();
+					}
 				}
 			}
 		}

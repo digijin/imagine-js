@@ -20,7 +20,8 @@ describe('Component', function(){
 			})
 		expect(obj.start).toHaveBeenCalled();
 	})
-	it('should run the start functions of components')
 	it('should take an array of components')
 	it('should take a single component')
+	it('should have GetComponent')
+	it('should have AddComponent')
 })
