@@ -48,6 +48,7 @@ Imagine.engine = function(){
 		},
 		'registerObject':function(obj){
 			//console.log("registering");
+			obj.AddComponent = function(){}
 			Imagine.objects.push(obj);
 		},
 		'forceUpdate': update,

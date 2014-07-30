@@ -20,8 +20,20 @@ describe('Component', function(){
 			})
 		expect(obj.start).toHaveBeenCalled();
 	})
-	it('should take an array of components')
+
 	it('should take a single component')
-	it('should have GetComponent')
-	it('should have AddComponent')
+	it('should have GetComponent', function(){
+		var obj = {start:function(){
+			expect(this.GetComponent).toBeDefined();
+		}};
+		Imagine({component:{obj:obj}})
+	});
+	it('should have AddComponent', function(){
+		var obj = {start:function(){
+			expect(this.AddComponent).toBeDefined();
+
+		}};
+		Imagine({component:{obj:obj}})
+	});
+	it('should actually add compnents')
 })
