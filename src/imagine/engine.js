@@ -49,6 +49,15 @@ Imagine.engine = function(){
 		'registerObject':function(obj){
 			//console.log("registering");
 			obj.AddComponent = function(){}
+			if(obj.component){
+				for (var key in obj.component) {
+					if (obj.component.hasOwnProperty(key)) {
+						var c = obj.component[key];
+						c.AddComponent = function(){}
+						c.GetComponent = function(){}
+					}
+				}
+			}
 			Imagine.objects.push(obj);
 		},
 		'forceUpdate': update,

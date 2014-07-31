@@ -9,7 +9,8 @@ module.exports = function(grunt){
 				'Gruntfile.js',
 				'demos/**/*.*',
 				'spec/**/*.*',
-				'src/**/*.*'
+				'src/**/*.*',
+				'sandpit/**/*.*'
 				],
 			tasks: ['build', 'jasmine', 'jshint'],
 			options: {

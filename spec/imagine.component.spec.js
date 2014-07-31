@@ -7,7 +7,7 @@ describe('Component', function(){
 		expect(Imagine.component).toBeDefined()
 	})
 	it('should add a component')
-	it('should reset components afer a reset')
+	it('should reset components after a reset')
 	it('should run the start functions of components', function(){
 
 		var obj = {start:function(){}};
