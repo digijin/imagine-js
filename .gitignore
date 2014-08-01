@@ -1,3 +1,4 @@
 node_modules
 temp/
-lib/
+lib/imagine.js
+lib/imagine.min.js
