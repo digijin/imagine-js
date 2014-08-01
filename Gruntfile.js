@@ -43,11 +43,24 @@ module.exports = function(grunt){
         			'lib/imagine.min.js': ['lib/imagine.js']
         		}
         	}
+        },
+        coffee:{
+        	compile:{
+        		options:{
+        			bare:true
+        		},
+        		cwd: 'src',
+        		src: ['**/*.coffee'],
+        		dest: 'temp',
+        		expand: true,
+				ext: '.js',
+				
+        	}
         }
 	});
 
 
-	grunt.registerTask('build', ['concat', 'uglify']);
+	grunt.registerTask('build', ['coffee', 'concat', 'uglify']);
 
 	grunt.registerTask('default', ['build', 'jasmine', 'jshint', 'watch']);
 };
