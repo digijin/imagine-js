@@ -23,6 +23,12 @@ module.exports = function(grunt){
 				options:{
 					specs: 'spec/**/*.spec.js'
 				}
+			},
+			engine:{
+				src: 'lib/imagine.js',
+				options:{
+					specs: 'spec/imagine.engine.spec.js'
+				}
 			}
 		},
         jshint: {
@@ -33,7 +39,7 @@ module.exports = function(grunt){
 				separator: ';\n',
 			},
 			dist: {
-				src: ['src/polyfill/*.js', 'src/imagine.js', 'src/imagine/*.js'],
+				src: ['temp/polyfill/*.js', 'temp/imagine.js', 'temp/imagine/component.js', 'temp/imagine/engine.js', 'src/imagine/input.js', 'src/imagine/time.js'],
 				dest: 'lib/imagine.js',
 			},
         },

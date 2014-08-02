@@ -1,4 +1,6 @@
-Imagine.engine = ->
+Imagine.engine = 
+
+makeEngine = ->
   fps = 12
   frameGap = 1000 / fps
   inited = false
@@ -70,3 +72,5 @@ Imagine.engine = ->
       frameGap = 1000 / fps
       updateId = setInterval(update, frameGap)
     return
+
+Imagine.engine = makeEngine()
