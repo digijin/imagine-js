@@ -4,6 +4,7 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		pkg: require('./package.json'),
+		clean:['temp'],
 		watch:{
 			files: [
 				'Gruntfile.js',
@@ -66,7 +67,7 @@ module.exports = function(grunt){
 	});
 
 
-	grunt.registerTask('build', ['coffee', 'concat', 'uglify']);
+	grunt.registerTask('build', ['clean', 'coffee', 'concat', 'uglify']);
 
 	grunt.registerTask('default', ['build', 'jasmine', 'jshint', 'watch']);
 };

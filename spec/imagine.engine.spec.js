@@ -1,13 +1,14 @@
 
 describe('Engine Init', function(){
 	it("should exist", function(){
-		expect(Imagine).toBeDefined();
 		expect(Imagine.engine).toBeDefined();
 	})
 })
 
 
 describe('Engine', function(){
+
+	it("should work in the right object scope / context")
 
 	beforeEach(function() {
 		Imagine.engine.reset();

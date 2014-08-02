@@ -1,6 +1,4 @@
-Imagine.engine = 
-
-makeEngine = ->
+Imagine.engine = (->
   fps = 12
   frameGap = 1000 / fps
   inited = false
@@ -27,6 +25,7 @@ makeEngine = ->
       #todo: set script execution order
       obj.update()  if obj.update
       i++
+    # console.log fps
     requestAnimationFrame update  if fps is 0
     return
 
@@ -72,5 +71,4 @@ makeEngine = ->
       frameGap = 1000 / fps
       updateId = setInterval(update, frameGap)
     return
-
-Imagine.engine = makeEngine()
+)()

@@ -24,3 +24,7 @@ Imagine.addEvent = (element, eventName, callback) ->
   else
     element["on" + eventName] = callback
   return
+
+
+
+I = i= Imagine
