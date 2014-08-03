@@ -8,7 +8,7 @@ Imagine.engine = (->
       d = new Date()
       Imagine.Time.startTime = d.getTime()
       Imagine.Time.lastTime = Imagine.Time.startTime
-      updateId = setInterval(update, frameGap)
+      setFPS(fps)
     return
 
   updateId = undefined
@@ -26,11 +26,28 @@ Imagine.engine = (->
       obj.update()  if obj.update
       i++
     # console.log fps
-    requestAnimationFrame update  if fps is 0
+    
+    if fps is 0
+    	requestAnimationFrame update
+    	# console.log "raf"
     return
 
   clearUpdate = ->
+    console.log "clearing "+updateId
     clearInterval updateId
+    return
+
+  setFPS = (newFPS) ->
+    fps = newFPS
+    clearUpdate()
+    if fps is 0
+      frameGap = 0
+      updateId = requestAnimationFrame(update)
+    else
+      frameGap = 1000 / fps
+      console.log "setting interval "+frameGap
+      updateId = setInterval update, frameGap
+      console.log "update is "+updateId
     return
 
   setTimeout init, 0 #run init next frame
@@ -61,14 +78,5 @@ Imagine.engine = (->
   getFPS: ->
     fps
 
-  setFPS: (newFPS) ->
-    fps = newFPS
-    clearUpdate()
-    if fps is 0
-      frameGap = 0
-      updateId = requestAnimationFrame(update)
-    else
-      frameGap = 1000 / fps
-      updateId = setInterval(update, frameGap)
-    return
+  setFPS: setFPS
 )()

@@ -1,6 +1,6 @@
 
 
-Imagine.engine = function(){
+Imagine.engine = (function(){
 	var fps = 12;
 	var frameGap = 1000/fps;
 	var inited = false;
@@ -80,4 +80,4 @@ Imagine.engine = function(){
 			
 		}
 	};
-}();
+})();

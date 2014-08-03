@@ -277,10 +277,10 @@ describe('Time', function(){
 			Imagine(obj);
 			Imagine.engine.setFPS(10);
 			setTimeout(function(){
-				expect(obj.update.calls.count()).toBeGreaterThan(2);
-				expect(obj.update.calls.count()).toBeLessThan(5);
+				expect(obj.update.calls.count()).toBeGreaterThan(0);
+				expect(obj.update.calls.count()).toBeLessThan(3);
 				done();
-			}, 420);
+			}, 150);
 		});
 
 		it('should use requestanimationframe if fps is 0', function(done){
@@ -293,7 +293,7 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 50)
+			}, 20)
 		});
 	});
 });
