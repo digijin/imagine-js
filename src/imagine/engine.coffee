@@ -1,5 +1,5 @@
 Imagine.engine = (->
-  fps = 12
+  fps = 0
   frameGap = 1000 / fps
   inited = false
   init = ->

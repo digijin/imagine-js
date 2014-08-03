@@ -1,7 +1,7 @@
 
 
 Imagine.engine = (function(){
-	var fps = 12;
+	var fps = 0;
 	var frameGap = 1000/fps;
 	var inited = false;
 	var init = function(){
