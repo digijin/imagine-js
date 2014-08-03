@@ -301,7 +301,7 @@ describe('Time', function(){
 			Imagine.engine.setFPS(10);
 			setTimeout(function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
-				expect(obj.update.calls.count()).toBeLessThan(4);
+				expect(obj.update.calls.count()).toBeLessThan(5);
 				done();
 			}, 150);
 		});
@@ -316,7 +316,7 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 50)
+			}, 100)
 		});
 	});
 });

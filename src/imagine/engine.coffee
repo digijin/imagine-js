@@ -52,6 +52,11 @@ Imagine.engine = (->
       updateId = setInterval update, frameGap
     return
 
+  addComponent = (com)->
+    this.component = [] unless this.component
+    this.component.push(com)
+    this 
+
   setTimeout init, 0 #run init next frame
   reset: ->
     Imagine.objects = []
@@ -64,13 +69,12 @@ Imagine.engine = (->
   registerObject: (obj) ->
     
     #console.log("registering");
-    obj.addComponent = ->
-
+    obj.addComponent = addComponent
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
-          c.addComponent = ->
+          c.addComponent = addComponent
 
           c.getComponent = ->
     Imagine.objects.push obj

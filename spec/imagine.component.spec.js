@@ -54,6 +54,12 @@ describe('Component', function(){
 			}};
 			expect(Imagine({component:{obj:obj}}).addComponent).toBeDefined()
 		});
+
+		it("should return initial object for chaining", function(){
+			obj = {test:"abc"}
+			com = {component:"test"}
+			expect(Imagine(obj).addComponent(com)).toBe(obj)
+		})
 		it('should actually add compnents')
 
 		it('should work on arrays')
