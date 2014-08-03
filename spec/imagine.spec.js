@@ -186,6 +186,9 @@ describe('Objects', function(){
 		expect(obj.start).toHaveBeenCalled();
 	});
 
+	it("should have a Notify function that calls a named function on all objects if function existing")
+	it("sohuld have a resize event")
+
 })
 
 describe('Time', function(){
