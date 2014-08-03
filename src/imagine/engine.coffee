@@ -53,8 +53,10 @@ Imagine.engine = (->
     return
 
   addComponent = (com)->
+    com.object = this
     this.component = [] unless this.component
     this.component.push(com)
+
     this 
 
   setTimeout init, 0 #run init next frame

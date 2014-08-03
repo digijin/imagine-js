@@ -65,9 +65,23 @@ describe('Component', function(){
 		it('should work on arrays')
 
 		it('should chain properly', function(){
-			// var obj = {test:"test"}
-			// expect(Imagine(obj)).toBe(obj)
+			var obj = {test:"test"}
+			expect(Imagine(obj)).toBe(obj)
+			expect(Imagine(obj).addComponent(obj)).toBe(obj)
 		})
+
+		it("should set object on components", function(){
+
+			var obj = {obj: "obj"};
+			var com = {com: "com"};
+			Imagine(obj).addComponent(com);
+			expect(com.object).toBeDefined()
+
+		})
+
+
+		it("if adding a component to a component, should go on the components object")
+
 
 	})
 })

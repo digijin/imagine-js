@@ -214,6 +214,7 @@ describe('Objects', function(){
 describe('Time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
+		Imagine.engine.setFPS(0);
 	});
 
 	it('should reset startTime after reset', function(){
@@ -316,7 +317,7 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 100)
+			}, 200)
 		});
 	});
 });
