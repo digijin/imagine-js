@@ -1,4 +1,8 @@
-Imagine.Input = ->
+Imagine.Input = (->
+
+  axes = undefined
+  mapping = undefined
+  
   Imagine.addEvent document, "keypress", (e) ->
     e = e or window.event
     
@@ -73,7 +77,6 @@ Imagine.Input = ->
       right: 39
       down: 40
 
-  axes = undefined
   init = (params) ->
     config = JSON.parse(JSON.stringify(defaults)) #extend params
     axes = config.axes
@@ -86,7 +89,6 @@ Imagine.Input = ->
     keyChanged = {}
     return
 
-  mapping = undefined
   map = (key) ->
     return key  if typeof key is "number"
     return mapping[key]  if mapping.hasOwnProperty(key)
@@ -138,3 +140,4 @@ Imagine.Input = ->
   getKeyDown: getKeyDown
   getKeyUp: getKeyUp
   getAxis: getAxis
+)()
