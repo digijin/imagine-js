@@ -62,7 +62,7 @@ describe('Component', function(){
 		})
 		it('should actually add compnents')
 
-		it('should work on arrays')
+		it('should work on arrays') //e.g. Imagine([1,2]).addComponent(asd)
 
 		it('should chain properly', function(){
 			var obj = {test:"test"}
