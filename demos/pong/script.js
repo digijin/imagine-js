@@ -4,7 +4,7 @@ $(document).ready(function(){
 		dirH:1,
 		dirV:1,
 		update: function(){
-			var speed = 100; 
+			var speed = 200; 
 			var dt = Imagine.Time.deltaTime;
 			var left = parseFloat(this.element.css('left'));
 			var top = parseFloat(this.element.css('top'));
@@ -29,4 +29,8 @@ $(document).ready(function(){
 			this.element.css('top' , top +(dt*this.dirV*speed));
 		}
 	});
+
+
+	Imagine({});
+
 });
