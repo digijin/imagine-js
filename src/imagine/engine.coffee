@@ -25,15 +25,12 @@ Imagine.engine = (->
       #todo: set script execution order
       obj.update()  if obj.update
       i++
-    # console.log fps
     
     if fps is 0
     	requestAnimationFrame update
-    	# console.log "raf"
     return
 
   clearUpdate = ->
-    console.log "clearing "+updateId
     clearInterval updateId
     return
 
@@ -45,9 +42,7 @@ Imagine.engine = (->
       updateId = requestAnimationFrame(update)
     else
       frameGap = 1000 / fps
-      console.log "setting interval "+frameGap
       updateId = setInterval update, frameGap
-      console.log "update is "+updateId
     return
 
   setTimeout init, 0 #run init next frame
