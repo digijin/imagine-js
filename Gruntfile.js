@@ -40,7 +40,7 @@ module.exports = function(grunt){
 				separator: ';\n',
 			},
 			dist: {
-				src: ['temp/polyfill/*.js', 'temp/imagine.js', 'temp/imagine/component.js', 'temp/imagine/engine.js', 'src/imagine/input.js', 'src/imagine/time.js'],
+				src: ['temp/polyfill/*.js', 'temp/imagine.js', 'temp/imagine/component.js', 'temp/imagine/engine.js', 'temp/imagine/input.js', 'temp/imagine/time.js'],
 				dest: 'lib/imagine.js',
 			},
         },
