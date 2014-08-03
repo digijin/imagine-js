@@ -24,6 +24,13 @@ Imagine.engine = (->
       
       #todo: set script execution order
       obj.update()  if obj.update
+
+      if obj.component
+        for key of obj.component
+          if obj.component.hasOwnProperty(key)
+            com = obj.component[key]
+            com.update()  if com.update
+
       i++
     
     if fps is 0

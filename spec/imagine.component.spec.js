@@ -19,6 +19,22 @@ describe('Component', function(){
 				}
 			})
 		expect(obj.start).toHaveBeenCalled();
+	});
+
+	it('should run update on components', function(done){
+		var obj = {update:function(){}};
+		spyOn(obj, 'update');
+		Imagine.engine.setFPS(0)
+		Imagine(
+			{
+				component:{
+					obj: obj
+				}
+			})
+		setTimeout(function(){
+			expect(obj.update).toHaveBeenCalled();
+			done()
+		}, 100)
 	})
 
 	it('should take a single component')
