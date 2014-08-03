@@ -57,15 +57,15 @@ Imagine.engine = (->
   registerObject: (obj) ->
     
     #console.log("registering");
-    obj.AddComponent = ->
+    obj.addComponent = ->
 
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
-          c.AddComponent = ->
+          c.addComponent = ->
 
-          c.GetComponent = ->
+          c.getComponent = ->
     Imagine.objects.push obj
     return
 

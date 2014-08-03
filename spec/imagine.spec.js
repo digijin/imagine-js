@@ -9,6 +9,26 @@ describe('Imagine', function(){
 		Imagine([{},{}])
 		expect(Imagine.objects.length).toBe(2);
 	})
+
+	it("should return the object it made", function(){
+		expect(Imagine({})).toBeDefined()
+		expect(Imagine({test:"string"}).test).toBe("string")
+	})
+
+	it("should take a htmlElement and turn it into a generic element for chaining")
+	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
+})
+
+describe('Name', function(){
+
+	it("should allow you to search by name")
+	it("should be able to detect name on objects")
+})
+describe('Tags', function(){
+	it("should allow you to search by tags")
+	it("should be able to detect tags on objects")
+	it("should have addTag")
+	it("should have removeTag")
 })
 
 describe('Polyfills', function(){

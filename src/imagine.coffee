@@ -6,6 +6,7 @@ Imagine = (params) ->
       Imagine params[i]
       i++
   else
+    out = params
     Imagine.engine.registerObject params
     params.start()  if params.start
     if params.component
@@ -13,7 +14,7 @@ Imagine = (params) ->
         if params.component.hasOwnProperty(key)
           obj = params.component[key]
           obj.start()  if obj.start
-  return
+  out
 
 Imagine.objects = []
 Imagine.addEvent = (element, eventName, callback) ->

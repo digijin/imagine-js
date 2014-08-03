@@ -22,18 +22,30 @@ describe('Component', function(){
 	})
 
 	it('should take a single component')
-	it('should have GetComponent', function(){
+	it('should have getComponent', function(){
 		var obj = {start:function(){
-			expect(this.GetComponent).toBeDefined();
+			expect(this.getComponent).toBeDefined();
 		}};
 		Imagine({component:{obj:obj}})
 	});
-	it('should have AddComponent', function(){
-		var obj = {start:function(){
-			expect(this.AddComponent).toBeDefined();
 
-		}};
-		Imagine({component:{obj:obj}})
-	});
-	it('should actually add compnents')
+	describe("addComponent", function(){
+
+		it('should have addComponent', function(){
+			var obj = {start:function(){
+				expect(this.addComponent).toBeDefined();
+
+			}};
+			expect(Imagine({component:{obj:obj}}).addComponent).toBeDefined()
+		});
+		it('should actually add compnents')
+
+		it('should work on arrays')
+
+		it('should chain properly', function(){
+			// var obj = {test:"test"}
+			// expect(Imagine(obj)).toBe(obj)
+		})
+
+	})
 })
