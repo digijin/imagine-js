@@ -268,6 +268,7 @@ describe('Time', function(){
 			}
 		}
 		spyOn(obj, "update").and.callThrough();
+		Imagine.engine.setFPS(24);
 		Imagine(obj);
 		setTimeout(function(){
 			expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
@@ -304,7 +305,7 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				expect(obj.update.calls.count()).toBeLessThan(5);
 				done();
-			}, 150);
+			}, 120);
 		});
 
 		it('should use requestanimationframe if fps is 0', function(done){
