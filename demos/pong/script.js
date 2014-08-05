@@ -15,7 +15,11 @@ $(document).ready(function(){
 	};
 
 	player = {
+		start: function(){
+			this.paddle = getComponent('paddle');
+		},
 		update: function(){
+			console.log(this.paddle);
 			var top = parseFloat($('#left').css('top'));
 			var speed = 200; 
 			var dt = Imagine.Time.deltaTime;

@@ -53,11 +53,22 @@ Imagine.engine = (->
     return
 
   addComponent = (com)->
+    unless com
+      console.log "component not defined"
+      return this
     com.object = this
     this.component = [] unless this.component
     this.component.push(com)
 
     this 
+  getComponent = (name) ->
+    for com in this.component
+      if com.name is name
+        return com
+  
+  assignfunctions = (obj) ->
+    obj.addComponent = addComponent
+    obj.getComponent = getComponent
 
   setTimeout init, 0 #run init next frame
   reset: ->
@@ -71,14 +82,13 @@ Imagine.engine = (->
   registerObject: (obj) ->
     
     #console.log("registering");
-    obj.addComponent = addComponent
+    
+    assignfunctions(obj)
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
-          c.addComponent = addComponent
-
-          c.getComponent = ->
+          assignfunctions(c)
     Imagine.objects.push obj
     return
 

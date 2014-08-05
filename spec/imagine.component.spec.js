@@ -6,7 +6,7 @@ describe('Component', function(){
 	it('should be defined', function(){
 		expect(Imagine.component).toBeDefined()
 	})
-	it('should add a component')
+	
 	it('should reset components after a reset')
 	it('should run the start functions of components', function(){
 
@@ -37,13 +37,24 @@ describe('Component', function(){
 		}, 100)
 	})
 
-	it('should take a single component')
+	
 	it('should have getComponent', function(){
 		var obj = {start:function(){
 			expect(this.getComponent).toBeDefined();
 		}};
 		Imagine({component:{obj:obj}})
+		expect(Imagine({}).getComponent).toBeDefined()
+		expect(Imagine({}).addComponent({}).getComponent).toBeDefined()
 	});
+
+
+	it("should get a named component", function(){
+		com = {
+			name:"testcomponent"
+		}
+		expect(Imagine({}).addComponent(com).getComponent("testcomponent")).toBeDefined()
+		expect(Imagine({}).addComponent(com).getComponent("testcomponent")).toBe(com)
+	})
 
 	describe("addComponent", function(){
 
@@ -55,12 +66,23 @@ describe('Component', function(){
 			expect(Imagine({component:{obj:obj}}).addComponent).toBeDefined()
 		});
 
+		it('should take a single component')
+		it('should take an array of components')
+
+		it('should warn if addComponent is passed nothing', function(){
+			spyOn(console, 'log');
+			Imagine({}).addComponent();
+			expect(console.log).toHaveBeenCalled()
+		})
+
 		it("should return initial object for chaining", function(){
 			obj = {test:"abc"}
 			com = {component:"test"}
 			expect(Imagine(obj).addComponent(com)).toBe(obj)
 		})
-		it('should actually add compnents')
+		it('should actually add compnents', function(){
+
+		})
 
 		it('should work on arrays') //e.g. Imagine([1,2]).addComponent(asd)
 
