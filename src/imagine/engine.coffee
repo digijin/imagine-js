@@ -58,15 +58,15 @@ Imagine.engine = (->
       return this
     com._object = this
     this._components = [] unless this._components
-    console.log this
     this._components.push(com)
     assignfunctions(com)
     com.start()  if com.start
     this 
 
   getComponent = (name) ->
-    if this._components
-      for com in this._components
+    obj = this._object or this
+    if obj._components
+      for com in obj._components
         if com.name is name
           return com
   

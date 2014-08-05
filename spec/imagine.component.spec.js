@@ -57,7 +57,11 @@ describe('Component', function(){
 	})
 
 	it("should have getComponent on components", function(){
-		
+		var com = {start:function(){
+			expect(this.getComponent).toBeDefined()
+			expect(this.getComponent("test")).toBeDefined()
+		}}
+		Imagine({}).addComponent({name:'test'}).addComponent(com)
 	})
 
 	describe("addComponent", function(){

@@ -1,4 +1,4 @@
-var player
+var player;
 $(document).ready(function(){
 
 	paddle = {
@@ -16,22 +16,15 @@ $(document).ready(function(){
 
 	player = {
 		start: function(){
-			console.log(this.getComponent);
 			this.paddle = this.getComponent('paddle');
-			console.log("init");
 		},
 		update: function(){
-			console.log(this.paddle);
-			var top = parseFloat($('#left').css('top'));
-			var speed = 200; 
-			var dt = Imagine.Time.deltaTime;
-			var dirV = 0;
+			this.paddle.dirV = 0;
 			if(Imagine.Input.getKey("up")){
-				dirV -= 3;
+				this.paddle.dirV -= 3;
 			}else if(Imagine.Input.getKey("down")){
-				dirV += 3;
+				this.paddle.dirV += 3;
 			}
-			$('#left').css('top' , top +(dt*dirV*speed));
 		}
 	};
 
@@ -68,6 +61,6 @@ $(document).ready(function(){
 	});
 
 
-	Imagine(paddle).addComponent(player);
+	Imagine({}).addComponent(paddle).addComponent(player);
 
 });

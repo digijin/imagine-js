@@ -318,7 +318,7 @@ describe('Time', function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 200)
+			}, 300)
 		});
 	});
 });
