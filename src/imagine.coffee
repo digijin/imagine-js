@@ -37,6 +37,13 @@ Imagine.getComponent = (name) ->
     com = obj.getComponent name
     return com if com
 
+Imagine.getComponents = (name) ->
+  out = []
+  for obj in Imagine.objects
+    com = obj.getComponent name
+    out.push(com) if com
+  out
+
 
 
 I = i= Imagine

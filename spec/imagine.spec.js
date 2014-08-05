@@ -1,5 +1,8 @@
 describe('Imagine', function(){
 
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
 
 	it('should exist', function(){
 		expect(Imagine).toBeDefined();
@@ -27,6 +30,14 @@ describe('Imagine', function(){
 		Imagine({}).addComponent(com)
 		expect(Imagine.getComponent('test')).toBeDefined()
 		expect(Imagine.getComponent('test')).toBe(com)
+	})
+	it("should have a getComponents that searches all objects", function(){
+		com1 = {name:'test'}
+		com2 = {name:'test'}
+		Imagine({}).addComponent(com1)
+		Imagine({}).addComponent(com2)
+		expect(Imagine.getComponents('test')).toBeDefined()
+		expect(Imagine.getComponents('test').length).toBe(2)
 	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 })
