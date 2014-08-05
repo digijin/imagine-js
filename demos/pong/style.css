@@ -14,10 +14,10 @@ body, html{
 	height: 100px;
 }
 #left{
-	left: 10px;
+	left: 40px;
 }
 #right{
-	right: 10px;
+	right: 40px;
 }
 #ball{
 	width: 10px;
