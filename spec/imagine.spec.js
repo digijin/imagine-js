@@ -21,6 +21,13 @@ describe('Imagine', function(){
 		expect(obj.getComponent('element')).toBeDefined()
 		expect(obj.getComponent('element')).toBe(div)
 	})
+
+	it("should have a getComponent that searches all objects", function(){
+		com = {name:'test'}
+		Imagine({}).addComponent(com)
+		expect(Imagine.getComponent('test')).toBeDefined()
+		expect(Imagine.getComponent('test')).toBe(com)
+	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 })
 

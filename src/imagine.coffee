@@ -32,6 +32,11 @@ Imagine.addEvent = (element, eventName, callback) ->
     element["on" + eventName] = callback
   return
 
+Imagine.getComponent = (name) ->
+  for obj in Imagine.objects
+    com = obj.getComponent name
+    return com if com
+
 
 
 I = i= Imagine
