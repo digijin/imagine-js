@@ -15,7 +15,12 @@ describe('Imagine', function(){
 		expect(Imagine({test:"string"}).test).toBe("string")
 	})
 
-	it("should take a htmlElement and turn it into a generic element for chaining")
+	it("should take a htmlElement and turn it into a generic element for chaining", function(){
+		div = document.createElement('div')
+		obj = Imagine(div)
+		expect(obj.getComponent('element')).toBeDefined()
+		expect(obj.getComponent('element')).toBe(div)
+	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 })
 

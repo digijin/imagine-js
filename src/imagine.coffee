@@ -6,7 +6,13 @@ Imagine = (params) ->
       Imagine params[i]
       i++
   else
-    out = Imagine.engine.registerObject params
+
+    if isElement params
+      params.name = "element"
+      params.tags = ['element']
+      out = Imagine({}).addComponent(params)
+    else
+      out = Imagine.engine.registerObject params
     
     # if out.component
     #   for key of out.component
