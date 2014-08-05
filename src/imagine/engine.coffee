@@ -25,10 +25,10 @@ Imagine.engine = (->
       #todo: set script execution order
       obj.update()  if obj.update
 
-      if obj.component
-        for key of obj.component
-          if obj.component.hasOwnProperty(key)
-            com = obj.component[key]
+      if obj._components
+        for key of obj._components
+          if obj._components.hasOwnProperty(key)
+            com = obj._components[key]
             com.update()  if com.update
 
       i++
@@ -56,13 +56,16 @@ Imagine.engine = (->
     unless com
       console.log "component not defined"
       return this
-    com.object = this
-    this.component = [] unless this.component
-    this.component.push(com)
-
+    com._object = this
+    this._components = [] unless this._components
+    console.log this
+    this._components.push(com)
+    assignfunctions(com)
+    com.start()  if com.start
     this 
+
   getComponent = (name) ->
-    for com in this.component
+    for com in this._components
       if com.name is name
         return com
   
@@ -81,14 +84,16 @@ Imagine.engine = (->
 
   registerObject: (obj) ->
     
-    #console.log("registering");
+    console.log("registering");
     
     assignfunctions(obj)
+    obj.start()  if obj.start
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
-          assignfunctions(c)
+          console.log("adding component in obj init")
+          obj.addComponent(c)
     Imagine.objects.push obj
     obj
 
