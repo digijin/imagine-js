@@ -56,6 +56,10 @@ describe('Component', function(){
 		expect(Imagine({}).addComponent(com).getComponent("testcomponent")).toBe(com)
 	})
 
+	it("should have getComponent on components", function(){
+		
+	})
+
 	describe("addComponent", function(){
 
 		it('should have addComponent', function(){
@@ -99,12 +103,12 @@ describe('Component', function(){
 			expect(Imagine(obj).addComponent(obj)).toBe(obj)
 		})
 
-		it("should set object on components", function(){
+		it("should set _object on components", function(){
 
 			var obj = {obj: "obj"};
 			var com = {com: "com"};
 			Imagine(obj).addComponent(com);
-			expect(com.object).toBeDefined()
+			expect(com._object).toBeDefined()
 
 		})
 

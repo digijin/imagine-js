@@ -65,9 +65,10 @@ Imagine.engine = (->
     this 
 
   getComponent = (name) ->
-    for com in this._components
-      if com.name is name
-        return com
+    if this._components
+      for com in this._components
+        if com.name is name
+          return com
   
   assignfunctions = (obj) ->
     obj.addComponent = addComponent
@@ -84,15 +85,12 @@ Imagine.engine = (->
 
   registerObject: (obj) ->
     
-    console.log("registering");
-    
     assignfunctions(obj)
     obj.start()  if obj.start
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
-          console.log("adding component in obj init")
           obj.addComponent(c)
     Imagine.objects.push obj
     obj
