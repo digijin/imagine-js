@@ -6,13 +6,13 @@ Imagine = (params) ->
       Imagine params[i]
       i++
   else
-    out = params
-    Imagine.engine.registerObject params
-    params.start()  if params.start
-    if params.component
-      for key of params.component
-        if params.component.hasOwnProperty(key)
-          obj = params.component[key]
+    out = Imagine.engine.registerObject params
+    out.start()  if out.start
+    if out.component
+      for key of out.component
+        if out.component.hasOwnProperty(key)
+          obj = out.component[key]
+          # out.addComponent(obj)
           obj.start()  if obj.start
   out
 

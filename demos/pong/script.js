@@ -1,4 +1,4 @@
-
+var player
 $(document).ready(function(){
 
 	paddle = {
@@ -16,7 +16,9 @@ $(document).ready(function(){
 
 	player = {
 		start: function(){
-			this.paddle = getComponent('paddle');
+			console.log(this.getComponent);
+			this.paddle = this.getComponent('paddle');
+			console.log("init");
 		},
 		update: function(){
 			console.log(this.paddle);

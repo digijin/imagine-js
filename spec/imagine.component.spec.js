@@ -66,6 +66,13 @@ describe('Component', function(){
 			expect(Imagine({component:{obj:obj}}).addComponent).toBeDefined()
 		});
 
+		it("should call start on a component after adding", function(){
+			var obj = {start:function(){}}
+			spyOn(obj, 'start');
+			Imagine({}).addComponent(obj);
+			expect(obj.start).toHaveBeenCalled()
+		})
+
 		it('should take a single component')
 		it('should take an array of components')
 

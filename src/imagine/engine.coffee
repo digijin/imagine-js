@@ -90,7 +90,7 @@ Imagine.engine = (->
           c = obj.component[key]
           assignfunctions(c)
     Imagine.objects.push obj
-    return
+    obj
 
   forceUpdate: update
   getFPS: ->
