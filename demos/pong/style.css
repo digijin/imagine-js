@@ -14,13 +14,24 @@ body, html{
 	height: 100px;
 }
 #left{
-	left: 40px;
+	left: 20px;
 }
 #right{
-	right: 40px;
+	right: 20px;
 }
 #ball{
 	width: 10px;
 	height: 10px;
 	left: 100px;
+}
+
+#playerScore{
+	position: absolute;
+	left: 100px;
+	font-size: 32px;
+}
+#enemyScore{
+	position: absolute;
+	right: 100px;
+	font-size: 32px;
 }

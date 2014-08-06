@@ -1,4 +1,6 @@
 var player;
+var playerScore = 0;
+var enemyScore = 0;
 $(document).ready(function(){
 
 	collider = function(){
@@ -11,16 +13,12 @@ $(document).ready(function(){
 				obj = $(obj);
 				var top = parseFloat(this.element.css('top'));
 				var left = parseFloat(this.element.css('left'));
-				var width = this.element.width();
-				var height = this.element.height();
-				var bottom = top+height;
-				var right = left+width;
+				var bottom = top+this.element.height();
+				var right = left+this.element.width();
 				var o_top = parseFloat(obj.css('top'));
 				var o_left = parseFloat(obj.css('left'));
-				var o_width = obj.width();
-				var o_height = obj.height();
-				var o_bottom = o_top+o_height;
-				var o_right = o_left+o_width;
+				var o_bottom = o_top+obj.height();
+				var o_right = o_left+obj.width();
 
 				var outsideH = bottom < o_top ||
 					o_bottom < top ;
@@ -92,23 +90,38 @@ $(document).ready(function(){
 		name: 'ball',
 		dirH:1,
 		dirV:1,
+		speed: 200,
 		start: function(){
 			this.element = $(this.getComponent('element'));
+			this.reset();
+		},
+		reset: function(){
+			this.element.css('left', this.element.parent().width()/2);
+			this.element.css('top', this.element.parent().height()/2);
+			this.speed = 200;
 		},
 		update: function(){
-			var speed = 200; 
 			var dt = Imagine.Time.deltaTime;
 			var left = parseFloat(this.element.css('left'));
 			var top = parseFloat(this.element.css('top'));
 
+			this.speed += dt*4;
 			
 
 			if(left + this.element.width() >= this.element.parent().width()-5){
-				if(this.dirH>0)
-					this.dirH = -this.dirH;
+				// if(this.dirH>0)
+				// 	this.dirH = -this.dirH;
+				playerScore ++;
+				$('#playerScore').html(playerScore);
+				this.reset();
+				return;
 			}else if(left <=0){
-				if(this.dirH<0)
-					this.dirH = -this.dirH;
+				// if(this.dirH<0)
+				// 	this.dirH = -this.dirH;
+				enemyScore ++;
+				$('#enemyScore').html(enemyScore);
+				this.reset();
+				return;
 			} //HIT SIDE WALLS
 
 			if(top + this.element.height() >= this.element.parent().height()-5){
@@ -126,8 +139,8 @@ $(document).ready(function(){
 				this.dirH = -1;
 			}
 
-			this.element.css('left', left+(dt*this.dirH*speed));
-			this.element.css('top' , top +(dt*this.dirV*speed));
+			this.element.css('left', left+(dt*this.dirH*this.speed));
+			this.element.css('top' , top +(dt*this.dirV*this.speed));
 
 
 		}
