@@ -25,12 +25,12 @@ module.exports = function(grunt){
 					specs: 'spec/**/*.spec.js'
 				}
 			},
-			engine:{
-				src: 'lib/imagine.js',
-				options:{
-					specs: 'spec/imagine.engine.spec.js'
-				}
-			}
+			// engine:{
+			// 	src: 'lib/imagine.js',
+			// 	options:{
+			// 		specs: 'spec/imagine.engine.spec.js'
+			// 	}
+			// }
 		},
         jshint: {
             all: ['Gruntfile.js', 'src/imagine.js', 'demos/**/*.js']

@@ -74,9 +74,7 @@ Imagine.engine = (->
     obj = this._object or this
     if obj._components
       for com in obj._components
-        console.log com.name
         if com.tags
-          console.log "tags"
           for tag in com.tags
             if tag is name
               return com
@@ -106,6 +104,8 @@ Imagine.engine = (->
     obj.notify = notify
 
   setTimeout init, 0 #run init next frame
+  #exposing functions for testing
+  clearUpdate: clearUpdate
   reset: ->
     Imagine.objects = []
     Imagine.Input.reset()
