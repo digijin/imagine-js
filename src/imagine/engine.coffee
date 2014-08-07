@@ -69,10 +69,33 @@ Imagine.engine = (->
       for com in obj._components
         if com.name is name
           return com
+
+  getTag = (name) ->
+    obj = this._object or this
+    if obj._components
+      for com in obj._components
+        if com.tags
+          for tag in com.tags
+            if tag is name
+              return com
+
+  addTag = (name) ->
+    this.tags = [] unless this.tags
+    this.tags.push name
+    return this
+  
+
+  removeTag = (name) ->
+    
+
+
   
   assignfunctions = (obj) ->
     obj.addComponent = addComponent
     obj.getComponent = getComponent
+    obj.getTag = getTag
+    obj.addTag = addTag
+    obj.removeTag = removeTag
 
   setTimeout init, 0 #run init next frame
   reset: ->

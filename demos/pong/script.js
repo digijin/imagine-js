@@ -109,15 +109,11 @@ $(document).ready(function(){
 			
 
 			if(left + this.element.width() >= this.element.parent().width()-5){
-				// if(this.dirH>0)
-				// 	this.dirH = -this.dirH;
 				playerScore ++;
 				$('#playerScore').html(playerScore);
 				this.reset();
 				return;
 			}else if(left <=0){
-				// if(this.dirH<0)
-				// 	this.dirH = -this.dirH;
 				enemyScore ++;
 				$('#enemyScore').html(enemyScore);
 				this.reset();

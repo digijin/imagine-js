@@ -40,18 +40,37 @@ describe('Imagine', function(){
 		expect(Imagine.getComponents('test').length).toBe(2)
 	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
+
+	it("should turn a object passed into initializer into the first component and return that");
 })
 
 describe('Name', function(){
 
-	it("should allow you to search by name")
+	it("should allow you to search by name", function(){
+		Imagine({name: 'test'})
+		expect(Imagine.getComponent('test')).toBeDefined();
+	})
 	it("should be able to detect name on objects")
 })
 describe('Tags', function(){
-	it("should allow you to search by tags")
+	it("should allow you to search by tags", function(){
+		expect(Imagine({}).getTag).toBeDefined();
+		// expect(Imagine({tags: ["test"]}).getTag("test")).toBeDefined();
+		var com = Imagine({}).addComponent({tags:["test"]})
+		expect(com.getTag("test")).toBeDefined()
+	})
 	it("should be able to detect tags on objects")
-	it("should have addTag")
-	it("should have removeTag")
+	it("should have addTag", function(){
+		expect(Imagine({}).addTag).toBeDefined();
+		com = Imagine({}).addComponent({name: "dummy"});
+		expect(com.getTag("test")).not.toBeDefined();
+		com.addTag("test");
+		expect(com.getTag("test")).toBeDefined();
+	})
+	it("should have removeTag", function(){
+		expect(Imagine({}).removeTag).toBeDefined();
+	})
+	it("should have working removeTag")
 })
 
 describe('Polyfills', function(){
