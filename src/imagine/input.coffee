@@ -42,7 +42,9 @@ Imagine.Input = (->
 
     while i < Imagine.objects.length
       obj = Imagine.objects[i]
-      obj.keyup keyCode  if obj.keyup
+      if obj._components
+        for com in obj._components
+          com.keyup keyCode  if com.keyup
       i++
     return
 
@@ -57,7 +59,9 @@ Imagine.Input = (->
 
     while i < Imagine.objects.length
       obj = Imagine.objects[i]
-      obj.keydown keyCode  if obj.keydown
+      if obj._components
+        for com in obj._components
+          com.keydown keyCode  if com.keydown
       i++
     return
 

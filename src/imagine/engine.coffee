@@ -89,8 +89,13 @@ Imagine.engine = (->
 
   removeTag = (name) ->
     
-
-
+  notify = (event) ->
+    obj = this._object or this
+    if obj._components
+      for com in obj._components
+        if com[event]
+          
+          com[event].apply()
   
   assignfunctions = (obj) ->
     obj.addComponent = addComponent
@@ -98,6 +103,7 @@ Imagine.engine = (->
     obj.getTag = getTag
     obj.addTag = addTag
     obj.removeTag = removeTag
+    obj.notify = notify
 
   setTimeout init, 0 #run init next frame
   reset: ->
@@ -111,13 +117,17 @@ Imagine.engine = (->
   registerObject: (obj) ->
     
     assignfunctions(obj)
+
+    # Imagine.objects.push {_components:[obj]}
+    obj._components = [obj] #temp hack
+    Imagine.objects.push obj
     obj.start()  if obj.start
     if obj.component
       for key of obj.component
         if obj.component.hasOwnProperty(key)
           c = obj.component[key]
           obj.addComponent(c)
-    Imagine.objects.push obj
+    
     obj
 
   forceUpdate: update

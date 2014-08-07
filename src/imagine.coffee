@@ -13,13 +13,6 @@ Imagine = (params) ->
       out = Imagine({}).addComponent(params)
     else
       out = Imagine.engine.registerObject params
-    
-    # if out.component
-    #   for key of out.component
-    #     if out.component.hasOwnProperty(key)
-    #       obj = out.component[key]
-    #       # out.addComponent(obj)
-    #       obj.start()  if obj.start
   out
 
 Imagine.objects = []

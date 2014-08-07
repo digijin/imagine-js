@@ -28,6 +28,7 @@ describe('Imagine', function(){
 	it("should have a getComponent that searches all objects", function(){
 		com = {name:'test'}
 		Imagine({}).addComponent(com)
+		expect(Imagine.getComponent).toBeDefined()
 		expect(Imagine.getComponent('test')).toBeDefined()
 		expect(Imagine.getComponent('test')).toBe(com)
 	})
@@ -42,7 +43,7 @@ describe('Imagine', function(){
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 
 	it("should turn a object passed into initializer into the first component and return that", function(){
-		//expect(Imagine({name:"test"}).getComponent("test")).toBeDefined()
+		expect(Imagine({name:"test"}).getComponent("test")).toBeDefined()
 	});
 })
 
@@ -242,12 +243,7 @@ describe('Objects', function(){
 		expect(Imagine.objects.length).toBe(0);
 	});
 
-	it("should add an object passed to Imagine() to engine objects", function(){
-		var obj = {test:"test"};
-		Imagine(obj);
-		expect(Imagine.objects[0]).toBe(obj);
-	});
-
+	
 	it("should call start on an object passed to imagine", function(){
 		var obj = {start:function(){}};
 		spyOn(obj, 'start');
@@ -255,7 +251,14 @@ describe('Objects', function(){
 		expect(obj.start).toHaveBeenCalled();
 	});
 
-	it("should have a Notify function that calls a named function on all objects if function existing")
+	it("should have a Notify function that calls a named function on all objects if function existing", function(){
+		expect(Imagine({}).notify).toBeDefined();
+		obj = {myfunc:function(){}}
+		spyOn(obj, "myfunc");
+		Imagine({}).addComponent(obj).notify("myfunc");
+		expect(obj.myfunc).toBeDefined();
+		expect(obj.myfunc).toHaveBeenCalled();
+	})
 	it("sohuld have a resize event")
 
 })
@@ -318,7 +321,7 @@ describe('Time', function(){
 		}
 		spyOn(obj, "update").and.callThrough();
 		Imagine.engine.setFPS(24);
-		Imagine(obj);
+		Imagine({}).addComponent(obj);
 		setTimeout(function(){
 			expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 			expect(obj.update).toHaveBeenCalled();
