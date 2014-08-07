@@ -4,6 +4,10 @@ describe("Imagine.engine", function(){
 		expect(Imagine.engine).toBeDefined();
 	})
 
+	describe('registerObject', function(){
+		it("should assign functions");
+		it("should init components")
+	})
 
 	describe('FPS', function(){
 		
