@@ -74,7 +74,9 @@ Imagine.engine = (->
     obj = this._object or this
     if obj._components
       for com in obj._components
+        console.log com.name
         if com.tags
+          console.log "tags"
           for tag in com.tags
             if tag is name
               return com

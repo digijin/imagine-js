@@ -64,7 +64,7 @@ describe('Tags', function(){
 		expect(Imagine({}).addTag).toBeDefined();
 		com = Imagine({}).addComponent({name: "dummy"});
 		expect(com.getTag("test")).not.toBeDefined();
-		com.addTag("test");
+		com.getComponent("dummy").addTag("test");
 		expect(com.getTag("test")).toBeDefined();
 	})
 	it("should have removeTag", function(){
