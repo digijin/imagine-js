@@ -33,7 +33,7 @@ describe('Imagine.Input', function(){
 			expect(obj.keyup).toHaveBeenCalled();
 
 		});
-			
+
 		it("should track status of keys", function(){
 			Input.keydown(1);
 			Input.keydown("left");
@@ -141,14 +141,3 @@ describe('Imagine.Input', function(){
 		});
 	})
 })
-describe('Input', function(){
-	var Input = Imagine.Input; 
-	beforeEach(function() {
-		Imagine.engine.reset();
-	});
-
-	
-
-
-
-});

@@ -66,59 +66,5 @@ describe('Component', function(){
 
 	describe("addComponent", function(){
 
-		it('should have addComponent', function(){
-			var obj = {start:function(){
-				expect(this.addComponent).toBeDefined();
-
-			}};
-			expect(Imagine({component:{obj:obj}}).addComponent).toBeDefined()
-		});
-
-		it("should call start on a component after adding", function(){
-			var obj = {start:function(){}}
-			spyOn(obj, 'start');
-			Imagine({}).addComponent(obj);
-			expect(obj.start).toHaveBeenCalled()
-		})
-
-		it('should take a single component')
-		it('should take an array of components')
-
-		it('should warn if addComponent is passed nothing', function(){
-			spyOn(console, 'log');
-			Imagine({}).addComponent();
-			expect(console.log).toHaveBeenCalled()
-		})
-
-		it("should return initial object for chaining", function(){
-			obj = {test:"abc"}
-			com = {component:"test"}
-			expect(Imagine(obj).addComponent(com)).toBe(obj)
-		})
-		it('should actually add compnents', function(){
-
-		})
-
-		it('should work on arrays') //e.g. Imagine([1,2]).addComponent(asd)
-
-		it('should chain properly', function(){
-			var obj = {test:"test"}
-			expect(Imagine(obj)).toBe(obj)
-			expect(Imagine(obj).addComponent(obj)).toBe(obj)
-		})
-
-		it("should set _object on components", function(){
-
-			var obj = {obj: "obj"};
-			var com = {com: "com"};
-			Imagine(obj).addComponent(com);
-			expect(com._object).toBeDefined()
-
-		})
-
-
-		it("if adding a component to a component, should go on the components object")
-
-
 	})
 })

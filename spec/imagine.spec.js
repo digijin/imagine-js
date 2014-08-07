@@ -48,16 +48,6 @@ describe('Imagine', function(){
 	});
 })
 
-describe('Name', function(){
-	beforeEach(function() {
-		Imagine.engine.reset();
-	});
-	it("should allow you to search by name", function(){
-		Imagine({}).addComponent({name: 'test'})
-		expect(Imagine.getComponent('test')).toBeDefined();
-	})
-	it("should be able to detect name on objects")
-})
 describe('Tags', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
