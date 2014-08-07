@@ -41,18 +41,25 @@ describe('Imagine', function(){
 	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 
-	it("should turn a object passed into initializer into the first component and return that");
+	it("should turn a object passed into initializer into the first component and return that", function(){
+		//expect(Imagine({name:"test"}).getComponent("test")).toBeDefined()
+	});
 })
 
 describe('Name', function(){
-
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
 	it("should allow you to search by name", function(){
-		Imagine({name: 'test'})
+		Imagine({}).addComponent({name: 'test'})
 		expect(Imagine.getComponent('test')).toBeDefined();
 	})
 	it("should be able to detect name on objects")
 })
 describe('Tags', function(){
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
 	it("should allow you to search by tags", function(){
 		expect(Imagine({}).getTag).toBeDefined();
 		// expect(Imagine({tags: ["test"]}).getTag("test")).toBeDefined();
