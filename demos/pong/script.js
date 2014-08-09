@@ -27,6 +27,9 @@ $(document).ready(function(){
 
 				return !outsideV && !outsideH;
 
+			},
+			compareSquares: function(sq1, sq2){
+				// expect trbl
 			}
 		};
 	};
@@ -71,19 +74,21 @@ $(document).ready(function(){
 		}
 	};
 
-	enemyComponent = {
-		name: 'enemy',
-		start: function(){
-			this.paddle = this.getComponent('paddle');
-			this.ball = $(Imagine.getComponent('ball').getComponent('element'));
-			this.element = $(this.getComponent('element'));
-		},
-		update: function(){
-			var balltop = parseFloat(this.ball.css('top'));
-			//console.log(this.element.height());
-			var top = parseFloat(this.element.css('top')) + (this.element.height()/2);
-			this.paddle.dirV = balltop>top?1:-1;
-		}
+	enemyComponent = function(){
+		return {
+			name: 'enemy',
+			start: function(){
+				this.paddle = this.getComponent('paddle');
+				this.ball = $(Imagine.getComponent('ball').getComponent('element'));
+				this.element = $(this.getComponent('element'));
+			},
+			update: function(){
+				var balltop = parseFloat(this.ball.css('top'));
+				//console.log(this.element.height());
+				var top = parseFloat(this.element.css('top')) + (this.element.height()/2);
+				this.paddle.dirV = balltop>top?1:-1;
+			}
+		};
 	};
 
 	ballComponent = {
@@ -145,5 +150,6 @@ $(document).ready(function(){
 
 	ball = Imagine($('#ball')[0]).addComponent(ballComponent);
 	player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(collider()).addComponent(playerComponent);
-	enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent);
+	// player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent());
+	enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent());
 });

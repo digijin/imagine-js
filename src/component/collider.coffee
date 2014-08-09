@@ -26,9 +26,9 @@ Imagine.collider = ->
       r:o_right
       b:o_bottom
       l:o_left
-    outsideH = bottom < o_top or o_bottom < top
-    outsideV = right < o_left or o_right < left
-    not outsideV and not outsideH
+    # outsideH = bottom < o_top or o_bottom < top
+    # outsideV = right < o_left or o_right < left
+    # not outsideV and not outsideH
 
   compareSquares: (sq1, sq2) ->
 
