@@ -3,37 +3,6 @@ var playerScore = 0;
 var enemyScore = 0;
 $(document).ready(function(){
 
-	collider = function(){
-		return {
-			name:'collider',
-			start: function(){
-				this.element = $(this.getComponent('element'));
-			},
-			collidesWith: function(obj){
-				obj = $(obj);
-				var top = parseFloat(this.element.css('top'));
-				var left = parseFloat(this.element.css('left'));
-				var bottom = top+this.element.height();
-				var right = left+this.element.width();
-				var o_top = parseFloat(obj.css('top'));
-				var o_left = parseFloat(obj.css('left'));
-				var o_bottom = o_top+obj.height();
-				var o_right = o_left+obj.width();
-
-				var outsideH = bottom < o_top ||
-					o_bottom < top ;
-				var outsideV = right < o_left ||
-					o_right < left;
-
-				return !outsideV && !outsideH;
-
-			},
-			compareSquares: function(sq1, sq2){
-				// expect trbl
-			}
-		};
-	};
-
 	paddle = function(){
 		return {
 			name: 'paddle',
@@ -149,7 +118,7 @@ $(document).ready(function(){
 
 
 	ball = Imagine($('#ball')[0]).addComponent(ballComponent);
-	player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(collider()).addComponent(playerComponent);
+	player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(playerComponent);
 	// player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent());
-	enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent());
+	enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(enemyComponent());
 });

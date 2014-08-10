@@ -1,8 +1,10 @@
+# requires jq
+
 Imagine.collider = ->
   name: 'collider'
   tags: ['collider']
   start: ->
-    @element = @getComponent("element")
+    @element = $ @getComponent("element")
     return
 
   collidesWith: (obj) ->
@@ -16,7 +18,7 @@ Imagine.collider = ->
     o_bottom = o_top + obj.height()
     o_right = o_left + obj.width()
 
-    compareSquares
+    @compareSquares
       t:top
       r:right
       b:bottom
@@ -26,9 +28,6 @@ Imagine.collider = ->
       r:o_right
       b:o_bottom
       l:o_left
-    # outsideH = bottom < o_top or o_bottom < top
-    # outsideV = right < o_left or o_right < left
-    # not outsideV and not outsideH
 
   compareSquares: (sq1, sq2) ->
 
