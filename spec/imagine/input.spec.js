@@ -13,7 +13,39 @@ describe('Imagine.Input', function(){
 	});
 	it('shuold use notify function')
 
-	describe('key', function(){
+
+	describe("getAxis", function(){
+		it("should have getAxis", function(){
+			expect(Input.getAxis).toBeDefined();
+		});
+
+		
+		it("should assign keypressed to axes", function(){
+			expect(Input.getAxis).toBeDefined();
+			expect(Input.getAxis("Horizontal")).toBe(0);
+			
+			Input.keydown("left");
+			
+			expect(Input.getAxis("Horizontal")).toBe(-1);
+
+			Input.keydown("right");
+
+			expect(Input.getAxis("Horizontal")).toBe(0);
+
+			Input.keyup("left");
+
+			expect(Input.getAxis("Horizontal")).toBe(1);
+
+			Input.keyup("right");
+
+			expect(Input.getAxis("Horizontal")).toBe(0);
+
+		});
+
+	});
+	
+
+	describe('keyup keydown', function(){
 
 
 		it("should ignore keydowns if the key is down");
@@ -29,6 +61,7 @@ describe('Imagine.Input', function(){
 			Imagine.Input.keydown(1);
 			Imagine.Input.keydown(1);
 			Imagine.Input.keyup(1);
+			console.log(JSON.stringify(obj.keydown.calls));
 			expect(obj.keydown).toHaveBeenCalled();
 			expect(obj.keyup).toHaveBeenCalled();
 
@@ -94,30 +127,6 @@ describe('Imagine.Input', function(){
 			expect(Input.getKeyUp(1)).toBe(false);
 		});
 
-		it("should assign keypressed to axes", function(){
-			expect(Input.getAxis).toBeDefined();
-
-			expect(Input.getAxis("Horizontal")).toBe(0);
-			
-			Input.keydown("left");
-			//Imagine.engine.forceUpdate();
-			
-			expect(Input.getAxis("Horizontal")).toBe(-1);
-
-			Input.keydown("right");
-			//Imagine.engine.forceUpdate();
-
-			expect(Input.getAxis("Horizontal")).toBe(0);
-
-			Input.keyup("left");
-
-			expect(Input.getAxis("Horizontal")).toBe(1);
-
-			Input.keyup("right");
-
-			expect(Input.getAxis("Horizontal")).toBe(0);
-
-		});
 
 		it("should expose getButton");
 	});
