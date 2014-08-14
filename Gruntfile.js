@@ -33,7 +33,7 @@ module.exports = function(grunt){
 			// }
 		},
         jshint: {
-            all: ['Gruntfile.js', 'src/imagine.js', 'demos/**/*.js']
+            all: ['Gruntfile.js', 'src/imagine.js']//, 'demos/**/*.js'
         },
         concat:{
         	options: {
@@ -62,6 +62,12 @@ module.exports = function(grunt){
         		expand: true,
 				ext: '.js',
 				
+        	},
+        	demos:{
+        		src: ['demos/**/*.coffee'],
+        		dest: '',
+        		expand: true,
+        		ext: '.js'
         	}
         }
 	});
