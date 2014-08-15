@@ -4,3 +4,12 @@
 	height: 50px;
 	background-color: black;
 }
+
+#block{
+	position: absolute;
+	width: 200px;
+	height: 10px;
+	background-color: brown;
+	left: 200px;
+	bottom: 100px; 
+}

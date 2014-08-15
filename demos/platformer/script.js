@@ -39,7 +39,6 @@
         update: function() {
           this.char.dirH = Imagine.Input.getAxis('Horizontal');
           if (Imagine.Input.getKey('up')) {
-            console.log("jump");
             return this.char.jump();
           }
         }

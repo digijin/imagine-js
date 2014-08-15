@@ -25,8 +25,6 @@ $(document).ready ->
 			@element.css 'bottom', @y+= @dirV * Imagine.Time.deltaTime * @speed
 
 		jump: ->
-			# console.log @dirV
-			# console.log @dirV is 0
 			if @dirV is 0 then @dirV = @jumpPower
 
 
@@ -36,10 +34,8 @@ $(document).ready ->
 			@char = @getComponent 'character'
 			return
 		update: ->
-			# console.log "test"
 			@char.dirH = Imagine.Input.getAxis 'Horizontal'
 			if Imagine.Input.getKey 'up'
-				console.log "jump"
 				@char.jump()
 
 
