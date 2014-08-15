@@ -13,8 +13,18 @@ $(document).ready(function(){
 			update: function(){
 				var dt = Imagine.Time.deltaTime;
 				var speed = 200; 
-				var top = parseFloat(this.element.css('top'));
+				var rect = this.element[0].getBoundingClientRect();
+
+				//  ||||
+				// ( '_') - hi im mario
+				//   -+-
+				//    |
+				//    ^
+
+				//var top = parseFloat(this.element.css('top'));
+				var top = rect.top;
 				this.element.css('top' , top +(dt*this.dirV*speed));
+				// if(Math.random()<0.01) console.log(top);
 
 				//cap top n bottom
 				if(parseFloat(this.element.css('top'))<=0){
@@ -23,7 +33,6 @@ $(document).ready(function(){
 				if(parseFloat(this.element.css('bottom'))<=0){
 					this.element.css('top', this.element.parent().height() - this.element.height() - 1);
 				}
-				
 			}
 		};
 	};
@@ -117,8 +126,7 @@ $(document).ready(function(){
 	};
 
 
-	ball = Imagine($('#ball')[0]).addComponent(ballComponent);
-	player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(playerComponent);
-	// player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(collider()).addComponent(enemyComponent());
-	enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(enemyComponent());
+	var ball = Imagine($('#ball')[0]).addComponent(ballComponent);
+	var player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(playerComponent);
+	var enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(enemyComponent());
 });
