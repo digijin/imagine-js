@@ -4,30 +4,23 @@ Imagine.collider = ->
   name: 'collider'
   tags: ['collider']
   start: ->
-    @element = $ @getComponent("element")
+    @element = @getComponent("element")
     return
 
   collidesWith: (obj) ->
-    obj = $(obj)
-    top = parseFloat(@element.css("top"))
-    left = parseFloat(@element.css("left"))
-    bottom = top + @element.height()
-    right = left + @element.width()
-    o_top = parseFloat(obj.css("top"))
-    o_left = parseFloat(obj.css("left"))
-    o_bottom = o_top + obj.height()
-    o_right = o_left + obj.width()
+    myrect = @element.getBoundingClientRect()
+    obrect = obj.getBoundingClientRect()
 
     @compareSquares
-      t:top
-      r:right
-      b:bottom
-      l:left
+      t:myrect.top
+      r:myrect.right
+      b:myrect.bottom
+      l:myrect.left
     ,
-      t:o_top
-      r:o_right
-      b:o_bottom
-      l:o_left
+      t:obrect.top
+      r:obrect.right
+      b:obrect.bottom
+      l:obrect.left
 
   compareSquares: (sq1, sq2) ->
 

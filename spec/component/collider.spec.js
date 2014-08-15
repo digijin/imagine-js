@@ -10,22 +10,19 @@ describe("Imagine.collider", function(){
 	})
 
 	describe("start", function(){
-		it("should set element"
-		// 	, function(){
-		// 	var coll = Imagine.collider();
-		// 	var div = document.createElement("DIV");
-		// 	expect(coll).toBeDefined();
-		// 	com = Imagine({})
-		// 		.addComponent({name:"element"})
-		// 		.addComponent(coll);
-		// 	expect(com).toBeDefined();
-		// 	expect(com.element).toBeDefined();
-		// }
-		)
+		// requires jquery
+		// it("should set element", function(){
+		// 	div = document.createElement('div')
+		// 	coll = Imagine(div).addComponent(Imagine.collider())
+		// 	expect(coll.element).toBeDefined();
+		// 	//getComponent('element')
+		// })
 	})
 
 	describe("collidesWith", function(){
-		
+		it("should take a html element as an input")
+		it("should take a trbl object as input")
+		it("should look at obj[0]and use it if it is a html element")//jq assist
 	})
 	describe("compareSquares", function(){
 		it("should have basic expectations", function(){

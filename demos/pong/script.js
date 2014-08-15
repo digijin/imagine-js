@@ -102,10 +102,10 @@ $(document).ready(function(){
 					this.dirV = -this.dirV;
 			} //HIT TOP OR BOTTOM
 
-			if(Imagine.getComponent('player').getComponent('collider').collidesWith(this.element)){
+			if(Imagine.getComponent('player').getComponent('collider').collidesWith(this.element[0])){
 				this.dirH = 1;
 			}
-			if(Imagine.getComponent('enemy').getComponent('collider').collidesWith(this.element)){
+			if(Imagine.getComponent('enemy').getComponent('collider').collidesWith(this.element[0])){
 				this.dirH = -1;
 			}
 

@@ -39,7 +39,6 @@ $(document).ready ->
 				@char.jump()
 
 
-
 	console.log "ready"
 	Imagine $('#player')[0]
 		.addComponent character()
