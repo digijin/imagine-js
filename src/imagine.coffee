@@ -8,9 +8,8 @@ Imagine = (params) ->
   else
 
     if isElement params
-      params.name = "element"
-      params.tags = ['element']
-      out = Imagine({}).addComponent(params)
+      el = Imagine.element params
+      out = Imagine({}).addComponent(el)
     else
       out = Imagine.engine.registerObject params
   out
