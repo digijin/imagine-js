@@ -22,7 +22,9 @@ module.exports = function(grunt){
 			pivotal:{
 				src: 'lib/imagine.js',
 				options:{
-					specs: 'spec/**/*.spec.js'
+					specs: 'spec/**/*.spec.js',
+					// display: 'short',
+					summary: true
 				}
 			},
 			// engine:{
