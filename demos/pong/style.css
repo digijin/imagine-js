@@ -6,12 +6,13 @@ body, html{
 
 #left, #right, #ball{
 	position: absolute;
-	background-color: black;
+	background-color: white;
 }
 
 #left, #right{
 	width: 10px;
 	height: 100px;
+	border: 1px solid black;
 }
 #left{
 	left: 20px;
@@ -26,12 +27,23 @@ body, html{
 }
 
 #playerScore{
-	position: absolute;
 	left: 100px;
-	font-size: 32px;
 }
 #enemyScore{
-	position: absolute;
 	right: 100px;
+}
+#playerScore, #enemyScore{
+	position: absolute;
+
 	font-size: 32px;
+	color: gray;
+	font-family: "press_start_2pregular", 'verdana';
+}
+
+#container{
+	position: relative;
+	width: 600px;
+	height: 320px;
+	background-color: black;
+	margin: 10px;
 }

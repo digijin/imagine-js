@@ -2,7 +2,6 @@ var player;
 var playerScore = 0;
 var enemyScore = 0;
 $(document).ready(function(){
-
 	paddle = function(){
 		return {
 			name: 'paddle',
@@ -14,28 +13,19 @@ $(document).ready(function(){
 				var dt = Imagine.Time.deltaTime;
 				var speed = 200; 
 				var rect = this.element.getBoundingClientRect();
-
-				//  ||||
-				// ( '_') - hi im mario
-				//   -+-
-				//    |
-				//    ^
-
-				//var top = parseFloat(this.element.css('top'));
-				var top = rect.top;
-				//this.element.css('top' , top +(dt*this.dirV*speed));
+				var parentRect = this.element.parentNode.getBoundingClientRect();
+				var top = rect.top - parentRect.top;
 				this.element.style.top = top +(dt*this.dirV*speed) + "px";
-				// if(Math.random()<0.01) console.log(top);
-
 
 				//cap top n bottom
 				rect = this.element.getBoundingClientRect();
-				if(rect.top<=0){
-					//$(this.element).css('top', 0);
-					this.element.style.top = '0px'				
+
+				if(rect.top - parentRect.top<=0){
+					this.element.style.top = '0px';
 				}
-				if(rect.bottom<=0){
-					$(this.element).css('top', this.element.parent().height() - this.element.height() - 1);
+				// if(this.getComponent('player')) console.log(rect.bottom, parentRect.bottom);
+				if(rect.bottom> parentRect.bottom){
+					this.element.style.top = (parentRect.bottom - rect.height - parentRect.top)+"px";
 				}
 			}
 		};
@@ -66,7 +56,6 @@ $(document).ready(function(){
 			},
 			update: function(){
 				var balltop = parseFloat(this.ball.css('top'));
-				//console.log(this.element.height());
 				var top = parseFloat(this.element.css('top')) + (this.element.height()/2);
 				this.paddle.dirV = balltop>top?1:-1;
 			}
