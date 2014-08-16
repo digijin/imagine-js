@@ -33,6 +33,7 @@ body, html{
 	right: 100px;
 }
 #playerScore, #enemyScore{
+	top: 20px;
 	position: absolute;
 
 	font-size: 32px;

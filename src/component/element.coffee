@@ -11,8 +11,8 @@ Imagine.element = (element) ->
 			prect = parent.getBoundingClientRect()
 			# console.log rect.top, prect.top
 			rect.top -= prect.top
-			rect.bottom -= prect.top
+			# rect.bottom -= prect.top
 			rect.left -= prect.left
-			rect.right -= prect.left
+			# rect.right -= prect.left
 		rect
 	el

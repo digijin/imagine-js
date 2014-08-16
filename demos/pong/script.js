@@ -12,20 +12,17 @@ $(document).ready(function(){
 			update: function(){
 				var dt = Imagine.Time.deltaTime;
 				var speed = 200; 
-				var rect = this.element.getBoundingClientRect();
 				var parentRect = this.element.parentNode.getBoundingClientRect();
-				var top = rect.top - parentRect.top;
+				var rect = this.element.getLocalRect();
+				var top = rect.top;
 				this.element.style.top = top +(dt*this.dirV*speed) + "px";
 
 				//cap top n bottom
-				rect = this.element.getBoundingClientRect();
-
-				if(rect.top - parentRect.top<=0){
+				rect = this.element.getLocalRect();
+				if(rect.top<=0){
 					this.element.style.top = '0px';
-				}
-				// if(this.getComponent('player')) console.log(rect.bottom, parentRect.bottom);
-				if(rect.bottom> parentRect.bottom){
-					this.element.style.top = (parentRect.bottom - rect.height - parentRect.top)+"px";
+				}else if(rect.bottom> parentRect.bottom){
+					this.element.style.top = (parentRect.bottom - (rect.bottom - rect.top)) +"px";
 				}
 			}
 		};

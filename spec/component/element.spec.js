@@ -24,6 +24,8 @@ describe("Imagine.element", function(){
 			expect(rect.right).toBeDefined();
 			expect(rect.bottom).toBeDefined();
 			expect(rect.left).toBeDefined();
+			expect(rect.height).toBeDefined();
+			expect(rect.width).toBeDefined();
 
 		})
 	})
