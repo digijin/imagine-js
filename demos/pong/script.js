@@ -21,8 +21,8 @@ $(document).ready(function(){
 				rect = this.element.getLocalRect();
 				if(rect.top<=0){
 					this.element.style.top = '0px';
-				}else if(rect.bottom> parentRect.bottom){
-					this.element.style.top = (parentRect.bottom - (rect.bottom - rect.top)) +"px";
+				}else if(rect.bottom> parentRect.bottom - parentRect.top){
+					this.element.style.top = (parentRect.bottom - (rect.height + parentRect.top)) +"px";
 				}
 			}
 		};

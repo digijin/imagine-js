@@ -9,10 +9,12 @@ Imagine.element = (element) ->
 		parent = el.parentNode
 		if parent
 			prect = parent.getBoundingClientRect()
-			# console.log rect.top, prect.top
-			rect.top -= prect.top
-			# rect.bottom -= prect.top
-			rect.left -= prect.left
-			# rect.right -= prect.left
+			rect = 
+				right: rect.right - prect.left
+				bottom: rect.bottom - prect.top
+				top: rect.top - prect.top
+				left: rect.left - prect.left
+				height: rect.bottom - rect.top
+				width: rect.right - rect.left
 		rect
 	el
