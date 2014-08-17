@@ -7,6 +7,10 @@ Imagine.collider = ->
     @element = @getComponent("element")
     return
 
+  move: (x, y)->
+    @element.style.top = x+"px"
+    @element.style.left = y+"px"
+
   collidesWith: (obj) ->
     myrect = @element.getBoundingClientRect()
     obrect = obj.getBoundingClientRect()

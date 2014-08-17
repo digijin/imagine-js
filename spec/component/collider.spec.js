@@ -19,6 +19,21 @@ describe("Imagine.collider", function(){
 		// })
 	})
 
+	describe("move", function(){
+		it("should be defined", function(){
+			expect(Imagine.collider().move).toBeDefined();
+		});
+		it("should move an object", function(){
+			div = document.createElement('div');
+			coll = Imagine.collider();
+			Imagine(div).addComponent(coll);
+			var origPos = div.getBoundingClientRect().top;
+			coll.move(1,1);
+			expect(div.getBoundingClientRect().top).not.toBe(origPos);
+
+		})
+	})
+
 	describe("collidesWith", function(){
 		it("should take a html element as an input")
 		it("should take a trbl object as input")
