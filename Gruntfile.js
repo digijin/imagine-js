@@ -45,6 +45,10 @@ module.exports = function(grunt){
 				src: ['temp/polyfill/*.js', 'temp/imagine.js', 'temp/imagine/*.js', 'temp/component/*.js'],
 				dest: 'lib/imagine.js',
 			},
+			spec: {
+				src: ['spec/**/*.*'],
+				dest: 'specrunner/all.spec.js'
+			}
         },
         uglify:{
         	dist:{

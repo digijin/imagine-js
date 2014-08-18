@@ -1,7 +1,6 @@
 describe('Imagine.time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
-		Imagine.engine.setFPS(0);
 	});
 
 

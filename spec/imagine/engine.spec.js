@@ -1,5 +1,8 @@
 describe("Imagine.engine", function(){
 
+	beforeEach(function() {
+		Imagine.engine.reset();
+	});
 	it("should exist", function(){
 		expect(Imagine.engine).toBeDefined();
 	})
@@ -19,7 +22,7 @@ describe("Imagine.engine", function(){
 			Imagine.engine.setFPS(10);
 			setTimeout(function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
-				expect(obj.update.calls.count()).toBeLessThan(5);
+				expect(obj.update.calls.count()).toBeLessThan(3);
 				done();
 			}, 120);
 		});
