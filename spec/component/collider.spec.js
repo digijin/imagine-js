@@ -1,4 +1,17 @@
+jasmine.getFixtures().fixturesPath = 'spec/fixtures';
+
 describe("Imagine.collider", function(){
+
+	beforeEach(function() {
+        loadFixtures('collider.html');
+    });
+
+	it("should load fixtures", function(){
+		expect($('#square')).toBeDefined();
+		expect($('#square').length).toBe(1);
+		expect($('#square').width()).toBe(10);
+	})
+
 	it("should be defined", function(){
 		expect(Imagine.collider).toBeDefined();
 
@@ -24,7 +37,7 @@ describe("Imagine.collider", function(){
 			expect(Imagine.collider().move).toBeDefined();
 		});
 		it("should move an object", function(){
-			div = document.createElement('div');
+			div = $('#square')[0];
 			coll = Imagine.collider();
 			Imagine(div).addComponent(coll);
 			var origPos = div.getBoundingClientRect().top;
