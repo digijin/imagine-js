@@ -1,0 +1,23 @@
+{
+  "name": "imagine",
+  "version": "0.0.0",
+  "homepage": "https://github.com/digijin/imagine-js",
+  "authors": [
+    "James Smith <james@digijin.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jasmine-jquery": "~2.0.5"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.1",
+    "jasmine-jquery": "~2.0.5"
+  }
+}
