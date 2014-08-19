@@ -11,7 +11,8 @@ module.exports = function(grunt){
 				'demos/**/*.*',
 				'spec/**/*.*',
 				'src/**/*.*',
-				'sandpit/**/*.*'
+				'sandpit/**/*.*',
+				'specrunner/**/*.*'
 				],
 			tasks: ['build', 'jasmine', 'jshint'],
 			options: {
