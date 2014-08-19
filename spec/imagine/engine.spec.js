@@ -16,13 +16,16 @@ describe("Imagine.engine", function(){
 		
 		it('should run at the fps you set it to', function(done){
 			
-			var obj = {update:function(){}};
-			spyOn(obj, 'update');
-			Imagine(obj);
 			Imagine.engine.setFPS(10);
+			var obj = {update:function(){
+				// console.log("component update");
+				// console.log(Imagine.Time.deltaTime);
+			}};
+			spyOn(obj, 'update').and.callThrough();
+			Imagine(obj);
 			setTimeout(function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
-				expect(obj.update.calls.count()).toBeLessThan(3);
+				expect(obj.update.calls.count()).toBeLessThan(2);
 				done();
 			}, 120);
 		});
