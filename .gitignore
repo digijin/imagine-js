@@ -2,3 +2,4 @@ node_modules
 temp/
 lib/imagine.js
 lib/imagine.min.js
+specrunner/all.spec.js
