@@ -3,6 +3,7 @@ jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 describe("Imagine.collider", function(){
 
 	beforeEach(function() {
+		// Imagine.engine.reset();
         loadFixtures('collider.html');
     });
 
@@ -40,9 +41,9 @@ describe("Imagine.collider", function(){
 			div = $('#square')[0];
 			coll = Imagine.collider();
 			Imagine(div).addComponent(coll);
-			var origPos = div.getBoundingClientRect().top;
+			var origPos = div.getBoundingClientRect();
 			coll.move(1,1);
-			expect(div.getBoundingClientRect().top).not.toBe(origPos);
+			expect(div.getBoundingClientRect().top).not.toBe(origPos.top);
 
 		})
 	})

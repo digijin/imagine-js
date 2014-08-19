@@ -51,7 +51,7 @@ module.exports = function(grunt){
 				dest: 'lib/imagine.js',
 			},
 			spec: {
-				src: ['spec/**/*.*'],
+				src: ['spec/**/*.js'],
 				dest: 'specrunner/all.spec.js'
 			}
         },
