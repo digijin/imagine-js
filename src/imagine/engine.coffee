@@ -34,11 +34,12 @@ Imagine.engine = (->
       i++
     
     if fps is 0
-    	requestAnimationFrame update
+    	updateId = requestAnimationFrame update
     return
 
   clearUpdate = ->
     clearInterval updateId
+    cancelAnimationFrame updateId
     return
 
   setFPS = (newFPS) ->
