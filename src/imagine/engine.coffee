@@ -23,7 +23,7 @@ Imagine.engine = (->
       obj = Imagine.objects[i]
       
       #todo: set script execution order
-      obj.update()  if obj.update
+      # obj.update()  if obj.update
 
       if obj._components
         for key of obj._components
