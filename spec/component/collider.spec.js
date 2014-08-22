@@ -7,6 +7,8 @@ describe("Imagine.collider", function(){
         loadFixtures('collider.html');
     });
 
+
+
 	it("should load fixtures", function(){
 		expect($('#square')).toBeDefined();
 		expect($('#square').length).toBe(1);
@@ -45,7 +47,22 @@ describe("Imagine.collider", function(){
 			coll.move(1,1);
 			expect(div.getBoundingClientRect().top).not.toBe(origPos.top);
 
+		});
+
+		it("should stop when it hits something", function(){
+			// var sq = $('#square');
+			// var rec = $('#rectangle');
+			// expect(sq.css("left")).toBe('0px');
+			// expect(rec.css("left")).toBe('20px');
+			// var isq = Imagine(sq[0]).addComponent(Imagine.collider());
+			// var irec = Imagine(rec[0]).addComponent(Imagine.collider());
+			// console.log(isq);
+			// isq.move(10, 10);
+			// expect(sq.css("left")).toBe('10px');
 		})
+		it("should notify a function on collision")
+		it("should pass collided objects on collision")
+		it("should be able to tell what side it collided with")
 	})
 
 	describe("collidesWith", function(){

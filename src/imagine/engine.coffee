@@ -116,7 +116,7 @@ Imagine.engine = (->
     return
 
   registerObject: (obj) ->
-    
+    # newobj = {_components: [obj]}
     assignfunctions(obj)
 
     # Imagine.objects.push {_components:[obj]}

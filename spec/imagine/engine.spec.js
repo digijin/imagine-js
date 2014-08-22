@@ -10,7 +10,16 @@ describe("Imagine.engine", function(){
 	describe('registerObject', function(){
 		it("should assign functions");
 		it("should init components")
+		// it("should not do crazy recursive shit", function(){
+		// 	loadFixtures('collider.html');
+		// 	var sq = $('#square');
+		// 	var isq = Imagine(sq[0]).addComponent(Imagine.collider());
+		// 	console.log(isq);
+		// 	expect(isq._components[0]._components).not.toBeDefined();
+		// })
 	})
+
+
 
 	describe('FPS', function(){
 		
