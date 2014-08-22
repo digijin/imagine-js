@@ -8,8 +8,9 @@ Imagine.collider = ->
     return
 
   move: (x, y)->
-    @element.style.top = x+"px"
-    @element.style.left = y+"px"
+    pos = @element.getBoundingClientRect()
+    @element.style.top = pos.y + y+"px"
+    @element.style.left = pos.x + x+"px"
 
   collidesWith: (obj) ->
     myrect = @element.getBoundingClientRect()

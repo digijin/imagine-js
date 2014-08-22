@@ -49,16 +49,32 @@ describe("Imagine.collider", function(){
 
 		});
 
+		it("should move x wide y high", function(){
+			var sq = $('#square');
+			expect(sq.css("left")).toBe('0px');
+			var isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
+			isq.move(10, 5);
+			expect(sq.css("top")).toBe('5px');
+			expect(sq.css("left")).toBe('10px');
+			isq.move(20, 10);
+			expect(sq.css("top")).toBe('15px');
+			expect(sq.css("left")).toBe('30px');
+		})
+
 		it("should stop when it hits something", function(){
-			// var sq = $('#square');
-			// var rec = $('#rectangle');
-			// expect(sq.css("left")).toBe('0px');
-			// expect(rec.css("left")).toBe('20px');
-			// var isq = Imagine(sq[0]).addComponent(Imagine.collider());
-			// var irec = Imagine(rec[0]).addComponent(Imagine.collider());
+			var sq = $('#square');
+			var rec = $('#rectangle');
+			expect(sq.css("left")).toBe('0px');
+			expect(rec.css("left")).toBe('20px');
+			var isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
+			var irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
 			// console.log(isq);
-			// isq.move(10, 10);
-			// expect(sq.css("left")).toBe('10px');
+			isq.move(10, 5);
+			expect(sq.css("top")).toBe('5px');
+			expect(sq.css("left")).toBe('10px');
+			expect(rec.css("top")).toBe('20px');
+			isq.move(0, 20);
+			expect(sq.css("top")).toBe('10px');
 		})
 		it("should notify a function on collision")
 		it("should pass collided objects on collision")
