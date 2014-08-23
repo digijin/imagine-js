@@ -83,7 +83,7 @@ describe("Imagine.collider", function(){
 
 	describe("collidesWith", function(){
 		it("should take a html element as an input")
-		it("should take a trbl object as input")
+		it("should take a rect object as input")
 		it("should look at obj[0]and use it if it is a html element")//jq assist
 	})
 	describe("compareSquares", function(){
@@ -95,13 +95,13 @@ describe("Imagine.collider", function(){
 
 		it("should return false when squares apart", function(){
 			var coll = Imagine.collider();
-			var sq1 = {	t:1,	l:1,	b:2,	r:2};
-			var sq2 = {	t:11,	l:11,	b:12,	r:12};
+			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+			var sq2 = {	top:11,	left:11,bottom:12,	right:12};
 			expect(coll.compareSquares(sq1, sq2)).toBe(false);
 			expect(coll.compareSquares(sq2, sq1)).toBe(false);
 
-			var sq1 = {	t:1,	l:1,	b:2,	r:2};
-			var sq2 = {	t:3,	l:0,	b:4,	r:3};
+			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+			var sq2 = {	top:3,	left:0,	bottom:4,	right:3};
 			expect(coll.compareSquares(sq1, sq2)).toBe(false);
 			expect(coll.compareSquares(sq2, sq1)).toBe(false);
 
@@ -110,23 +110,23 @@ describe("Imagine.collider", function(){
 
 		it("should return true when squares together", function(){
 			var coll = Imagine.collider();
-			var sq1 = {	t:1,	l:1,	b:2,	r:2};
-			var sq2 = {	t:1,	l:1,	b:2,	r:2};
+			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+			var sq2 = {	top:1,	left:1,	bottom:2,	right:2};
 			expect(coll.compareSquares(sq1, sq2)).toBe(true);
 			expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	t:1,	l:1,	b:2,	r:2};
-			var sq2 = {	t:2,	l:2,	b:3,	r:3};
+			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+			var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
 			expect(coll.compareSquares(sq1, sq2)).toBe(true);
 			expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	t:1,	l:1,	b:5,	r:2};
-			var sq2 = {	t:2,	l:2,	b:3,	r:3};
+			var sq1 = {	top:1,	left:1,	bottom:5,	right:2};
+			var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
 			expect(coll.compareSquares(sq1, sq2)).toBe(true);
 			expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	t:2,	l:2,	b:3,	r:3};
-			var sq2 = {	t:1,	l:1,	b:5,	r:2};
+			var sq1 = {	top:2,	left:2,	bottom:3,	right:3};
+			var sq2 = {	top:1,	left:1,	bottom:5,	right:2};
 			expect(coll.compareSquares(sq1, sq2)).toBe(true);
 			expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
