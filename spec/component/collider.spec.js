@@ -3,7 +3,7 @@ jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 describe("Imagine.collider", function(){
 
 	beforeEach(function() {
-		// Imagine.engine.reset();
+		Imagine.engine.reset();
         loadFixtures('collider.html');
     });
 
