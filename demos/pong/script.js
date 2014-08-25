@@ -6,8 +6,8 @@ $(document).ready(function(){
 	// Imagine.engine.setFPS(10);
 
 	ball = {
-		dirH: 100,
-		dirV: -100,
+		dirH: 200,
+		dirV: -200,
 		start: function(){
 			this.el = $(this.getComponent("element"));
 			this.coll = this.getComponent('collider');
@@ -28,10 +28,14 @@ $(document).ready(function(){
 			if(top>this.el.parent().height()-this.el.height() && this.dirV>0){
 				this.dirV *=-1;	
 			}
-			if(left<0){
+			if(left<0){ 
+				enemyScore++;
+				$('#enemyScore').html(enemyScore)
 				this.resetball();
 			}
 			if(left>this.el.parent().width()-this.el.width()){
+				playerScore++;
+				$('#playerScore').html(playerScore)
 				this.resetball();
 			}
 		},
@@ -52,7 +56,7 @@ $(document).ready(function(){
 		}
 	}
 	enemy = {
-		speed: 100,
+		speed: 150,
 		start: function(){
 			this.coll = this.getComponent('collider');
 			this.el = $(this.getComponent('element'));
