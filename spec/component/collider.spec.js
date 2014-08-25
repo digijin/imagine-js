@@ -70,7 +70,7 @@ describe("Imagine.collider", function(){
 				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
 			});
 
-			//RECTANGLE is x=20 y=20 w=20 h=10 b=30
+			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10
 
 			it("should hit top", function(){
@@ -84,6 +84,20 @@ describe("Imagine.collider", function(){
 				sq.css("top", 40);
 				isq.move(0, -15);
 				expect(sq.css("top")).toBe("30px");
+			});
+
+			it("should hit left", function(){
+				sq.css("left", 10);
+				sq.css("top", 20);
+				isq.move(15, 0);
+				expect(sq.css("left")).toBe("20px");
+			});
+
+			it("should hit right", function(){
+				sq.css("left", 50);
+				sq.css("top", 20);
+				isq.move(-15, 0);
+				expect(sq.css("left")).toBe("40px");
 			});
 
 			// it("should do abunch of random stuff", function(){
@@ -111,7 +125,7 @@ describe("Imagine.collider", function(){
 			// 	expect(sq.css("left")).toBe('60px');
 			// 	expect(sq.css("top")).toBe('45px');
 			// })
-			
+
 
 			it("should reset between tests", function(){
 				expect(sq.css("left")).toBe("0px");

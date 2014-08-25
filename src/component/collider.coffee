@@ -43,14 +43,19 @@ Imagine.collider = ->
             width = pos.width or pos.right - pos.left
 
             # check top
-            if pos.bottom < obj.top and check.bottom > obj.top
+            if pos.bottom < obj.top and check.bottom > obj.top#check top
               @element.style.top = (obj.top - height)+"px"
             else if obj.bottom < pos.top and check.top < obj.bottom #check bottom
               @element.style.top = (obj.bottom)+"px"
             else
               @element.style.top = pos.y + y+"px"
 
-
+            if pos.right < obj.left and check.right > obj.left #check left
+              @element.style.left = (obj.left - width)+"px"
+            else if obj.right < pos.left and check.left < obj.right #check right
+              @element.style.left = (obj.right)+"px"
+            else
+              @element.style.left = pos.y + y+"px"
 
 
             return
