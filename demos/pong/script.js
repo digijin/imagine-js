@@ -10,10 +10,11 @@ $(document).ready(function(){
 		dirV: -100,
 		start: function(){
 			this.el = $(this.getComponent("element"));
+			this.coll = this.getComponent('collider');
 		},
 		update: function(){
 
-			collision = this.getComponent('collider').move(this.dirH * Imagine.Time.deltaTime, this.dirV * Imagine.Time.deltaTime);
+			collision = this.coll.move(this.dirH * Imagine.Time.deltaTime, this.dirV * Imagine.Time.deltaTime);
 			if(collision){
 				if(collision.side.length>0){
 					this.dirH *=-1;
@@ -43,22 +44,26 @@ $(document).ready(function(){
 
 	player = {
 		speed: 300,
+		start: function(){
+			this.coll = this.getComponent('collider');
+		},
 		update: function(){
-			coll = this.getComponent('collider');
-			coll.move(0, Imagine.Input.getAxis('Vertical')*-this.speed * Imagine.Time.deltaTime);
+			this.coll.move(0, Imagine.Input.getAxis('Vertical')*-this.speed * Imagine.Time.deltaTime);
 		}
 	}
 	enemy = {
 		speed: 100,
+		start: function(){
+			this.coll = this.getComponent('collider');
+			this.el = $(this.getComponent('element'));
+		},
 		update: function(){
-			coll = this.getComponent('collider');
 			ball = parseInt($('#ball').css('top'));
-			element = $(this.getComponent('element'));
-			me = parseInt(element.css('top')) + (element.height() /2);
+			me = parseInt(this.el.css('top')) + (this.el.height() /2);
 			if(ball>me){
-				coll.move(0, this.speed  * Imagine.Time.deltaTime);
+				this.coll.move(0, this.speed  * Imagine.Time.deltaTime);
 			}else{
-				coll.move(0, -this.speed * Imagine.Time.deltaTime);
+				this.coll.move(0, -this.speed * Imagine.Time.deltaTime);
 			}
 		}
 	}
@@ -67,13 +72,13 @@ $(document).ready(function(){
 		.addComponent(Imagine.collider())
 		.addComponent(ball);
 
-
 	Imagine($('#right')[0])
-		.addComponent(enemy)
-		.addComponent(Imagine.collider());
+		.addComponent(Imagine.collider())
+		.addComponent(enemy);
+
 	Imagine($('#left')[0])
-		.addComponent(player)
-		.addComponent(Imagine.collider());
+		.addComponent(Imagine.collider())
+		.addComponent(player);
 
 
 
