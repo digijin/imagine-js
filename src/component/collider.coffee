@@ -67,23 +67,18 @@ Imagine.collider = ->
 
 
             return collision
-          # if @compareSquares check, obj
-          
-
-          #   wasAbove = pos.bottom < obj.top
-          #   nowNotAbove = 
-
-          #   if wasAbove 
-          #     #move flush
-          #     @element.style.top = (obj.top - height)+"px"
-          #   return
-        
 
     # move
-    @element.style.top = pos.y + y+"px"
-    @element.style.left = pos.x + x+"px"
+    @element.style.top = (pos.y + y)+"px"
+    @element.style.left = (pos.x + x)+"px"
+    return
 
-
+  # moveTop: (delta) ->
+  #   if @element.style.top
+  #     top = parseInt @element.style.top
+  #     top += delta
+  #   else
+  #     top = 
 
   collidesWith: (obj) ->
     myrect = @element.getBoundingClientRect()

@@ -2,121 +2,79 @@ var player;
 var playerScore = 0;
 var enemyScore = 0;
 $(document).ready(function(){
-	paddle = function(){
-		return {
-			name: 'paddle',
-			dirV: 0,
-			start: function(){
-				this.element = this.getComponent('element');
-			},
-			update: function(){
-				var dt = Imagine.Time.deltaTime;
-				var speed = 200; 
-				var parentRect = this.element.parentNode.getBoundingClientRect();
-				var rect = this.element.getLocalRect();
-				var top = rect.top;
-				this.element.style.top = top +(dt*this.dirV*speed) + "px";
 
-				//cap top n bottom
-				rect = this.element.getLocalRect();
-				if(rect.top<=0){
-					this.element.style.top = '0px';
-				}else if(rect.bottom> parentRect.bottom - parentRect.top){
-					this.element.style.top = (parentRect.bottom - (rect.height + parentRect.top)) +"px";
+	// Imagine.engine.setFPS(10);
+
+	ball = {
+		dirH: 100,
+		dirV: -100,
+		start: function(){
+			this.el = $(this.getComponent("element"));
+		},
+		update: function(){
+
+			collision = this.getComponent('collider').move(this.dirH * Imagine.Time.deltaTime, this.dirV * Imagine.Time.deltaTime);
+			if(collision){
+				if(collision.side.length>0){
+					this.dirH *=-1;
 				}
 			}
-		};
-	};
-
-	playerComponent = {
-		name: 'player',
-		start: function(){
-			this.paddle = this.getComponent('paddle');
+			var top = parseInt(this.el.css('top'));
+			var left = parseInt(this.el.css('left'));
+			if(top<0 && this.dirV<0){
+				this.dirV *=-1;
+			}
+			if(top>this.el.parent().height()-this.el.height() && this.dirV>0){
+				this.dirV *=-1;	
+			}
+			if(left<0){
+				this.resetball();
+			}
+			if(left>this.el.parent().width()-this.el.width()){
+				this.resetball();
+			}
 		},
+		resetball: function(){
+			this.el.css('left', this.el.parent().width()/2);
+			this.el.css('top', this.el.parent().height()/2);
+		}
+	}
+
+
+	player = {
+		speed: 300,
 		update: function(){
-			this.paddle.dirV = 0;
-			if(Imagine.Input.getKey("up")){
-				this.paddle.dirV -= 3;
-			}else if(Imagine.Input.getKey("down")){
-				this.paddle.dirV += 3;
+			coll = this.getComponent('collider');
+			coll.move(0, Imagine.Input.getAxis('Vertical')*-this.speed * Imagine.Time.deltaTime);
+		}
+	}
+	enemy = {
+		speed: 100,
+		update: function(){
+			coll = this.getComponent('collider');
+			ball = parseInt($('#ball').css('top'));
+			element = $(this.getComponent('element'));
+			me = parseInt(element.css('top')) + (element.height() /2);
+			if(ball>me){
+				coll.move(0, this.speed  * Imagine.Time.deltaTime);
+			}else{
+				coll.move(0, -this.speed * Imagine.Time.deltaTime);
 			}
 		}
-	};
+	}
 
-	enemyComponent = function(){
-		return {
-			name: 'enemy',
-			start: function(){
-				this.paddle = this.getComponent('paddle');
-				this.ball = $(Imagine.getComponent('ball').getComponent('element'));
-				this.element = $(this.getComponent('element'));
-			},
-			update: function(){
-				var balltop = parseFloat(this.ball.css('top'));
-				var top = parseFloat(this.element.css('top')) + (this.element.height()/2);
-				this.paddle.dirV = balltop>top?1:-1;
-			}
-		};
-	};
-
-	ballComponent = {
-		name: 'ball',
-		dirH:1,
-		dirV:1,
-		speed: 200,
-		start: function(){
-			this.element = $(this.getComponent('element'));
-			this.reset();
-		},
-		reset: function(){
-			this.element.css('left', this.element.parent().width()/2);
-			this.element.css('top', this.element.parent().height()/2);
-			this.speed = 200;
-		},
-		update: function(){
-			var dt = Imagine.Time.deltaTime;
-			var left = parseFloat(this.element.css('left'));
-			var top = parseFloat(this.element.css('top'));
-
-			this.speed += dt*4;
-			
-
-			if(left + this.element.width() >= this.element.parent().width()-5){
-				playerScore ++;
-				$('#playerScore').html(playerScore);
-				this.reset();
-				return;
-			}else if(left <=0){
-				enemyScore ++;
-				$('#enemyScore').html(enemyScore);
-				this.reset();
-				return;
-			} //HIT SIDE WALLS
-
-			if(top + this.element.height() >= this.element.parent().height()-5){
-				if(this.dirV>0)
-					this.dirV = -this.dirV;
-			}else if(top <=0){
-				if(this.dirV<0)
-					this.dirV = -this.dirV;
-			} //HIT TOP OR BOTTOM
-
-			if(Imagine.getComponent('player').getComponent('collider').collidesWith(this.element[0])){
-				this.dirH = 1;
-			}
-			if(Imagine.getComponent('enemy').getComponent('collider').collidesWith(this.element[0])){
-				this.dirH = -1;
-			}
-
-			this.element.css('left', left+(dt*this.dirH*this.speed));
-			this.element.css('top' , top +(dt*this.dirV*this.speed));
+	Imagine($('#ball')[0])
+		.addComponent(Imagine.collider())
+		.addComponent(ball);
 
 
-		}
-	};
+	Imagine($('#right')[0])
+		.addComponent(enemy)
+		.addComponent(Imagine.collider());
+	Imagine($('#left')[0])
+		.addComponent(player)
+		.addComponent(Imagine.collider());
 
 
-	var ball = Imagine($('#ball')[0]).addComponent(ballComponent);
-	var player = Imagine($('#left')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(playerComponent);
-	var enemy = Imagine($('#right')[0]).addComponent(paddle()).addComponent(Imagine.collider()).addComponent(enemyComponent());
+
 });
