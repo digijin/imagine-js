@@ -34,8 +34,8 @@ describe('Imagine', function(){
 		expect(Imagine.getComponent('test')).toBe(com)
 	})
 	it("should have a getComponents that searches all objects", function(){
-		com1 = {name:'test'}
-		com2 = {name:'test'}
+		com1 = {name:'test', unique:"a"}
+		com2 = {name:'test', unique:"b"}
 		Imagine({}).addComponent(com1)
 		Imagine({}).addComponent(com2)
 		expect(Imagine.getComponents('test')).toBeDefined()

@@ -27,19 +27,23 @@ Imagine.collider = ->
     else
       check.right += x
 
-    @compareSquares
-
     colls = Imagine.getComponents 'collider'
     # console.log 'colls'
 
     for coll in colls
       # do (coll) ->
       # console.log check
-      if this is not coll
+      if !(this is coll)
         el = coll.getComponent 'element'
         if el
           obrect = el.getBoundingClientRect()
           if @compareSquares check, obrect
+            wasAbove = pos.bottom < obrect.top
+            height = pos.height or pos.bottom - pos.top
+            width = pos.width or pos.right - pos.left
+            if wasAbove 
+              #move flush
+              @element.style.top = (obrect.top - height)+"px"
             return
         
 
