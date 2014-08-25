@@ -61,21 +61,64 @@ describe("Imagine.collider", function(){
 			expect(sq.css("left")).toBe('30px');
 		})
 
-		it("should stop when it hits something", function(){
-			var sq = $('#square');
-			var rec = $('#rectangle');
-			expect(sq.css("left")).toBe('0px');
-			expect(rec.css("left")).toBe('20px');
-			var isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
-			var irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
-			// console.log(isq);
-			isq.move(10, 5);
-			expect(sq.css("top")).toBe('5px');
-			expect(sq.css("left")).toBe('10px');
-			expect(rec.css("top")).toBe('20px');
-			isq.move(0, 20);
-			expect(sq.css("top")).toBe('10px');
+		describe("collision", function(){
+			var sq, rec, isq, irec;
+			beforeEach(function(){
+				sq = $('#square');
+				rec = $('#rectangle');
+				isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
+				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
+			});
+
+			//RECTANGLE is x=20 y=20 w=20 h=10 b=30
+			//SQUARE is w&h = 10
+
+			it("should hit top", function(){
+				sq.css("left", 20);
+				sq.css("top", 0);
+				isq.move(0, 15);
+				expect(sq.css("top")).toBe("10px");
+			});
+			it("should hit bottom", function(){
+				sq.css("left", 20);
+				sq.css("top", 40);
+				isq.move(0, -15);
+				expect(sq.css("top")).toBe("30px");
+			});
+
+			// it("should do abunch of random stuff", function(){
+			// 	expect(sq.css("left")).toBe('0px');
+			// 	expect(rec.css("left")).toBe('20px');
+
+			// 	expect(rec.css("top")).toBe('20px');
+			// 	expect(rec.width()).toBe(20);
+			// 	expect(rec.height()).toBe(10);
+			// 	expect(rec.css("left")).toBe('20px');
+
+			// 	isq.move(20, 5); //move over top of rect
+			// 	expect(sq.css("left")).toBe('20px');
+			// 	expect(sq.css("top")).toBe('5px');
+
+			// 	isq.move(0, 20);//slam into top
+			// 	expect(sq.css("left")).toBe('20px');
+			// 	expect(sq.css("top")).toBe('10px');
+
+			// 	isq.move(30, -5); // move off to the side
+			// 	expect(sq.css("left")).toBe('50px');
+			// 	expect(sq.css("top")).toBe('5px');
+
+			// 	isq.move(10, 40);
+			// 	expect(sq.css("left")).toBe('60px');
+			// 	expect(sq.css("top")).toBe('45px');
+			// })
+			
+
+			it("should reset between tests", function(){
+				expect(sq.css("left")).toBe("0px");
+			})
+
 		})
+
 		it("should notify a function on collision")
 		it("should pass collided objects on collision")
 		it("should be able to tell what side it collided with")

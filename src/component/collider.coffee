@@ -36,15 +36,34 @@ Imagine.collider = ->
       if !(this is coll)
         el = coll.getComponent 'element'
         if el
-          obrect = el.getBoundingClientRect()
-          if @compareSquares check, obrect
-            wasAbove = pos.bottom < obrect.top
+          obj = el.getBoundingClientRect()
+          if @compareSquares check, obj
+            
             height = pos.height or pos.bottom - pos.top
             width = pos.width or pos.right - pos.left
-            if wasAbove 
-              #move flush
-              @element.style.top = (obrect.top - height)+"px"
+
+            # check top
+            if pos.bottom < obj.top and check.bottom > obj.top
+              @element.style.top = (obj.top - height)+"px"
+            else if obj.bottom < pos.top and check.top < obj.bottom #check bottom
+              @element.style.top = (obj.bottom)+"px"
+            else
+              @element.style.top = pos.y + y+"px"
+
+
+
+
             return
+          # if @compareSquares check, obj
+          
+
+          #   wasAbove = pos.bottom < obj.top
+          #   nowNotAbove = 
+
+          #   if wasAbove 
+          #     #move flush
+          #     @element.style.top = (obj.top - height)+"px"
+          #   return
         
 
     # move
