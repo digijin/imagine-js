@@ -72,6 +72,13 @@ describe("Imagine.collider", function(){
 
 			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10
+			it("should return a collision object", function(){
+				sq.css("left", 20);
+				sq.css("top", 0);
+				collision = isq.move(0, 15);
+				expect(collision).toBeDefined();
+				expect(collision.collider).toBeDefined();
+			})
 
 			it("should hit top", function(){
 				sq.css("left", 20);
@@ -87,10 +94,10 @@ describe("Imagine.collider", function(){
 			});
 
 			it("should hit left", function(){
-				sq.css("left", 10);
+				sq.css("left", 0);
 				sq.css("top", 20);
 				isq.move(15, 0);
-				expect(sq.css("left")).toBe("20px");
+				expect(sq.css("left")).toBe("10px");
 			});
 
 			it("should hit right", function(){
@@ -99,6 +106,14 @@ describe("Imagine.collider", function(){
 				isq.move(-15, 0);
 				expect(sq.css("left")).toBe("40px");
 			});
+
+
+			// it("should detects hits when flush with collider", function(){
+			// 	sq.css("left", 10);
+			// 	sq.css("top", 20);
+			// 	isq.move(15, 0);
+			// 	expect(sq.css("left")).toBe("10px");
+			// });
 
 			// it("should do abunch of random stuff", function(){
 			// 	expect(sq.css("left")).toBe('0px');

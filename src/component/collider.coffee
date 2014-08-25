@@ -39,26 +39,34 @@ Imagine.collider = ->
           obj = el.getBoundingClientRect()
           if @compareSquares check, obj
             
+            collision = 
+              side: []
+              collider: coll
+
             height = pos.height or pos.bottom - pos.top
             width = pos.width or pos.right - pos.left
 
             # check top
             if pos.bottom < obj.top and check.bottom > obj.top#check top
               @element.style.top = (obj.top - height)+"px"
+              collision.side.push 'top'
             else if obj.bottom < pos.top and check.top < obj.bottom #check bottom
               @element.style.top = (obj.bottom)+"px"
+              collision.side.push 'bottom'
             else
               @element.style.top = pos.y + y+"px"
 
             if pos.right < obj.left and check.right > obj.left #check left
               @element.style.left = (obj.left - width)+"px"
+              collision.side.push 'left'
             else if obj.right < pos.left and check.left < obj.right #check right
               @element.style.left = (obj.right)+"px"
+              collision.side.push 'right'
             else
-              @element.style.left = pos.y + y+"px"
+              @element.style.left = pos.x + x+"px"
 
 
-            return
+            return collision
           # if @compareSquares check, obj
           
 
