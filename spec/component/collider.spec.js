@@ -83,28 +83,32 @@ describe("Imagine.collider", function(){
 			it("should hit top", function(){
 				sq.css("left", 20);
 				sq.css("top", 0);
-				isq.move(0, 15);
+				collision = isq.move(0, 15);
 				expect(sq.css("top")).toBe("10px");
+				expect(collision.side[0]).toBe("top");
 			});
 			it("should hit bottom", function(){
 				sq.css("left", 20);
 				sq.css("top", 40);
-				isq.move(0, -15);
+				collision = isq.move(0, -15);
 				expect(sq.css("top")).toBe("30px");
+				expect(collision.side[0]).toBe("bottom");
 			});
 
 			it("should hit left", function(){
 				sq.css("left", 0);
 				sq.css("top", 20);
-				isq.move(15, 0);
+				collision = isq.move(15, 0);
 				expect(sq.css("left")).toBe("10px");
+				expect(collision.side[0]).toBe("left");
 			});
 
 			it("should hit right", function(){
 				sq.css("left", 50);
 				sq.css("top", 20);
-				isq.move(-15, 0);
+				collision = isq.move(-15, 0);
 				expect(sq.css("left")).toBe("40px");
+				expect(collision.side[0]).toBe("right");
 			});
 
 
