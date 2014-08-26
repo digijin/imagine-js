@@ -17,4 +17,9 @@ Imagine.element = (element) ->
 				height: rect.bottom - rect.top
 				width: rect.right - rect.left
 		rect
+
+	el.move = (x, y) ->
+		
+
+
 	el

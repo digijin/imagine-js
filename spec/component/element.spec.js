@@ -30,4 +30,24 @@ describe("Imagine.element", function(){
 		})
 	})
 
+	describe("move", function(){
+		var el;
+		beforeEach(function() {
+			Imagine.engine.reset();
+			loadFixtures('collider.html');
+			el = Imagine.element($('#square'));
+		});
+
+
+
+		it("should have move", function(){
+			expect(el.move).toBeDefined();
+		});
+
+		// it("should move", function(){
+			
+		// })
+
+	})
+
 })
