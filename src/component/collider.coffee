@@ -54,7 +54,8 @@ Imagine.collider = ->
               @element.style.top = (obj.bottom)+"px"
               collision.side.push 'bottom'
             else
-              @element.style.top = pos.y + y+"px"
+              @element.style.top = pos.top + y+"px"
+              
 
             if pos.right < obj.left and check.right > obj.left #check left
               @element.style.left = (obj.left - width)+"px"
@@ -63,14 +64,18 @@ Imagine.collider = ->
               @element.style.left = (obj.right)+"px"
               collision.side.push 'right'
             else
-              @element.style.left = pos.x + x+"px"
+              @element.style.left = pos.left + x+"px"
 
 
             return collision
 
     # move
-    @element.style.top = (pos.y + y)+"px"
-    @element.style.left = (pos.x + x)+"px"
+    @element.style.top = (pos.top + y)+"px"
+    @element.style.left = (pos.left + x)+"px"
+
+    console.log y
+    console.log pos.top
+    console.log @element.style.top
     return
 
   # moveTop: (delta) ->

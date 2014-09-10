@@ -51,11 +51,28 @@ describe("Imagine.collider", function(){
 
 		it("should move x wide y high", function(){
 			var sq = $('#square');
+			//debugging tests...
+			// expect(sq).toBeDefined();
+			// expect(sq[0]).toBeDefined();
+			
+			// sq.css("left", "1px");
+			
+			// expect(typeof sq.attr("style")).toBe("string");
+			// expect(sq.attr("style")).toBe("left: 1px;");
+
+			// expect(sq.css("left")).toBe('1px');
+			// sq.css("left", "0px");
+
 			expect(sq.css("left")).toBe('0px');
 			var isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
 			isq.move(10, 5);
+
+			// expect(JSON.stringify(sq[0].getBoundingClientRect())).toBe(1);
+
 			expect(sq.css("top")).toBe('5px');
 			expect(sq.css("left")).toBe('10px');
+
+			// expect(sq.attr("style")).toBe("left: 10px;");
 			isq.move(20, 10);
 			expect(sq.css("top")).toBe('15px');
 			expect(sq.css("left")).toBe('30px');
