@@ -1,4 +1,4 @@
-describe('Component', function(){
+describe('Imagine.Component', function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
@@ -34,7 +34,7 @@ describe('Component', function(){
 		setTimeout(function(){
 			expect(obj.update).toHaveBeenCalled();
 			done()
-		}, 100)
+		}, 400)
 	})
 
 	

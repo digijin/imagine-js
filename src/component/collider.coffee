@@ -72,10 +72,6 @@ Imagine.collider = ->
     # move
     @element.style.top = (pos.top + y)+"px"
     @element.style.left = (pos.left + x)+"px"
-
-    console.log y
-    console.log pos.top
-    console.log @element.style.top
     return
 
   # moveTop: (delta) ->

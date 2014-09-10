@@ -14,13 +14,13 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'jasmine:pivotal', 'jshint'],
+			tasks: ['build', 'jasmine:all', 'jshint'],
 			options: {
 				livereload: true
 			}
 		},
 		jasmine:{
-			pivotal:{
+			all:{
 				src: 'lib/imagine.js',
 				options:{
 					vendor: [
@@ -32,10 +32,21 @@ module.exports = function(grunt){
 					summary: true
 				}
 			},
-			engine:{
+			//following are only turned on manually for specific debugging
+			inorder:{
 				src: 'lib/imagine.js',
 				options:{
-					specs: 'spec/imagine.engine.spec.js'
+					vendor: [
+						'bower_components/jquery/dist/jquery.js',
+						'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
+		            ],
+					specs: [
+					'spec/component/collider.spec.js',
+					'spec/component/element.spec.js',
+					'spec/imagine.component.spec.js',
+					'spec/imagine.spec.js',
+					'spec/imagine/engine.spec.js'
+					]
 				}
 			},
 			collider:{
@@ -96,5 +107,5 @@ module.exports = function(grunt){
 
 	grunt.registerTask('build', ['clean', 'coffee', 'concat', 'uglify']);
 
-	grunt.registerTask('default', ['build', 'jasmine:pivotal', 'jshint', 'watch']);
+	grunt.registerTask('default', ['build', 'jasmine:all', 'jshint', 'watch']);
 };

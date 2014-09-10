@@ -1,4 +1,4 @@
-describe('Imagine.time', function(){
+describe('Imagine/time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});

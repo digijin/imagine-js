@@ -1,6 +1,6 @@
 jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 
-describe("Imagine.collider", function(){
+describe("Imagine/component/collider", function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();

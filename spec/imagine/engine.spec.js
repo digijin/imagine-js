@@ -1,4 +1,4 @@
-describe("Imagine.engine", function(){
+describe("Imagine/engine", function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
@@ -10,7 +10,7 @@ describe("Imagine.engine", function(){
 	describe('registerObject', function(){
 		it("should assign functions");
 		it("should init components")
-		it("should not do crazy recursive shit", function(){///////////////////////////
+		it("should not do crazy recursive self referential shit", function(){///////////////////////////
 			// loadFixtures('collider.html');
 			// var sq = $('#square');
 			// var isq = Imagine(sq[0]).addComponent(Imagine.collider());
@@ -49,7 +49,7 @@ describe("Imagine.engine", function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 300)
+			}, 500)
 		});
 	});
 

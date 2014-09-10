@@ -1,4 +1,4 @@
-describe('Imagine.Input', function(){
+describe('Imagine/Input', function(){
 	var Input = Imagine.Input; 
 	beforeEach(function() {
 		Imagine.engine.reset();

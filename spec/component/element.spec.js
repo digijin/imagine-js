@@ -1,4 +1,6 @@
-describe("Imagine.element", function(){
+jasmine.getFixtures().fixturesPath = 'spec/fixtures';
+
+describe("Imagine/component/element", function(){
 
 	it("should be defined", function(){
 		expect(Imagine.element).toBeDefined();
