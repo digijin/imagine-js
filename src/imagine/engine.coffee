@@ -61,6 +61,12 @@ Imagine.engine = (->
     this._components = [] unless this._components
     this._components.push(com)
     assignfunctions(com)
+    console.log com._register
+    if com._register
+      for c in this._components
+        c[com._register] = com #ease of use
+        console.log c.name
+
     com.start()  if com.start
     this 
 
@@ -130,7 +136,7 @@ Imagine.engine = (->
           obj.addComponent(c)
     
     obj
-
+  update: update # testing
   forceUpdate: update
   getFPS: ->
     fps

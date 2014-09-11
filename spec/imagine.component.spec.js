@@ -3,6 +3,27 @@ describe('Imagine.Component', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
+
+
+	it("should assign a component as a local var to another component if _register is set", function(){
+		var com1, com2, obj;
+		com1 = {
+			name: "com1",
+			_register: "comp1"
+		}
+		com2 = {
+			name: "com2",
+			_register: "comp2",
+			start:function(){
+				expect(this.comp1).toBeDefined();
+				expect(this.comp2).toBeDefined();
+			}
+		}
+		obj = Imagine(com1).addComponent(com2);
+		
+
+	})
+
 	it('should be defined', function(){
 		expect(Imagine.component).toBeDefined()
 	})
