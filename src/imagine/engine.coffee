@@ -61,11 +61,14 @@ Imagine.engine = (->
     this._components = [] unless this._components
     this._components.push(com)
     assignfunctions(com)
-    console.log com._register
-    if com._register
-      for c in this._components
-        c[com._register] = com #ease of use
-        console.log c.name
+
+    # console.log com._register
+    for c1 in this._components
+      if c1._register
+        for c2 in this._components
+          unless c2[c1._register]
+            c2[c1._register] = c1 #ease of use
+          
 
     com.start()  if com.start
     this 

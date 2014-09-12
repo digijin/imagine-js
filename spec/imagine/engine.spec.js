@@ -20,6 +20,15 @@ describe("Imagine/engine", function(){
 	})
 
 
+	describe('forceUpdate', function(){
+		it("should call update")
+		// , function(){
+		// 	spyOn(Imagine.engine, "update");
+		// 	Imagine.engine.forceUpdate();
+		// 	expect(Imagine.engine.update).toHaveBeenCalled();
+		// })
+		it("should clear the update if fps=0 to avoid multiple requestanimationframes triggering")
+	})
 
 	describe('FPS', function(){
 		
