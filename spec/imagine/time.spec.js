@@ -50,10 +50,10 @@ describe('Imagine/time', function(){
 			setTimeout(function(){
 				expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 				expect(obj.update).toHaveBeenCalled();
-				expect(counter).toBeGreaterThan(.25);
-				expect(counter).toBeLessThan(.35);
+				expect(counter).toBeGreaterThan(.05);
+				expect(counter).toBeLessThan(.15);
 				done();
-			}, 300);
+			}, 100);
 		});
 
 	})

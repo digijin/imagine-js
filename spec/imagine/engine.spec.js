@@ -58,7 +58,7 @@ describe("Imagine/engine", function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				
 				done();
-			}, 500)
+			}, 100)
 		});
 	});
 

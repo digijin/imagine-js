@@ -63,17 +63,18 @@ describe('Imagine.Component', function(){
 	it('should run update on components', function(done){
 		var obj = {update:function(){}};
 		spyOn(obj, 'update');
-		Imagine.engine.setFPS(0)
+		Imagine.engine.setFPS(1000)
 		Imagine(
 			{
 				component:{
 					obj: obj
 				}
 			})
+		Imagine.engine.update();
 		setTimeout(function(){
 			expect(obj.update).toHaveBeenCalled();
 			done()
-		}, 400)
+		}, 1)
 	})
 
 	
