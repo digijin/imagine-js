@@ -34,7 +34,7 @@ describe("Imagine/engine", function(){
 		
 		it('should run at the fps you set it to', function(done){
 			
-			Imagine.engine.setFPS(10);
+			Imagine.engine.setFPS(40);
 			var obj = {update:function(){
 				// console.log("component update");
 				// console.log(Imagine.Time.deltaTime);
@@ -45,20 +45,19 @@ describe("Imagine/engine", function(){
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				expect(obj.update.calls.count()).toBeLessThan(2);
 				done();
-			}, 120);
+			}, 30);
 		});
 
-		it('should use requestanimationframe if fps is 0', function(done){
+		it('should use requestanimationframe if fps is 0', function(){
 			var obj = {update:function(){}};
 
 			spyOn(obj, 'update');
+			spyOn(window, "requestAnimationFrame")
+
 			Imagine(obj);
 			Imagine.engine.setFPS(0);
-			setTimeout(function(){
-				expect(obj.update.calls.count()).toBeGreaterThan(0);
-				
-				done();
-			}, 100)
+			expect(window.requestAnimationFrame.calls.count()).toBe(1)
+			//expect(1).toBe(2)
 		});
 	});
 

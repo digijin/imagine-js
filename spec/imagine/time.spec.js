@@ -45,15 +45,15 @@ describe('Imagine/time', function(){
 				}
 			}
 			spyOn(obj, "update").and.callThrough();
-			Imagine.engine.setFPS(24);
+			Imagine.engine.setFPS(60);
 			Imagine({}).addComponent(obj);
 			setTimeout(function(){
 				expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 				expect(obj.update).toHaveBeenCalled();
-				expect(counter).toBeGreaterThan(.05);
-				expect(counter).toBeLessThan(.15);
+				expect(counter).toBeGreaterThan(.02);
+				expect(counter).toBeLessThan(.06);
 				done();
-			}, 100);
+			}, 50);
 		});
 
 	})
