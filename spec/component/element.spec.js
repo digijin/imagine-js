@@ -65,8 +65,13 @@ describe("Imagine/component/element", function(){
 		});
 
 		it("should move", function(){
-			// expect(el.getLocalRect().top).toBe(1)
+			expect(el.rect().top).toBe(0)
+			expect(el.rect().left).toBe(0)
 			expect(isElement(el)).toBe(true)
+			el.move(1,2)
+			expect(el.rect().top).toBe(1)
+			expect(el.rect().left).toBe(2)
+
 		})
 
 	})

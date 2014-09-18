@@ -8,6 +8,7 @@ Imagine.element = (element) ->
 	el = element
 	el.name = "element"
 	el.tags = ['element']
+	el.rect = el.getBoundingClientRect
 	el.getLocalRect = ->
 		rect = el.getBoundingClientRect()
 		parent = el.parentNode
