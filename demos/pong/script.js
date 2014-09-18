@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	// Imagine.engine.setFPS(10);
 
-	ball = {
+	var ball = {
 		dirH: 200,
 		dirV: -200,
 		start: function(){
