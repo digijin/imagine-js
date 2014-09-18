@@ -1,6 +1,10 @@
 
 Imagine.element = (element) ->
 
+	unless isElement element 
+		throw new Error "Not a HTML object"
+
+
 	el = element
 	el.name = "element"
 	el.tags = ['element']
