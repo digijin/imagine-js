@@ -103,11 +103,18 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(0, 15);
 				expect(sq.css("top")).toBe("10px");
 				expect(collision.side[0]).toBe("top");
+				collision = isq.move(0, 1);
+				expect(sq.css("top")).toBe("10px");
+				expect(collision.side[0]).toBe("top");
+
 			});
 			it("should hit bottom", function(){
 				sq.css("left", 20);
 				sq.css("top", 40);
 				collision = isq.move(0, -15);
+				expect(sq.css("top")).toBe("30px");
+				expect(collision.side[0]).toBe("bottom");
+				collision = isq.move(0, -1);
 				expect(sq.css("top")).toBe("30px");
 				expect(collision.side[0]).toBe("bottom");
 			});
@@ -118,12 +125,18 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(15, 0);
 				expect(sq.css("left")).toBe("10px");
 				expect(collision.side[0]).toBe("left");
+				collision = isq.move(1, 0);
+				expect(sq.css("left")).toBe("10px");
+				expect(collision.side[0]).toBe("left");
 			});
 
 			it("should hit right", function(){
 				sq.css("left", 50);
 				sq.css("top", 20);
 				collision = isq.move(-15, 0);
+				expect(sq.css("left")).toBe("40px");
+				expect(collision.side[0]).toBe("right");
+				collision = isq.move(-1, 0);
 				expect(sq.css("left")).toBe("40px");
 				expect(collision.side[0]).toBe("right");
 			});
