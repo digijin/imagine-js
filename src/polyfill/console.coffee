@@ -1,3 +1,3 @@
-if !window.console 
-	window.console = 
-		log ->
+if !window.console
+  window.console =
+    log ->

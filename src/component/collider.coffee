@@ -39,7 +39,7 @@ Imagine.collider = ->
           obj = el.getBoundingClientRect()
           if @compareSquares check, obj
             
-            collision = 
+            collision =
               side: []
               collider: coll
 
