@@ -46,32 +46,44 @@ Imagine.collider = ->
             height = pos.height or pos.bottom - pos.top
             width = pos.width or pos.right - pos.left
 
+            newx = x
+            newy = y
+
             # check top
             if pos.bottom <= obj.top and check.bottom > obj.top#check top
-              @element.style.top = (obj.top - height)+"px"
+              # @element.style.top = (obj.top - height)+"px"
+              newy = (obj.top - height) - check.top
+              # console.log obj.top, height, check.top
+              # console.log y, newy
               collision.side.push 'top'
             else if obj.bottom <= pos.top and check.top < obj.bottom #check bottom
-              @element.style.top = (obj.bottom)+"px"
+              # @element.style.top = (obj.bottom)+"px"
+              newy = obj.bottom - pos.top
               collision.side.push 'bottom'
-            else
-              @element.style.top = pos.top + y+"px"
+            # else
+            #   @element.style.top = pos.top + y+"px"
               
 
             if pos.right <= obj.left and check.right > obj.left #check left
-              @element.style.left = (obj.left - width)+"px"
+              # @element.style.left = (obj.left - width)+"px"
+              newx = (obj.left - width) - check.left
               collision.side.push 'left'
             else if obj.right <= pos.left and check.left < obj.right #check right
-              @element.style.left = (obj.right)+"px"
+              # @element.style.left = (obj.right)+"px"
+              newx = obj.right - pos.left
               collision.side.push 'right'
-            else
-              @element.style.left = pos.left + x+"px"
+            # else
+            #   @element.style.left = pos.left + x+"px"
 
-
+            @element.move(newx, newy)
             return collision
 
     # move
-    @element.style.top = (pos.top + y)+"px"
-    @element.style.left = (pos.left + x)+"px"
+    # @element.style.top = (pos.top + y)+"px"
+    # @element.style.left = (pos.left + x)+"px"
+
+    @element.move(x, y)
+
     return
 
   # moveTop: (delta) ->

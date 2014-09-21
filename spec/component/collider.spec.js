@@ -36,6 +36,22 @@ describe("Imagine/component/collider", function(){
 	})
 
 	describe("move", function(){
+
+		it("should call element.move", function(){
+			div = $('#square')[0];
+			coll = Imagine.collider();
+			im = Imagine(div).addComponent(coll);
+
+			expect(im.getComponent('collider')).toBe(coll);
+
+			el = im.getComponent('element');
+			spyOn(el, "move");
+
+			coll.move(1,1);
+			expect(el.move).toHaveBeenCalled();
+
+		})
+
 		it("should be defined", function(){
 			expect(Imagine.collider().move).toBeDefined();
 		});
