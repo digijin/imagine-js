@@ -13,6 +13,7 @@ Imagine.element = (element) ->
 	# from jquery
 	el.getOffsetParent = ->
 		docElem = window.document.documentElement
+		console.log @, @offsetParent
 		offsetParent = @offsetParent or docElem
 		# offsetParent = offsetParent.offsetParent while offsetParent and (not offsetParent.nodeName is "HTML" and jQuery.css(offsetParent, "position") is "static")
 		offsetParent = offsetParent.offsetParent while not isOffsetParent offsetParent
@@ -20,19 +21,20 @@ Imagine.element = (element) ->
 
 	isOffsetParent = (node)->
 
-		console.log node
-		console.log node.nodeName
-		console.log node.style.position
-
-		pos = window.getComputedStyle(node).getPropertyValue('position')
+		# console.log "is offset parent?", node
 		unless node 
 			return false
+		# console.log node.nodeName.toLowerCase()
 		if node.nodeName.toLowerCase() is "html"
-			return false
+			return true
+		if node.nodeName.toLowerCase() is "body"
+			return true
+		pos = window.getComputedStyle(node).getPropertyValue('position')
 		if pos is ""
 			return false
 		if pos is "static"
 			return false
+		# console.log "offset parent", true
 		true
 
 
@@ -52,7 +54,7 @@ Imagine.element = (element) ->
 
 	el.move = (x, y) ->
 		rect = el.getBoundingClientRect()
-		# op = offsetParent()
+		op = el.getOffsetParent()
 		@style.top = (y+rect.top)+"px"
 		@style.left = (x+rect.left)+"px"
 		
