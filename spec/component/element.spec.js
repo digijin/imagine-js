@@ -5,7 +5,7 @@ describe("Imagine/component/element", function(){
 	var el;
 	beforeEach(function() {
 		Imagine.engine.reset();
-		loadFixtures('collider.html');
+		loadFixtures('offset.html');
 		el = Imagine.element($('#square')[0]);
 	});
 
@@ -64,17 +64,29 @@ describe("Imagine/component/element", function(){
 			expect(el.move).toBeDefined();
 		});
 
-		it("should move", function(){
-			expect(el.rect().top).toBe(0)
-			expect(el.rect().left).toBe(0)
+		it("sohuld calc right offset parent", function(){
+			expect(el.getOffsetParent).toBeDefined()
+			expect(el.getOffsetParent()).toBe($('#wrapper')[0])
+		})
+
+		it("should move the right amount", function(){
+
+			
+			t = el.rect().top
+			l = el.rect().left
+
+
+
 			expect(isElement(el)).toBe(true)
 			el.move(1,2)
-			expect(el.rect().top).toBe(2)
-			expect(el.rect().left).toBe(1)
-			el.move(1,2)
-			expect(el.rect().top).toBe(4)
-			expect(el.rect().left).toBe(2)
+			expect(el.rect().top).toBe(t+2)
+			expect(el.rect().left).toBe(l+1)
 
+			// expect($(el).position().left).toBe(el.rect().left)
+
+			// el.move(1,2)
+			// expect(el.rect().top).toBe(t+4)
+			// expect(el.rect().left).toBe(l+2)
 		})
 
 	})
