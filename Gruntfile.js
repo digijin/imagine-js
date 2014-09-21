@@ -5,6 +5,9 @@ module.exports = function(grunt){
 	grunt.initConfig({
 		pkg: require('./package.json'),
 		clean:['temp'],
+		coffeelint: {
+	     	app: ['src/**/*.coffee']
+	    },
 		watch:{
 			files: [
 				'Gruntfile.js',
@@ -14,7 +17,7 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'jasmine:all', 'jshint'],
+			tasks: ['build', 'jasmine:all', 'jshint', 'coffeelint'],
 			options: {
 				livereload: true
 			}
