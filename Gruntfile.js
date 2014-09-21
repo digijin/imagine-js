@@ -6,7 +6,10 @@ module.exports = function(grunt){
 		pkg: require('./package.json'),
 		clean:['temp'],
 		coffeelint: {
-	     	app: ['src/**/*.coffee']
+	     	app: ['src/**/*.coffee'],
+	     	options: {
+	     		force: true
+	     	}
 	    },
 		watch:{
 			files: [
@@ -17,7 +20,7 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'jasmine:all', 'jshint', 'coffeelint'],
+			tasks: ['build', 'coffeelint', 'jshint', 'jasmine:all'],
 			options: {
 				livereload: true
 			}
