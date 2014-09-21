@@ -69,8 +69,11 @@ describe("Imagine/component/element", function(){
 			expect(el.rect().left).toBe(0)
 			expect(isElement(el)).toBe(true)
 			el.move(1,2)
-			// expect(el.rect().top).toBe(1)
-			// expect(el.rect().left).toBe(2)
+			expect(el.rect().top).toBe(2)
+			expect(el.rect().left).toBe(1)
+			el.move(1,2)
+			expect(el.rect().top).toBe(4)
+			expect(el.rect().left).toBe(2)
 
 		})
 

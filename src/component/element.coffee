@@ -24,6 +24,9 @@ Imagine.element = (element) ->
 		rect
 
 	el.move = (x, y) ->
+		rect = el.getBoundingClientRect()
+		@style.top = (y+rect.top)+"px"
+		@style.left = (x+rect.left)+"px"
 		
 
 
