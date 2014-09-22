@@ -4,13 +4,12 @@ $(document).ready ->
 	character = ->
 		name: 'character'
 		speed: 200
-		x: 0
-		y: 0
 		dirV: 0
 		dirH: 0
 		jumpPower: 4
 		gravity: 10
 		maxFallSpeed: 4
+		coll: undefined
 		start: ->
 			@element = @getComponent 'element'
 			@collider = @getComponent 'collider'
@@ -27,14 +26,18 @@ $(document).ready ->
 
 			# @element[0].move x, y
 
-			coll = @collider.move x, y
-			if coll and coll.side
-				if coll.side.indexOf "top" >=0
+			@coll = @collider.move x, y
+			if @coll and @coll.side
+				if @coll.side.indexOf("top") >=0
+					@dirV = 0
+				if @coll.side.indexOf("bottom") >=0
 					@dirV = 0
 
 
 		jump: ->
-			if @dirV is 0 then @dirV = -@jumpPower
+			if @coll and @dirV is 0
+				if @coll.side.indexOf("top") >= 0
+					@dirV = -@jumpPower
 
 
 

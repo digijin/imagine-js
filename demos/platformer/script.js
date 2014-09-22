@@ -5,32 +5,36 @@
       return {
         name: 'character',
         speed: 200,
-        x: 0,
-        y: 0,
         dirV: 0,
         dirH: 0,
         jumpPower: 4,
         gravity: 10,
         maxFallSpeed: 4,
+        coll: void 0,
         start: function() {
           this.element = this.getComponent('element');
           this.collider = this.getComponent('collider');
         },
         update: function() {
-          var coll, x, y;
+          var x, y;
           this.dirV += this.gravity * Imagine.Time.deltaTime;
           x = this.dirH * Imagine.Time.deltaTime * this.speed;
           y = this.dirV * Imagine.Time.deltaTime * this.speed;
-          coll = this.collider.move(x, y);
-          if (coll && coll.side) {
-            if (coll.side.indexOf("top" >= 0)) {
+          this.coll = this.collider.move(x, y);
+          if (this.coll && this.coll.side) {
+            if (this.coll.side.indexOf("top") >= 0) {
+              this.dirV = 0;
+            }
+            if (this.coll.side.indexOf("bottom") >= 0) {
               return this.dirV = 0;
             }
           }
         },
         jump: function() {
-          if (this.dirV === 0) {
-            return this.dirV = -this.jumpPower;
+          if (this.coll && this.dirV === 0) {
+            if (this.coll.side.indexOf("top") >= 0) {
+              return this.dirV = -this.jumpPower;
+            }
           }
         }
       };
