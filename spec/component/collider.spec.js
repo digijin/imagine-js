@@ -259,6 +259,29 @@ describe("Imagine/component/collider", function(){
 				expect(sq.css("top")).toBe("15px");
 
 			});
+			it("shouldnt hit bottom", function(){
+				irec.ignoreSides = ["bottom"]
+				sq.css("left", 20);
+				sq.css("top", 40);
+				collision = isq.move(0, -15);
+				expect(sq.css("top")).toBe("25px");
+			});
+
+			it("shouldnt hit left", function(){
+				irec.ignoreSides = ["left"]
+				sq.css("left", 0);
+				sq.css("top", 20);
+				collision = isq.move(15, 0);
+				expect(sq.css("left")).toBe("15px");
+			});
+
+			it("shouldnt hit right", function(){
+				irec.ignoreSides = ["right"]
+				sq.css("left", 50);
+				sq.css("top", 20);
+				collision = isq.move(-15, 0);
+				expect(sq.css("left")).toBe("35px");
+			});
 		})
 	})
 

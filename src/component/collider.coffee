@@ -59,12 +59,14 @@ Imagine.collider = ->
             # newy = y
 
             # check top
-            if pos.bottom <= obj.top and check.bottom > obj.top and coll.ignoreSides.indexOf("top") is -1
+            if pos.bottom <= obj.top and check.bottom > obj.top \
+            and coll.ignoreSides.indexOf("top") is -1
               # @element.style.top = (obj.top - height)+"px"
               y = (obj.top - height) - check.top
               # console.log "yt", y
               collision.side.push 'top'
-            else if obj.bottom <= pos.top and check.top < obj.bottom #check bottom
+            else if obj.bottom <= pos.top and check.top < obj.bottom \
+            and coll.ignoreSides.indexOf("bottom") is -1
               # @element.style.top = (obj.bottom)+"px"
               y = obj.bottom - pos.top
               # console.log "yb", y
@@ -73,12 +75,14 @@ Imagine.collider = ->
             #   @element.style.top = pos.top + y+"px"
               
 
-            if pos.right <= obj.left and check.right > obj.left #check left
+            if pos.right <= obj.left and check.right > obj.left \
+            and coll.ignoreSides.indexOf("left") is -1
               # @element.style.left = (obj.left - width)+"px"
               x = (obj.left - width) - check.left
               # console.log "xl", x
               collision.side.push 'left'
-            else if obj.right <= pos.left and check.left < obj.right #check right
+            else if obj.right <= pos.left and check.left < obj.right \
+            and coll.ignoreSides.indexOf("right") is -1
               # @element.style.left = (obj.right)+"px"
               x = obj.right - pos.left
               # console.log "xr", x
