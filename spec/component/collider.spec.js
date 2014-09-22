@@ -174,31 +174,31 @@ describe("Imagine/component/collider", function(){
 			// 	expect(sq.css("left")).toBe("10px");
 			// });
 
-			// it("should do abunch of random stuff", function(){
-			// 	expect(sq.css("left")).toBe('0px');
-			// 	expect(rec.css("left")).toBe('20px');
+			it("should do abunch of random stuff", function(){
+				expect(sq.css("left")).toBe('0px');
+				expect(rec.css("left")).toBe('20px');
 
-			// 	expect(rec.css("top")).toBe('20px');
-			// 	expect(rec.width()).toBe(20);
-			// 	expect(rec.height()).toBe(10);
-			// 	expect(rec.css("left")).toBe('20px');
+				expect(rec.css("top")).toBe('20px');
+				expect(rec.width()).toBe(20);
+				expect(rec.height()).toBe(10);
+				expect(rec.css("left")).toBe('20px');
 
-			// 	isq.move(20, 5); //move over top of rect
-			// 	expect(sq.css("left")).toBe('20px');
-			// 	expect(sq.css("top")).toBe('5px');
+				isq.move(20, 5); //move over top of rect
+				expect(sq.css("left")).toBe('20px');
+				expect(sq.css("top")).toBe('5px');
 
-			// 	isq.move(0, 20);//slam into top
-			// 	expect(sq.css("left")).toBe('20px');
-			// 	expect(sq.css("top")).toBe('10px');
+				isq.move(0, 20);//slam into top
+				expect(sq.css("left")).toBe('20px');
+				expect(sq.css("top")).toBe('10px');
 
-			// 	isq.move(30, -5); // move off to the side
-			// 	expect(sq.css("left")).toBe('50px');
-			// 	expect(sq.css("top")).toBe('5px');
+				isq.move(30, -5); // move off to the side
+				expect(sq.css("left")).toBe('50px');
+				expect(sq.css("top")).toBe('5px');
 
-			// 	isq.move(10, 40);
-			// 	expect(sq.css("left")).toBe('60px');
-			// 	expect(sq.css("top")).toBe('45px');
-			// })
+				isq.move(10, 40);
+				expect(sq.css("left")).toBe('60px');
+				expect(sq.css("top")).toBe('45px');
+			})
 
 
 			it("should reset between tests", function(){
@@ -210,6 +210,10 @@ describe("Imagine/component/collider", function(){
 		it("should notify a function on collision")
 		it("should pass collided objects on collision")
 		it("should be able to tell what side it collided with")
+	})
+	describe("ignoreSide", function(){
+		it("should take an array of sides");
+		it("should ignore collisions on certain sides")
 	})
 
 	describe("collidesWith", function(){

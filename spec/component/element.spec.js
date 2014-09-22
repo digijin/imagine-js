@@ -31,6 +31,9 @@ describe("Imagine/component/element", function(){
 	})
 
 	describe("getLocalRect", function(){
+		it("should work with border")
+		it("should work with margin")
+		it("should work with padding")
 		it("should be defined", function(){
 			var div = document.createElement("DIV");
 			var comp = Imagine.element(div);

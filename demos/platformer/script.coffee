@@ -12,20 +12,29 @@ $(document).ready ->
 		gravity: 10
 		maxFallSpeed: 4
 		start: ->
-			@element = $ @getComponent 'element'
-			return 
+			@element = @getComponent 'element'
+			@collider = @getComponent 'collider'
+			return
 		update: ->
-			@dirV -= @gravity * Imagine.Time.deltaTime
+			@dirV += @gravity * Imagine.Time.deltaTime
 			# hit floor
-			if @y<=0 and @dirV <=0
-				@dirV = 0
-				@y = 0
+			# if @element.rect().top>= 400 and @dirV >=0
+			# 	@dirV = 0
+			# 	@y = 0
 
-			@element.css 'left', @x+= @dirH * Imagine.Time.deltaTime * @speed
-			@element.css 'bottom', @y+= @dirV * Imagine.Time.deltaTime * @speed
+			x = @dirH * Imagine.Time.deltaTime * @speed
+			y = @dirV * Imagine.Time.deltaTime * @speed
+
+			# @element[0].move x, y
+
+			coll = @collider.move x, y
+			if coll and coll.side
+				if coll.side.indexOf "top" >=0
+					@dirV = 0
+
 
 		jump: ->
-			if @dirV is 0 then @dirV = @jumpPower
+			if @dirV is 0 then @dirV = -@jumpPower
 
 
 
@@ -41,5 +50,12 @@ $(document).ready ->
 
 	console.log "ready"
 	Imagine $('#player')[0]
+		.addComponent Imagine.collider()
 		.addComponent character()
 		.addComponent player()
+
+	Imagine $('#block')[0]
+		.addComponent Imagine.collider()
+
+	Imagine $('#floor')[0]
+		.addComponent Imagine.collider()

@@ -13,20 +13,24 @@
         gravity: 10,
         maxFallSpeed: 4,
         start: function() {
-          this.element = $(this.getComponent('element'));
+          this.element = this.getComponent('element');
+          this.collider = this.getComponent('collider');
         },
         update: function() {
-          this.dirV -= this.gravity * Imagine.Time.deltaTime;
-          if (this.y <= 0 && this.dirV <= 0) {
-            this.dirV = 0;
-            this.y = 0;
+          var coll, x, y;
+          this.dirV += this.gravity * Imagine.Time.deltaTime;
+          x = this.dirH * Imagine.Time.deltaTime * this.speed;
+          y = this.dirV * Imagine.Time.deltaTime * this.speed;
+          coll = this.collider.move(x, y);
+          if (coll && coll.side) {
+            if (coll.side.indexOf("top" >= 0)) {
+              return this.dirV = 0;
+            }
           }
-          this.element.css('left', this.x += this.dirH * Imagine.Time.deltaTime * this.speed);
-          return this.element.css('bottom', this.y += this.dirV * Imagine.Time.deltaTime * this.speed);
         },
         jump: function() {
           if (this.dirV === 0) {
-            return this.dirV = this.jumpPower;
+            return this.dirV = -this.jumpPower;
           }
         }
       };
@@ -45,7 +49,9 @@
       };
     };
     console.log("ready");
-    return Imagine($('#player')[0]).addComponent(character()).addComponent(player());
+    Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(character()).addComponent(player());
+    Imagine($('#block')[0]).addComponent(Imagine.collider());
+    return Imagine($('#floor')[0]).addComponent(Imagine.collider());
   });
 
 }).call(this);
