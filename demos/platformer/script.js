@@ -54,7 +54,9 @@
     };
     console.log("ready");
     Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(character()).addComponent(player());
-    Imagine($('#block')[0]).addComponent(Imagine.collider());
+    Imagine($('#block1')[0]).addComponent(Imagine.collider());
+    Imagine($('#block2')[0]).addComponent(Imagine.collider());
+    Imagine($('#block3')[0]).addComponent(Imagine.collider());
     return Imagine($('#floor')[0]).addComponent(Imagine.collider());
   });
 

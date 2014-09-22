@@ -57,7 +57,11 @@ $(document).ready ->
 		.addComponent character()
 		.addComponent player()
 
-	Imagine $('#block')[0]
+	Imagine $('#block1')[0]
+		.addComponent Imagine.collider()
+	Imagine $('#block2')[0]
+		.addComponent Imagine.collider()
+	Imagine $('#block3')[0]
 		.addComponent Imagine.collider()
 
 	Imagine $('#floor')[0]
