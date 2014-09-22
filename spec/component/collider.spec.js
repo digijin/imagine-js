@@ -117,7 +117,7 @@ describe("Imagine/component/collider", function(){
 				expect($("#multi2").css("top")).toBe("20px");
 
 				collision = isq.move(10, 10);
-				console.log(collision);
+				// console.log(collision);
 
 				expect(sq.css("top")).toBe("10px");
 				expect(sq.css("left")).toBe("110px");

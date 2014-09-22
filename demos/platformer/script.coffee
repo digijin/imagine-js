@@ -7,6 +7,7 @@ $(document).ready ->
 		dirV: 0
 		dirH: 0
 		jumpPower: 4
+		walkSpeed: 2
 		gravity: 10
 		maxFallSpeed: 4
 		coll: undefined
@@ -21,7 +22,7 @@ $(document).ready ->
 			# 	@dirV = 0
 			# 	@y = 0
 
-			x = @dirH * Imagine.Time.deltaTime * @speed
+			x = @dirH * @walkSpeed * Imagine.Time.deltaTime * @speed
 			y = @dirV * Imagine.Time.deltaTime * @speed
 
 			# @element[0].move x, y

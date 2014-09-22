@@ -8,6 +8,7 @@
         dirV: 0,
         dirH: 0,
         jumpPower: 4,
+        walkSpeed: 2,
         gravity: 10,
         maxFallSpeed: 4,
         coll: void 0,
@@ -18,7 +19,7 @@
         update: function() {
           var x, y;
           this.dirV += this.gravity * Imagine.Time.deltaTime;
-          x = this.dirH * Imagine.Time.deltaTime * this.speed;
+          x = this.dirH * this.walkSpeed * Imagine.Time.deltaTime * this.speed;
           y = this.dirV * Imagine.Time.deltaTime * this.speed;
           this.coll = this.collider.move(x, y);
           if (this.coll && this.coll.side) {

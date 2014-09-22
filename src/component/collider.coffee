@@ -103,7 +103,7 @@ Imagine.collider = ->
       else
         side = collisions.map (i) ->
           return i.side[0]
-        console.log side
+        # console.log side
         return {
           side: side
           collisions: collisions
