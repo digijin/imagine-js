@@ -34,7 +34,7 @@ Imagine.engine = (->
       i++
     
     if fps is 0
-    	updateId = requestAnimationFrame update
+      updateId = requestAnimationFrame update
     return
 
   clearUpdate = ->
@@ -71,7 +71,7 @@ Imagine.engine = (->
           
 
     com.start()  if com.start
-    this 
+    this
 
   getComponent = (name) ->
     obj = this._object or this

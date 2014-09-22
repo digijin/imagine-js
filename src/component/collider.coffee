@@ -91,7 +91,7 @@ Imagine.collider = ->
   #     top = parseInt @element.style.top
   #     top += delta
   #   else
-  #     top = 
+  #     top =
 
   collidesWith: (obj) ->
     myrect = @element.getBoundingClientRect()

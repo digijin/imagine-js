@@ -8,7 +8,10 @@ module.exports = function(grunt){
 		coffeelint: {
 	     	app: ['src/**/*.coffee'],
 	     	options: {
-	     		force: false
+	     		force: false,
+	     		max_line_length: {
+	     			value: 200
+	     		}
 	     	}
 	    },
 		watch:{

@@ -22,7 +22,7 @@ Imagine.element = (element) ->
   isOffsetParent = (node)->
 
     # console.log "is offset parent?", node
-    unless node 
+    unless node
       return false
     # console.log node.nodeName.toLowerCase()
     if node.nodeName.toLowerCase() is "html"
@@ -43,7 +43,7 @@ Imagine.element = (element) ->
     parent = el.parentNode
     if parent
       prect = parent.getBoundingClientRect()
-      rect = 
+      rect =
         right: rect.right - prect.left
         bottom: rect.bottom - prect.top
         top: rect.top - prect.top
