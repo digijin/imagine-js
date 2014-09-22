@@ -123,6 +123,12 @@ describe("Imagine/component/collider", function(){
 				expect(sq.css("top")).toBe("10px");
 				expect(collision.side[0]).toBe("top");
 
+
+				expect(sq.css("left")).toBe("20px");
+				collision = isq.move(1, 1);
+				expect(sq.css("top")).toBe("10px");
+				expect(sq.css("left")).toBe("21px");
+
 			});
 			it("should hit bottom", function(){
 				sq.css("left", 20);
@@ -130,8 +136,9 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(0, -15);
 				expect(sq.css("top")).toBe("30px");
 				expect(collision.side[0]).toBe("bottom");
-				collision = isq.move(0, -1);
+				collision = isq.move(1, -1);
 				expect(sq.css("top")).toBe("30px");
+				expect(sq.css("left")).toBe("21px");
 				expect(collision.side[0]).toBe("bottom");
 			});
 
@@ -141,8 +148,9 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(15, 0);
 				expect(sq.css("left")).toBe("10px");
 				expect(collision.side[0]).toBe("left");
-				collision = isq.move(1, 0);
+				collision = isq.move(1, 1);
 				expect(sq.css("left")).toBe("10px");
+				expect(sq.css("top")).toBe("21px");
 				expect(collision.side[0]).toBe("left");
 			});
 
@@ -152,8 +160,9 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(-15, 0);
 				expect(sq.css("left")).toBe("40px");
 				expect(collision.side[0]).toBe("right");
-				collision = isq.move(-1, 0);
+				collision = isq.move(-1, 1);
 				expect(sq.css("left")).toBe("40px");
+				expect(sq.css("top")).toBe("21px");
 				expect(collision.side[0]).toBe("right");
 			});
 
