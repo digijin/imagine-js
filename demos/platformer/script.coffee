@@ -62,8 +62,11 @@ $(document).ready ->
 		.addComponent Imagine.collider()
 	Imagine $('#block2')[0]
 		.addComponent Imagine.collider()
-	Imagine $('#block3')[0]
+	hill = Imagine $('#block3')[0]
 		.addComponent Imagine.collider()
+		.getComponent "collider"
+
+	hill.ignoreSides = ["right", "bottom", "left"]
 
 	Imagine $('#floor')[0]
 		.addComponent Imagine.collider()

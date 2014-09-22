@@ -1,6 +1,6 @@
 (function() {
   $(document).ready(function() {
-    var character, player;
+    var character, hill, player;
     character = function() {
       return {
         name: 'character',
@@ -57,7 +57,8 @@
     Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(character()).addComponent(player());
     Imagine($('#block1')[0]).addComponent(Imagine.collider());
     Imagine($('#block2')[0]).addComponent(Imagine.collider());
-    Imagine($('#block3')[0]).addComponent(Imagine.collider());
+    hill = Imagine($('#block3')[0]).addComponent(Imagine.collider()).getComponent("collider");
+    hill.ignoreSides = ["right", "bottom", "left"];
     return Imagine($('#floor')[0]).addComponent(Imagine.collider());
   });
 
