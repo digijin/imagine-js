@@ -1,7 +1,9 @@
 # requires jq
 
 Imagine.collider = ->
-  
+
+
+  ignoreSides: []
   name: 'collider'
   tags: ['collider']
   start: ->
@@ -33,11 +35,13 @@ Imagine.collider = ->
     # console.log colls
 
     collisions = []
-
+    
     for coll in colls
+      
       # do (coll) ->
       # console.log check
       if !(this is coll)
+
         el = coll.getComponent 'element'
         if el
           obj = el.getBoundingClientRect()
@@ -54,9 +58,8 @@ Imagine.collider = ->
             # newx = x
             # newy = y
 
-
             # check top
-            if pos.bottom <= obj.top and check.bottom > obj.top#check top
+            if pos.bottom <= obj.top and check.bottom > obj.top and coll.ignoreSides.indexOf("top") is -1
               # @element.style.top = (obj.top - height)+"px"
               y = (obj.top - height) - check.top
               # console.log "yt", y

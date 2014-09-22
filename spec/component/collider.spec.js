@@ -241,8 +241,25 @@ describe("Imagine/component/collider", function(){
 		it("should be able to tell what side it collided with")
 	})
 	describe("ignoreSide", function(){
-		it("should take an array of sides");
-		it("should ignore collisions on certain sides")
+		var sq, rec, isq, irec;
+
+		it("should take an array of sides somehow proper");
+		describe("should ignore collisions on certain sides", function(){
+			beforeEach(function(){
+				sq = $('#square');
+				rec = $('#rectangle');
+				isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
+				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
+			})
+			it("like top", function(){
+				irec.ignoreSides = ["top"]
+				sq.css("left", 20);
+				sq.css("top", 0);
+				collision = isq.move(0, 15);
+				expect(sq.css("top")).toBe("15px");
+
+			});
+		})
 	})
 
 	describe("collidesWith", function(){
