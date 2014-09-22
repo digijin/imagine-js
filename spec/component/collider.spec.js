@@ -94,6 +94,7 @@ describe("Imagine/component/collider", function(){
 			expect(sq.css("left")).toBe('30px');
 		})
 
+
 		describe("collision", function(){
 			var sq, rec, isq, irec;
 			beforeEach(function(){
@@ -101,17 +102,35 @@ describe("Imagine/component/collider", function(){
 				rec = $('#rectangle');
 				isq = Imagine(sq[0]).addComponent(Imagine.collider()).getComponent("collider");
 				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
+
+				m1 = Imagine($("#multi1")[0]).addComponent(Imagine.collider());
+				m2 = Imagine($("#multi2")[0]).addComponent(Imagine.collider());
 			});
 
 			it("should collide with multiple", function(){
-				sq.css("left", 100);
-				Imagine($("#multi1")).addComponent(Imagine.collider());
-				Imagine($("#multi2")).addComponent(Imagine.collider());
-				collision = isq.move(15, 15);
+				sq.css("left", 105);
+				sq.css("top", 5);
+
+				expect($("#multi1").css("left")).toBe("120px");
+				expect($("#multi1").css("top")).toBe("10px");
+				expect($("#multi2").css("left")).toBe("110px");
+				expect($("#multi2").css("top")).toBe("20px");
+
+				collision = isq.move(10, 10);
+				console.log(collision);
 
 				expect(sq.css("top")).toBe("10px");
 				expect(sq.css("left")).toBe("110px");
 			})
+			// it("should not have edge issues", function(){
+			// 	sq.css("left", 100);
+			// 	sq.css("top", 0);
+
+			// 	collision = isq.move(10, 10);
+
+			// 	expect(sq.css("top")).toBe("10px");
+			// 	expect(sq.css("left")).toBe("110px");
+			// })
 
 			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10

@@ -1,11 +1,13 @@
 # requires jq
 
 Imagine.collider = ->
+  
   name: 'collider'
   tags: ['collider']
   start: ->
     @element = @getComponent("element")
     return
+
 
   move: (x, y)->
     pos = @element.getBoundingClientRect()
@@ -28,7 +30,9 @@ Imagine.collider = ->
       check.right += x
 
     colls = Imagine.getComponents 'collider'
-    # console.log 'colls'
+    # console.log colls
+
+    collisions = []
 
     for coll in colls
       # do (coll) ->
@@ -37,6 +41,7 @@ Imagine.collider = ->
         el = coll.getComponent 'element'
         if el
           obj = el.getBoundingClientRect()
+          # console.log obj
           if @compareSquares check, obj
             
             collision =
@@ -46,19 +51,20 @@ Imagine.collider = ->
             height = pos.height or pos.bottom - pos.top
             width = pos.width or pos.right - pos.left
 
-            newx = x
-            newy = y
+            # newx = x
+            # newy = y
+
 
             # check top
             if pos.bottom <= obj.top and check.bottom > obj.top#check top
               # @element.style.top = (obj.top - height)+"px"
-              newy = (obj.top - height) - check.top
-              # console.log obj.top, height, check.top
-              # console.log y, newy
+              y = (obj.top - height) - check.top
+              # console.log "yt", y
               collision.side.push 'top'
             else if obj.bottom <= pos.top and check.top < obj.bottom #check bottom
               # @element.style.top = (obj.bottom)+"px"
-              newy = obj.bottom - pos.top
+              y = obj.bottom - pos.top
+              # console.log "yb", y
               collision.side.push 'bottom'
             # else
             #   @element.style.top = pos.top + y+"px"
@@ -66,17 +72,22 @@ Imagine.collider = ->
 
             if pos.right <= obj.left and check.right > obj.left #check left
               # @element.style.left = (obj.left - width)+"px"
-              newx = (obj.left - width) - check.left
+              x = (obj.left - width) - check.left
+              # console.log "xl", x
               collision.side.push 'left'
             else if obj.right <= pos.left and check.left < obj.right #check right
               # @element.style.left = (obj.right)+"px"
-              newx = obj.right - pos.left
+              x = obj.right - pos.left
+              # console.log "xr", x
               collision.side.push 'right'
             # else
             #   @element.style.left = pos.left + x+"px"
 
-            @element.move(newx, newy)
-            return collision
+            if collision.side.length > 0
+              collisions.push collision
+
+            # @element.move(x, y)
+            # return collision
 
     # move
     # @element.style.top = (pos.top + y)+"px"
@@ -84,6 +95,19 @@ Imagine.collider = ->
 
     @element.move(x, y)
 
+    switch collisions.length
+      when 0
+        return
+      when 1
+        return collisions[0]
+      else
+        side = collisions.map (i) ->
+          return i.side[0]
+        console.log side
+        return {
+          side: side
+          collisions: collisions
+        }
     return
 
   # moveTop: (delta) ->
