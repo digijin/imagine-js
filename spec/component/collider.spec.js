@@ -103,6 +103,16 @@ describe("Imagine/component/collider", function(){
 				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
 			});
 
+			it("should collide with multiple", function(){
+				sq.css("left", 100);
+				Imagine($("#multi1")).addComponent(Imagine.collider());
+				Imagine($("#multi2")).addComponent(Imagine.collider());
+				collision = isq.move(15, 15);
+
+				expect(sq.css("top")).toBe("10px");
+				expect(sq.css("left")).toBe("110px");
+			})
+
 			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10
 			it("should return a collision object", function(){
