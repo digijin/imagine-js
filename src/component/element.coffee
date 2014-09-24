@@ -53,13 +53,18 @@ Imagine.element = (element) ->
     rect
 
   el.move = (x, y) ->
-    rect = el.getBoundingClientRect()
-    op = el.getOffsetParent()
-    oprect = op.getBoundingClientRect()
-    # console.log op, op.getBoundingClientRect()
-    @style.top = (y+rect.top-oprect.top)+"px"
-    @style.left = (x+rect.left-oprect.left)+"px"
+    # rect = el.getBoundingClientRect()
+    # op = el.getOffsetParent()
+    # oprect = op.getBoundingClientRect()
+    # # console.log op, op.getBoundingClientRect()
+    # @style.top = (y+rect.top-oprect.top)+"px"
+    # @style.left = (x+rect.left-oprect.left)+"px"
     
+
+    @style.top = (y+el.offsetTop)+"px"
+    @style.left = (x+el.offsetLeft)+"px"
+
+
 
 
   el

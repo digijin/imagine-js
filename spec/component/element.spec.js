@@ -59,9 +59,6 @@ describe("Imagine/component/element", function(){
 
 
 	describe("move", function(){
-		
-
-
 
 		it("should have move", function(){
 			expect(el.move).toBeDefined();
@@ -78,10 +75,13 @@ describe("Imagine/component/element", function(){
 			t = el.rect().top
 			l = el.rect().left
 
-
-
 			expect(isElement(el)).toBe(true)
 			el.move(1,2)
+
+			// expect(el.offsetLeft).toBe("")
+			// expect(el.style.left).toBe("sometihng")
+
+
 			expect(el.rect().top).toBe(t+2)
 			expect(el.rect().left).toBe(l+1)
 
