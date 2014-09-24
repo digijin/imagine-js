@@ -2,7 +2,7 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $(document).ready(function() {
-    var Character, Player, hill, player, scene;
+    var Character, Player, hill, num, player, scene, _i;
     Character = function() {
       return {
         name: 'character',
@@ -69,6 +69,11 @@
     hill.ignoreSides = ["right", "bottom", "left"];
     Imagine($('#floor')[0]).addComponent(Imagine.collider());
     scene = Imagine($('#scene')[0]).getComponent("element");
+    for (num = _i = 1; _i <= 10; num = ++_i) {
+      $("#wrapper").append('<div class="block" id="autoblock' + num + '">x</div>');
+      $("#autoblock" + num).css("left", 1000 + (num * 100)).css("top", Math.random() * 300);
+      Imagine($("#autoblock" + num)[0]).addComponent(Imagine.collider());
+    }
     return console.log(player);
   });
 

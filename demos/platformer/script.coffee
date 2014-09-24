@@ -67,4 +67,18 @@ $(document).ready ->
 	scene = Imagine $('#scene')[0]
 		.getComponent "element"
 
+	for num in [1..10]
+		# console.log num
+		$ "#wrapper"
+			.append '<div class="block" id="autoblock' + num + '">x</div>'
+
+		$ "#autoblock"+num
+			.css "left", 1000 + (num*100)
+			.css "top", Math.random() * 300
+
+		Imagine $("#autoblock"+num)[0]
+			.addComponent Imagine.collider()
+
+
+
 	console.log player
