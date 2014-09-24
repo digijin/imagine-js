@@ -1,4 +1,6 @@
 (function() {
+  var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
   $(document).ready(function() {
     var character, hill, player;
     character = function() {
@@ -23,17 +25,17 @@
           y = this.dirV * Imagine.Time.deltaTime * this.speed;
           this.coll = this.collider.move(x, y);
           if (this.coll && this.coll.side) {
-            if (this.coll.side.indexOf("top") >= 0) {
+            if (__indexOf.call(this.coll.side, "top") >= 0) {
               this.dirV = 0;
             }
-            if (this.coll.side.indexOf("bottom") >= 0) {
+            if (__indexOf.call(this.coll.side, "bottom") >= 0) {
               return this.dirV = 0;
             }
           }
         },
         jump: function() {
           if (this.coll && this.dirV === 0) {
-            if (this.coll.side.indexOf("top") >= 0) {
+            if (__indexOf.call(this.coll.side, "top") >= 0) {
               return this.dirV = -this.jumpPower;
             }
           }

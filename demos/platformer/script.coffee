@@ -22,13 +22,13 @@ $(document).ready ->
 
 			@coll = @collider.move x, y
 			if @coll and @coll.side
-				if @coll.side.indexOf("top") >=0
+				if "top" in @coll.side
 					@dirV = 0
-				if @coll.side.indexOf("bottom") >=0
+				if "bottom" in @coll.side
 					@dirV = 0
 		jump: ->
 			if @coll and @dirV is 0
-				if @coll.side.indexOf("top") >= 0
+				if "top" in @coll.side
 					@dirV = -@jumpPower
 	player = ->
 		start: ->
