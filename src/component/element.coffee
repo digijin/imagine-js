@@ -57,12 +57,19 @@ Imagine.element = (element) ->
     # op = el.getOffsetParent()
     # oprect = op.getBoundingClientRect()
     # # console.log op, op.getBoundingClientRect()
+    # unless y is 0
+    #   console.log "move", y
+    #   console.log "old ", (y+rect.top-oprect.top)
+    #   console.log "new ", (y+el.offsetTop)
+
+
     # @style.top = (y+rect.top-oprect.top)+"px"
     # @style.left = (x+rect.left-oprect.left)+"px"
     
-
-    @style.top = (y+el.offsetTop)+"px"
-    @style.left = (x+el.offsetLeft)+"px"
+    # console.log y, (y+rect.top-oprect.top), (y+el.offsetTop)
+    
+    @style.top = Math.floor(y+el.offsetTop)+"px" # rounding errors in el.offsetX
+    @style.left = Math.floor(x+el.offsetLeft)+"px"
 
 
 
