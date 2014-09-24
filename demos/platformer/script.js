@@ -2,8 +2,8 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $(document).ready(function() {
-    var character, hill, player;
-    character = function() {
+    var Character, Player, hill, player, scene;
+    Character = function() {
       return {
         name: 'character',
         speed: 200,
@@ -42,12 +42,19 @@
         }
       };
     };
-    player = function() {
+    Player = function() {
       return {
+        name: "player",
         start: function() {
           this.char = this.getComponent('character');
         },
         update: function() {
+          var left, scrLeft;
+          left = this.char.element.offsetLeft;
+          scrLeft = 400 - scene.offsetLeft;
+          if (left > scrLeft) {
+            scene.move(scrLeft - left, 0);
+          }
           this.char.dirH = Imagine.Input.getAxis('Horizontal');
           if (Imagine.Input.getKey('up')) {
             return this.char.jump();
@@ -55,12 +62,14 @@
         }
       };
     };
-    Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(character()).addComponent(player());
+    player = Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
     Imagine($('#block1')[0]).addComponent(Imagine.collider());
     Imagine($('#block2')[0]).addComponent(Imagine.collider());
     hill = Imagine($('#block3')[0]).addComponent(Imagine.collider()).getComponent("collider");
     hill.ignoreSides = ["right", "bottom", "left"];
-    return Imagine($('#floor')[0]).addComponent(Imagine.collider());
+    Imagine($('#floor')[0]).addComponent(Imagine.collider());
+    scene = Imagine($('#scene')[0]).getComponent("element");
+    return console.log(player);
   });
 
 }).call(this);

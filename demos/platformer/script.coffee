@@ -1,5 +1,5 @@
 $(document).ready ->
-	character = ->
+	Character = ->
 		name: 'character'
 		speed: 200
 		dirV: 0
@@ -30,18 +30,26 @@ $(document).ready ->
 			if @coll and @dirV is 0
 				if "top" in @coll.side
 					@dirV = -@jumpPower
-	player = ->
+	Player = ->
+		name: "player"
 		start: ->
 			@char = @getComponent 'character'
 			return
 		update: ->
+			# scene.move 1,1
+			left = @char.element.offsetLeft
+			scrLeft = 400 - scene.offsetLeft
+			# console.log scrLeft, left
+			if left > scrLeft  
+				scene.move scrLeft - left, 0
 			@char.dirH = Imagine.Input.getAxis 'Horizontal'
 			if Imagine.Input.getKey 'up'
 				@char.jump()
-	Imagine $('#player')[0]
+	player = Imagine $('#player')[0]
 		.addComponent Imagine.collider()
-		.addComponent character()
-		.addComponent player()
+		.addComponent Character()
+		.addComponent Player()
+		.getComponent "player"
 
 	Imagine $('#block1')[0]
 		.addComponent Imagine.collider()
@@ -55,3 +63,8 @@ $(document).ready ->
 
 	Imagine $('#floor')[0]
 		.addComponent Imagine.collider()
+
+	scene = Imagine $('#scene')[0]
+		.getComponent "element"
+
+	console.log player
