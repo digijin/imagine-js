@@ -53,7 +53,6 @@
         }
       };
     };
-    console.log("ready");
     Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(character()).addComponent(player());
     Imagine($('#block1')[0]).addComponent(Imagine.collider());
     Imagine($('#block2')[0]).addComponent(Imagine.collider());

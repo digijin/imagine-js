@@ -60,6 +60,11 @@ describe("Imagine/component/element", function(){
 
 	describe("move", function(){
 
+		it("shuold handle rounding errors")
+			//css = 1.5px
+			//move(1px)
+			//expect css = 2px;
+
 		it("should have move", function(){
 			expect(el.move).toBeDefined();
 		});

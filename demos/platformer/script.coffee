@@ -1,6 +1,4 @@
-
 $(document).ready ->
-
 	character = ->
 		name: 'character'
 		speed: 200
@@ -17,15 +15,10 @@ $(document).ready ->
 			return
 		update: ->
 			@dirV += @gravity * Imagine.Time.deltaTime
-			# hit floor
-			# if @element.rect().top>= 400 and @dirV >=0
-			# 	@dirV = 0
-			# 	@y = 0
-
 			x = @dirH * @walkSpeed * Imagine.Time.deltaTime * @speed
 			y = @dirV * Imagine.Time.deltaTime * @speed
 
-			# @element[0].move x, y
+			# console.log @element.rect()
 
 			@coll = @collider.move x, y
 			if @coll and @coll.side
@@ -33,15 +26,10 @@ $(document).ready ->
 					@dirV = 0
 				if @coll.side.indexOf("bottom") >=0
 					@dirV = 0
-
-
 		jump: ->
 			if @coll and @dirV is 0
 				if @coll.side.indexOf("top") >= 0
 					@dirV = -@jumpPower
-
-
-
 	player = ->
 		start: ->
 			@char = @getComponent 'character'
@@ -50,9 +38,6 @@ $(document).ready ->
 			@char.dirH = Imagine.Input.getAxis 'Horizontal'
 			if Imagine.Input.getKey 'up'
 				@char.jump()
-
-
-	console.log "ready"
 	Imagine $('#player')[0]
 		.addComponent Imagine.collider()
 		.addComponent character()
