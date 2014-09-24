@@ -6,6 +6,7 @@ Imagine.collider = ->
   ignoreSides: []
   name: 'collider'
   tags: ['collider']
+  _register: 'collider'
   start: ->
     @element = @getComponent("element")
     return

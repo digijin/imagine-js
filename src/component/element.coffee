@@ -10,6 +10,8 @@ Imagine.element = (element) ->
   el.tags = ['element']
   el.rect = el.getBoundingClientRect
 
+  el._register = 'element'
+
   # from jquery
   el.getOffsetParent = ->
     docElem = window.document.documentElement

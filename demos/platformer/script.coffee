@@ -1,4 +1,7 @@
 $(document).ready ->
+	FPS = -> 
+		update: ->
+			
 	Character = ->
 		name: 'character'
 		speed: 200
