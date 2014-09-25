@@ -22,6 +22,7 @@ $(document).ready ->
 	scene = Imagine $('#scene')[0]
 		.getComponent "element"
 
+	# randomblocks
 	for num in [1..40]
 		# console.log num
 		$ "#wrapper"
@@ -33,6 +34,9 @@ $(document).ready ->
 
 		Imagine $("#autoblock"+num)[0]
 			.addComponent Imagine.collider()
+
+
+
 
 	Imagine $('#FPS')[0]
 		.addComponent FPS()
