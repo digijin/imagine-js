@@ -105,7 +105,7 @@ Imagine.engine = (->
         if com[event]
           if typeof com[event] is "function"
             console.log arg
-            com[event].apply([arg])
+            com[event].apply(null, [arg])
   
   assignfunctions = (obj) ->
     obj.addComponent = addComponent
