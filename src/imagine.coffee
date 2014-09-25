@@ -36,6 +36,16 @@ Imagine.getComponents = (name) ->
     out.push(com) if com
   out
 
+Imagine.destroy = (obj) ->
+
+  obj = obj._object or obj
+
+  if obj in Imagine.objects
+    ind = Imagine.objects.indexOf obj
+    # console.log ind
+    Imagine.objects.splice ind, 1
+
+
 
 
 I = i= Imagine

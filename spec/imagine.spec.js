@@ -5,6 +5,21 @@ describe('Imagine', function(){
 	});
 
 
+	describe('destroy', function(){
+		it("should exist", function (){
+			expect(Imagine.destroy).toBeDefined();
+		});
+		it("should destroy", function(){
+
+			var obj = {}
+			Imagine(obj);
+			expect(Imagine.objects.length).toBe(1);
+			Imagine.destroy(obj);
+			expect(Imagine.objects.length).toBe(0);
+
+		})
+	})
+
 	it('should exist', function(){
 		expect(Imagine).toBeDefined();
 	})
