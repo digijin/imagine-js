@@ -12,7 +12,6 @@
       en.css("left", 100 + (x * 60)).css("top", y * 60);
       return Imagine(en[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Enemy());
     };
-    addEnemy(8, 1, 1);
     addBlock = function(x, y, block) {
       var id;
       id = 'autoblock' + x + '_' + y;
@@ -23,7 +22,13 @@
     for (x = _i = 0, _ref = level1.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
       for (y = _j = 0, _ref1 = level1[x].length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
         if (level1[x][y]) {
-          addBlock(x, y, level1[x][y]);
+          switch (level1[x][y]) {
+            case 1:
+              addBlock(x, y, level1[x][y]);
+              break;
+            case 2:
+              addEnemy(x, y, 1);
+          }
         }
       }
     }

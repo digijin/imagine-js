@@ -13,6 +13,9 @@
         if (left > scrLeft) {
           scene.move(scrLeft - left, 0);
         }
+        if (left < scrLeft && scene.offsetLeft < 0) {
+          scene.move(scrLeft - left, 0);
+        }
         h = Imagine.Input.getAxis('Horizontal');
         if (Imagine.Input.getKey('shift')) {
           h *= 2;
@@ -34,7 +37,8 @@
         if (coll.collider) {
           en = coll.collider.getComponent('enemy');
           if (en) {
-            return console.log("hit enemy on head");
+            en.die();
+            return this.char.jump();
           }
         }
       },

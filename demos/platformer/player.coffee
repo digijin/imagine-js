@@ -9,6 +9,11 @@ window.Player = ->
 		scrLeft = 400 - scene.offsetLeft
 		if left > scrLeft  
 			scene.move scrLeft - left, 0
+
+		# console.log scene.offsetLeft
+		if left < scrLeft and scene.offsetLeft < 0
+			scene.move scrLeft - left, 0
+
 		h = Imagine.Input.getAxis 'Horizontal'
 		if Imagine.Input.getKey 'shift'
 			h*=2
@@ -30,7 +35,11 @@ window.Player = ->
 		if coll.collider
 			en = coll.collider.getComponent 'enemy'
 			if en
-				console.log "hit enemy on head"
+				# console.log "hit enemy on head"
+				en.die()
+				
+				@char.jump()
+
 
 	bottomColl: (coll) ->
 		if coll.collider

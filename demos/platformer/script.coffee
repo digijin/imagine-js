@@ -36,7 +36,7 @@ $(document).ready ->
 			.addComponent Character()
 			.addComponent Enemy()
 
-	addEnemy 8, 1, 1
+	# addEnemy 8, 1, 1
 
 	addBlock = (x, y, block) ->
 		# console.log "adding"
@@ -62,7 +62,11 @@ $(document).ready ->
 
 			if level1[x][y]
 				# console.log x, y
-				addBlock x, y, level1[x][y]
+				switch level1[x][y]
+					when 1
+						addBlock x, y, level1[x][y]
+					when 2
+						addEnemy x, y, 1
 
 
 

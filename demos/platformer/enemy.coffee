@@ -5,6 +5,14 @@ window.Enemy = ->
 		@char.walkSpeed = .5
 		@char.dirH = 1
 
+	die: ->
+		el = @getComponent 'element'
+		Imagine.destroy @
+		Imagine el
+			.addComponent Dying()
+		
+
+
 	sideColl: (coll)->
 		# console.log "sidecoll notified", coll
 		if coll

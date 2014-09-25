@@ -9,6 +9,12 @@
         this.char.walkSpeed = .5;
         return this.char.dirH = 1;
       },
+      die: function() {
+        var el;
+        el = this.getComponent('element');
+        Imagine.destroy(this);
+        return Imagine(el).addComponent(Dying());
+      },
       sideColl: function(coll) {
         if (coll) {
           if (__indexOf.call(coll.side, "left") >= 0) {
