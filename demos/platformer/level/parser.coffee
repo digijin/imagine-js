@@ -12,7 +12,7 @@ window.levelparser = {
 				# console.log block
 				unless out[x]
 					out.push []
-				out[x].push block
+				out[x].push parseInt block
 
 				x++
 

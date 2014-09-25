@@ -13,7 +13,7 @@
           if (!out[x]) {
             out.push([]);
           }
-          out[x].push(block);
+          out[x].push(parseInt(block));
           x++;
         }
         y++;
