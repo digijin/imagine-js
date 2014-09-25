@@ -80,6 +80,11 @@ Imagine.Input = (->
       up: 38
       right: 39
       down: 40
+      shift: 16
+      enter: 13
+      ctrl: 17
+      escape: 27
+      
 
   init = (params) ->
     config = JSON.parse(JSON.stringify(defaults)) #extend params
