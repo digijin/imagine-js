@@ -34,6 +34,7 @@
       },
       die: function() {
         var el;
+        Imagine(Announce("PWNED"));
         el = this.getComponent('element');
         Imagine.destroy(this);
         return Imagine(el).addComponent(Dying());

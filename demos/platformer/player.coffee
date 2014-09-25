@@ -32,6 +32,7 @@ window.Player = ->
 		if Imagine.Input.getKeyDown 'up'
 			@char.jump()
 	die: ->
+		Imagine Announce("PWNED")
 		el = @getComponent 'element'
 		Imagine.destroy @
 		Imagine el

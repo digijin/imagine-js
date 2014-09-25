@@ -26,6 +26,15 @@
 	
 }
 
+.announce {
+    z-index: 10;
+    position: fixed;
+    left: 50px;
+    top: 100px;
+    font-weight: bold;
+    font-size: 79px;
+    color: white;
+}
 html, body{
 	margin: 0;
 	padding: 0;
