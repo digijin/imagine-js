@@ -97,13 +97,15 @@ Imagine.engine = (->
 
   removeTag = (name) ->
     
-  notify = (event) ->
+  notify = (event, arg) ->
     obj = this._object or this
     if obj._components
       for com in obj._components
+        # console.log com, event, com[event]
         if com[event]
-          
-          com[event].apply()
+          if typeof com[event] is "function"
+            console.log arg
+            com[event].apply([arg])
   
   assignfunctions = (obj) ->
     obj.addComponent = addComponent
