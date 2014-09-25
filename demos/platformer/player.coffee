@@ -9,5 +9,5 @@ window.Player = ->
 		if left > scrLeft  
 			scene.move scrLeft - left, 0
 		@char.dirH = Imagine.Input.getAxis 'Horizontal'
-		if Imagine.Input.getKey 'up'
+		if Imagine.Input.getKeyDown 'up'
 			@char.jump()

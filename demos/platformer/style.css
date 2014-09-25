@@ -36,6 +36,14 @@ html, body{
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
+.enemy{
+	position: absolute;
+	width: 60px;
+	height: 49px;
+	background-image: url('img/turtle.png');
+
+}
+
 /*#block1{
 	position: absolute;
 	width: 200px;
@@ -83,4 +91,13 @@ html, body{
 	width: 60px;
 	height: 60px;
 
+}
+
+.flipH{
+	-moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }

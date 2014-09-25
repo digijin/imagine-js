@@ -8,6 +8,13 @@ window.Character = ->
 	gravity: 9
 	maxFallSpeed: 4
 	coll: undefined
+	sideColl: undefined
+	faceLeft: ->
+		$ @element
+			.addClass 'flipH'
+	faceRight: ->
+		$ @element
+			.removeClass 'flipH'
 	start: ->
 		@element = @getComponent 'element'
 		@collider = @getComponent 'collider'
@@ -18,7 +25,9 @@ window.Character = ->
 		y = @dirV * Imagine.Time.deltaTime * @speed
 
 		# console.log @element.rect()
-		@collider.move x, 0
+		@sideColl = @collider.move x, 0
+		if @sideColl
+			@notify 'sideColl', @sideColl
 
 		@coll = @collider.move 0, y
 		if @coll and @coll.side
@@ -26,6 +35,8 @@ window.Character = ->
 				@dirV = 0
 			if "bottom" in @coll.side
 				@dirV = 0
+
+		@coll
 	jump: ->
 		if @coll and @dirV is 0
 			if "top" in @coll.side

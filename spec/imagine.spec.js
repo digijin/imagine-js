@@ -104,6 +104,7 @@ describe('Objects', function(){
 		expect(obj.myfunc).toBeDefined();
 		expect(obj.myfunc).toHaveBeenCalled();
 	})
+	it("should be able to pass args through notify")
 	it("sohuld have a resize event")
 
 })

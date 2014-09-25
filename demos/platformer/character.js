@@ -12,6 +12,13 @@
       gravity: 9,
       maxFallSpeed: 4,
       coll: void 0,
+      sideColl: void 0,
+      faceLeft: function() {
+        return $(this.element).addClass('flipH');
+      },
+      faceRight: function() {
+        return $(this.element).removeClass('flipH');
+      },
       start: function() {
         this.element = this.getComponent('element');
         this.collider = this.getComponent('collider');
@@ -21,16 +28,20 @@
         this.dirV += this.gravity * Imagine.Time.deltaTime;
         x = this.dirH * this.walkSpeed * Imagine.Time.deltaTime * this.speed;
         y = this.dirV * Imagine.Time.deltaTime * this.speed;
-        this.collider.move(x, 0);
+        this.sideColl = this.collider.move(x, 0);
+        if (this.sideColl) {
+          this.notify('sideColl', this.sideColl);
+        }
         this.coll = this.collider.move(0, y);
         if (this.coll && this.coll.side) {
           if (__indexOf.call(this.coll.side, "top") >= 0) {
             this.dirV = 0;
           }
           if (__indexOf.call(this.coll.side, "bottom") >= 0) {
-            return this.dirV = 0;
+            this.dirV = 0;
           }
         }
+        return this.coll;
       },
       jump: function() {
         if (this.coll && this.dirV === 0) {

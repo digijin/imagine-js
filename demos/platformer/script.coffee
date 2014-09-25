@@ -22,12 +22,21 @@ $(document).ready ->
 	scene = Imagine $('#scene')[0]
 		.getComponent "element"
 
-	# randomblocks
-	# for num in [1..40]
-	# 	# console.log num
-	# 	Math.floor(Math.random() * 7)
 
+	addEnemy = (x, y, enemy) ->
+		id = 'enemy' + x + '_' + y
+		$ "#wrapper"
+			.append '<div class="enemy" id="'+id+'"></div>'
 
+		en = $ "#"+id
+		en.css "left", 100 + (x*60)
+			.css "top", y * 60
+		Imagine en[0]
+			.addComponent Imagine.collider()
+			.addComponent Character()
+			.addComponent Enemy()
+
+	addEnemy 8, 1, 1
 
 	addBlock = (x, y, block) ->
 		# console.log "adding"

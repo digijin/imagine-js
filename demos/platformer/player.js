@@ -13,7 +13,7 @@
           scene.move(scrLeft - left, 0);
         }
         this.char.dirH = Imagine.Input.getAxis('Horizontal');
-        if (Imagine.Input.getKey('up')) {
+        if (Imagine.Input.getKeyDown('up')) {
           return this.char.jump();
         }
       }

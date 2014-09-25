@@ -1,9 +1,18 @@
 (function() {
   $(document).ready(function() {
-    var addBlock, player, scene, x, y, _i, _j, _ref, _ref1;
+    var addBlock, addEnemy, player, scene, x, y, _i, _j, _ref, _ref1;
     player = Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
     Imagine($('#floor')[0]).addComponent(Imagine.collider());
     scene = Imagine($('#scene')[0]).getComponent("element");
+    addEnemy = function(x, y, enemy) {
+      var en, id;
+      id = 'enemy' + x + '_' + y;
+      $("#wrapper").append('<div class="enemy" id="' + id + '"></div>');
+      en = $("#" + id);
+      en.css("left", 100 + (x * 60)).css("top", y * 60);
+      return Imagine(en[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Enemy());
+    };
+    addEnemy(8, 1, 1);
     addBlock = function(x, y, block) {
       var id;
       id = 'autoblock' + x + '_' + y;
