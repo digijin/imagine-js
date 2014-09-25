@@ -330,29 +330,30 @@ describe("Imagine/component/collider", function(){
 
 		})
 
-		it("should return true when squares together", function(){
-			var coll = Imagine.collider();
-			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
-			var sq2 = {	top:1,	left:1,	bottom:2,	right:2};
-			expect(coll.compareSquares(sq1, sq2)).toBe(true);
-			expect(coll.compareSquares(sq2, sq1)).toBe(true);
+		it('TODO: sohuld reimplement this spec now that its not testing for sliding against objects')
+		// it("should return true when squares together", function(){
+		// 	var coll = Imagine.collider();
+		// 	var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+		// 	var sq2 = {	top:1,	left:1,	bottom:2,	right:2};
+		// 	expect(coll.compareSquares(sq1, sq2)).toBe(true);
+		// 	expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
-			var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
-			expect(coll.compareSquares(sq1, sq2)).toBe(true);
-			expect(coll.compareSquares(sq2, sq1)).toBe(true);
+		// 	var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
+		// 	var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
+		// 	expect(coll.compareSquares(sq1, sq2)).toBe(true);
+		// 	expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	top:1,	left:1,	bottom:5,	right:2};
-			var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
-			expect(coll.compareSquares(sq1, sq2)).toBe(true);
-			expect(coll.compareSquares(sq2, sq1)).toBe(true);
+		// 	var sq1 = {	top:1,	left:1,	bottom:5,	right:2};
+		// 	var sq2 = {	top:2,	left:2,	bottom:3,	right:3};
+		// 	expect(coll.compareSquares(sq1, sq2)).toBe(true);
+		// 	expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-			var sq1 = {	top:2,	left:2,	bottom:3,	right:3};
-			var sq2 = {	top:1,	left:1,	bottom:5,	right:2};
-			expect(coll.compareSquares(sq1, sq2)).toBe(true);
-			expect(coll.compareSquares(sq2, sq1)).toBe(true);
+		// 	var sq1 = {	top:2,	left:2,	bottom:3,	right:3};
+		// 	var sq2 = {	top:1,	left:1,	bottom:5,	right:2};
+		// 	expect(coll.compareSquares(sq1, sq2)).toBe(true);
+		// 	expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
-		});
+		// });
 		
 			
 	})

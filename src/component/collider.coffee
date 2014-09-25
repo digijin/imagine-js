@@ -147,6 +147,6 @@ Imagine.collider = ->
 
   compareSquares: (sq1, sq2) ->
 
-    outsideH = sq1.bottom < sq2.top or sq2.bottom < sq1.top
-    outsideV = sq1.right < sq2.left or sq2.right < sq1.left
+    outsideH = sq1.bottom <= sq2.top or sq2.bottom <= sq1.top
+    outsideV = sq1.right <= sq2.left or sq2.right <= sq1.left
     not outsideV and not outsideH
