@@ -16,6 +16,21 @@
         if (Imagine.Input.getKeyDown('up')) {
           return this.char.jump();
         }
+      },
+      topColl: function(coll) {
+        var en;
+        if (coll.collider) {
+          en = coll.collider.getComponent('enemy');
+          if (en) {
+            return console.log("hit enemy on head");
+          }
+        }
+      },
+      bottomColl: function(coll) {
+        var block;
+        if (coll.collider) {
+          return block = coll.collider.getComponent('block');
+        }
       }
     };
   };

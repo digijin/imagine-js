@@ -11,3 +11,12 @@ window.Player = ->
 		@char.dirH = Imagine.Input.getAxis 'Horizontal'
 		if Imagine.Input.getKeyDown 'up'
 			@char.jump()
+	topColl: (coll) ->
+		if coll.collider
+			en = coll.collider.getComponent 'enemy'
+			if en
+				console.log "hit enemy on head"
+
+	bottomColl: (coll) ->
+		if coll.collider
+			block = coll.collider.getComponent 'block'

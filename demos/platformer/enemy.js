@@ -13,9 +13,11 @@
         if (coll) {
           if (__indexOf.call(coll.side, "left") >= 0) {
             this.char.dirH = -1;
+            this.char.faceLeft();
           }
           if (__indexOf.call(coll.side, "right") >= 0) {
-            return this.char.dirH = 1;
+            this.char.dirH = 1;
+            return this.char.faceRight();
           }
         }
       },
