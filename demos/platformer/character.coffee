@@ -5,7 +5,7 @@ window.Character = ->
 	dirH: 0
 	jumpPower: 4
 	walkSpeed: 2
-	gravity: 10
+	gravity: 9
 	maxFallSpeed: 4
 	coll: undefined
 	start: ->

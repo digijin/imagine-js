@@ -23,7 +23,7 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'coffeelint', 'jshint', 'jasmine:all'],
+			tasks: ['build', 'coffeelint', 'jshint'], //, 'jasmine:all'
 			options: {
 				livereload: true
 			}
