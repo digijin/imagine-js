@@ -32,6 +32,12 @@
           return this.char.jump();
         }
       },
+      die: function() {
+        var el;
+        el = this.getComponent('element');
+        Imagine.destroy(this);
+        return Imagine(el).addComponent(Dying());
+      },
       topColl: function(coll) {
         var en;
         if (coll.collider) {
@@ -46,6 +52,15 @@
         var block;
         if (coll.collider) {
           return block = coll.collider.getComponent('block');
+        }
+      },
+      sideColl: function(coll) {
+        var en;
+        if (coll.collider) {
+          en = coll.collider.getComponent('enemy');
+          if (en) {
+            return this.die();
+          }
         }
       }
     };

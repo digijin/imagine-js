@@ -31,6 +31,11 @@ window.Player = ->
 
 		if Imagine.Input.getKeyDown 'up'
 			@char.jump()
+	die: ->
+		el = @getComponent 'element'
+		Imagine.destroy @
+		Imagine el
+			.addComponent Dying()
 	topColl: (coll) ->
 		if coll.collider
 			en = coll.collider.getComponent 'enemy'
@@ -44,3 +49,9 @@ window.Player = ->
 	bottomColl: (coll) ->
 		if coll.collider
 			block = coll.collider.getComponent 'block'
+
+	sideColl: (coll) ->
+		if coll.collider
+			en = coll.collider.getComponent 'enemy'
+			if en
+				@die()
