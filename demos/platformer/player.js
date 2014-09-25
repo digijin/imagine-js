@@ -6,13 +6,20 @@
         this.char = this.getComponent('character');
       },
       update: function() {
-        var left, scrLeft;
+        var h, left, scrLeft;
         left = this.char.element.offsetLeft;
         scrLeft = 400 - scene.offsetLeft;
         if (left > scrLeft) {
           scene.move(scrLeft - left, 0);
         }
-        this.char.dirH = Imagine.Input.getAxis('Horizontal');
+        h = Imagine.Input.getAxis('Horizontal');
+        this.char.dirH = h;
+        if (h < 0) {
+          this.char.faceLeft();
+        }
+        if (h > 0) {
+          this.char.faceRight();
+        }
         if (Imagine.Input.getKeyDown('up')) {
           return this.char.jump();
         }

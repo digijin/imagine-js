@@ -1,6 +1,6 @@
 $(document).ready ->
 
-	
+	# Imagine.engine.setFPS 10
 	player = Imagine $('#player')[0]
 		.addComponent Imagine.collider()
 		.addComponent Character()
