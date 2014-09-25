@@ -52,7 +52,10 @@
       bottomColl: function(coll) {
         var block;
         if (coll.collider) {
-          return block = coll.collider.getComponent('block');
+          block = coll.collider.getComponent('block');
+          if (block) {
+            return console.log("yolo");
+          }
         }
       },
       sideColl: function(coll) {

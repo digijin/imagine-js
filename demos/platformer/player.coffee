@@ -50,6 +50,8 @@ window.Player = ->
 	bottomColl: (coll) ->
 		if coll.collider
 			block = coll.collider.getComponent 'block'
+			if block
+				console.log "yolo"
 
 	sideColl: (coll) ->
 		if coll.collider

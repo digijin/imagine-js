@@ -50,6 +50,7 @@ $(document).ready ->
 
 		Imagine $("#"+id)[0]
 			.addComponent Imagine.collider()
+			.addComponent Block()
 
 
 	for x in [0..level1.length-1]

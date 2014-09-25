@@ -17,7 +17,7 @@
       id = 'autoblock' + x + '_' + y;
       $("#wrapper").append('<div class="brick" id="' + id + '"></div>');
       $("#" + id).css("left", 100 + (x * 60)).css("top", y * 60);
-      return Imagine($("#" + id)[0]).addComponent(Imagine.collider());
+      return Imagine($("#" + id)[0]).addComponent(Imagine.collider()).addComponent(Block());
     };
     for (x = _i = 0, _ref = level1.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
       for (y = _j = 0, _ref1 = level1[x].length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
