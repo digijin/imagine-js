@@ -37,6 +37,24 @@ describe("Imagine/component/collider", function(){
 
 	describe("move", function(){
 
+		it("should slide along objects", function(){
+			$('#square').css('top', 10);
+			expect($('#square').css('left')).toBe('0px');
+			expect($('#square').css('top')).toBe('10px');
+
+			coll = Imagine($('#square')[0])
+				.addComponent(Imagine.collider())
+				.getComponent('collider')
+
+			Imagine($('#rectangle')[0]).addComponent(Imagine.collider());
+
+			coll.move(20, 0);
+
+			expect($('#square').css('left')).toBe('20px');
+
+
+		})
+
 		it("should call element.move", function(){
 			div = $('#square')[0];
 			coll = Imagine.collider();
