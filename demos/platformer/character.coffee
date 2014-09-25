@@ -30,11 +30,16 @@ window.Character = ->
 			@notify 'sideColl', @sideColl
 
 		@coll = @collider.move 0, y
+
+
 		if @coll and @coll.side
+
 			if "top" in @coll.side
 				@dirV = 0
+				@notify 'topColl', @coll
 			if "bottom" in @coll.side
 				@dirV = 0
+				@notify 'bottomColl', @coll
 
 		@coll
 	jump: ->

@@ -36,9 +36,11 @@
         if (this.coll && this.coll.side) {
           if (__indexOf.call(this.coll.side, "top") >= 0) {
             this.dirV = 0;
+            this.notify('topColl', this.coll);
           }
           if (__indexOf.call(this.coll.side, "bottom") >= 0) {
             this.dirV = 0;
+            this.notify('bottomColl', this.coll);
           }
         }
         return this.coll;
