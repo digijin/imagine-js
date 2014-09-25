@@ -1,5 +1,6 @@
 window.Player = ->
 	name: "player"
+	dirH: 0
 	start: ->
 		@char = @getComponent 'character'
 		return
@@ -9,7 +10,10 @@ window.Player = ->
 		if left > scrLeft  
 			scene.move scrLeft - left, 0
 		h = Imagine.Input.getAxis 'Horizontal'
-		@char.dirH = h
+		if Imagine.Input.getKey 'shift'
+			h*=2
+		@dirH = (@dirH+h)/2
+		@char.dirH = @dirH
 		# if Imagine.Input.getKeyDown 'left'
 		if h < 0
 		 	@char.faceLeft()

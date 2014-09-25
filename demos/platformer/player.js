@@ -2,6 +2,7 @@
   window.Player = function() {
     return {
       name: "player",
+      dirH: 0,
       start: function() {
         this.char = this.getComponent('character');
       },
@@ -13,7 +14,11 @@
           scene.move(scrLeft - left, 0);
         }
         h = Imagine.Input.getAxis('Horizontal');
-        this.char.dirH = h;
+        if (Imagine.Input.getKey('shift')) {
+          h *= 2;
+        }
+        this.dirH = (this.dirH + h) / 2;
+        this.char.dirH = this.dirH;
         if (h < 0) {
           this.char.faceLeft();
         }
