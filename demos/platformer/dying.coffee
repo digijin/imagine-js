@@ -1,4 +1,5 @@
 window.Dying = ()->
+	name: 'dying'
 	dirV:-1
 	dirH:0
 	timer: 3

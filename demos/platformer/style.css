@@ -112,6 +112,14 @@ html, body{
 
 }
 
+.brickFrags{
+	position: absolute;
+	background-color: #934C2A;
+	width: 20px;
+	height: 20px;
+
+}
+
 .flipH{
 	-moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);

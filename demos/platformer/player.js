@@ -54,7 +54,7 @@
         if (coll.collider) {
           block = coll.collider.getComponent('block');
           if (block) {
-            return console.log("yolo");
+            return block.damage();
           }
         }
       },

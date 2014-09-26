@@ -51,7 +51,8 @@ window.Player = ->
 		if coll.collider
 			block = coll.collider.getComponent 'block'
 			if block
-				console.log "yolo"
+				# console.log "yolo"
+				block.damage()
 
 	sideColl: (coll) ->
 		if coll.collider
