@@ -32,6 +32,7 @@
           return coll.ignoreSides = ['left', 'right', 'bottom'];
         case 'castle':
           coll.isTrigger = true;
+          coll.addComponent(Castle());
           return coll.addTag('castle');
       }
     };

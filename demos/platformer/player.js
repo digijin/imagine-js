@@ -59,14 +59,21 @@
         }
       },
       sideColl: function(coll) {
-        var en;
+        var en, fw, l;
         if (coll.collider) {
           en = coll.collider.getComponent('enemy');
           if (en) {
             this.die();
           }
           if (coll.collider.hasTag('castle')) {
-            return Imagine(Announce("You Win!"));
+            Imagine(Announce("You Win!"));
+            fw = $('<div class="firework"></div>');
+            $('#wrapper').append(fw);
+            Imagine(fw).addComponent(Firework());
+            l = parseInt($(this.element).css('left'));
+            l += (Math.random() - 0.5) * 400;
+            fw.css('left', l);
+            return fw.css('top', Math.random() * 100);
           }
         }
       }

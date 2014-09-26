@@ -1,7 +1,9 @@
 (function() {
   window.Castle = function() {
     return {
-      name: 'castle'
+      name: 'castle',
+      start: function() {},
+      update: function() {}
     };
   };
 

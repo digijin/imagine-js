@@ -58,7 +58,7 @@ $(document).ready ->
 				coll.ignoreSides = ['left', 'right', 'bottom']
 			when 'castle'
 				coll.isTrigger = true
-				# coll.addComponent Castle()
+				coll.addComponent Castle()
 				coll.addTag 'castle'
 
 	initLevel = ->

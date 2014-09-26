@@ -152,3 +152,12 @@ html, body{
     filter: FlipH;
     -ms-filter: "FlipH";
 }
+
+
+
+.firework{
+	position: absolute;
+	background-image: url('img/firework.gif');
+	width: 80px;
+	height: 80px;
+}

@@ -61,3 +61,16 @@ window.Player = ->
 				@die()
 			if coll.collider.hasTag 'castle'
 				Imagine Announce("You Win!")
+
+				fw = $ '<div class="firework"></div>'
+				$ '#wrapper'
+					.append fw
+				Imagine fw
+					.addComponent Firework()
+
+				l = parseInt $(@element).css 'left'
+				
+				l += (Math.random() - 0.5) * 400
+
+				fw.css 'left', l
+				fw.css 'top', Math.random() * 100
