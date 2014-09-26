@@ -83,12 +83,36 @@ module.exports = function(grunt){
 			spec: {
 				src: ['spec/**/*.js'],
 				dest: 'specrunner/all.spec.js'
+			},
+			platformer: {
+				src: [
+					'demos/platformer/level/parser.js',
+					'demos/platformer/level/level1.js',
+					'demos/platformer/block.js',
+					'demos/platformer/castle.js',
+					'demos/platformer/character.js',
+					'demos/platformer/player.js',
+					'demos/platformer/enemy.js',
+					'demos/platformer/turtle.js',
+					'demos/platformer/bowser.js',
+					'demos/platformer/dying.js',
+					'demos/platformer/announce.js',
+					'demos/platformer/firework.js',
+					'demos/platformer/FPS.js',
+					'demos/platformer/script.js',
+				],
+				dest: 'demos/platformer/all.js'
 			}
         },
         uglify:{
         	dist:{
         		files:{
         			'lib/imagine.min.js': ['lib/imagine.js']
+        		}
+        	},
+        	platformer:{
+        		files:{
+        			'demos/platformer/all.min.js': ['demos/platformer/all.js']
         		}
         	}
         },
