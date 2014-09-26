@@ -1,6 +1,6 @@
 (function() {
   $(document).ready(function() {
-    var addBlock, addEnemy, initLevel, initPlayer;
+    var addBlock, addEnemy, initLevel, initPlayer, initScene;
     initPlayer = function() {
       var player;
       $('#wrapper').append('<div id="player"></div><div id="floor"></div>');
@@ -69,21 +69,26 @@
       }
       return _results;
     };
-    window.initGame = function() {
+    initScene = function() {
       var scene;
-      Imagine.engine.reset();
-      $('#wrapper').html('');
-      initPlayer();
-      initLevel();
-      return scene = Imagine($('#scene')[0]).addComponent({
+      scene = Imagine($('#scene')[0]).addComponent({
         update: function() {
           if (Imagine.Input.getKeyDown('escape')) {
             return initGame();
           }
         }
       }).getComponent("element");
+      return scene.move(-scene.offsetLeft, 0);
     };
-    initGame();
+    window.initGame = function() {
+      Imagine.engine.reset();
+      $('#wrapper').html('');
+      initPlayer();
+      initLevel();
+      return initScene();
+    };
+    initScene();
+    Imagine(Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>"));
     return Imagine($('#FPS')[0]).addComponent(FPS());
   });
 

@@ -56,12 +56,14 @@ html, body{
 	width: 60px;
 	height: 49px;
 	background-image: url('img/turtle.png');
+	z-index: 10;
 }
 .bowser{
 	position: absolute;
 	width: 120px;
 	height: 102px;
 	background-image: url('img/bowser.png');
+	z-index: 10;
 }
 
 /*#block1{

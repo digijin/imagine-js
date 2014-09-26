@@ -80,14 +80,7 @@ $(document).ready ->
 						when 5
 							addBlock x, y, 'hill'
 
-
-
-	window.initGame = ->
-		Imagine.engine.reset()
-		$ '#wrapper'
-			.html ''
-		initPlayer()
-		initLevel()
+	initScene = ->
 		scene = Imagine $('#scene')[0]
 			.addComponent {
 				update: ->
@@ -95,8 +88,21 @@ $(document).ready ->
 						initGame()
 			}
 			.getComponent "element"
+		scene.move(-scene.offsetLeft, 0)
 
-	initGame()
+	window.initGame = ->
+		Imagine.engine.reset()
+		$ '#wrapper'
+			.html ''
+		initPlayer()
+		initLevel()
+		initScene()
+		
+
+	# initGame()
+	initScene()
+	Imagine Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>")
+
 
 	Imagine $('#FPS')[0]
 		.addComponent FPS()
