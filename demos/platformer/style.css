@@ -111,6 +111,13 @@ html, body{
 	height: 60px;
 
 }
+.mbox{
+	position: absolute;
+	background-image: url('img/mystery-block.png');
+	width: 60px;
+	height: 60px;
+
+}
 
 .brickFrags{
 	position: absolute;

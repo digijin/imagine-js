@@ -48,7 +48,7 @@ $(document).ready ->
 		# console.log "adding"
 		id = 'autoblock' + x + '_' + y
 		$ "#wrapper"
-			.append '<div class="brick" id="'+id+'"></div>'
+			.append '<div class="' + block + '" id="'+id+'"></div>'
 
 		$ "#"+id
 			.css "left", 100 + (x*60)
@@ -71,11 +71,13 @@ $(document).ready ->
 				# console.log x, y
 				switch level1[x][y]
 					when 1
-						addBlock x, y, level1[x][y]
+						addBlock x, y, 'brick'
 					when 2
 						addEnemy x, y, 'turtle'
 					when 3
 						addEnemy x, y, 'bowser'
+					when 4
+						addBlock x, y, 'mbox'
 
 
 

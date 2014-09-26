@@ -3,6 +3,7 @@
     return {
       name: 'block',
       life: 1,
+      indestructable: false,
       damage: function() {
         this.life -= 1;
         if (this.life <= 0) {

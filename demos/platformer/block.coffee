@@ -1,6 +1,7 @@
 window.Block = ->
 	name: 'block'
 	life: 1
+	indestructable: false
 	
 	damage: ->
 		@life -= 1

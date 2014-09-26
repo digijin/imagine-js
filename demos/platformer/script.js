@@ -21,7 +21,7 @@
     addBlock = function(x, y, block) {
       var id;
       id = 'autoblock' + x + '_' + y;
-      $("#wrapper").append('<div class="brick" id="' + id + '"></div>');
+      $("#wrapper").append('<div class="' + block + '" id="' + id + '"></div>');
       $("#" + id).css("left", 100 + (x * 60)).css("top", y * 60);
       return Imagine($("#" + id)[0]).addComponent(Imagine.collider()).addComponent(Block());
     };
@@ -30,13 +30,16 @@
         if (level1[x][y]) {
           switch (level1[x][y]) {
             case 1:
-              addBlock(x, y, level1[x][y]);
+              addBlock(x, y, 'brick');
               break;
             case 2:
               addEnemy(x, y, 'turtle');
               break;
             case 3:
               addEnemy(x, y, 'bowser');
+              break;
+            case 4:
+              addBlock(x, y, 'mbox');
           }
         }
       }
