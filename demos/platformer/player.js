@@ -59,7 +59,7 @@
         }
       },
       sideColl: function(coll) {
-        var en, fw, l;
+        var en, fw, i, l, _i, _results;
         if (coll.collider) {
           en = coll.collider.getComponent('enemy');
           if (en) {
@@ -67,13 +67,17 @@
           }
           if (coll.collider.hasTag('castle')) {
             Imagine(Announce("You Win!"));
-            fw = $('<div class="firework"></div>');
-            $('#wrapper').append(fw);
-            Imagine(fw).addComponent(Firework());
-            l = parseInt($(this.element).css('left'));
-            l += (Math.random() - 0.5) * 400;
-            fw.css('left', l);
-            return fw.css('top', Math.random() * 100);
+            _results = [];
+            for (i = _i = 1; _i <= 3; i = ++_i) {
+              fw = $('<div class="firework"></div>');
+              $('#wrapper').append(fw);
+              Imagine(fw).addComponent(Firework());
+              l = parseInt($(this.element).css('left'));
+              l += (Math.random() - 0.5) * 600;
+              fw.css('left', l);
+              _results.push(fw.css('top', Math.random() * 200));
+            }
+            return _results;
           }
         }
       }
