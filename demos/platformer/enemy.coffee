@@ -1,9 +1,15 @@
 window.Enemy = ->
 	name: "enemy"
+	life: 1
 	start: ->
 		@char = @getComponent 'character'
 		@char.walkSpeed = .5
 		@char.dirH = 1
+
+	damage: ->
+		@life -= 1
+		if @life <= 0
+			@die()
 
 	die: ->
 		el = @getComponent 'element'
@@ -12,23 +18,6 @@ window.Enemy = ->
 			.addComponent Dying()
 		
 
-
-	sideColl: (coll)->
-		# console.log "sidecoll notified", coll
-		if coll
-
-
-
-			if "left" in coll.side
-				# console.log "hit left"
-				@char.dirH = -1
-				@char.faceLeft()
-
-
-			if "right" in coll.side
-				# console.log "hit right"
-				@char.dirH = 1
-				@char.faceRight()
 
 	update: ->
 		# console.log @char.sideColl

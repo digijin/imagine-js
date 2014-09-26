@@ -5,12 +5,18 @@
     Imagine($('#floor')[0]).addComponent(Imagine.collider());
     scene = Imagine($('#scene')[0]).getComponent("element");
     addEnemy = function(x, y, enemy) {
-      var en, id;
+      var en, id, im;
       id = 'enemy' + x + '_' + y;
-      $("#wrapper").append('<div class="enemy" id="' + id + '"></div>');
+      $("#wrapper").append('<div class="enemy ' + enemy + '" id="' + id + '"></div>');
       en = $("#" + id);
       en.css("left", 100 + (x * 60)).css("top", y * 60);
-      return Imagine(en[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Enemy());
+      im = Imagine(en[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Enemy());
+      switch (enemy) {
+        case 'turtle':
+          return im.addComponent(Turtle());
+        case 'bowser':
+          return im.addComponent(Bowser());
+      }
     };
     addBlock = function(x, y, block) {
       var id;
@@ -27,7 +33,10 @@
               addBlock(x, y, level1[x][y]);
               break;
             case 2:
-              addEnemy(x, y, 1);
+              addEnemy(x, y, 'turtle');
+              break;
+            case 3:
+              addEnemy(x, y, 'bowser');
           }
         }
       }

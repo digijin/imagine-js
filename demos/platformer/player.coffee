@@ -42,7 +42,7 @@ window.Player = ->
 			en = coll.collider.getComponent 'enemy'
 			if en
 				# console.log "hit enemy on head"
-				en.die()
+				en.damage()
 				
 				@char.jump()
 

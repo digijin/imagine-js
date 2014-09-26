@@ -26,15 +26,21 @@ $(document).ready ->
 	addEnemy = (x, y, enemy) ->
 		id = 'enemy' + x + '_' + y
 		$ "#wrapper"
-			.append '<div class="enemy" id="'+id+'"></div>'
+			.append '<div class="enemy '+enemy+'" id="'+id+'"></div>'
 
 		en = $ "#"+id
 		en.css "left", 100 + (x*60)
 			.css "top", y * 60
-		Imagine en[0]
+		im = Imagine en[0]
 			.addComponent Imagine.collider()
 			.addComponent Character()
 			.addComponent Enemy()
+
+		switch enemy
+			when 'turtle'
+				im.addComponent Turtle()
+			when 'bowser'
+				im.addComponent Bowser()
 
 	# addEnemy 8, 1, 1
 
@@ -67,7 +73,9 @@ $(document).ready ->
 					when 1
 						addBlock x, y, level1[x][y]
 					when 2
-						addEnemy x, y, 1
+						addEnemy x, y, 'turtle'
+					when 3
+						addEnemy x, y, 'bowser'
 
 
 

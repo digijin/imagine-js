@@ -44,7 +44,7 @@
         if (coll.collider) {
           en = coll.collider.getComponent('enemy');
           if (en) {
-            en.die();
+            en.damage();
             return this.char.jump();
           }
         }

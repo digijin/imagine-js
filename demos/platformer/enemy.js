@@ -1,31 +1,24 @@
 (function() {
-  var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-
   window.Enemy = function() {
     return {
       name: "enemy",
+      life: 1,
       start: function() {
         this.char = this.getComponent('character');
         this.char.walkSpeed = .5;
         return this.char.dirH = 1;
+      },
+      damage: function() {
+        this.life -= 1;
+        if (this.life <= 0) {
+          return this.die();
+        }
       },
       die: function() {
         var el;
         el = this.getComponent('element');
         Imagine.destroy(this);
         return Imagine(el).addComponent(Dying());
-      },
-      sideColl: function(coll) {
-        if (coll) {
-          if (__indexOf.call(coll.side, "left") >= 0) {
-            this.char.dirH = -1;
-            this.char.faceLeft();
-          }
-          if (__indexOf.call(coll.side, "right") >= 0) {
-            this.char.dirH = 1;
-            return this.char.faceRight();
-          }
-        }
       },
       update: function() {}
     };
