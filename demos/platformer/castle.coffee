@@ -1,0 +1,2 @@
+window.Castle = ->
+	name: 'castle'

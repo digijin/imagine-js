@@ -56,6 +56,10 @@ $(document).ready ->
 		switch block
 			when 'hill'
 				coll.ignoreSides = ['left', 'right', 'bottom']
+			when 'castle'
+				coll.isTrigger = true
+				# coll.addComponent Castle()
+				coll.addTag 'castle'
 
 	initLevel = ->
 		for x in [0..level1.length-1]
@@ -79,6 +83,8 @@ $(document).ready ->
 							addBlock x, y, 'mbox'
 						when 5
 							addBlock x, y, 'hill'
+						when 6
+							addBlock x, y, 'castle'
 
 	initScene = ->
 		scene = Imagine $('#scene')[0]
@@ -97,12 +103,11 @@ $(document).ready ->
 		initPlayer()
 		initLevel()
 		initScene()
+		# Imagine $('#FPS')[0]
+		# 	.addComponent FPS()
 		
 
 	# initGame()
 	initScene()
 	Imagine Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>")
 
-
-	Imagine $('#FPS')[0]
-		.addComponent FPS()

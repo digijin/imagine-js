@@ -7,6 +7,7 @@ Imagine.collider = ->
   name: 'collider'
   tags: ['collider']
   _register: 'collider'
+  isTrigger: false
   start: ->
     @element = @getComponent("element")
     return
@@ -65,14 +66,16 @@ Imagine.collider = ->
             # and coll.ignoreSides.indexOf("top") is -1
             and not ("top" in coll.ignoreSides)
               # @element.style.top = (obj.top - height)+"px"
-              y = (obj.top - height) - check.top
+              unless @isTrigger or coll.isTrigger
+                y = (obj.top - height) - check.top
               # console.log "yt", y
               collision.side.push 'top'
             else if obj.bottom <= pos.top and check.top < obj.bottom \
             # and coll.ignoreSides.indexOf("bottom") is -1
             and not ("bottom" in coll.ignoreSides)
               # @element.style.top = (obj.bottom)+"px"
-              y = obj.bottom - pos.top
+              unless @isTrigger or coll.isTrigger
+                y = obj.bottom - pos.top
               # console.log "yb", y
               collision.side.push 'bottom'
             # else
@@ -83,14 +86,16 @@ Imagine.collider = ->
             # and coll.ignoreSides.indexOf("left") is -1
             and not ("left" in coll.ignoreSides)
               # @element.style.left = (obj.left - width)+"px"
-              x = (obj.left - width) - check.left
+              unless @isTrigger or coll.isTrigger
+                x = (obj.left - width) - check.left
               # console.log "xl", x
               collision.side.push 'left'
             else if obj.right <= pos.left and check.left < obj.right \
             # and coll.ignoreSides.indexOf("right") is -1
             and not ("right" in coll.ignoreSides)
               # @element.style.left = (obj.right)+"px"
-              x = obj.right - pos.left
+              unless @isTrigger or coll.isTrigger
+                x = obj.right - pos.left
               # console.log "xr", x
               collision.side.push 'right'
             # else

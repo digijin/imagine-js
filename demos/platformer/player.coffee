@@ -32,7 +32,7 @@ window.Player = ->
 		if Imagine.Input.getKeyDown 'up'
 			@char.jump()
 	die: ->
-		Imagine Announce("PWNED<sub>(esc to restart)</sub>")
+		Imagine Announce("GAME OVER<br /><sub>(esc to restart)</sub>")
 		el = @getComponent 'element'
 		Imagine.destroy @
 		Imagine el
@@ -59,3 +59,5 @@ window.Player = ->
 			en = coll.collider.getComponent 'enemy'
 			if en
 				@die()
+			if coll.collider.hasTag 'castle'
+				Imagine Announce("You Win!")

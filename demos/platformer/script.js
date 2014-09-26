@@ -30,6 +30,9 @@
       switch (block) {
         case 'hill':
           return coll.ignoreSides = ['left', 'right', 'bottom'];
+        case 'castle':
+          coll.isTrigger = true;
+          return coll.addTag('castle');
       }
     };
     initLevel = function() {
@@ -56,6 +59,9 @@
                   break;
                 case 5:
                   _results1.push(addBlock(x, y, 'hill'));
+                  break;
+                case 6:
+                  _results1.push(addBlock(x, y, 'castle'));
                   break;
                 default:
                   _results1.push(void 0);
@@ -88,8 +94,7 @@
       return initScene();
     };
     initScene();
-    Imagine(Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>"));
-    return Imagine($('#FPS')[0]).addComponent(FPS());
+    return Imagine(Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>"));
   });
 
 }).call(this);

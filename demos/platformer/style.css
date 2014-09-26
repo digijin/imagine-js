@@ -137,6 +137,13 @@ html, body{
 
 }
 
+.castle{
+	position: absolute;
+	background-image: url('img/castle.png');
+	width: 160px;
+	height: 180px;
+}
+
 .flipH{
 	-moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);

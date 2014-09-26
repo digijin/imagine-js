@@ -34,7 +34,7 @@
       },
       die: function() {
         var el;
-        Imagine(Announce("PWNED<sub>(esc to restart)</sub>"));
+        Imagine(Announce("GAME OVER<br /><sub>(esc to restart)</sub>"));
         el = this.getComponent('element');
         Imagine.destroy(this);
         return Imagine(el).addComponent(Dying());
@@ -63,7 +63,10 @@
         if (coll.collider) {
           en = coll.collider.getComponent('enemy');
           if (en) {
-            return this.die();
+            this.die();
+          }
+          if (coll.collider.hasTag('castle')) {
+            return Imagine(Announce("You Win!"));
           }
         }
       }

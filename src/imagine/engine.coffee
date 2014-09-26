@@ -94,6 +94,8 @@ Imagine.engine = (->
     this.tags.push name
     return this
   
+  hasTag = (name) ->
+    name in @tags
 
   removeTag = (name) ->
     
@@ -111,6 +113,7 @@ Imagine.engine = (->
     obj.getComponent = getComponent
     obj.getTag = getTag
     obj.addTag = addTag
+    obj.hasTag = hasTag
     obj.removeTag = removeTag
     obj.notify = notify
 
