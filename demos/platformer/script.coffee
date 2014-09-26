@@ -1,26 +1,21 @@
 $(document).ready ->
 
 	# Imagine.engine.setFPS 10
-	player = Imagine $('#player')[0]
-		.addComponent Imagine.collider()
-		.addComponent Character()
-		.addComponent Player()
-		.getComponent "player"
+	initPlayer = ->
+		$ '#wrapper'
+			.append '<div id="player"></div><div id="floor"></div>'
+		player = Imagine $('#player')[0]
+			.addComponent Imagine.collider()
+			.addComponent Character()
+			.addComponent Player()
+			.getComponent "player"
+		Imagine $('#floor')[0]
+			.addComponent Imagine.collider()
 
-	# Imagine $('#block1')[0]
-	# 	.addComponent Imagine.collider()
-	# Imagine $('#block2')[0]
-	# 	.addComponent Imagine.collider()
-	# hill = Imagine $('#block3')[0]
-	# 	.addComponent Imagine.collider()
-	# 	.getComponent "collider"
-	# hill.ignoreSides = ["right", "bottom", "left"]
 
-	Imagine $('#floor')[0]
-		.addComponent Imagine.collider()
+	
 
-	scene = Imagine $('#scene')[0]
-		.getComponent "element"
+	
 
 
 	addEnemy = (x, y, enemy) ->
@@ -54,34 +49,54 @@ $(document).ready ->
 			.css "left", 100 + (x*60)
 			.css "top", y * 60
 
-		Imagine $("#"+id)[0]
+		coll = Imagine $("#"+id)[0]
 			.addComponent Imagine.collider()
 			.addComponent Block()
+			.getComponent 'collider'
+		switch block
+			when 'hill'
+				coll.ignoreSides = ['left', 'right', 'bottom']
+
+	initLevel = ->
+		for x in [0..level1.length-1]
+			for y in [0..level1[x].length-1]
+				# console.log x, y, level1[x][y]
+				# console.log level1[x][y] is 1, level1[x][y], 1
+				# switch level1[x][y]
+				# 	when 1
+				# 		console.log "yay", x, y
+
+				if level1[x][y]
+					# console.log x, y
+					switch level1[x][y]
+						when 1
+							addBlock x, y, 'brick'
+						when 2
+							addEnemy x, y, 'turtle'
+						when 3
+							addEnemy x, y, 'bowser'
+						when 4
+							addBlock x, y, 'mbox'
+						when 5
+							addBlock x, y, 'hill'
 
 
-	for x in [0..level1.length-1]
-		for y in [0..level1[x].length-1]
-			# console.log x, y, level1[x][y]
-			# console.log level1[x][y] is 1, level1[x][y], 1
-			# switch level1[x][y]
-			# 	when 1
-			# 		console.log "yay", x, y
 
-			if level1[x][y]
-				# console.log x, y
-				switch level1[x][y]
-					when 1
-						addBlock x, y, 'brick'
-					when 2
-						addEnemy x, y, 'turtle'
-					when 3
-						addEnemy x, y, 'bowser'
-					when 4
-						addBlock x, y, 'mbox'
+	window.initGame = ->
+		Imagine.engine.reset()
+		$ '#wrapper'
+			.html ''
+		initPlayer()
+		initLevel()
+		scene = Imagine $('#scene')[0]
+			.addComponent {
+				update: ->
+					if Imagine.Input.getKeyDown 'escape'
+						initGame()
+			}
+			.getComponent "element"
 
-
-
-
+	initGame()
 
 	Imagine $('#FPS')[0]
 		.addComponent FPS()

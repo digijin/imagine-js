@@ -1,9 +1,12 @@
 (function() {
   $(document).ready(function() {
-    var addBlock, addEnemy, player, scene, x, y, _i, _j, _ref, _ref1;
-    player = Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
-    Imagine($('#floor')[0]).addComponent(Imagine.collider());
-    scene = Imagine($('#scene')[0]).getComponent("element");
+    var addBlock, addEnemy, initLevel, initPlayer;
+    initPlayer = function() {
+      var player;
+      $('#wrapper').append('<div id="player"></div><div id="floor"></div>');
+      player = Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
+      return Imagine($('#floor')[0]).addComponent(Imagine.collider());
+    };
     addEnemy = function(x, y, enemy) {
       var en, id, im;
       id = 'enemy' + x + '_' + y;
@@ -19,31 +22,68 @@
       }
     };
     addBlock = function(x, y, block) {
-      var id;
+      var coll, id;
       id = 'autoblock' + x + '_' + y;
       $("#wrapper").append('<div class="' + block + '" id="' + id + '"></div>');
       $("#" + id).css("left", 100 + (x * 60)).css("top", y * 60);
-      return Imagine($("#" + id)[0]).addComponent(Imagine.collider()).addComponent(Block());
+      coll = Imagine($("#" + id)[0]).addComponent(Imagine.collider()).addComponent(Block()).getComponent('collider');
+      switch (block) {
+        case 'hill':
+          return coll.ignoreSides = ['left', 'right', 'bottom'];
+      }
     };
-    for (x = _i = 0, _ref = level1.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
-      for (y = _j = 0, _ref1 = level1[x].length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
-        if (level1[x][y]) {
-          switch (level1[x][y]) {
-            case 1:
-              addBlock(x, y, 'brick');
-              break;
-            case 2:
-              addEnemy(x, y, 'turtle');
-              break;
-            case 3:
-              addEnemy(x, y, 'bowser');
-              break;
-            case 4:
-              addBlock(x, y, 'mbox');
+    initLevel = function() {
+      var x, y, _i, _ref, _results;
+      _results = [];
+      for (x = _i = 0, _ref = level1.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        _results.push((function() {
+          var _j, _ref1, _results1;
+          _results1 = [];
+          for (y = _j = 0, _ref1 = level1[x].length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
+            if (level1[x][y]) {
+              switch (level1[x][y]) {
+                case 1:
+                  _results1.push(addBlock(x, y, 'brick'));
+                  break;
+                case 2:
+                  _results1.push(addEnemy(x, y, 'turtle'));
+                  break;
+                case 3:
+                  _results1.push(addEnemy(x, y, 'bowser'));
+                  break;
+                case 4:
+                  _results1.push(addBlock(x, y, 'mbox'));
+                  break;
+                case 5:
+                  _results1.push(addBlock(x, y, 'hill'));
+                  break;
+                default:
+                  _results1.push(void 0);
+              }
+            } else {
+              _results1.push(void 0);
+            }
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+    window.initGame = function() {
+      var scene;
+      Imagine.engine.reset();
+      $('#wrapper').html('');
+      initPlayer();
+      initLevel();
+      return scene = Imagine($('#scene')[0]).addComponent({
+        update: function() {
+          if (Imagine.Input.getKeyDown('escape')) {
+            return initGame();
           }
         }
-      }
-    }
+      }).getComponent("element");
+    };
+    initGame();
     return Imagine($('#FPS')[0]).addComponent(FPS());
   });
 

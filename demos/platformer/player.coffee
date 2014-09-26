@@ -32,7 +32,7 @@ window.Player = ->
 		if Imagine.Input.getKeyDown 'up'
 			@char.jump()
 	die: ->
-		Imagine Announce("PWNED")
+		Imagine Announce("PWNED<sub>(esc to restart)</sub>")
 		el = @getComponent 'element'
 		Imagine.destroy @
 		Imagine el

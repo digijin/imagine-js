@@ -34,7 +34,7 @@
       },
       die: function() {
         var el;
-        Imagine(Announce("PWNED"));
+        Imagine(Announce("PWNED<sub>(esc to restart)</sub>"));
         el = this.getComponent('element');
         Imagine.destroy(this);
         return Imagine(el).addComponent(Dying());
