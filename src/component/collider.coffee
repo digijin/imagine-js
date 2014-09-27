@@ -113,6 +113,11 @@ Imagine.collider = ->
 
     @element.move(x, y)
 
+    for coll in collisions
+      # console.log coll
+      # console.log @notify
+      @notify 'onCollision', coll
+
     switch collisions.length
       when 0
         return

@@ -252,24 +252,37 @@ describe("Imagine/component/collider", function(){
 				expect(sq.css("left")).toBe("0px");
 			})
 
-			it("should notify a function on collision", function(){
-				obj = {onCollision:function(){}}
-				spyOn(obj, "onCollision");
-				// Imagine($('#square'))
-				// 	.addComponent(obj)
-				// 	.addComponent(Imagine.collider)
-				isq.addComponent(obj)
-
-				sq.css("left", 20);
-				sq.css("top", 0);
-				collision = isq.move(0, 15);
-				expect(collision).toBeDefined();
-				
-				expect(obj.onCollision).toHaveBeenCalled()
 
 
-			})
+		})
 
+		it("should notify a function on collision", function(){
+
+			sq = $('#square');
+			rec = $('#rectangle');
+
+			obj = {name: 'dummy', onCollision:function(){
+				console.log("called");
+			}}
+			spyOn(obj, "onCollision").and.callThrough();
+
+			irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
+			isq = Imagine(sq[0])
+				.addComponent(Imagine.collider())
+				.addComponent(obj)
+				.getComponent('collider')
+
+			expect(isq.getComponent('dummy')).toBe(obj)
+
+			sq.css("left", 20);
+			sq.css("top", 0);
+			collision = isq.move(0, 15);
+			expect(collision).toBeDefined();
+
+			expect(obj.onCollision).toHaveBeenCalled()
+			args = obj.onCollision.calls.mostRecent().args[0];
+			console.log(args);
+			// expect(args.collider.getComponent('element')).toBe(rec)
 
 		})
 
