@@ -252,9 +252,27 @@ describe("Imagine/component/collider", function(){
 				expect(sq.css("left")).toBe("0px");
 			})
 
+			it("should notify a function on collision", function(){
+				obj = {onCollision:function(){}}
+				spyOn(obj, "onCollision");
+				// Imagine($('#square'))
+				// 	.addComponent(obj)
+				// 	.addComponent(Imagine.collider)
+				isq.addComponent(obj)
+
+				sq.css("left", 20);
+				sq.css("top", 0);
+				collision = isq.move(0, 15);
+				expect(collision).toBeDefined();
+				
+				expect(obj.onCollision).toHaveBeenCalled()
+
+
+			})
+
+
 		})
 
-		it("should notify a function on collision")
 		it("should pass collided objects on collision")
 		it("should be able to tell what side it collided with")
 	})
