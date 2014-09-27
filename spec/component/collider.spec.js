@@ -262,7 +262,7 @@ describe("Imagine/component/collider", function(){
 			rec = $('#rectangle');
 
 			obj = {name: 'dummy', onCollision:function(){
-				console.log("called");
+				// console.log("called");
 			}}
 			spyOn(obj, "onCollision").and.callThrough();
 
@@ -281,7 +281,7 @@ describe("Imagine/component/collider", function(){
 
 			expect(obj.onCollision).toHaveBeenCalled()
 			args = obj.onCollision.calls.mostRecent().args[0];
-			console.log(args);
+			expect(args).toBeDefined();
 			// expect(args.collider.getComponent('element')).toBe(rec)
 
 		})
