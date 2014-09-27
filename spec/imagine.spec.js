@@ -67,7 +67,9 @@ describe('Tags', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
-	it("should have hasTag")
+	it("should have hasTag", function(){
+		expect(Imagine({}).hasTag).toBeDefined()
+	})
 	it("should allow you to search by tags", function(){
 		expect(Imagine({}).getTag).toBeDefined();
 		// expect(Imagine({tags: ["test"]}).getTag("test")).toBeDefined();
