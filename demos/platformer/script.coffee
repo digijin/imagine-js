@@ -107,7 +107,7 @@ $(document).ready ->
 		# 	.addComponent FPS()
 		
 
-	# initGame()
-	initScene()
-	Imagine Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>")
+	initGame()
+	# initScene()
+	# Imagine Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>")
 

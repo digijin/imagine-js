@@ -37,6 +37,20 @@ window.Player = ->
 		Imagine.destroy @
 		Imagine el
 			.addComponent Dying()
+
+	onCollision: (coll) ->
+		# console.log coll
+		if coll and coll.side
+			# console.log coll.side
+			if "bottom" in coll.side
+				# console.log "tap"
+				block = coll.collider.getComponent 'block'
+				if block
+					# console.log "yolo"
+					block.damage()
+				
+
+
 	topColl: (coll) ->
 		if coll.collider
 			en = coll.collider.getComponent 'enemy'
@@ -48,11 +62,11 @@ window.Player = ->
 
 
 	bottomColl: (coll) ->
-		if coll.collider
-			block = coll.collider.getComponent 'block'
-			if block
-				# console.log "yolo"
-				block.damage()
+		# if coll.collider
+		# 	block = coll.collider.getComponent 'block'
+		# 	if block
+		# 		# console.log "yolo"
+		# 		block.damage()
 
 	sideColl: (coll) ->
 		if coll.collider

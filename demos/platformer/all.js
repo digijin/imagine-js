@@ -135,6 +135,8 @@ level1 = levelparser.parse(
 }).call(this);
 ;
 (function() {
+  var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
   window.Player = function() {
     return {
       name: "player",
@@ -175,6 +177,17 @@ level1 = levelparser.parse(
         Imagine.destroy(this);
         return Imagine(el).addComponent(Dying());
       },
+      onCollision: function(coll) {
+        var block;
+        if (coll && coll.side) {
+          if (__indexOf.call(coll.side, "bottom") >= 0) {
+            block = coll.collider.getComponent('block');
+            if (block) {
+              return block.damage();
+            }
+          }
+        }
+      },
       topColl: function(coll) {
         var en;
         if (coll.collider) {
@@ -185,15 +198,7 @@ level1 = levelparser.parse(
           }
         }
       },
-      bottomColl: function(coll) {
-        var block;
-        if (coll.collider) {
-          block = coll.collider.getComponent('block');
-          if (block) {
-            return block.damage();
-          }
-        }
-      },
+      bottomColl: function(coll) {},
       sideColl: function(coll) {
         var en, fw, i, l, _i, _results;
         if (coll.collider) {
@@ -484,8 +489,7 @@ level1 = levelparser.parse(
       initLevel();
       return initScene();
     };
-    initScene();
-    return Imagine(Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>"));
+    return initGame();
   });
 
 }).call(this);

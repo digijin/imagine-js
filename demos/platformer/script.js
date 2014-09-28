@@ -94,8 +94,7 @@
       initLevel();
       return initScene();
     };
-    initScene();
-    return Imagine(Announce("SUPER Mi9 BROTHERS<br /><sub>(esc to start)</sub>"));
+    return initGame();
   });
 
 }).call(this);
