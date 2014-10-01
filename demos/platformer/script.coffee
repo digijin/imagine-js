@@ -64,12 +64,6 @@ $(document).ready ->
 	initLevel = ->
 		for x in [0..level1.length-1]
 			for y in [0..level1[x].length-1]
-				# console.log x, y, level1[x][y]
-				# console.log level1[x][y] is 1, level1[x][y], 1
-				# switch level1[x][y]
-				# 	when 1
-				# 		console.log "yay", x, y
-
 				if level1[x][y]
 					# console.log x, y
 					switch level1[x][y]

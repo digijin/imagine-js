@@ -256,35 +256,58 @@ describe("Imagine/component/collider", function(){
 
 		})
 
-		it("should notify a function on collision", function(){
+		describe("notify", function(){
+			var sq, rec, isq, irec, obj;
+			beforeEach(function(){
+				sq = $('#square');
+				rec = $('#rectangle');
 
-			sq = $('#square');
-			rec = $('#rectangle');
+				obj = {name: 'dummy', onCollision:function(){
+					// console.log("called");
+				}}
+				spyOn(obj, "onCollision").and.callThrough();
 
-			obj = {name: 'dummy', onCollision:function(){
-				// console.log("called");
-			}}
-			spyOn(obj, "onCollision").and.callThrough();
+				irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
+				isq = Imagine(sq[0])
+					.addComponent(Imagine.collider())
+					.addComponent(obj)
+					.getComponent('collider')
+			})
+			it("should notify a function on collision", function(){
 
-			irec = Imagine(rec[0]).addComponent(Imagine.collider()).getComponent("collider");
-			isq = Imagine(sq[0])
-				.addComponent(Imagine.collider())
-				.addComponent(obj)
-				.getComponent('collider')
+				
 
-			expect(isq.getComponent('dummy')).toBe(obj)
+				expect(isq.getComponent('dummy')).toBe(obj)
 
-			sq.css("left", 20);
-			sq.css("top", 0);
-			collision = isq.move(0, 15);
-			expect(collision).toBeDefined();
+				sq.css("left", 20);
+				sq.css("top", 0);
+				collision = isq.move(0, 15);
+				expect(collision).toBeDefined();
 
-			expect(obj.onCollision).toHaveBeenCalled()
-			args = obj.onCollision.calls.mostRecent().args[0];
-			expect(args).toBeDefined();
-			// expect(args.collider.getComponent('element')).toBe(rec)
+				expect(obj.onCollision).toHaveBeenCalled()
+				args = obj.onCollision.calls.mostRecent().args[0];
+				expect(args).toBeDefined();
+				// expect(args.collider.getComponent('element')).toBe(rec)
+
+			});
+			it("should notify both collision objects", function(){
+				var obj = {name: 'dummy', onCollision:function(){
+					console.log("called");
+				}}
+				spyOn(obj, "onCollision").and.callThrough();
+
+
+				sq.css("left", 20);
+				sq.css("top", 0);
+				collision = isq.move(0, 15);
+				expect(collision).toBeDefined();
+				
+				expect(obj.onCollision).toHaveBeenCalled()
+
+			})
 
 		})
+	
 
 		it("should pass collided objects on collision")
 		it("should be able to tell what side it collided with")
