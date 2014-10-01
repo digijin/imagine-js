@@ -272,15 +272,15 @@ describe("Imagine/component/collider", function(){
 					.addComponent(Imagine.collider())
 					.addComponent(obj)
 					.getComponent('collider')
-			})
-			it("should notify a function on collision", function(){
 
-				
-
-				expect(isq.getComponent('dummy')).toBe(obj)
 
 				sq.css("left", 20);
 				sq.css("top", 0);
+			})
+
+			it("should notify a function on collision", function(){
+				expect(isq.getComponent('dummy')).toBe(obj)
+
 				collision = isq.move(0, 15);
 				expect(collision).toBeDefined();
 
@@ -290,18 +290,31 @@ describe("Imagine/component/collider", function(){
 				// expect(args.collider.getComponent('element')).toBe(rec)
 
 			});
+			it("should notify a component added after the collider", function(){
+				var newobj = {name: 'dummy', onCollision:function(){
+					console.log("called");
+				}}
+				spyOn(newobj, "onCollision").and.callThrough();
+
+				isq.addComponent(newobj)
+				collision = isq.move(0, 15);
+
+				expect(newobj.onCollision).toHaveBeenCalled()
+				expect(obj.onCollision).toHaveBeenCalled()
+
+			})
+
 			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
 					console.log("called");
 				}}
 				spyOn(obj, "onCollision").and.callThrough();
 
+				irec.addComponent(obj)
 
-				sq.css("left", 20);
-				sq.css("top", 0);
 				collision = isq.move(0, 15);
 				expect(collision).toBeDefined();
-				
+
 				expect(obj.onCollision).toHaveBeenCalled()
 
 			})

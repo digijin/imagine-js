@@ -125,4 +125,9 @@ describe('Objects', function(){
 	it("should be able to pass args through notify")
 	it("sohuld have a resize event")
 
+	it("should return a component, not the object", function(){
+		var comp = {name:"dummy"}
+		expect(Imagine(comp)).toBe(comp);
+	})
+
 })

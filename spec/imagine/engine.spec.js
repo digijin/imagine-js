@@ -116,6 +116,11 @@ describe("Imagine/engine", function(){
 	})
 	describe('addComponent', function(){
 
+		it("should return the component", function(){
+			var comp = {name:"dummy"}
+			expect(Imagine({}).addComponent(comp)).toBe(comp)
+		})
+
 		it('should have addComponent', function(){
 			var obj = {start:function(){
 				expect(this.addComponent).toBeDefined();
