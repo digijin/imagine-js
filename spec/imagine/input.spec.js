@@ -11,7 +11,15 @@ describe('Imagine/Input', function(){
 	it("should expose Imagine.Input.axes", function(){
 		expect(Imagine.Input.axes).toBeDefined();
 	});
-	it('shuold use notify function')
+	it('should use notify function', function(){
+		var obj = {onKeyDown:function(){
+
+		}}
+		spyOn(obj, "onKeyDown");
+		Imagine(obj)
+		Input.keydown("left");
+		expect(obj.onKeyDown).toHaveBeenCalled();
+	})
 
 
 	describe("getAxis", function(){
