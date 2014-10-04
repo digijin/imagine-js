@@ -111,10 +111,10 @@ describe('Imagine.Component', function(){
 
 			obj = Imagine({}).addComponent(com1);
 			// console.log(obj);
-			expect(obj._components.length).toBe(2)
+			expect(obj._object._components.length).toBe(2)
 			comp = (obj.getComponent('com1'));
 			comp.addComponent(com2);
-			expect(obj._components.length).toBe(3)
+			expect(obj._object._components.length).toBe(3)
 
 
 

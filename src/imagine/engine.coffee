@@ -57,21 +57,25 @@ Imagine.engine = (->
     unless com
       console.log "component not defined"
       return this
-    com._object = this
-    this._components = [] unless this._components
-    this._components.push(com)
+
+    obj = this._object or this
+
+    console.log com
+    com._object = obj
+    obj._components = [] unless obj._components
+    obj._components.push(com)
     assignfunctions(com)
 
     # console.log com._register
-    for c1 in this._components
+    for c1 in obj._components
       if c1._register
-        for c2 in this._components
+        for c2 in obj._components
           unless c2[c1._register]
             c2[c1._register] = c1 #ease of use
           
 
     com.start()  if com.start
-    this
+    com
 
   getComponent = (name) ->
     obj = this._object or this
