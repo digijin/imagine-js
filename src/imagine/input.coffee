@@ -35,6 +35,7 @@ Imagine.Input = (->
   keyChanging = {}
   keyChanged = {}
   keyup = (keyCode) ->
+    Imagine.notify 'onKeyUp', keyCode
     keyCode = map(keyCode)
     keyStatus[keyCode] = false
     keyChanging[keyCode] = "up"
@@ -49,6 +50,7 @@ Imagine.Input = (->
     return
 
   keydown = (keyCode) ->
+    Imagine.notify 'onKeyDown', keyCode
     keyCode = map(keyCode)
     if keyStatus.hasOwnProperty(keyCode)
       keyChanging[keyCode] = "down"  if keyStatus[keyCode] isnt true
