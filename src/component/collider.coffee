@@ -129,10 +129,10 @@ Imagine.collider = ->
           when "bottom"
             return "top"
 
-      # coll.collider.notify 'onCollision', {
-      #   side
-      #   collider: @
-      # }
+      coll.collider.notify 'onCollision', {
+        side
+        collider: @
+      }
 
     switch collisions.length
       when 0

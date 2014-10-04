@@ -145,10 +145,10 @@ describe("Imagine/engine", function(){
 			expect(console.log).toHaveBeenCalled()
 		})
 
-		it("should return initial object for chaining", function(){
+		it("should return last object for chaining", function(){
 			obj = {test:"abc"}
 			com = {component:"test"}
-			expect(Imagine(obj).addComponent(com)).toBe(obj)
+			expect(Imagine(obj).addComponent(com)).toBe(com)
 		})
 		it('should actually add compnents', function(){
 
