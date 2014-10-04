@@ -90,6 +90,12 @@ describe('Tags', function(){
 	it("should have working removeTag")
 })
 
+describe('notify', function(){
+	it("shuold have notify defined", function(){
+		expect(Imagine.notify).toBeDefined()
+	})
+})
+
 
 
 describe('Objects', function(){
