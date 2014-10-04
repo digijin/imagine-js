@@ -105,6 +105,19 @@ describe('Imagine.Component', function(){
 	})
 
 	describe("addComponent", function(){
+		it("should addcomponent properly if called on a component", function(){
+			com1 = {name:'com1'}
+			com2 = {name:'com2'}
 
+			obj = Imagine({}).addComponent(com1);
+			// console.log(obj);
+			expect(obj._components.length).toBe(2)
+			comp = (obj.getComponent('com1'));
+			comp.addComponent(com2);
+			expect(obj._components.length).toBe(3)
+
+
+
+		})
 	})
 })

@@ -118,6 +118,22 @@ Imagine.collider = ->
       # console.log @notify
       @notify 'onCollision', coll
 
+      side = coll.side.map (obj) ->
+        switch obj
+          when "left"
+            return "right"
+          when "right"
+            return "left"
+          when "top"
+            return "bottom"
+          when "bottom"
+            return "top"
+
+      # coll.collider.notify 'onCollision', {
+      #   side
+      #   collider: @
+      # }
+
     switch collisions.length
       when 0
         return

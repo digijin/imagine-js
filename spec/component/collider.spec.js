@@ -291,18 +291,19 @@ describe("Imagine/component/collider", function(){
 
 			});
 			it("should notify a component added after the collider", function(){
-				var newobj = {name: 'dummy', onCollision:function(){
+				var newobj = {name: 'postadd', onCollision:function(){
 					console.log("called");
 				}}
 				spyOn(newobj, "onCollision").and.callThrough();
 
-				isq.addComponent(newobj)
+				isq._object.addComponent(newobj)
 				collision = isq.move(0, 15);
 
 				expect(newobj.onCollision).toHaveBeenCalled()
 				expect(obj.onCollision).toHaveBeenCalled()
 
 			})
+			it("should remove _object from previous test")
 
 			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){

@@ -100,8 +100,8 @@ Imagine.engine = (->
   removeTag = (name) ->
     
   notify = (event, arg) ->
-    # console.log "notifying"
     obj = this._object or this
+    # console.log "notifying", obj
     # console.log obj
     if obj._components
       for com in obj._components
