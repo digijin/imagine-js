@@ -36,6 +36,10 @@ Imagine.getComponents = (name) ->
     out.push(com) if com
   out
 
+Imagine.notify = (func) ->
+  for obj in Imagine.objects
+    obj.notify func
+
 Imagine.destroy = (obj) ->
 
   obj = obj._object or obj
