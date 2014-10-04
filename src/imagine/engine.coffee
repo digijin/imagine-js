@@ -60,7 +60,7 @@ Imagine.engine = (->
 
     obj = this._object or this
 
-    console.log com
+    # console.log com
     com._object = obj
     obj._components = [] unless obj._components
     obj._components.push(com)

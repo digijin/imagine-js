@@ -292,7 +292,7 @@ describe("Imagine/component/collider", function(){
 			});
 			it("should notify a component added after the collider", function(){
 				var newobj = {name: 'postadd', onCollision:function(){
-					console.log("called");
+					// console.log("called");
 				}}
 				spyOn(newobj, "onCollision").and.callThrough();
 
@@ -307,7 +307,7 @@ describe("Imagine/component/collider", function(){
 
 			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
-					console.log("called");
+					// console.log("called");
 				}}
 				spyOn(obj, "onCollision").and.callThrough();
 
