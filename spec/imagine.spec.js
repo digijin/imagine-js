@@ -93,6 +93,19 @@ describe('Tags', function(){
 describe('notify', function(){
 	it("shuold have notify defined", function(){
 		expect(Imagine.notify).toBeDefined()
+	});
+	it("sohuld notify all components", function(){
+		com1 = {func:function(){}}
+		com2 = {func:function(){}}
+		spyOn(com1, "func")
+		spyOn(com2, "func")
+		Imagine(com1);
+		Imagine(com2);
+
+		Imagine.notify('func');
+		expect(com1.func).toHaveBeenCalled()
+		expect(com2.func).toHaveBeenCalled()
+
 	})
 })
 
