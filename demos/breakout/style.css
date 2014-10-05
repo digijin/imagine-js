@@ -1,0 +1,21 @@
+#stage{
+	width: 600px;
+	height: 400px;
+	background-color: black;
+	position: relative;
+}
+#player{
+	width: 50px;
+	height: 10px;
+	position: absolute;
+	bottom: 10px;
+	left: 275px;
+	background-color: white;
+}
+
+.ball{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	background-color: white;
+}
