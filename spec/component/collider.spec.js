@@ -140,15 +140,15 @@ describe("Imagine/component/collider", function(){
 				expect(sq.css("top")).toBe("10px");
 				expect(sq.css("left")).toBe("110px");
 			})
-			// it("should not have edge issues", function(){
-			// 	sq.css("left", 100);
-			// 	sq.css("top", 0);
+			it("should not have edge issues", function(){
+				sq.css("left", 100);
+				sq.css("top", 0);
 
-			// 	collision = isq.move(10, 10);
+				collision = isq.move(10, 10);
 
-			// 	expect(sq.css("top")).toBe("10px");
-			// 	expect(sq.css("left")).toBe("110px");
-			// })
+				expect(sq.css("top")).toBe("10px");
+				expect(sq.css("left")).toBe("110px");
+			})
 
 			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10
@@ -296,14 +296,13 @@ describe("Imagine/component/collider", function(){
 				}}
 				spyOn(newobj, "onCollision").and.callThrough();
 
-				isq._object.addComponent(newobj)
+				isq.addComponent(newobj)
 				collision = isq.move(0, 15);
 
 				expect(newobj.onCollision).toHaveBeenCalled()
 				expect(obj.onCollision).toHaveBeenCalled()
 
 			})
-			it("should remove _object from previous test")
 
 			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
