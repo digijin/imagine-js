@@ -31,9 +31,20 @@ Ball = () ->
 	onCollision: (coll) ->
 		if 'top' in coll.side
 			@dirV = -1
+		if 'bottom' in coll.side
+			@dirV = 1
+		if 'left' in coll.side
+			@dirH = -1
+		if 'right' in coll.side
+			@dirH = 1
 
 
-
+Block = () ->
+	name: 'block'
+	onCollision: (coll) ->
+		console.log "?"
+		$ @element.remove()
+		Imagine.destroy this
 
 $ document
 .ready () ->
@@ -45,3 +56,13 @@ $ document
 	Imagine $('.ball')[0]
 	.addComponent Imagine.collider()
 	.addComponent Ball()
+
+	for x in [0...10]
+		for y in [0...3]
+			block = $ '<div class="block" />'
+			$ '#scene'
+			.append block
+			block = Imagine block[0]
+			.addComponent Imagine.collider()
+			.addComponent Block()
+			block.element.move 10+x*50, 10+y*30
