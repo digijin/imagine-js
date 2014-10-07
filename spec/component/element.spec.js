@@ -60,6 +60,14 @@ describe("Imagine/component/element", function(){
 
 	describe("move", function(){
 
+		it('should be precise', function(){
+			start = el.getLocalRect().left
+
+			el.move(1.2345, 0)
+			now = el.getLocalRect().left
+			expect(now-start).toBe(1.2345)
+		})
+
 		it("shuold handle rounding errors")
 			//css = 1.5px
 			//move(1px)
