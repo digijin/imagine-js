@@ -10,6 +10,12 @@ module.exports = function(grunt){
 				script: 'server/server.coffee'
 			}
 		},
+		open:{
+			test: {
+				path: 'http://localhost:4010/SpecRunner.html',
+				// app: 'Google Chrome'
+			}
+		},
 		coffeelint: {
 	     	app: ['src/**/*.coffee'],
 	     	options: {
@@ -142,6 +148,8 @@ module.exports = function(grunt){
         }
 	});
 
+
+	grunt.registerTask('startServer', ['open','nodemon'])
 
 	grunt.registerTask('build', ['clean', 'coffee', 'concat', 'uglify']);
 
