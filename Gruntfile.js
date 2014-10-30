@@ -5,6 +5,11 @@ module.exports = function(grunt){
 	grunt.initConfig({
 		pkg: require('./package.json'),
 		clean:['temp'],
+		nodemon:{
+			dev:{
+				script: 'server/server.coffee'
+			}
+		},
 		coffeelint: {
 	     	app: ['src/**/*.coffee'],
 	     	options: {
