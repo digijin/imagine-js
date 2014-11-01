@@ -11,9 +11,17 @@ module.exports = function(grunt){
 			}
 		},
 		open:{
-			test: {
+			testChrome: {
 				path: 'http://localhost:4010/SpecRunner.html',
-				// app: 'Google Chrome'
+				app: 'Chrome'
+			},
+			testFF: {
+				path: 'http://localhost:4010/SpecRunner.html',
+				app: 'Firefox'
+			},
+			breakout: {
+				path: 'file:///G:/Projects/imagine-js/demos/breakout/index.html',
+				app: 'Chrome'
 			}
 		},
 		coffeelint: {
@@ -34,7 +42,7 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'coffeelint', 'jshint', 'jasmine:all'], //
+			tasks: ['build', 'test'], //
 			options: {
 				livereload: true
 			}
@@ -145,13 +153,25 @@ module.exports = function(grunt){
         		expand: true,
         		ext: '.js'
         	}
+        },
+        concurrent:{
+        	dev:{
+        		tasks:['watch', 'startServer'],
+        		options:{
+        			logConcurrentOutput: true
+        		}
+        	}
         }
 	});
 
 
-	grunt.registerTask('startServer', ['open','nodemon'])
+	grunt.registerTask('startServer', ['open', 'nodemon']);
 
 	grunt.registerTask('build', ['clean', 'coffee', 'concat', 'uglify']);
 
-	grunt.registerTask('default', ['build', 'jasmine:all', 'jshint', 'watch']);
+	grunt.registerTask('default', ['build', 'concurrent']);
+	
+	grunt.registerTask('test', ['coffeelint', 'jshint', 'jasmine:all']);
+
+
 };
