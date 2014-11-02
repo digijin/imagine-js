@@ -61,6 +61,9 @@ describe("Imagine/component/element", function(){
 	describe("move", function(){
 
 		it('should be precise', function(){
+			
+			el.move(1,1);//prime it
+
 			start = el.getLocalRect().left
 
 			el.move(1.2345, 0)
