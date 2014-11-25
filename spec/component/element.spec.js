@@ -66,9 +66,15 @@ describe("Imagine/component/element", function(){
 
 			start = el.getLocalRect().left
 
-			el.move(1.2345, 0)
+			amnt = 1.2345
+			el.move(amnt, 0)
 			now = el.getLocalRect().left
-			expect(now-start).toBe(1.2345)
+
+			expected = now-start
+
+			diff = Math.abs(expected - amnt)
+
+			expect(diff).toBeLessThan(0.0005)
 		})
 
 		it("shuold handle rounding errors")
@@ -108,6 +114,27 @@ describe("Imagine/component/element", function(){
 			// expect(el.rect().left).toBe(l+2)
 		})
 
+	})
+
+	describe('position', function(){
+		describe('get', function(){
+			it("should be defined", function(){
+				expect(el.getPosition).toBeDefined()
+			})
+		})
+		describe('set', function(){
+			it("should be defined", function(){
+				expect(el.setPosition).toBeDefined()
+			})
+		})
+
+		
+		it("should set and return the stored position", function(){
+			el.setPosition(5,6);
+			pos = el.getPosition();
+			expect(pos.left).toBe(5);
+			expect(pos.top).toBe(6);
+		})
 	})
 
 })
