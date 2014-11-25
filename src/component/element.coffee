@@ -57,12 +57,14 @@ Imagine.element = (element) ->
   el.moveMode = "offset"
 
   el.getPosition = () ->
-    
-    'left': 1
-    'top' : 2
+    unless @_pos
+      @_pos =
+        left: el.offsetLeft
+        top: el.offsetTop
+    @_pos
   
   el.setPosition = (x, y) ->
-    @_pos = 
+    @_pos =
       'left': x
       'top' : y
     el

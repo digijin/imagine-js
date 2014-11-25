@@ -74,7 +74,7 @@ describe("Imagine/component/element", function(){
 
 			diff = Math.abs(expected - amnt)
 
-			expect(diff).toBeLessThan(0.0005)
+			expect(diff).toBeLessThan(0.3)//for phantom, 0.0005 for browsers
 		})
 
 		it("shuold handle rounding errors")
@@ -121,10 +121,20 @@ describe("Imagine/component/element", function(){
 			it("should be defined", function(){
 				expect(el.getPosition).toBeDefined()
 			})
+			it("should detect itself if not set", function(){
+				otop = el.offsetTop
+				left = el.offsetLeft
+				pos = el.getPosition();
+				expect(pos.top).toBe(otop);
+				expect(pos.left).toBe(left);
+			})
 		})
 		describe('set', function(){
 			it("should be defined", function(){
 				expect(el.setPosition).toBeDefined()
+			})
+			it("should return itself for chaining", function(){
+				expect(el.setPosition(1,2)).toBe(el)
 			})
 		})
 
