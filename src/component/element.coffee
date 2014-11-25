@@ -69,6 +69,7 @@ Imagine.element = (element) ->
       'top' : y
     el
 
+  el.moveTo = el.setPosition
   el.move = (x, y) ->
 
     switch @moveMode
