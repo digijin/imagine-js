@@ -5,3 +5,5 @@ lib/imagine.min.js
 specrunner/all.spec.js
 bower_components
 doc/
+.grunt/
+_SpecRunner.html

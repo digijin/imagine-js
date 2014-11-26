@@ -16,7 +16,10 @@ module.exports = function(grunt){
 		},
 		nodemon:{
 			dev:{
-				script: 'server/server.coffee'
+				script: 'server/server.coffee',
+				options:{
+					watch: ['Gruntfile.js']
+				}
 			}
 		},
 		open:{
