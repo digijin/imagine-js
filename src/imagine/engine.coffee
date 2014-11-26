@@ -2,6 +2,7 @@ Imagine.engine = (->
   fps = 0
   frameGap = 1000 / fps
   inited = false
+  updateId = undefined
   init = ->
     unless inited
       inited = true
@@ -11,7 +12,6 @@ Imagine.engine = (->
       setFPS(fps)
     return
 
-  updateId = undefined
   update = ->
     
     #update Time;
@@ -37,10 +37,6 @@ Imagine.engine = (->
       updateId = requestAnimationFrame update
     return
 
-  clearUpdate = ->
-    clearInterval updateId
-    cancelAnimationFrame updateId
-    return
 
   setFPS = (newFPS) ->
     fps = newFPS
@@ -123,9 +119,16 @@ Imagine.engine = (->
     obj.removeTag = removeTag
     obj.notify = notify
 
+  clearUpdate = ->
+    clearInterval updateId
+    cancelAnimationFrame updateId
+    return
   setTimeout init, 0 #run init next frame
   #exposing functions for testing
   clearUpdate: clearUpdate
+  update: update # testing
+  forceUpdate: update
+  setFPS: setFPS
   reset: ->
     Imagine.objects = []
     Imagine.Input.reset()
@@ -149,12 +152,9 @@ Imagine.engine = (->
           obj.addComponent(c)
     
     obj
-  update: update # testing
-  forceUpdate: update
   getFPS: ->
     fps
 
-  setFPS: setFPS
 )()
 ###
 class Imagine.Engine
