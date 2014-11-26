@@ -4,7 +4,16 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		pkg: require('./package.json'),
-		clean:['temp'],
+		clean:{
+			temp:['temp'],
+			doc: ['doc'],
+		},
+			
+		codo:{
+			src: [
+				'src/'
+			]
+		},
 		nodemon:{
 			dev:{
 				script: 'server/server.coffee'
@@ -42,7 +51,7 @@ module.exports = function(grunt){
 				'sandpit/**/*.*',
 				'specrunner/**/*.*'
 				],
-			tasks: ['build', 'test'], //
+			tasks: ['build', 'test', 'codo'], //
 			options: {
 				livereload: true
 			}
@@ -167,7 +176,7 @@ module.exports = function(grunt){
 
 	grunt.registerTask('startServer', ['open', 'nodemon']);
 
-	grunt.registerTask('build', ['clean', 'coffee', 'concat', 'uglify']);
+	grunt.registerTask('build', ['clean:temp', 'coffee', 'concat', 'uglify']);
 
 	grunt.registerTask('default', ['build', 'concurrent']);
 	
