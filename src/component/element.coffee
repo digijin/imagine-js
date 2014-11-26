@@ -54,24 +54,31 @@ Imagine.element = (element) ->
         width: rect.right - rect.left
     rect
 
-  el.moveMode = "offset"
+  el.moveMode = "pos"
 
+  el.posInit = ->
+    @_pos =
+      left: el.offsetLeft
+      top: el.offsetTop
   el.getPosition = () ->
     unless @_pos
-      @_pos =
-        left: el.offsetLeft
-        top: el.offsetTop
+      @posInit()
     @_pos
   
   el.setPosition = (x, y) ->
     @_pos =
       'left': x
       'top' : y
+
+    # console.log "setting", x, y
+    @style.top = y+"px"
+    @style.left = x+"px"
     el
 
   el.moveTo = el.setPosition
   el.move = (x, y) ->
 
+    # movemode to help me decide best way to handle movement
     switch @moveMode
 
       when "rect"
@@ -116,7 +123,9 @@ Imagine.element = (element) ->
         @style.top = @lastTop
         @style.left = @lastLeft
 
-
+      when "pos"
+        pos = @getPosition()
+        @setPosition pos.left + x, pos.top + y
 
 
   el

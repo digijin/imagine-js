@@ -143,6 +143,12 @@ describe("Imagine/component/element", function(){
 			it("should return itself for chaining", function(){
 				expect(el.setPosition(1,2)).toBe(el)
 			})
+
+			it("should set the positions", function(){
+				el.setPosition(3,4)
+				expect(el.style.left).toBe('3px')
+				expect(el.style.top).toBe('4px')
+			})
 		})
 
 		
