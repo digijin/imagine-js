@@ -2,6 +2,14 @@ Imagine.engine = (->
   fps = 0
   frameGap = 1000 / fps
   inited = false
+  updateId = undefined
+
+  
+  setTimeout init, 0 #run init next frame
+  #exposing functions for testing
+  clearUpdate: clearUpdate
+
+
   init = ->
     unless inited
       inited = true
@@ -11,9 +19,7 @@ Imagine.engine = (->
       setFPS(fps)
     return
 
-  updateId = undefined
   update = ->
-    
     #update Time;
     Imagine.Time.update()
     Imagine.Input.update()
@@ -24,7 +30,6 @@ Imagine.engine = (->
       
       #todo: set script execution order
       # obj.update()  if obj.update
-
       if obj._components
         for key of obj._components
           if obj._components.hasOwnProperty(key)
@@ -123,9 +128,6 @@ Imagine.engine = (->
     obj.removeTag = removeTag
     obj.notify = notify
 
-  setTimeout init, 0 #run init next frame
-  #exposing functions for testing
-  clearUpdate: clearUpdate
   reset: ->
     Imagine.objects = []
     Imagine.Input.reset()
