@@ -4,14 +4,18 @@ Imagine.collider = ->
 
 
   ignoreSides: []
+
   name: 'collider'
+
   tags: ['collider']
+
   _register: 'collider'
+
   isTrigger: false
+
   start: ->
     @element = @getComponent("element")
     return
-
 
   move: (x, y)->
     pos = @element.getBoundingClientRect()

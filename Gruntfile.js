@@ -177,7 +177,7 @@ module.exports = function(grunt){
 	});
 
 
-	grunt.registerTask('startServer', ['open', 'nodemon']);
+	grunt.registerTask('startServer', ['nodemon']);
 
 	grunt.registerTask('build', ['clean:temp', 'coffee', 'concat', 'uglify']);
 
