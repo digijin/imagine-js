@@ -35,9 +35,11 @@ class Imagine.InputAbstract
     # console.log @init
     @init()
 
+  # unused
   keypress: (keyCode) ->
 
-  
+  # called when a key is released
+  # @param [int] keyCode keycode of the key released
   keyup: (keyCode) ->
     Imagine.notify 'onKeyUp', keyCode
     keyCode = @map(keyCode)
@@ -53,6 +55,8 @@ class Imagine.InputAbstract
       i++
     return
 
+  # called when a key is released
+  # @param [int] keyCode keycode of the key pressed
   keydown: (keyCode) ->
     Imagine.notify 'onKeyDown', keyCode
     keyCode = @map(keyCode)
@@ -92,70 +96,71 @@ class Imagine.InputAbstract
       escape: 27
       
 
+  # old init function from before this was a class
+  # @param [Object] params the config object used to init 
   init: (params) ->
     @config = JSON.parse(JSON.stringify(@defaults)) #extend params
     @axes = @config.axes
     @mapping = @config.mapping
     return
 
+  # reset function wipes all stored key status
   reset: ->
     @keyStatus = {}
     @keyChanging = {}
     @keyChanged = {}
     return
 
+  # maps strings to keycode for convenience and readability
+  # @param [Object] key object that maps to a keycode
+  # @option options [Number] keyCode if a number is passed in, it is returned
   map: (key) ->
     return key  if typeof key is "number"
     return @mapping[key]  if @mapping.hasOwnProperty(key)
     parseInt key
 
+  # returns true if the given key is currently down
+  # @param [Object] keyCode the key being checked
   isDown: (keyCode) ->
     keyCode = @map(keyCode)
     return @keyStatus[keyCode]  if @keyStatus.hasOwnProperty(keyCode)
     false
 
+  # returns true if the given key is currently down
+  # @param [Object] keyCode the key being checked
   getKeyDown: (keyCode) ->
     keyCode = @map(keyCode)
     return true  if @keyChanged[keyCode] is "down"  if @keyChanged.hasOwnProperty(keyCode)
     false
 
+
+  # returns true if the given key is currently up
+  # @param [Object] keyCode the key being checked
   getKeyUp: (keyCode) ->
     keyCode = @map(keyCode)
     return true  if @keyChanged[keyCode] is "up"  if @keyChanged.hasOwnProperty(keyCode)
     false
 
+
+  # returns a number between 1 and -1 describing input of an axis
+  # @param [string] axis the axis being checked
   getAxis: (axis) ->
     pos = @isDown(@axes[axis].positive)
     neg = @isDown(@axes[axis].negative)
     ((if pos then 1 else 0)) + ((if neg then -1 else 0))
 
+  # update function called per frame
   update: ->
     @keyChanged = @keyChanging
     @keyChanging = {}
     return
 
-  
-  # var getAxes = function(){
-  #   return axes
-  # }
-  # init()
-  # axes: axes
+  # adds an axis to the list of axes to be checked
+  # @param [String] axisName the name of the new axis
+  # @param [Object] axis object with the data for the new axis
   addAxis: (axisName, axis) ->
     @axes[axisName] = axis
     return
-
-  # keypress: keypress
-  # keyup: keyup
-  # keydown: keydown
-  # map: map
-  # isDown: isDown
-  # getKey: isDown
-  # reset: reset
-  # update: update
-  # getKeyDown: getKeyDown
-  # getKeyUp: getKeyUp
-  # getAxis: getAxis
-# )()
 
 
 Imagine.Input = new Imagine.InputAbstract()
