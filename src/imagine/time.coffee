@@ -2,10 +2,17 @@
 # automatically instatniated by the imagine engine
 class Imagine.TimeAbstract
 
-  @deltaTime = 0
-  @currentTime = 0
-  @lastTime = 0
-  @startTime = 0
+  # the time since the last frame
+  deltaTime: 0
+
+  # current time passed since start
+  currentTime: 0
+
+  # time of last frame
+  lastTime: 0
+
+  # time simulation started
+  startTime: 0
 
   # called each frame, updates frame time info
   update: ->
