@@ -1,3 +1,4 @@
+# class to manage and track input
 class Imagine.InputAbstract
 
   axes: {}
@@ -36,6 +37,7 @@ class Imagine.InputAbstract
     @init()
 
   # unused
+  # @deprecated
   keypress: (keyCode) ->
 
   # called when a key is released

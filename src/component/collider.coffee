@@ -4,14 +4,18 @@ Imagine.collider = ->
 
 
   ignoreSides: []
+
   name: 'collider'
+
   tags: ['collider']
+
   _register: 'collider'
+
   isTrigger: false
+
   start: ->
     @element = @getComponent("element")
     return
-
 
   move: (x, y)->
     pos = @element.getBoundingClientRect()
@@ -161,15 +165,6 @@ Imagine.collider = ->
     obrect = obj.getBoundingClientRect()
 
     @compareSquares myrect, obrect
-    #   t:myrect.top
-    #   r:myrect.right
-    #   b:myrect.bottom
-    #   l:myrect.left
-    # ,
-    #   t:obrect.top
-    #   r:obrect.right
-    #   b:obrect.bottom
-    #   l:obrect.left
 
   compareSquares: (sq1, sq2) ->
 
