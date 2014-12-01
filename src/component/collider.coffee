@@ -1,6 +1,7 @@
 # requires jq
 
-Imagine.collider = ->
+# Imagine.collider = ->
+class Imagine.Collider
 
 
   ignoreSides: []
