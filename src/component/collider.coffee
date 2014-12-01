@@ -1,6 +1,5 @@
-# requires jq
-
-# Imagine.collider = ->
+# collider class
+# handles basic collision detection between box shaped objects
 class Imagine.Collider
 
 
