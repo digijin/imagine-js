@@ -99,7 +99,7 @@ class Imagine.InputAbstract
       
 
   # old init function from before this was a class
-  # @param [Object] params the config object used to init 
+  # @param [Object] params the config object used to init
   init: (params) ->
     @config = JSON.parse(JSON.stringify(@defaults)) #extend params
     @axes = @config.axes
