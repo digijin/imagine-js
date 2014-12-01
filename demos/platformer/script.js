@@ -4,8 +4,8 @@
     initPlayer = function() {
       var player;
       $('#wrapper').append('<div id="player"></div><div id="floor"></div>');
-      player = Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
-      return Imagine($('#floor')[0]).addComponent(Imagine.collider());
+      player = Imagine($('#player')[0]).addComponent(new Imagine.Collider()).addComponent(Character()).addComponent(Player()).getComponent("player");
+      return Imagine($('#floor')[0]).addComponent(new Imagine.Collider());
     };
     addEnemy = function(x, y, enemy) {
       var en, id, im;
@@ -13,7 +13,7 @@
       $("#wrapper").append('<div class="enemy ' + enemy + '" id="' + id + '"></div>');
       en = $("#" + id);
       en.css("left", 100 + (x * 60)).css("top", y * 60);
-      im = Imagine(en[0]).addComponent(Imagine.collider()).addComponent(Character()).addComponent(Enemy());
+      im = Imagine(en[0]).addComponent(new Imagine.Collider()).addComponent(Character()).addComponent(Enemy());
       switch (enemy) {
         case 'turtle':
           return im.addComponent(Turtle());
@@ -26,7 +26,7 @@
       id = 'autoblock' + x + '_' + y;
       $("#wrapper").append('<div class="' + block + '" id="' + id + '"></div>');
       $("#" + id).css("left", 100 + (x * 60)).css("top", y * 60);
-      coll = Imagine($("#" + id)[0]).addComponent(Imagine.collider()).addComponent(Block()).getComponent('collider');
+      coll = Imagine($("#" + id)[0]).addComponent(new Imagine.Collider()).addComponent(Block()).getComponent('collider');
       switch (block) {
         case 'hill':
           return coll.ignoreSides = ['left', 'right', 'bottom'];

@@ -66,8 +66,8 @@
 
   $(document).ready(function() {
     var block, x, y, _i, _results;
-    Imagine($('#player')[0]).addComponent(Imagine.collider()).addComponent(Player());
-    Imagine($('.ball')[0]).addComponent(Imagine.collider()).addComponent(Ball());
+    Imagine($('#player')[0]).addComponent(new Imagine.Collider()).addComponent(Player());
+    Imagine($('.ball')[0]).addComponent(new Imagine.Collider()).addComponent(Ball());
     _results = [];
     for (x = _i = 0; _i < 10; x = ++_i) {
       _results.push((function() {
@@ -76,7 +76,7 @@
         for (y = _j = 0; _j < 3; y = ++_j) {
           block = $('<div class="block" />');
           $('#scene').append(block);
-          block = Imagine(block[0]).addComponent(Imagine.collider()).addComponent(Block());
+          block = Imagine(block[0]).addComponent(new Imagine.Collider()).addComponent(Block());
           _results1.push(block.element.move(10 + x * 50, 10 + y * 30));
         }
         return _results1;

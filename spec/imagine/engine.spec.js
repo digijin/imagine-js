@@ -13,7 +13,7 @@ describe("Imagine/engine", function(){
 		it("should not do crazy recursive self referential shit", function(){///////////////////////////
 			// loadFixtures('collider.html');
 			// var sq = $('#square');
-			// var isq = Imagine(sq[0]).addComponent(Imagine.collider());
+			// var isq = Imagine(sq[0]).addComponent(new Imagine.Collider());
 			// console.log(isq);
 			// expect(isq._components[0]._components).not.toBeDefined();
 		})

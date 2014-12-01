@@ -73,15 +73,15 @@ $(document).ready(function(){
 	}
 
 	Imagine($('#ball')[0])
-		.addComponent(Imagine.collider())
+		.addComponent(new Imagine.Collider())
 		.addComponent(ball);
 
 	Imagine($('#right')[0])
-		.addComponent(Imagine.collider())
+		.addComponent(new Imagine.Collider())
 		.addComponent(enemy);
 
 	Imagine($('#left')[0])
-		.addComponent(Imagine.collider())
+		.addComponent(new Imagine.Collider())
 		.addComponent(player);
 
 

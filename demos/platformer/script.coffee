@@ -5,12 +5,12 @@ $(document).ready ->
 		$ '#wrapper'
 			.append '<div id="player"></div><div id="floor"></div>'
 		player = Imagine $('#player')[0]
-			.addComponent Imagine.collider()
+			.addComponent new Imagine.Collider()
 			.addComponent Character()
 			.addComponent Player()
 			.getComponent "player"
 		Imagine $('#floor')[0]
-			.addComponent Imagine.collider()
+			.addComponent new Imagine.Collider()
 
 
 	
@@ -27,7 +27,7 @@ $(document).ready ->
 		en.css "left", 100 + (x*60)
 			.css "top", y * 60
 		im = Imagine en[0]
-			.addComponent Imagine.collider()
+			.addComponent new Imagine.Collider()
 			.addComponent Character()
 			.addComponent Enemy()
 
@@ -50,7 +50,7 @@ $(document).ready ->
 			.css "top", y * 60
 
 		coll = Imagine $("#"+id)[0]
-			.addComponent Imagine.collider()
+			.addComponent new Imagine.Collider()
 			.addComponent Block()
 			.getComponent 'collider'
 		switch block
