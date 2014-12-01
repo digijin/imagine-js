@@ -40,8 +40,11 @@ $(document).ready(function(){
 			}
 		},
 		resetball: function(){
-			this.el.css('left', this.el.parent().width()/2);
-			this.el.css('top', this.el.parent().height()/2);
+			x = this.el.parent().width()/2
+			y = this.el.parent().height()/2
+			// this.el.css('left', );
+			// this.el.css('top', );
+			this.el[0].moveTo(x, y)
 		}
 	}
 

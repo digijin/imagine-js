@@ -52,9 +52,16 @@ describe('Imagine/Input', function(){
 
 	});
 	
+	describe('getKey', function(){
+		it("should be defined", function(){
+			expect(Imagine.Input.getKey).toBeDefined()
+		})
+	})
+
 
 	describe('keyup keydown', function(){
 
+		
 
 		it("should ignore keydowns if the key is down");
 		it("should call key function on objects on key events", function(){

@@ -13,8 +13,8 @@ class Imagine.InputAbstract
       e = e or window.event
       
       # use e.keyCode
-      @keyCode = (if e.keyCode then e.keyCode else e.charCode)
-      @keypress keyCode
+      keyCode = (if e.keyCode then e.keyCode else e.charCode)
+      Imagine.Input.keypress keyCode
       return
 
     Imagine.addEvent document, "keyup", (e) ->
@@ -22,7 +22,7 @@ class Imagine.InputAbstract
       keyCode = (if e.keyCode then e.keyCode else e.charCode)
       
       #console.log("up"+keyCode);
-      @keyup keyCode
+      Imagine.Input.keyup keyCode
       return
 
     Imagine.addEvent document, "keydown", (e) ->
@@ -30,7 +30,7 @@ class Imagine.InputAbstract
       keyCode = (if e.keyCode then e.keyCode else e.charCode)
       
       #console.log("down"+keyCode);
-      @keydown keyCode
+      Imagine.Input.keydown keyCode
       return
 
     # console.log @init
@@ -127,6 +127,9 @@ class Imagine.InputAbstract
     keyCode = @map(keyCode)
     return @keyStatus[keyCode]  if @keyStatus.hasOwnProperty(keyCode)
     false
+
+  getKey: (keyCode) ->
+    @isDown keyCode
 
   # returns true if the given key is currently down
   # @param [Object] keyCode the key being checked
