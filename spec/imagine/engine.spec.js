@@ -31,6 +31,13 @@ describe("Imagine/engine", function(){
 	})
 
 	describe('FPS', function(){
+
+		it("should define getfps", function(){
+			expect(Imagine.engine.getFPS).toBeDefined()
+		})
+		it("should define setfps", function(){
+			expect(Imagine.engine.setFPS).toBeDefined()
+		})
 		
 		it('should run at the fps you set it to', function(done){
 			

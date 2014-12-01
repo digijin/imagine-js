@@ -1,3 +1,4 @@
+###
 Imagine.engine = (->
   fps = 0
   frameGap = 1000 / fps
@@ -11,6 +12,8 @@ Imagine.engine = (->
       Imagine.Time.lastTime = Imagine.Time.startTime
       setFPS(fps)
     return
+
+  setTimeout init, 0 #run init next frame
 
   update = ->
     
@@ -123,7 +126,6 @@ Imagine.engine = (->
     clearInterval updateId
     cancelAnimationFrame updateId
     return
-  setTimeout init, 0 #run init next frame
   #exposing functions for testing
   clearUpdate: clearUpdate
   update: update # testing
@@ -174,7 +176,7 @@ class Imagine.Engine
       Imagine.Time.startTime = d.getTime()
       Imagine.Time.lastTime = Imagine.Time.startTime
       # console.log setFPS
-      setFPS(@fps)
+      Imagine.engine.setFPS(@fps)
     return
 
   update: ->
@@ -199,13 +201,15 @@ class Imagine.Engine
     if @fps is 0
       @updateId = requestAnimationFrame @update
     return
+  forceUpdate: ->
+    @update()
 
   clearUpdate: ->
     clearInterval @updateId
     cancelAnimationFrame @updateId
     return
 
-  setFPS = (newFPS) ->
+  setFPS: (newFPS) ->
     @fps = newFPS
     Imagine.engine.clearUpdate()
     if @fps is 0
@@ -312,10 +316,8 @@ class Imagine.Engine
   getFPS: ->
     @fps
 
-  # setFPS: setFPS
 # )()
 
 
 Imagine.engine = new Imagine.Engine()
 
-###
