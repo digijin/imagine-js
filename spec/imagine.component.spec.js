@@ -51,6 +51,7 @@ describe('Imagine.Component', function(){
 		})
 		it("should take a single class")
 		it("should take an array")
+		it("should be available in start function")
 	})
 	
 
