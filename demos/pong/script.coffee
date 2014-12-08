@@ -3,14 +3,17 @@ playerScore = 0
 enemyScore = 0
 boxheight = 350
 boxright = 600
+paddleheight = 100
 $(document).ready ->
   
   class Ball
+    name: 'ball'
     requireComponent: [Imagine.Collider]
     dirH: 200
     dirV: -200
     update: ->
-      @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
+      collision = @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
+      @dirH *= -1  if collision.side.length > 0  if collision
       pos = @element.getPosition()
       top = parseInt pos.top #todo parseint no longer needed???
       left = parseInt pos.left
@@ -35,8 +38,6 @@ $(document).ready ->
       
       @element.moveTo x, y
 
-  Imagine($("#ball")[0]).addComponent new Ball()
-
 
   class Player
     requireComponent: [Imagine.Collider]
@@ -45,25 +46,18 @@ $(document).ready ->
       @collider.move 0, Imagine.Input.getAxis("Vertical") * -@speed * Imagine.Time.deltaTime
 
 
+  class Enemy
+    requireComponent: [Imagine.Collider]
+    speed: 130
+    update: ->
+      ball = Imagine.getComponent 'ball'
+      ballpos = ball.element.getPosition().top
+      mepos = @element.getPosition().top + (paddleheight/2)
+      if ballpos > mepos
+        @collider.move 0, @speed * Imagine.Time.deltaTime
+      else
+        @collider.move 0, -@speed * Imagine.Time.deltaTime
+
+  Imagine($("#ball")[0]).addComponent new Ball()
+  Imagine($("#right")[0]).addComponent new Enemy()
   Imagine($("#left")[0]).addComponent new Player()
-
-  # enemy =
-  #   speed: 150
-  #   start: ->
-  #     @coll = @getComponent("collider")
-  #     @el = $(@getComponent("element"))
-  #     return
-
-  #   update: ->
-  #     ball = parseInt($("#ball").css("top"))
-  #     me = parseInt(@el.css("top")) + (@el.height() / 2)
-  #     if ball > me
-  #       @coll.move 0, @speed * Imagine.Time.deltaTime
-  #     else
-  #       @coll.move 0, -@speed * Imagine.Time.deltaTime
-  #     return
-
-  # Imagine($("#ball")[0]).addComponent(new Imagine.Collider()).addComponent ball
-  # Imagine($("#right")[0]).addComponent(new Imagine.Collider()).addComponent enemy
-  # Imagine($("#left")[0]).addComponent(new Imagine.Collider()).addComponent player
-  # return
