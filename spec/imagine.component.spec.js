@@ -38,6 +38,20 @@ describe('Imagine.Component', function(){
 		})
 
 	})
+
+	describe('requireComponent', function(){
+		it("should instantiate the component", function(){
+			
+			var com = {
+				requireComponent: [Imagine.Collider]
+			}
+			obj = Imagine(com);
+			expect(obj.getComponent('collider')).toBeDefined();
+
+		})
+		it("should take a single class")
+		it("should take an array")
+	})
 	
 
 

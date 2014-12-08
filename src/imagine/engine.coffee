@@ -145,6 +145,12 @@ class Imagine.Engine
     # Imagine.objects.push {_components:[obj]}
     obj._components = [obj] #temp hack
     Imagine.objects.push obj
+
+    # instantly require anything in requireComponent
+    if obj.requireComponent
+      for com in obj.requireComponent
+        obj.addComponent new com()
+
     obj.start()  if obj.start
     if obj.component
       for key of obj.component
