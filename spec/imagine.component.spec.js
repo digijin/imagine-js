@@ -52,6 +52,15 @@ describe('Imagine.Component', function(){
 		it("should take a single class")
 		it("should take an array")
 		it("should be available in start function")
+		it("should work on addComponent", function(){
+
+			var com1 = {}
+			var com2 = {
+				requireComponent: [Imagine.Collider]
+			}
+			obj = Imagine(com1).addComponent(com2);
+			expect(obj.getComponent('collider')).toBeDefined();
+		})
 	})
 	
 
