@@ -73,6 +73,11 @@ class Imagine.Engine
     obj._components.push(com)
     Imagine.engine.assignfunctions(com)
 
+    # instantly require anything in requireComponent
+    if com.requireComponent
+      for com2 in com.requireComponent
+        obj.addComponent new com2()
+
     # console.log com._register
     for c1 in obj._components
       if c1._register
@@ -141,7 +146,7 @@ class Imagine.Engine
   registerObject: (obj) ->
     # newobj = {_components: [obj]}
     Imagine.engine.assignfunctions(obj)
-
+    #######################################################################danger copypasta addcomponent
     # Imagine.objects.push {_components:[obj]}
     obj._components = [obj] #temp hack
     Imagine.objects.push obj
