@@ -17,9 +17,13 @@ $(document).ready ->
         @dirV *= -1 if @dirV < 0
       if data.side[0] is "top"
         @dirV *= -1 if @dirV > 0
+      if data.side[0] is "left"
+        @dirH *= -1 if @dirH > 0
+      if data.side[0] is "right"
+        @dirH *= -1 if @dirH < 0
     update: ->
       collision = @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
-      @dirH *= -1  if collision.side.length > 0  if collision
+      # @dirH *= -1  if collision.side.length > 0  if collision
       pos = @element.getPosition()
       top = parseInt pos.top #todo parseint no longer needed???
       left = parseInt pos.left
