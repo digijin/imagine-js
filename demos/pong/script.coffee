@@ -11,6 +11,12 @@ $(document).ready ->
     requireComponent: [Imagine.Collider]
     dirH: 200
     dirV: -200
+    onCollision: (data) ->
+      console.log data
+      if data.side[0] is "bottom"
+        @dirV *= -1 if @dirV < 0
+      if data.side[0] is "top"
+        @dirV *= -1 if @dirV > 0
     update: ->
       collision = @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
       @dirH *= -1  if collision.side.length > 0  if collision
@@ -48,7 +54,7 @@ $(document).ready ->
 
   class Enemy
     requireComponent: [Imagine.Collider]
-    speed: 130
+    speed: 150
     update: ->
       ball = Imagine.getComponent 'ball'
       ballpos = ball.element.getPosition().top
