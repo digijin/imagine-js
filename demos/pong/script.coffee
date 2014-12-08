@@ -6,10 +6,9 @@ boxright = 600
 $(document).ready ->
   
   class Ball
-  # Ball = ->
+    requireComponent: [Imagine.Collider]
     dirH: 200
     dirV: -200
-    requireComponent: [Imagine.Collider]
     update: ->
       @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
       pos = @element.getPosition()
@@ -39,16 +38,14 @@ $(document).ready ->
   Imagine($("#ball")[0]).addComponent new Ball()
 
 
+  class Player
+    requireComponent: [Imagine.Collider]
+    speed: 300
+    update: -> 
+      @collider.move 0, Imagine.Input.getAxis("Vertical") * -@speed * Imagine.Time.deltaTime
 
-  # player =
-  #   speed: 300
-  #   start: ->
-  #     @coll = @getComponent("collider")
-  #     return
 
-  #   update: ->
-  #     @coll.move 0, Imagine.Input.getAxis("Vertical") * -@speed * Imagine.Time.deltaTime
-  #     return
+  Imagine($("#left")[0]).addComponent new Player()
 
   # enemy =
   #   speed: 150
