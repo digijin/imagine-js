@@ -14,13 +14,13 @@ $(document).ready ->
     onCollision: (data) ->
       console.log data
       if data.side[0] is "bottom"
-        @dirV *= -1 if @dirV < 0
+        @dirV = Math.abs @dirV
       if data.side[0] is "top"
-        @dirV *= -1 if @dirV > 0
+        @dirV = -Math.abs @dirV
       if data.side[0] is "left"
-        @dirH *= -1 if @dirH > 0
+        @dirH = -Math.abs @dirH
       if data.side[0] is "right"
-        @dirH *= -1 if @dirH < 0
+        @dirH = Math.abs @dirH
     update: ->
       collision = @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
       # @dirH *= -1  if collision.side.length > 0  if collision
