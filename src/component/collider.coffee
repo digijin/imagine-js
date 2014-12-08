@@ -13,10 +13,15 @@ class Imagine.Collider
 
   isTrigger: false
 
+  # initilise
   start: ->
     @element = @getComponent("element")
     return
 
+  # move object by x and y with collision detection
+  # @param [Number] x the movement on X axis
+  # @param [Number] Y the movement on Y axis
+  # @return [Array] the collisions that resulted from this move
   move: (x, y)->
     pos = @element.getBoundingClientRect()
 
@@ -153,14 +158,19 @@ class Imagine.Collider
         }
     return
 
-
+  # detect if a collision exists between collider and html object
+  # @param [HTMLElement] obj a html object to detect collision against
+  # @return [boolean] if elements overlap
   collidesWith: (obj) ->
     myrect = @element.getBoundingClientRect()
     obrect = obj.getBoundingClientRect()
 
     @compareSquares myrect, obrect
 
-
+  # checks if two squares are overlapping
+  # @param [Rect] sq1 the first square
+  # @param [Rect] sq2 the second square
+  # @return [boolean] if squares overlap
   compareSquares: (sq1, sq2) ->
 
     outsideH = sq1.bottom <= sq2.top or sq2.bottom <= sq1.top
