@@ -1,3 +1,9 @@
+# handles interaction with html elements
+class Imagine.Element
+  move: ->
+  moveTo: ->
+  getPosition: ->
+  setPosition: ->
 
 Imagine.element = (element) ->
 
