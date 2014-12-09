@@ -63,7 +63,23 @@ describe('Imagine/Input', function(){
 
 		
 
-		it("should ignore keydowns if the key is down");
+		it("should ignore keydowns if the key is down", function(){
+			var obj = {
+				keydown:function(){}
+			}
+			spyOn(obj, "keydown");
+			Imagine(obj);
+
+			Imagine.Input.keydown(1);
+			expect(obj.keydown.calls.count()).toBe(1);
+			Imagine.Input.keydown(1);
+			expect(obj.keydown.calls.count()).toBe(1);
+			Imagine.Input.keydown(1);
+			expect(obj.keydown.calls.count()).toBe(1);
+			Imagine.Input.keydown(1);
+			expect(obj.keydown.calls.count()).toBe(1);
+
+		});
 		it("should call key function on objects on key events", function(){
 			var obj = {
 				keydown:function(){},
