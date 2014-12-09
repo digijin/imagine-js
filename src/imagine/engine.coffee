@@ -1,3 +1,5 @@
+typeIsArray = Array.isArray || ( value ) -> return {}.toString.call( value ) is '[object Array]'
+
 # handles a lot of grunt work
 class Imagine.Engine
   fps: 0
@@ -133,9 +135,12 @@ class Imagine.Engine
 
     # instantly require anything in requireComponent
     if obj.requireComponent
-      for com in obj.requireComponent
-        obj.addComponent new com()
 
+      if typeIsArray obj.requireComponent
+        for com in obj.requireComponent
+          obj.addComponent new com()
+      else
+        obj.addComponent new obj.requireComponent()
 
   reset: ->
     Imagine.objects = []
