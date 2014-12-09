@@ -7,12 +7,12 @@ paddleheight = 100
 $(document).ready ->
   
   class Ball
-    name: 'ball'
+    name: 'ball' # for Imagine.getComponent 'ball'
     requireComponent: [Imagine.Collider]
     dirH: 200
     dirV: -200
     onCollision: (data) ->
-      console.log data
+      # console.log data
       if data.side[0] is "bottom"
         @dirV = Math.abs @dirV
       if data.side[0] is "top"
@@ -23,7 +23,6 @@ $(document).ready ->
         @dirH = Math.abs @dirH
     update: ->
       collision = @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
-      # @dirH *= -1  if collision.side.length > 0  if collision
       pos = @element.getPosition()
       top = parseInt pos.top #todo parseint no longer needed???
       left = parseInt pos.left
@@ -58,7 +57,7 @@ $(document).ready ->
 
   class Enemy
     requireComponent: [Imagine.Collider]
-    speed: 150
+    speed: 130
     update: ->
       ball = Imagine.getComponent 'ball'
       ballpos = ball.element.getPosition().top
