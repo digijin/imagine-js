@@ -57,8 +57,14 @@ describe('Imagine.Component', function(){
 			obj = Imagine(com);
 			expect(obj.getComponent('collider')).toBeDefined();
 		})
-		it("should take an array")
-		it("should be available in start function")
+		it("should be available in start function", function(){
+			var com = {
+				requireComponent: Imagine.Collider,
+				start: function(){
+					expect(this.getComponent('collider')).toBeDefined()
+				}
+			}
+		})
 		it("should work on addComponent", function(){
 
 			var com1 = {}
