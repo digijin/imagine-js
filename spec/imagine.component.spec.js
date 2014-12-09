@@ -74,6 +74,8 @@ describe('Imagine.Component', function(){
 			obj = Imagine(com1).addComponent(com2);
 			expect(obj.getComponent('collider')).toBeDefined();
 		})
+
+		it("shouldnt add a component if it exists")
 	})
 	
 
