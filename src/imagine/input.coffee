@@ -62,19 +62,26 @@ class Imagine.InputAbstract
   keydown: (keyCode) ->
     Imagine.notify 'onKeyDown', keyCode
     keyCode = @map(keyCode)
+    firstdown = false
     if @keyStatus.hasOwnProperty(keyCode)
-      @keyChanging[keyCode] = "down"  if @keyStatus[keyCode] isnt true
+      if @keyStatus[keyCode] isnt true
+        firstdown = true
+        @keyChanging[keyCode] = "down"
     else
+      firstdown = true
       @keyChanging[keyCode] = "down"
-    @keyStatus[keyCode] = true
-    i = 0
 
-    while i < Imagine.objects.length
-      obj = Imagine.objects[i]
-      if obj._components
-        for com in obj._components
-          com.keydown keyCode  if com.keydown
-      i++
+    if firstdown
+    
+      i = 0
+      while i < Imagine.objects.length
+        obj = Imagine.objects[i]
+        if obj._components
+          for com in obj._components
+            com.keydown keyCode  if com.keydown
+        i++
+
+    @keyStatus[keyCode] = true
     return
 
   defaults:

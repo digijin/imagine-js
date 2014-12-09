@@ -90,7 +90,6 @@ describe('Imagine/Input', function(){
 			Imagine(obj);
 
 			Imagine.Input.keydown(1);
-			Imagine.Input.keydown(1);
 			Imagine.Input.keyup(1);
 			// console.log(JSON.stringify(obj.keydown.calls));
 			expect(obj.keydown).toHaveBeenCalled();
