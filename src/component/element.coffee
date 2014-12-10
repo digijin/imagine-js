@@ -4,6 +4,8 @@ class Imagine.Element
   tags: ['element']
   _register: 'element'
   constructor: (@raw) ->
+    unless isElement @raw
+      throw new Error "Not a HTML object"
   move: ->
   moveTo: ->
   getPosition: ->

@@ -14,34 +14,28 @@ describe("Imagine/component/element", function(){
 	})
 
 	it("should throw an error if passed a non html object", function(){
-		expect(function(){Imagine.element({})}).toThrow(new Error("Not a HTML object"))
+		expect(function(){new Imagine.Element({})}).toThrow(new Error("Not a HTML object"))
 	})
 
 	it("should attach a name of element", function(){
 		var div = document.createElement("DIV");
-		var el = Imagine.element(div);
+		var el = new Imagine.Element(div);
 		expect(el.name).toBe('element');
 		expect(el.tags.indexOf('element')).toBe(0);
 	})
 
-	it("should return itself with extra functions attached", function(){
-		var comp = Imagine.element(el);
-		expect(comp).toBe(el)
-		expect(typeof comp).toBe(typeof el)
-	})
-
 	describe("constructor", function(){
 		it("should return an element component", function(){
-			var el = new Imagine.Element()
-			expect(el.name).toBe("element")
+			var comp = new Imagine.Element(el)
+			expect(comp.name).toBe("element")
 		})
 	})
 
 	describe("raw", function(){
 		it("should be the object passed into the constructor", function(){
-			obj = "test"
-			el = new Imagine.Element(obj)
-			expect(el.raw).toBe(obj);
+			
+			var comp = new Imagine.Element(el)
+			expect(comp.raw).toBe(el);
 		})
 	})
 
