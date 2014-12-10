@@ -29,6 +29,12 @@ describe("Imagine/component/element", function(){
 			var comp = new Imagine.Element(el)
 			expect(comp.name).toBe("element")
 		})
+		it("should copy some functinos to the element", function(){
+			var div = $("#square")[0]
+			new Imagine.Element(div)
+			expect(div.getLocalRect).toBeDefined()
+			expect(testshouldntpass).toBe(true)
+		})
 	})
 
 	describe("raw", function(){
@@ -39,16 +45,17 @@ describe("Imagine/component/element", function(){
 		})
 	})
 
+
 	describe("getLocalRect", function(){
 		it("should work with border")
 		it("should work with margin")
 		it("should work with padding")
 		it("should be defined", function(){
 			var div = document.createElement("DIV");
-			var comp = Imagine.element(div);
+			var comp = new Imagine.Element(div);
+			console.log(comp);
 			expect(comp.getLocalRect).toBeDefined()
 
-			expect(el.getLocalRect).toBeDefined()
 
 		})
 		it("should return a rect object", function(){

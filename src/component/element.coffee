@@ -11,6 +11,20 @@ class Imagine.Element
   getPosition: ->
   setPosition: ->
 
+  getLocalRect: ->
+    rect = @raw.getBoundingClientRect()
+    parent = @raw.parentNode
+    if parent
+      prect = parent.getBoundingClientRect()
+      rect =
+        right: rect.right - prect.left
+        bottom: rect.bottom - prect.top
+        top: rect.top - prect.top
+        left: rect.left - prect.left
+        height: rect.bottom - rect.top
+        width: rect.right - rect.left
+    rect
+
 Imagine.element = (element) ->
 
   unless isElement element
