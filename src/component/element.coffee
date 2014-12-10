@@ -6,10 +6,7 @@ class Imagine.Element
   constructor: (@raw) ->
     unless isElement @raw
       throw new Error "Not a HTML object"
-  move: ->
   moveTo: ->
-  getPosition: ->
-  setPosition: ->
 
   getLocalRect: ->
     rect = @raw.getBoundingClientRect()
@@ -24,6 +21,29 @@ class Imagine.Element
         height: rect.bottom - rect.top
         width: rect.right - rect.left
     rect
+
+  posInit: ->
+    @_pos =
+      left: el.offsetLeft
+      top: el.offsetTop
+  getPosition: () ->
+    unless @_pos
+      @posInit()
+    @_pos
+  
+  setPosition: (x, y) ->
+    @_pos =
+      'left': x
+      'top' : y
+
+    # console.log "setting", x, y
+    @raw.style.top = y+"px"
+    @raw.style.left = x+"px"
+    @
+
+  move: (x, y) ->
+    pos = @getPosition()
+    @setPosition pos.left + x, pos.top + y
 
 Imagine.element = (element) ->
 

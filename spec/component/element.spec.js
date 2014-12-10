@@ -2,11 +2,12 @@ jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 
 describe("Imagine/component/element", function(){
 
-	var el;
+	var el, raw;
 	beforeEach(function() {
 		Imagine.engine.reset();
 		loadFixtures('offset.html');
-		el = Imagine.element($('#square')[0]);
+		raw = $('#square')[0]
+		el = new Imagine.Element(raw);
 	});
 
 	it("should be defined", function(){
@@ -26,22 +27,21 @@ describe("Imagine/component/element", function(){
 
 	describe("constructor", function(){
 		it("should return an element component", function(){
-			var comp = new Imagine.Element(el)
+			var comp = new Imagine.Element(raw)
 			expect(comp.name).toBe("element")
 		})
 		it("should copy some functinos to the element", function(){
-			var div = $("#square")[0]
+			var div = document.createElement("DIV");
 			new Imagine.Element(div)
 			expect(div.getLocalRect).toBeDefined()
-			expect(testshouldntpass).toBe(true)
 		})
 	})
 
 	describe("raw", function(){
 		it("should be the object passed into the constructor", function(){
 			
-			var comp = new Imagine.Element(el)
-			expect(comp.raw).toBe(el);
+			var comp = new Imagine.Element(raw)
+			expect(comp.raw).toBe(raw);
 		})
 	})
 
@@ -53,7 +53,6 @@ describe("Imagine/component/element", function(){
 		it("should be defined", function(){
 			var div = document.createElement("DIV");
 			var comp = new Imagine.Element(div);
-			console.log(comp);
 			expect(comp.getLocalRect).toBeDefined()
 
 
