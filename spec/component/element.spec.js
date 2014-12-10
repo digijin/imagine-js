@@ -115,19 +115,19 @@ describe("Imagine/component/element", function(){
 
 		it("should move the right amount", function(){
 
-			
-			t = el.rect().top
-			l = el.rect().left
+			console.log(el);
+			t = el.getPosition().top
+			l = el.getPosition().left
 
-			expect(isElement(el)).toBe(true)
+			expect(isElement(el.raw)).toBe(true)
 			el.move(1,2)
 
 			// expect(el.offsetLeft).toBe("")
 			// expect(el.style.left).toBe("sometihng")
 
 
-			expect(el.rect().top).toBe(t+2)
-			expect(el.rect().left).toBe(l+1)
+			expect(el.getPosition().top).toBe(t+2)
+			expect(el.getPosition().left).toBe(l+1)
 
 			// expect($(el).position().left).toBe(el.rect().left)
 
@@ -161,8 +161,8 @@ describe("Imagine/component/element", function(){
 
 			it("should set the positions", function(){
 				el.setPosition(3,4)
-				expect(el.style.left).toBe('3px')
-				expect(el.style.top).toBe('4px')
+				expect(el.raw.style.left).toBe('3px')
+				expect(el.raw.style.top).toBe('4px')
 			})
 		})
 
