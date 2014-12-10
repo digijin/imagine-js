@@ -30,6 +30,21 @@ describe("Imagine/component/element", function(){
 		expect(typeof comp).toBe(typeof el)
 	})
 
+	describe("constructor", function(){
+		it("should return an element component", function(){
+			var el = new Imagine.Element()
+			expect(el.name).toBe("element")
+		})
+	})
+
+	describe("raw", function(){
+		it("should be the object passed into the constructor", function(){
+			obj = "test"
+			el = new Imagine.Element(obj)
+			expect(el.raw).toBe(obj);
+		})
+	})
+
 	describe("getLocalRect", function(){
 		it("should work with border")
 		it("should work with margin")
