@@ -1,5 +1,9 @@
 # handles interaction with html elements
 class Imagine.Element
+  name: "element"
+  tags: ['element']
+  _register: 'element'
+  constructor: (@raw) ->
   move: ->
   moveTo: ->
   getPosition: ->
