@@ -104,10 +104,6 @@ describe("Imagine/component/element", function(){
 			expect(el.moveTo).toBeDefined();
 
 		})
-		it("shuold have an alias for moveto to setPosition", function(){
-			expect(el.moveTo).toBe(el.setPosition)
-		})
-
 		it("sohuld calc right offset parent", function(){
 			expect(el.getOffsetParent).toBeDefined()
 			expect(el.getOffsetParent()).toBe($('#wrapper')[0])
