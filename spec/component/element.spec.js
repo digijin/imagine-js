@@ -34,6 +34,8 @@ describe("Imagine/component/element", function(){
 			var div = document.createElement("DIV");
 			new Imagine.Element(div)
 			expect(div.getLocalRect).toBeDefined()
+			expect(div.move).toBeDefined()
+			expect(div.moveTo).toBeDefined()
 		})
 	})
 
@@ -104,10 +106,6 @@ describe("Imagine/component/element", function(){
 			expect(el.moveTo).toBeDefined();
 
 		})
-		it("sohuld calc right offset parent", function(){
-			expect(el.getOffsetParent).toBeDefined()
-			expect(el.getOffsetParent()).toBe($('#wrapper')[0])
-		})
 
 		it("should move the right amount", function(){
 
@@ -140,8 +138,8 @@ describe("Imagine/component/element", function(){
 				expect(el.getPosition).toBeDefined()
 			})
 			it("should detect itself if not set", function(){
-				otop = el.offsetTop
-				left = el.offsetLeft
+				otop = el.raw.offsetTop
+				left = el.raw.offsetLeft
 				pos = el.getPosition();
 				expect(pos.top).toBe(otop);
 				expect(pos.left).toBe(left);

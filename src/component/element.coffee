@@ -6,7 +6,12 @@ class Imagine.Element
   constructor: (@raw) ->
     unless isElement @raw
       throw new Error "Not a HTML object"
+    @raw.getLocalRect = @getLocalRect
+    @raw.move = @move
+    @raw.moveTo = @moveTo
 
+  # gets the bounding rectangle for the element
+  # @return [rect] the bounding rectangle
   getLocalRect: ->
     rect = @raw.getBoundingClientRect()
     parent = @raw.parentNode
@@ -23,13 +28,18 @@ class Imagine.Element
 
   posInit: ->
     @_pos =
-      left: el.offsetLeft
-      top: el.offsetTop
+      left: @raw.offsetLeft
+      top: @raw.offsetTop
+  # gets the position 
+  # @return [Object] an object with a top and left attribute
   getPosition: () ->
     unless @_pos
       @posInit()
     @_pos
   
+  # sets the position
+  # @param [Number] X the horizontal value
+  # @param [Number] Y the vertical value
   setPosition: (x, y) ->
     @_pos =
       'left': x
@@ -39,11 +49,21 @@ class Imagine.Element
     @raw.style.left = x+"px"
     @
 
+  # moves to given position
+  # @param [Number] X the horizontal value
+  # @param [Number] Y the vertical value
+  # @depreciated
   moveTo: (x, y) ->
     @setPosition x, y
+
+  # move element by a given amount
+  # @param [Number] X amount to move horizontally
+  # @param [Number] Y amount to move vertically
   move: (x, y) ->
     pos = @getPosition()
     @setPosition pos.left + x, pos.top + y
+
+
 
 Imagine.element = (element) ->
 
