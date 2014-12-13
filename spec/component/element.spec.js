@@ -11,7 +11,7 @@ describe("Imagine/component/element", function(){
 	});
 
 	it("should be defined", function(){
-		expect(Imagine.element).toBeDefined();
+		expect(Imagine.Element).toBeDefined();
 	})
 
 	it("should throw an error if passed a non html object", function(){

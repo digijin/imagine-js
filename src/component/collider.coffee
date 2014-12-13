@@ -23,7 +23,7 @@ class Imagine.Collider
   # @param [Number] Y the movement on Y axis
   # @return [Array] the collisions that resulted from this move
   move: (x, y)->
-    pos = @element.getBoundingClientRect()
+    pos = @element.raw.getBoundingClientRect()
 
     # check
     check = {
@@ -55,7 +55,7 @@ class Imagine.Collider
 
         el = coll.getComponent 'element'
         if el
-          obj = el.getBoundingClientRect()
+          obj = el.raw.getBoundingClientRect()
           # console.log obj
           if @compareSquares check, obj
             

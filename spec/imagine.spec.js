@@ -38,7 +38,7 @@ describe('Imagine', function(){
 		div = document.createElement('div')
 		obj = Imagine(div)
 		expect(obj.getComponent('element')).toBeDefined()
-		expect(obj.getComponent('element')).toBe(div)
+		expect(obj.getComponent('element').raw).toBe(div)
 	})
 
 	it("should have a getComponent that searches all objects", function(){

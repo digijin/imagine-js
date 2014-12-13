@@ -8,7 +8,7 @@ Imagine = (params) ->
   else
 
     if isElement params
-      el = Imagine.element params
+      el = new Imagine.Element params
       out = Imagine({}).addComponent(el)
     else
       out = Imagine.engine.registerObject params
