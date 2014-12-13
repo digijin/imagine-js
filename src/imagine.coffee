@@ -1,15 +1,19 @@
+
 Imagine = (params) ->
+  Imagine.process params
+
+Imagine.process = (params) ->
   if Object::toString.call(params) is "[object Array]"
     i = 0
 
     while i < params.length
-      Imagine params[i]
+      Imagine.process params[i]
       i++
   else
 
     if isElement params
       el = new Imagine.Element params
-      out = Imagine({}).addComponent(el)
+      out = Imagine.process({}).addComponent(el)
     else
       out = Imagine.engine.registerObject params
   out
