@@ -1,8 +1,13 @@
 describe('Imagine/time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
+		timerCallback = jasmine.createSpy("timerCallback");
+    	// jasmine.clock().install();
 	});
 
+	afterEach(function() {
+		// jasmine.clock().uninstall();
+	});
 
 	it("should define Time", function(){
 		expect(Imagine.Time).toBeDefined();
@@ -76,6 +81,7 @@ describe('Imagine/time', function(){
 			spyOn(obj, "update").and.callThrough();
 			Imagine.engine.setFPS(60);
 			Imagine({}).addComponent(obj);
+			// jasmine.clock().tick(100)
 			setTimeout(function(){
 				expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 				expect(obj.update).toHaveBeenCalled();
