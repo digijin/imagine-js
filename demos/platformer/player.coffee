@@ -5,14 +5,17 @@ window.Player = ->
 		@char = @getComponent 'character'
 		return
 	update: ->
-		left = @char.element.offsetLeft
+		left = @char.element.raw.offsetLeft
 		scrLeft = 400 - scene.offsetLeft
+		scEl = Imagine.getComponent "scene"
+			.getComponent "element"
+		# console.log scEl
 		if left > scrLeft  
-			scene.move scrLeft - left, 0
+			scEl.move scrLeft - left, 0
 
 		# console.log scene.offsetLeft
 		if left < scrLeft and scene.offsetLeft < 0
-			scene.move scrLeft - left, 0
+			scEl.move scrLeft - left, 0
 
 		h = Imagine.Input.getAxis 'Horizontal'
 		if Imagine.Input.getKey 'shift'
@@ -35,7 +38,7 @@ window.Player = ->
 		Imagine Announce("GAME OVER<br /><sub>(esc to restart)</sub>")
 		el = @getComponent 'element'
 		Imagine.destroy @
-		Imagine el
+		Imagine el.raw
 			.addComponent Dying()
 
 	onCollision: (coll) ->
@@ -83,7 +86,7 @@ window.Player = ->
 					Imagine fw
 						.addComponent Firework()
 
-					l = parseInt $(@element).css 'left'
+					l = parseInt $(@element.raw).css 'left'
 					
 					l += (Math.random() - 0.5) * 600
 

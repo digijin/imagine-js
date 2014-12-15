@@ -11,7 +11,7 @@ window.Bowser = ->
 		switch @phase
 			when 0
 				@char.dirH = 1
-				diff = @element.offsetLeft - @startpos
+				diff = @element.raw.offsetLeft - @startpos
 				# console.log diff, @element.offsetLeft, @startpos
 				if diff > 200
 					@phase = 1
@@ -22,7 +22,7 @@ window.Bowser = ->
 					@phase = 2
 			when 2
 				@char.dirH = -1
-				diff = @element.offsetLeft - @startpos
+				diff = @element.raw.offsetLeft - @startpos
 				if diff < 0
 					@phase = 3
 					@char.jump()

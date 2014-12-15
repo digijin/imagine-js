@@ -9,6 +9,6 @@ window.Dying = ()->
 		@element.move @dirH, @dirV
 
 		if @timer <= 0
-			$ @element
+			$ @element.raw
 				.remove()
 			Imagine.destroy @

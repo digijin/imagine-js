@@ -15,5 +15,5 @@ window.FPS = ->
 
 			@lastFPS = []
 
-			$ @element
+			$ @element.raw
 				.html fps + "FPS"

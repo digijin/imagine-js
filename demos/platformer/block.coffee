@@ -9,7 +9,7 @@ window.Block = ->
 			@die()
 
 	die: ->
-		el = @getComponent 'element'
+		el = @getComponent('element').raw
 		Imagine.destroy @
 		# spawn debris
 		for i in [1..4]

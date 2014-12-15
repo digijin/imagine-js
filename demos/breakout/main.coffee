@@ -18,14 +18,14 @@ Ball = () ->
 
 		# console.log $ @element
 
-		if @element.offsetLeft < 0 
+		if @element.raw.offsetLeft < 0 
 			@dirH = 1
-		if @element.offsetLeft >600-10
+		if @element.raw.offsetLeft >600-10
 			@dirH = -1
 
-		if @element.offsetTop < 0 
+		if @element.raw.offsetTop < 0 
 			@dirV = 1
-		if @element.offsetTop > 400-10
+		if @element.raw.offsetTop > 400-10
 			@dirV = -1
 
 	onCollision: (coll) ->

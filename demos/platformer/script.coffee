@@ -83,12 +83,13 @@ $(document).ready ->
 	initScene = ->
 		scene = Imagine $('#scene')[0]
 			.addComponent {
+				name: "scene"
 				update: ->
 					if Imagine.Input.getKeyDown 'escape'
 						initGame()
 			}
 			.getComponent "element"
-		scene.move(-scene.offsetLeft, 0)
+		scene.move(-scene.raw.offsetLeft, 0)
 
 	window.initGame = ->
 		Imagine.engine.reset()

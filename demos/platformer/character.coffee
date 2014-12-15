@@ -10,10 +10,10 @@ window.Character = ->
 	coll: undefined
 	sideColl: undefined
 	faceLeft: ->
-		$ @element
+		$ @element.raw
 			.addClass 'flipH'
 	faceRight: ->
-		$ @element
+		$ @element.raw
 			.removeClass 'flipH'
 	start: ->
 		@element = @getComponent 'element'
