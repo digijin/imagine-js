@@ -3,6 +3,8 @@ describe("Imagine/engine", function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
+
+	it("should work with Imagine.engine.setFPS 0 # pong bug")
 	it("should exist", function(){
 		expect(Imagine.engine).toBeDefined();
 	})

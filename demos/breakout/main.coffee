@@ -42,8 +42,8 @@ Ball = () ->
 Block = () ->
 	name: 'block'
 	onCollision: (coll) ->
-		console.log "?"
-		$ @element.remove()
+		$ @element.raw
+			.remove()
 		Imagine.destroy this
 
 $ document

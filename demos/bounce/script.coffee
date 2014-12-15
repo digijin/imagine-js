@@ -1,7 +1,6 @@
 $(document).ready ->
-  Time = Imagine.time
   Input = Imagine.Input
-  Imagine.engine.setFPS 0
+  #Imagine.engine.setFPS 0 # pong bug
   Imagine
     element: $("#ball")
     start: ->
@@ -12,8 +11,10 @@ $(document).ready ->
     dirH: 1
     dirV: 1
     update: ->
+      console.log "update"
       speed = 200
-      dt = Time.deltaTime
+      dt = Imagine.time.deltaTime
+      # console.log dt
       left = parseFloat(@element.css("left"))
       top = parseFloat(@element.css("top"))
       if left + @element.width() >= @element.parent().width() - 5
@@ -40,7 +41,6 @@ $(document).ready ->
       return
 
   
-  #this.element.css('top', top+Time.deltaTime);
   Imagine
     element: $("#output")
     start: ->
