@@ -1,5 +1,5 @@
 $(document).ready ->
-  Time = Imagine.Time
+  Time = Imagine.time
   Input = Imagine.Input
   Imagine.engine.setFPS 0
   Imagine

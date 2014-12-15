@@ -4,8 +4,8 @@ window.Dying = ()->
 	dirH:0
 	timer: 3
 	update: ->
-		@timer -= Imagine.Time.deltaTime
-		@dirV += Imagine.Time.deltaTime * 10
+		@timer -= Imagine.time.deltaTime
+		@dirV += Imagine.time.deltaTime * 10
 		@element.move @dirH, @dirV
 
 		if @timer <= 0

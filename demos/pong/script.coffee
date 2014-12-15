@@ -23,7 +23,7 @@ class Ball
       when "right"
         @dirH = Math.abs @dirH
   update: ->
-    @collider.move @dirH * Imagine.Time.deltaTime, @dirV * Imagine.Time.deltaTime
+    @collider.move @dirH * Imagine.time.deltaTime, @dirV * Imagine.time.deltaTime
     pos = @element.getPosition()
     top = pos.top
     left = pos.left
@@ -55,7 +55,7 @@ class Player
   requireComponent: [Imagine.Collider]
   speed: 300
   update: -> 
-    @collider.move 0, -Imagine.Input.getAxis("Vertical") * @speed * Imagine.Time.deltaTime
+    @collider.move 0, -Imagine.Input.getAxis("Vertical") * @speed * Imagine.time.deltaTime
 
 
 class Enemy
@@ -66,9 +66,9 @@ class Enemy
     ballpos = ball.element.getPosition().top
     mepos = @element.getPosition().top + (paddleheight/2)
     if ballpos > mepos
-      @collider.move 0, @speed * Imagine.Time.deltaTime
+      @collider.move 0, @speed * Imagine.time.deltaTime
     else
-      @collider.move 0, -@speed * Imagine.Time.deltaTime
+      @collider.move 0, -@speed * Imagine.time.deltaTime
         
 $(document).ready ->
   Imagine($("#ball")[0]).addComponent new Ball()

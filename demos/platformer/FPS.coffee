@@ -4,7 +4,7 @@ window.FPS = ->
 
 		# console.log @
 
-		@lastFPS.push 1/Imagine.Time.deltaTime
+		@lastFPS.push 1/Imagine.time.deltaTime
 
 
 		if @lastFPS.length > 10

@@ -20,9 +20,9 @@ window.Character = ->
 		@collider = @getComponent 'collider'
 		return
 	update: ->
-		@dirV += @gravity * Imagine.Time.deltaTime
-		x = @dirH * @walkSpeed * Imagine.Time.deltaTime * @speed
-		y = @dirV * Imagine.Time.deltaTime * @speed
+		@dirV += @gravity * Imagine.time.deltaTime
+		x = @dirH * @walkSpeed * Imagine.time.deltaTime * @speed
+		y = @dirV * Imagine.time.deltaTime * @speed
 
 		# console.log @element.rect()
 		@sideColl = @collider.move x, 0

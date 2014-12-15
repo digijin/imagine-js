@@ -6,7 +6,7 @@ $(document).ready ->
   Imagine
     el: $("#player")
     update: ->
-      dt = Imagine.Time.deltaTime
+      dt = Imagine.time.deltaTime
       speed = 100
       left = parseFloat(@el.css("left"))
       left += (dt * speed * Imagine.Input.getAxis("Horizontal"))
@@ -26,7 +26,7 @@ $(document).ready ->
       return
 
     update: ->
-      dt = Imagine.Time.deltaTime
+      dt = Imagine.time.deltaTime
       left = parseFloat(@el.css("left"))
       top = parseFloat(@el.css("top"))
       switch @stage
