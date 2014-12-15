@@ -44,7 +44,7 @@ describe("Imagine/engine", function(){
 			Imagine.engine.setFPS(40);
 			var obj = {update:function(){
 				// console.log("component update");
-				// console.log(Imagine.Time.deltaTime);
+				// console.log(Imagine.time.deltaTime);
 			}};
 			spyOn(obj, 'update').and.callThrough();
 			Imagine(obj);
@@ -84,14 +84,14 @@ describe("Imagine/engine", function(){
 		});
 
 		it('should reset startTime after reset', function(){
-			Imagine.Time.startTime = 123;
+			Imagine.time.startTime = 123;
 			Imagine.engine.reset();
-			expect(Imagine.Time.startTime).not.toBe(123);
+			expect(Imagine.time.startTime).not.toBe(123);
 		});
 
 		it("should set last Time to start Time", function(){
 			Imagine.engine.reset();
-			expect(Imagine.Time.startTime).toBe(Imagine.Time.lastTime)
+			expect(Imagine.time.startTime).toBe(Imagine.time.lastTime)
 		});
 	})
 	describe('clearUpdate', function(){

@@ -10,7 +10,7 @@ describe('Imagine/time', function(){
 	});
 
 	it("should define Time", function(){
-		expect(Imagine.Time).toBeDefined();
+		expect(Imagine.time).toBeDefined();
 	});
 
 	describe("pause", function(){
@@ -60,8 +60,8 @@ describe('Imagine/time', function(){
 
 		it("should set time.currentTime to currentTime", function(){
 			var d = new Date();
-			expect(Imagine.Time.startTime).toBeGreaterThan(d.getTime()-100);
-			expect(Imagine.Time.startTime).toBeLessThan(d.getTime()+100);
+			expect(Imagine.time.startTime).toBeGreaterThan(d.getTime()-100);
+			expect(Imagine.time.startTime).toBeLessThan(d.getTime()+100);
 		});
 
 		it("should call requestAnimationFrame if not fps>0", function(){
@@ -81,7 +81,7 @@ describe('Imagine/time', function(){
 			var counter = 0;
 			var obj = {
 				update: function(){
-					counter += Imagine.Time.deltaTime;
+					counter += Imagine.time.deltaTime;
 				}
 			}
 			spyOn(obj, "update").and.callThrough();
@@ -89,7 +89,7 @@ describe('Imagine/time', function(){
 			Imagine({}).addComponent(obj);
 			// jasmine.clock().tick(100)
 			setTimeout(function(){
-				expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
+				expect(Imagine.time.deltaTime).toBeGreaterThan(0);
 				expect(obj.update).toHaveBeenCalled();
 				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				expect(counter).toBeGreaterThan(.02);

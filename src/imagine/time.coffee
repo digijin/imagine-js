@@ -27,9 +27,9 @@ class Imagine.TimeAbstract
   update: ->
     d = new Date()
     dt = d.getTime()
-    Imagine.Time.currentTime = dt - Imagine.Time.startTime
-    Imagine.Time.deltaTime = (dt - Imagine.Time.lastTime) / 1000
-    Imagine.Time.lastTime = dt
+    Imagine.time.currentTime = dt - Imagine.time.startTime
+    Imagine.time.deltaTime = (dt - Imagine.time.lastTime) / 1000
+    Imagine.time.lastTime = dt
 
-Imagine.Time = new Imagine.TimeAbstract()
-Imagine.time = Imagine.Time
+Imagine.time = new Imagine.TimeAbstract()
+# Imagine.time = Imagine.Time

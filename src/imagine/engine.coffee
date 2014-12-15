@@ -13,15 +13,15 @@ class Imagine.Engine
     unless @inited
       @inited = true
       d = new Date()
-      Imagine.Time.startTime = d.getTime()
-      Imagine.Time.lastTime = Imagine.Time.startTime
+      Imagine.time.startTime = d.getTime()
+      Imagine.time.lastTime = Imagine.time.startTime
       # console.log setFPS
       Imagine.engine.setFPS(@fps)
     return
 
   update: ->
     #update Time;
-    Imagine.Time.update()
+    Imagine.time.update()
     Imagine.Input.update()
     i = 0
 
