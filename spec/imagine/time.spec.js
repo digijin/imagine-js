@@ -1,7 +1,7 @@
 describe('Imagine/time', function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
-		timerCallback = jasmine.createSpy("timerCallback");
+		// timerCallback = jasmine.createSpy("timerCallback");
     	// jasmine.clock().install();
 	});
 
@@ -17,19 +17,25 @@ describe('Imagine/time', function(){
 		it("should define paused", function(){
 			expect(Imagine.time.paused).toBeDefined()
 		})
+		it("should define pause", function(){
+			expect(Imagine.time.pause).toBeDefined()
+		})
+
 		it("should stop the flow of time", function(done){
-			var counter = 0;
+			Imagine.engine.setFPS(60);
 			var obj = {
 				update: function(){
-					counter += Imagine.Time.deltaTime;
+					// console.log("wat");
 				}
 			}
 			spyOn(obj, "update").and.callThrough();
 			Imagine.time.pause();
+			// expect(Imagine.time.paused).toBe(true)
 			Imagine({}).addComponent(obj);
 			setTimeout(function(){
 				expect(obj.update).not.toHaveBeenCalled();
 				expect(obj.update.calls.count()).toBe(0);
+				console.log("dun");
 				done();
 			}, 50);
 

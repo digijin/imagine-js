@@ -2,6 +2,9 @@
 # automatically instatniated by the imagine engine
 class Imagine.TimeAbstract
 
+  # if game is paused
+  paused: false
+
   # the time since the last frame
   deltaTime: 0
 
@@ -13,6 +16,12 @@ class Imagine.TimeAbstract
 
   # time simulation started
   startTime: 0
+
+  pause: (toPause) ->
+    if toPause or not toPause #yolo
+      @paused = ! @paused
+
+
 
   # called each frame, updates frame time info
   update: ->
