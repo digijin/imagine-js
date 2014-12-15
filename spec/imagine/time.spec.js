@@ -8,6 +8,30 @@ describe('Imagine/time', function(){
 		expect(Imagine.Time).toBeDefined();
 	});
 
+	describe("pause", function(){
+		it("should define paused", function(){
+			expect(Imagine.time.paused).toBeDefined()
+		})
+		it("should stop the flow of time", function(done){
+			spyUpdate = jasmine.createSpy("spyUpdate")
+			obj = {update: spyUpdate}
+			Imagine(obj);
+			setTimeout(function(){
+				done();
+				console.log(spyUpdate);
+				expect(spyUpdate).not.toHaveBeenCalled();
+				done()
+			},100)
+
+		})
+		it("should restart on reset", function(){
+			Imagine.time.pause();
+			expect(Imagine.time.paused).toBe(true);
+			Imagine.engine.reset();
+			expect(Imagine.time.paused).toBe(false);
+		})
+	})
+
 	describe('update', function(){
 		it("should call update", function(){
 			var obj = {update:function(){}};

@@ -23,3 +23,4 @@ class Imagine.TimeAbstract
     Imagine.Time.lastTime = dt
 
 Imagine.Time = new Imagine.TimeAbstract()
+Imagine.time = Imagine.Time
