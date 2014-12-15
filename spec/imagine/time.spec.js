@@ -13,15 +13,20 @@ describe('Imagine/time', function(){
 			expect(Imagine.time.paused).toBeDefined()
 		})
 		it("should stop the flow of time", function(done){
-			spyUpdate = jasmine.createSpy("spyUpdate")
-			obj = {update: spyUpdate}
-			Imagine(obj);
+			var counter = 0;
+			var obj = {
+				update: function(){
+					counter += Imagine.Time.deltaTime;
+				}
+			}
+			spyOn(obj, "update").and.callThrough();
+			Imagine.time.pause();
+			Imagine({}).addComponent(obj);
 			setTimeout(function(){
+				expect(obj.update).not.toHaveBeenCalled();
+				expect(obj.update.calls.count()).toBe(0);
 				done();
-				console.log(spyUpdate);
-				expect(spyUpdate).not.toHaveBeenCalled();
-				done()
-			},100)
+			}, 50);
 
 		})
 		it("should restart on reset", function(){
@@ -74,6 +79,7 @@ describe('Imagine/time', function(){
 			setTimeout(function(){
 				expect(Imagine.Time.deltaTime).toBeGreaterThan(0);
 				expect(obj.update).toHaveBeenCalled();
+				expect(obj.update.calls.count()).toBeGreaterThan(0);
 				expect(counter).toBeGreaterThan(.02);
 				expect(counter).toBeLessThan(.06);
 				done();
