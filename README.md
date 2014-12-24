@@ -10,6 +10,7 @@ To compile (currently needed for anything to work):
 npm install
 npm install -g bower
 npm install -g grunt-cli
+npm install -g coffee-script
 bower install
 grunt
 ```
