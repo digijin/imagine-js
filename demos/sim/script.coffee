@@ -1,19 +1,35 @@
 class Person
+  target: [0,0]
+  newTarget: ->
+    @target = [Math.random() * 300, Math.random() * 300]
   update: ->
-    @getComponent 'element'
-      .move Math.random()-0.5, Math.random()-0.5
+    pos = @element.getPosition()
+    dir = [
+      if pos.left < @target[0] then 1 else -1
+      if pos.top < @target[1] then 1 else -1
+      ]
+    if Math.abs(pos.left - @target[0]) < 1
+      dir[0] = 0
+    if Math.abs(pos.top - @target[1]) < 1
+      dir[1] = 0
+    if dir[0] is 0 and dir[1] is 0
+      @newTarget()
+    @element.move dir[0], dir[1]
 
 $ document
   .ready ->
-    console.log $('.person')[0]
-    Imagine $('.person')[0]
-      .addComponent new Person()
+    addPerson()
+    Imagine $('#fps')[0]
+      .addComponent new Imagine.FPS()
 
-window.addPerson = ->
-  html = $ "<div class='person' />"
-  $ '#container'
-    .append html
-  Imagine html[0]
-    .addComponent new Person()
-    .element
-    .move Math.random() * 300, Math.random() * 300
+window.addPerson = (num) ->
+  unless num
+    num = 1
+  for [1..num]
+    html = $ "<div class='person' />"
+    $ '#container'
+      .append html
+    Imagine html[0]
+      .addComponent new Person()
+      .element
+      .move Math.random() * 300, Math.random() * 300
