@@ -35,7 +35,6 @@ describe('Imagine/time', function(){
 			setTimeout(function(){
 				expect(obj.update).not.toHaveBeenCalled();
 				expect(obj.update.calls.count()).toBe(0);
-				console.log("dun");
 				done();
 			}, 50);
 

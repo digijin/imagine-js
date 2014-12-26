@@ -21,6 +21,11 @@ class Imagine.TimeAbstract
     if toPause or not toPause #yolo
       @paused = ! @paused
 
+    if @paused
+      Imagine.engine.clearUpdate()
+    else
+      Imagine.engine.setFPS Imagine.engine.getFPS()
+
 
 
   # called each frame, updates frame time info

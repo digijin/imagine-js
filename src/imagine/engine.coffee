@@ -143,6 +143,7 @@ class Imagine.Engine
   reset: ->
     Imagine.objects = []
     Imagine.Input.reset()
+    Imagine.time.paused = false
     @inited = false
     @clearUpdate()
     @init()
