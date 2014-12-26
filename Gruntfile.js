@@ -22,6 +22,19 @@ module.exports = function(grunt){
 				}
 			}
 		},
+		cjsx:{
+			compile:{
+				files: {
+				    // expand: true,
+				    // flatten: true,
+    				// cwd: 'path/to',
+				    src: ['*.cjsx'],
+				    // dest: 'path/to/dest/',
+				    ext: '.js'
+
+				}
+			}
+		},
 		open:{
 			testChrome: {
 				path: 'http://localhost:4010/SpecRunner.html',

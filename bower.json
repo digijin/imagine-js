@@ -14,7 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "jasmine-jquery": "~2.0.5"
+    "jasmine-jquery": "~2.0.5",
+    "react": "~0.12.2"
   },
   "devDependencies": {
     "jquery": "~2.1.1",
