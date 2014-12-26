@@ -1,12 +1,16 @@
 class Person
   target: [0,0]
+  start: ->
+    @newTarget()
   newTarget: ->
     @target = [Math.random() * 300, Math.random() * 300]
   update: ->
     pos = @element.getPosition()
+    dx = pos.left - @target[0]
+    dy = pos.top - @target[1]
     dir = [
-      if pos.left < @target[0] then 1 else -1
-      if pos.top < @target[1] then 1 else -1
+      if dx < 0 then 1 else -1
+      if dy < 0 then 1 else -1
       ]
     if Math.abs(pos.left - @target[0]) < 1
       dir[0] = 0
