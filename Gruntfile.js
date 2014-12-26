@@ -23,17 +23,12 @@ module.exports = function(grunt){
 			}
 		},
 		cjsx:{
-			compile:{
-				files: {
-				    // expand: true,
-				    // flatten: true,
-    				// cwd: 'path/to',
-				    src: ['*.cjsx'],
-				    // dest: 'path/to/dest/',
-				    ext: '.js'
-
-				}
-			}
+			demos:{
+        		src: ['demos/**/*.cjsx'],
+        		dest: '',
+        		expand: true,
+        		ext: '.js'
+        	}
 		},
 		open:{
 			testChrome: {
@@ -59,18 +54,28 @@ module.exports = function(grunt){
 	     	}
 	    },
 		watch:{
-			files: [
-				'Gruntfile.js',
-				'demos/**/*.*',
-				'spec/**/*.*',
-				'src/**/*.*',
-				'sandpit/**/*.*',
-				'specrunner/**/*.*'
-				],
-			tasks: ['build', 'test', 'codo'], //
-			options: {
-				livereload: true
+			all: {
+				files: [
+					'Gruntfile.js',
+					'demos/**/*.*',
+					'spec/**/*.*',
+					'src/**/*.*',
+					'sandpit/**/*.*',
+					'specrunner/**/*.*'
+					],
+				tasks: ['build', 'test', 'codo'], //
+				options: {
+					livereload: true
+				}
+			},
+			demos: {
+				files: [
+					'Gruntfile.js',
+					'demos/**/*.cjsx'
+					],
+				tasks: ['cjsx']
 			}
+
 		},
 		jasmine:{
 			all:{
@@ -170,7 +175,6 @@ module.exports = function(grunt){
         		dest: 'temp',
         		expand: true,
 				ext: '.js',
-				
         	},
         	demos:{
         		src: ['demos/**/*.coffee'],
@@ -181,7 +185,7 @@ module.exports = function(grunt){
         },
         concurrent:{
         	dev:{
-        		tasks:['watch', 'startServer'],
+        		tasks:['watch:all', 'startServer'],
         		options:{
         			logConcurrentOutput: true
         		}
@@ -192,7 +196,7 @@ module.exports = function(grunt){
 
 	grunt.registerTask('startServer', ['nodemon']);
 
-	grunt.registerTask('build', ['clean:temp', 'coffee', 'concat', 'uglify']);
+	grunt.registerTask('build', ['clean:temp', 'coffee', 'cjsx', 'concat', 'uglify']);
 
 	grunt.registerTask('default', ['build', 'concurrent']);
 	
