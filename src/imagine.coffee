@@ -66,6 +66,3 @@ class Imagine
       Imagine.objects.splice ind, 1
 
 
-
-
-I = i= Imagine
