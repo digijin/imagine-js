@@ -1,0 +1,13 @@
+body, html{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.person {
+	border: 1px solid red;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	
+}
