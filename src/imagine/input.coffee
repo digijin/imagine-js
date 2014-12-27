@@ -7,6 +7,7 @@ class Imagine.InputAbstract
   keyChanging: {}
   keyChanged: {}
 
+  # constructor
   constructor: ->
     console.log "initing"
     Imagine.addEvent document, "keypress", (e) ->
@@ -135,6 +136,7 @@ class Imagine.InputAbstract
     return @keyStatus[keyCode]  if @keyStatus.hasOwnProperty(keyCode)
     false
 
+  # same as isdown
   getKey: (keyCode) ->
     @isDown keyCode
 

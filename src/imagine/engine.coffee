@@ -4,11 +4,11 @@ class Imagine.Engine
   frameGap: 1000 / @fps
   inited: false
   updateId: undefined
-
+  # constructor
   constructor: ->
     setTimeout @init, 0 #run init next frame
 
-
+  # initialise the engine
   init: ->
     unless @inited
       @inited = true
@@ -18,7 +18,7 @@ class Imagine.Engine
       # console.log setFPS
       Imagine.engine.setFPS(@fps)
     return
-
+  # update per frame
   update: ->
     #update Time;
     Imagine.time.update()
@@ -41,14 +41,18 @@ class Imagine.Engine
     if @fps is 0
       @updateId = requestAnimationFrame @update
     return
+  # forces an update to happen instantly
   forceUpdate: ->
     @update()
 
+  # clears the update callback
   clearUpdate: ->
     clearInterval @updateId
     cancelAnimationFrame @updateId
     return
 
+  # sets the fps the engine should run at
+  # @param [Number] newFPS the new fps the engine should run at
   setFPS: (newFPS) ->
     @fps = newFPS
     Imagine.engine.clearUpdate()
@@ -60,6 +64,7 @@ class Imagine.Engine
       @updateId = setInterval @update, @frameGap
     return
 
+  # this function is copied onto components
   addComponent: (com)->
     unless com
       console.log "component not defined"
@@ -84,14 +89,14 @@ class Imagine.Engine
 
     com.start()  if com.start
     com
-
+  # this function is copied onto components
   getComponent: (name) ->
     obj = this._object or this
     if obj._components
       for com in obj._components
         if com.name is name
           return com
-
+  # this function is copied onto components
   getTag: (name) ->
     obj = this._object or this
     if obj._components
@@ -100,17 +105,18 @@ class Imagine.Engine
           for tag in com.tags
             if tag is name
               return com
-
+  # this function is copied onto components
   addTag: (name) ->
     this.tags = [] unless this.tags
     this.tags.push name
     return this
-  
+  # this function is copied onto components
   hasTag: (name) ->
     name in @tags
-
+  # this function is copied onto components
   removeTag: (name) ->
-    
+  
+  # this function is copied onto components
   notify: (event, arg) ->
     obj = this._object or this
     # console.log "notifying", obj
@@ -122,6 +128,8 @@ class Imagine.Engine
           if typeof com[event] is "function"
             com[event].apply(com, [arg])
   
+  # assigns functions to a component
+  # @param [Object] obj the object to add components to
   assignfunctions: (obj) ->
     obj.addComponent = @addComponent
     obj.getComponent = @getComponent
@@ -139,7 +147,7 @@ class Imagine.Engine
           obj.addComponent new com()
       else
         obj.addComponent new obj.requireComponent()
-
+  # reset the engine
   reset: ->
     Imagine.objects = []
     Imagine.Input.reset()
@@ -148,7 +156,8 @@ class Imagine.Engine
     @clearUpdate()
     @init()
     return
-
+  # register a new object with the engine
+  # @param [Object] obj the new object to add
   registerObject: (obj) ->
     # newobj = {_components: [obj]}
     #######################################################################danger copypasta addcomponent
@@ -166,11 +175,10 @@ class Imagine.Engine
           obj.addComponent(c)
     
     obj
+  # gets the current fps
+  # @return [Number] return the current FPS
   getFPS: ->
     @fps
-
-# )()
-
 
 Imagine.engine = new Imagine.Engine()
 

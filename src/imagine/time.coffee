@@ -17,6 +17,7 @@ class Imagine.TimeAbstract
   # time simulation started
   startTime: 0
 
+  # pauses the engine
   pause: (toPause) ->
     if toPause or not toPause #yolo
       @paused = ! @paused
