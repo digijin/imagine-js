@@ -41,20 +41,28 @@ describe('Imagine base', function(){
 		expect(obj.getComponent('element').raw).toBe(div)
 	})
 
-	it("should have a getComponent that searches all objects", function(){
-		com = {name:'test'}
-		Imagine({}).addComponent(com)
-		expect(Imagine.getComponent).toBeDefined()
-		expect(Imagine.getComponent('test')).toBeDefined()
-		expect(Imagine.getComponent('test')).toBe(com)
-	})
-	it("should have a getComponents that searches all objects", function(){
-		com1 = {name:'test', unique:"a"}
-		com2 = {name:'test', unique:"b"}
-		Imagine({}).addComponent(com1)
-		Imagine({}).addComponent(com2)
-		expect(Imagine.getComponents('test')).toBeDefined()
-		expect(Imagine.getComponents('test').length).toBe(2)
+	describe("getComponent", function(){
+
+		it("should be defined", function(){
+			expect(Imagine.getComponent).toBeDefined();
+		})
+
+		it("should have a getComponent that searches all objects", function(){
+			com = {name:'test'}
+			Imagine({}).addComponent(com)
+			expect(Imagine.getComponent).toBeDefined()
+			expect(Imagine.getComponent('test')).toBeDefined()
+			expect(Imagine.getComponent('test')).toBe(com)
+		})
+		it("should have a getComponents that searches all objects", function(){
+			com1 = {name:'test', unique:"a"}
+			com2 = {name:'test', unique:"b"}
+			Imagine({}).addComponent(com1)
+			Imagine({}).addComponent(com2)
+			expect(Imagine.getComponents('test')).toBeDefined()
+			expect(Imagine.getComponents('test').length).toBe(2)
+		})
+
 	})
 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 
