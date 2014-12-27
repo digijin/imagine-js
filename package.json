@@ -1,6 +1,6 @@
 {
   "name": "imagine",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "component engine framework",
   "keywords": ["coffeescript", "framework", "animation", "game", "component"],
   "main": "Gruntfile.js",
