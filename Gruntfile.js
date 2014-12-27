@@ -63,7 +63,7 @@ module.exports = function(grunt){
 					'sandpit/**/*.*',
 					'specrunner/**/*.*'
 					],
-				tasks: ['build', 'test', 'codo'], //
+				tasks: ['build', 'test', 'codo'],
 				options: {
 					livereload: true
 				}
@@ -73,7 +73,10 @@ module.exports = function(grunt){
 					'Gruntfile.js',
 					'demos/**/*.cjsx'
 					],
-				tasks: ['cjsx']
+				tasks: ['build'],
+				options: {
+					livereload: true
+				}
 			}
 
 		},
@@ -189,6 +192,12 @@ module.exports = function(grunt){
         		options:{
         			logConcurrentOutput: true
         		}
+        	},
+        	demos:{
+        		tasks:['watch:demos', 'startServer'],
+        		options:{
+        			logConcurrentOutput: true
+        		}
         	}
         }
 	});
@@ -198,9 +207,12 @@ module.exports = function(grunt){
 
 	grunt.registerTask('build', ['clean:temp', 'coffee', 'cjsx', 'concat', 'uglify']);
 
-	grunt.registerTask('default', ['build', 'concurrent']);
+	grunt.registerTask('default', ['build', 'concurrent:dev']);
 	
 	grunt.registerTask('test', ['coffeelint', 'jshint', 'jasmine:all']);
+
+
+	grunt.registerTask('demos', ['build', 'concurrent:demos']);
 
 
 };
