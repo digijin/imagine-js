@@ -1,7 +1,10 @@
 
 # iniotialises and object and registers it with imagine
-Imagine = (params) ->
-  Imagine.process params
+class Imagine
+  constructor: (params) ->
+    return Imagine.process params
+
+
 
 # processes objects to be added
 Imagine.process = (params) ->

@@ -1,4 +1,4 @@
-describe('Imagine', function(){
+describe('Imagine base', function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
