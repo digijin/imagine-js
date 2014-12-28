@@ -1,13 +1,22 @@
 
+
 class View
 	update: ->
-		context.clearRect 0, 0, canvas.width, canvas.height
+		canvas.renderAll()
 
 class Person
 	x: 0
 	y: 0
 	start: ->
 		@newTarget()
+		@rect = new fabric.Rect
+			left: 100
+			top: 100
+			stroke: 'red'
+			fill: 'rgba(0,0,0,0)'
+			width: 10
+			height: 10
+		canvas.add @rect
 	newTarget: ->
 		@target = {x:Math.random() * 300, y:Math.random() * 300}
 	update: ->
@@ -27,18 +36,14 @@ class Person
 		@y += dir[1]
 		@draw()
 	draw: ->
-		context.strokeStyle = "#ff0000"
-		context.strokeRect(@x, @y, 10, 10)
-
-
-
+		@rect.left = @x
+		@rect.top = @y
 
 
 $ document
 	.ready ->
 
-		window.canvas = document.getElementById 'stage'
-		window.context = canvas.getContext '2d'
+		window.canvas = new fabric.Canvas 'stage'
 
 		Imagine new View()
 		Imagine new Person()

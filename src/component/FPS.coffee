@@ -7,7 +7,7 @@ class Imagine.FPS
     @lastFPS.push 1/Imagine.time.deltaTime
 
 
-    if @lastFPS.length > 10
+    if @lastFPS.length > 50
       fps = 0
       for reading in @lastFPS
         fps += reading
