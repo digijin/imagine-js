@@ -16,7 +16,8 @@
   "dependencies": {
     "jasmine-jquery": "~2.0.5",
     "react": "~0.12.2",
-    "fabric": "~1.4.13"
+    "fabric": "~1.4.13",
+    "kineticjs": "~5.1.0"
   },
   "devDependencies": {
     "jquery": "~2.1.1",
