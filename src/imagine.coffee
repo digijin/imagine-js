@@ -4,8 +4,9 @@ class Imagine
   # iniotialises and object and registers it with imagine
   constructor: (params) ->
     return Imagine.process params
+
   # the objects to be tracked by imagine
-  objects: []
+  @objects: []
 
 
   # processes objects to be added

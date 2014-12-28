@@ -69,8 +69,8 @@ class ViewRenderer
 	update: ->
 		coms = Imagine.getComponents 'person'
 		data = coms.map (com) -> com.data
-		# @game.setState
-		# 	people: data
+		@game.setState
+			people: data
 		# Imagine.destroy @
 
 

@@ -9,7 +9,6 @@ class Imagine.InputAbstract
 
   # constructor
   constructor: ->
-    console.log "initing"
     Imagine.addEvent document, "keypress", (e) ->
       e = e or window.event
       
