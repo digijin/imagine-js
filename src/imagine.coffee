@@ -67,3 +67,4 @@ class Imagine
       Imagine.objects.splice ind, 1
 
 
+module?.exports = Imagine

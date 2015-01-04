@@ -24,11 +24,11 @@ module.exports = function(grunt){
 		},
 		cjsx:{
 			demos:{
-        		src: ['demos/**/*.cjsx'],
-        		dest: '',
-        		expand: true,
-        		ext: '.js'
-        	}
+				src: ['demos/**/*.cjsx'],
+				dest: '',
+				expand: true,
+				ext: '.js'
+			}
 		},
 		open:{
 			testChrome: {
@@ -45,14 +45,14 @@ module.exports = function(grunt){
 			}
 		},
 		coffeelint: {
-	     	app: ['src/**/*.coffee'],
-	     	options: {
-	     		force: false,
-	     		max_line_length: {
-	     			value: 200
-	     		}
-	     	}
-	    },
+			app: ['src/**/*.coffee'],
+			options: {
+				force: false,
+				max_line_length: {
+					value: 200
+				}
+			}
+		},
 		watch:{
 			all: {
 				files: [
@@ -87,7 +87,7 @@ module.exports = function(grunt){
 					vendor: [
 						'bower_components/jquery/dist/jquery.js',
 						'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
-		            ],
+					],
 					specs: 'spec/**/*.spec.js',
 					// display: 'short',
 					summary: true
@@ -100,7 +100,7 @@ module.exports = function(grunt){
 					vendor: [
 						'bower_components/jquery/dist/jquery.js',
 						'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
-		            ],
+					],
 					specs: [
 					'spec/component/collider.spec.js',
 					'spec/component/element.spec.js',
@@ -116,16 +116,16 @@ module.exports = function(grunt){
 					vendor: [
 						'bower_components/jquery/dist/jquery.js',
 						'bower_components/jasmine-jquery/lib/jasmine-jquery.js'
-		            ],
+					],
 					specs: 'spec/component/collider.spec.js'
 				}
 			}
 		},
-        jshint: {
-            all: ['Gruntfile.js', 'src/imagine.js']//, 'demos/**/*.js'
-        },
-        concat:{
-        	options: {
+		jshint: {
+			all: ['Gruntfile.js', 'src/imagine.js']//, 'demos/**/*.js'
+		},
+		concat:{
+			options: {
 				separator: ';\n',
 			},
 			dist: {
@@ -155,51 +155,51 @@ module.exports = function(grunt){
 				],
 				dest: 'demos/platformer/all.js'
 			}
-        },
-        uglify:{
-        	dist:{
-        		files:{
-        			'lib/imagine.min.js': ['lib/imagine.js']
-        		}
-        	},
-        	platformer:{
-        		files:{
-        			'demos/platformer/all.min.js': ['demos/platformer/all.js']
-        		}
-        	}
-        },
-        coffee:{
-        	compile:{
-        		options:{
-        			bare:true
-        		},
-        		cwd: 'src',
-        		src: ['**/*.coffee'],
-        		dest: 'temp',
-        		expand: true,
+		},
+		uglify:{
+			dist:{
+				files:{
+					'lib/imagine.min.js': ['lib/imagine.js']
+				}
+			},
+			platformer:{
+				files:{
+					'demos/platformer/all.min.js': ['demos/platformer/all.js']
+				}
+			}
+		},
+		coffee:{
+			compile:{
+				options:{
+					bare:true
+				},
+				cwd: 'src',
+				src: ['**/*.coffee'],
+				dest: 'temp',
+				expand: true,
 				ext: '.js',
-        	},
-        	demos:{
-        		src: ['demos/**/*.coffee'],
-        		dest: '',
-        		expand: true,
-        		ext: '.js'
-        	}
-        },
-        concurrent:{
-        	dev:{
-        		tasks:['watch:all', 'startServer'],
-        		options:{
-        			logConcurrentOutput: true
-        		}
-        	},
-        	demos:{
-        		tasks:['watch:demos', 'startServer'],
-        		options:{
-        			logConcurrentOutput: true
-        		}
-        	}
-        }
+			},
+			demos:{
+				src: ['demos/**/*.coffee'],
+				dest: '',
+				expand: true,
+				ext: '.js'
+			}
+		},
+		concurrent:{
+			dev:{
+				tasks:['watch:all', 'startServer'],
+				options:{
+					logConcurrentOutput: true
+				}
+			},
+			demos:{
+				tasks:['watch:demos', 'startServer'],
+				options:{
+					logConcurrentOutput: true
+				}
+			}
+		}
 	});
 
 
