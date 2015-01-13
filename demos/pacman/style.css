@@ -8,7 +8,7 @@ body, html{
 #container{
 	position: relative;
 	background-color: grey;
-	margin: 1px;
+	/*margin: 10px;*/
 }
 .bg {
 	line-height: 0px;
@@ -21,4 +21,11 @@ body, html{
 }
 .bg .block{
 	background-color: black;
+}
+
+.pacman {
+	background-color: yellow;
+	width: 30px;
+	height: 30px;
+	position: absolute;
 }

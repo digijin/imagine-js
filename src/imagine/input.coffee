@@ -40,7 +40,7 @@ class Imagine.InputAbstract
   # @deprecated
   keypress: (keyCode) ->
 
-  # called when a key is released
+  # listens for when a key is released (exposed for testing)
   # @param [int] keyCode keycode of the key released
   keyup: (keyCode) ->
     Imagine.notify 'onKeyUp', keyCode
@@ -57,7 +57,7 @@ class Imagine.InputAbstract
       i++
     return
 
-  # called when a key is released
+  # listens for when a key is released (exposed for testing)
   # @param [int] keyCode keycode of the key pressed
   keydown: (keyCode) ->
     Imagine.notify 'onKeyDown', keyCode
