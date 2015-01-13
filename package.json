@@ -15,6 +15,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "grunt heroku"
   },
+  "bin": {
+    "grunt": "./node_modules/grunt-cli/bin/grunt",
+    "bower": "./node_modules/bower/bin/bower"
+  },
   "author": "digijin <james@digijin.com> (http://digijin.com)",
   "license": "ISC",
   "repository": {
@@ -28,6 +32,7 @@
     "express": "^4.10.4",
     "grunt": "^0.4.4",
     "grunt-bower-install-simple": "^1.1.0",
+    "grunt-cli": "^0.1.13",
     "grunt-codo": "^0.2.0",
     "grunt-coffee-react": "^2.1.0",
     "grunt-coffeelint": "0.0.13",
