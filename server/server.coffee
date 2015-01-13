@@ -8,4 +8,4 @@ app.get '/', (req, res) ->
 # console.log __dirname
 app.use(express.static(__dirname + '/../'));
 
-app.listen 4010#yolo
+app.listen process.env.PORT or 4010#yolo

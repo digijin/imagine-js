@@ -1,0 +1,52 @@
+body, html{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#left, #right, #ball{
+	position: absolute;
+	background-color: white;
+}
+
+#left, #right{
+	width: 10px;
+	height: 100px;
+	top: 20px;
+	border: 1px solid black;
+}
+#left{
+	left: 20px;
+}
+#right{
+	right: 20px;
+}
+#ball{
+	width: 10px;
+	height: 10px;
+	left: 100px;
+	top: 100px;
+}
+
+#playerScore{
+	left: 100px;
+}
+#enemyScore{
+	right: 100px;
+}
+#playerScore, #enemyScore{
+	top: 20px;
+	position: absolute;
+
+	font-size: 32px;
+	color: gray;
+	font-family: "press_start_2pregular", 'verdana';
+}
+
+#container{
+	position: relative;
+	width: 600px;
+	height: 360px;
+	background-color: black;
+	margin: 1px;
+}
