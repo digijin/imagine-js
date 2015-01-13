@@ -15,7 +15,7 @@ class Character
   start: ->
     @current = {x:1, y:1}
     @offset = {x:0, y:0}
-    @dir = {x:1, y:0}
+    @dir = {x:0, y:0}
     @speed = 2 #blocks per second
     @setPosition()
     # console.log @element.getPosition()
@@ -46,15 +46,7 @@ class Character
       unless isBlock @current.x, @current.y+1
         @dir = {x: 0, y:1}
 
-  update: ->
-    if Imagine.Input.isDown 'enter'
-      debugger
-
-    @offset.x += @dir.x * Imagine.time.deltaTime * @speed
-    @offset.y += @dir.y * Imagine.time.deltaTime * @speed
-    if Math.abs(@offset.x) > 1 or Math.abs(@offset.y) > 1
-      @newNode()
-
+  detectTurnAround: ->
     # look for turn around anytime
     if @dir.x is 1
       if Imagine.Input.isDown 'left'
@@ -69,8 +61,21 @@ class Character
         @dir = {x: 0, y:-1}
     else if @dir.y is -1
       if Imagine.Input.isDown 'down'
-        @dir = {x: 0, y:1}
+        @dir = {x: 0, y:1}    
+  update: ->
+    if Imagine.Input.isDown 'enter'
+      debugger
 
+    if @dir.x is 0 and @dir.y is 0
+      @checkNewDirection()
+
+    @offset.x += @dir.x * Imagine.time.deltaTime * @speed
+    @offset.y += @dir.y * Imagine.time.deltaTime * @speed
+    if Math.abs(@offset.x) > 1 or Math.abs(@offset.y) > 1
+      @newNode()
+
+
+    @detectTurnAround()
 
 
     if @offset.x < 0
@@ -94,6 +99,23 @@ class Character
 
     @setPosition()
 
+class Enemy extends Character
+  start: ->
+    super
+    console.log "rawr"
+    @current = {x:10, y:1}
+    @setPosition()
+  checkNewDirection: ->
+    dirs = [
+      {x: 1, y:0}
+      {x: -1, y:0}
+      {x: 0, y:1}
+      {x: 0, y:-1}
+      ]
+    # dirs.reduce (a,b) ->
+    dirs = _.without dirs, @dir
+    @dir = _.sample dirs
+  detectTurnAround: -> #dont.
 
 
 class Game
@@ -101,6 +123,7 @@ class Game
     @container = document.getElementById 'container'
     drawBG()
     addCharacter()
+    addEnemy()
 
 
   addCharacter = ->
@@ -109,6 +132,13 @@ class Game
     @container.appendChild el
     Imagine el
       .addComponent new Character()
+      
+  addEnemy = ->
+    el = document.createElement 'div'
+    el.className = 'ghost'
+    @container.appendChild el
+    Imagine el
+      .addComponent new Enemy()
       
     
 

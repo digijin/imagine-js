@@ -29,3 +29,10 @@ body, html{
 	height: 30px;
 	position: absolute;
 }
+.ghost {
+	
+	background-color: purple;
+	width: 30px;
+	height: 30px;
+	position: absolute;	
+}
