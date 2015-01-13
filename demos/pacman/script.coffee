@@ -18,10 +18,26 @@ class Character
   setPosition: ->
     @element.setPosition blockSize*(@current.x + @offset.x)
       ,blockSize*(@current.y+@offset.y)
-  isEmpty = (x, y) ->
+  isBlock = (x, y) ->
     map[y][x] is "1"
   newNode: ()->
     # console.log "!"
+    @current = 
+      x: Math.round @current.x + @offset.x
+      y: Math.round @current.y + @offset.y
+
+    @offset = {x: 0, y:0}
+    @checkNewDirection()
+  checkNewDirection: ->
+    if Imagine.Input.isDown 'left'
+      @dir = {x: -1, y:0}
+    if Imagine.Input.isDown 'right'
+      @dir = {x: 1, y:0}
+    if Imagine.Input.isDown 'up'
+      @dir = {x: 0, y:-1}
+    if Imagine.Input.isDown 'down'
+      @dir = {x: 0, y:1}
+
   update: ->
     @offset.x += @dir.x * Imagine.time.deltaTime
     @offset.y += @dir.y * Imagine.time.deltaTime
@@ -35,6 +51,34 @@ class Character
     else if @dir.x is -1
       if Imagine.Input.isDown 'right'
         @dir = {x: 1, y:0}
+
+    if @dir.y is 1
+      if Imagine.Input.isDown 'up'
+        console.log "?"
+        @dir = {x: 0, y:-1}
+    else if @dir.y is -1
+      if Imagine.Input.isDown 'down'
+        @dir = {x: 0, y:1}
+
+
+
+    if @offset.x < 0
+      if isBlock @current.x-1, @current.y
+        @offset.x = 0
+        @checkNewDirection()
+    else if @offset.x > 0
+      if isBlock @current.x+1, @current.y
+        @offset.x = 0
+        @checkNewDirection()
+
+    if @offset.y < 0
+      if isBlock @current.y, @current.y-1
+        @offset.y = 0
+        @checkNewDirection()
+    else if @offset.y > 0
+      if isBlock @current.y, @current.y+1
+        @offset.y = 0
+        @checkNewDirection()
 
 
     @setPosition()
