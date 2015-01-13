@@ -52,6 +52,7 @@ class Imagine
     out
 
   # notify all listening imagine objects
+  # @param [String] func the name of the function to be called
   @notify: (func) ->
     for obj in Imagine.objects
       obj.notify func
