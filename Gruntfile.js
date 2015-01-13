@@ -1,6 +1,6 @@
 module.exports = function(grunt){
 
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
 		pkg: require('./package.json'),
@@ -199,6 +199,19 @@ module.exports = function(grunt){
 					logConcurrentOutput: true
 				}
 			}
+		},
+
+		"bower-install-simple":{
+			"prod": {
+				options: {
+					production: true
+				}
+			},
+			"dev": {
+				options: {
+					production: false
+				}
+			}
 		}
 	});
 
@@ -213,6 +226,8 @@ module.exports = function(grunt){
 
 
 	grunt.registerTask('demos', ['build', 'concurrent:demos']);
+
+	grunt.registerTask('heroku', ['bower-install-simple', 'build']);
 
 
 };
