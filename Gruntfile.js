@@ -227,7 +227,7 @@ module.exports = function(grunt){
 
 	grunt.registerTask('demos', ['build', 'concurrent:demos']);
 
-	grunt.registerTask('heroku', ['bower-install-simple', 'build']);
+	grunt.registerTask('heroku', ['bower-install-simple', 'build', 'codo']);
 
 
 };
