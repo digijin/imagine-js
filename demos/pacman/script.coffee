@@ -1,9 +1,12 @@
 map = [
-  '111111111'
-  '100010001'
-  '101000101'
-  '100010001'
-  '111111111'
+  '1111111111111111111'
+  '1000000001000000001'
+  '1011011101011101101'
+  '1000000000000000001'
+  '1011010111110101101'
+  '1000010001000100001'
+  '1111011101011101111'
+  '1111111111111111111'
 ]
 blockSize = 32
 
@@ -13,6 +16,7 @@ class Character
     @current = {x:1, y:1}
     @offset = {x:0, y:0}
     @dir = {x:1, y:0}
+    @speed = 2 #blocks per second
     @setPosition()
     # console.log @element.getPosition()
   setPosition: ->
@@ -30,17 +34,24 @@ class Character
     @checkNewDirection()
   checkNewDirection: ->
     if Imagine.Input.isDown 'left'
-      @dir = {x: -1, y:0}
+      unless isBlock @current.x-1, @current.y 
+        @dir = {x: -1, y:0}
     if Imagine.Input.isDown 'right'
-      @dir = {x: 1, y:0}
+      unless isBlock @current.x+1, @current.y 
+        @dir = {x: 1, y:0}
     if Imagine.Input.isDown 'up'
-      @dir = {x: 0, y:-1}
+      unless isBlock @current.x, @current.y-1
+        @dir = {x: 0, y:-1}
     if Imagine.Input.isDown 'down'
-      @dir = {x: 0, y:1}
+      unless isBlock @current.x, @current.y+1
+        @dir = {x: 0, y:1}
 
   update: ->
-    @offset.x += @dir.x * Imagine.time.deltaTime
-    @offset.y += @dir.y * Imagine.time.deltaTime
+    if Imagine.Input.isDown 'enter'
+      debugger
+
+    @offset.x += @dir.x * Imagine.time.deltaTime * @speed
+    @offset.y += @dir.y * Imagine.time.deltaTime * @speed
     if Math.abs(@offset.x) > 1 or Math.abs(@offset.y) > 1
       @newNode()
 
@@ -72,11 +83,11 @@ class Character
         @checkNewDirection()
 
     if @offset.y < 0
-      if isBlock @current.y, @current.y-1
+      if isBlock @current.x, @current.y-1
         @offset.y = 0
         @checkNewDirection()
     else if @offset.y > 0
-      if isBlock @current.y, @current.y+1
+      if isBlock @current.x, @current.y+1
         @offset.y = 0
         @checkNewDirection()
 
