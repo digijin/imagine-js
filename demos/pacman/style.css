@@ -14,8 +14,8 @@ body, html{
 	line-height: 0px;
 }
 .bg div{
-	width: 32px;
-	height: 32px;
+	width: 16px;
+	height: 16px;
 	display: inline-block;
 
 }
@@ -25,14 +25,14 @@ body, html{
 
 .pacman {
 	background-color: yellow;
-	width: 30px;
-	height: 30px;
+	width: 16px;
+	height: 16px;
 	position: absolute;
 }
 .ghost {
 	
 	background-color: purple;
-	width: 30px;
-	height: 30px;
+	width: 16px;
+	height: 16px;
 	position: absolute;	
 }
