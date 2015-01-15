@@ -162,7 +162,7 @@ class Imagine.Collider
   # @param [HTMLElement] obj a html object to detect collision against
   # @return [boolean] if elements overlap
   collidesWith: (obj) ->
-    myrect = @element.getBoundingClientRect()
+    myrect = @element.raw.getBoundingClientRect()
     obrect = obj.getBoundingClientRect()
 
     @compareSquares myrect, obrect
