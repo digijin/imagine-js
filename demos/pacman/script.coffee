@@ -35,7 +35,7 @@ class Character
   setPosition: ->
     @element.setPosition blockSize*(@current.x + @offset.x)
       ,blockSize*(@current.y+@offset.y)
-  isBlock = (x, y) ->
+  isBlock: (x, y) ->
     map[y][x] is "1"
   newNode: ()->
     # console.log "!"
@@ -56,16 +56,16 @@ class Character
 
   checkNewDirection: ->
     if Imagine.Input.isDown 'left'
-      unless isBlock @current.x-1, @current.y 
+      unless @isBlock @current.x-1, @current.y 
         @dir = {x: -1, y:0}
     if Imagine.Input.isDown 'right'
-      unless isBlock @current.x+1, @current.y 
+      unless @isBlock @current.x+1, @current.y 
         @dir = {x: 1, y:0}
     if Imagine.Input.isDown 'up'
-      unless isBlock @current.x, @current.y-1
+      unless @isBlock @current.x, @current.y-1
         @dir = {x: 0, y:-1}
     if Imagine.Input.isDown 'down'
-      unless isBlock @current.x, @current.y+1
+      unless @isBlock @current.x, @current.y+1
         @dir = {x: 0, y:1}
 
   detectTurnAround: ->
@@ -103,20 +103,20 @@ class Character
 
 
     if @offset.x < 0
-      if isBlock @current.x-1, @current.y
+      if @isBlock @current.x-1, @current.y
         @offset.x = 0
         @checkNewDirection()
     else if @offset.x > 0
-      if isBlock @current.x+1, @current.y
+      if @isBlock @current.x+1, @current.y
         @offset.x = 0
         @checkNewDirection()
 
     if @offset.y < 0
-      if isBlock @current.x, @current.y-1
+      if @isBlock @current.x, @current.y-1
         @offset.y = 0
         @checkNewDirection()
     else if @offset.y > 0
-      if isBlock @current.x, @current.y+1
+      if @isBlock @current.x, @current.y+1
         @offset.y = 0
         @checkNewDirection()
 
@@ -141,8 +141,19 @@ class Enemy extends Character
       {x: 0, y:-1}
       ]
     # dirs.reduce (a,b) ->
-    dirs = _.without dirs, @dir
+    dirs = _.filter dirs, (item) ->
+      # console.log item, @dir, @
+      # debugger
+
+      if @isBlock @current.x + item.x, @current.y + item.y
+        return false
+      if (item.x is -@dir.x) and (item.y is -@dir.y) # cant turn around
+        return false
+      true
+    ,@
+    console.log @dir
     @dir = _.sample dirs
+    console.log dirs, @dir
   detectTurnAround: -> #dont.
 
 
@@ -234,7 +245,5 @@ class Game
 
 
 window.onload = ->
-  # console.log init
-  # init()
   new Game()
 

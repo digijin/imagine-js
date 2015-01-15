@@ -32,3 +32,4 @@ grunt
  turn on and off auto class appending
  look into use classes to optimise search for components
   # wtf there isnt an on key down that only returns true once per key press?
+  # bug with indexof on ie
