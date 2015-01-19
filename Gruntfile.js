@@ -18,7 +18,7 @@ module.exports = function(grunt){
 			dev:{
 				script: 'server/server.coffee',
 				options:{
-					watch: ['Gruntfile.js', 'server/server.coffee'],
+					watch: ['Gruntfile.js', 'server/*.*'],
 					nodeArgs: ['--nodejs', '--debug'],
 					callback: function (nodemon) {
 						nodemon.on('log', function (event) {
