@@ -2,22 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<title>Imagine Dir Index</title>
 </head>
 <body>
+
+    <!-- Bootstrap -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 	<h1>ImagineJS</h1>
 	<h2>Current dir: <%= dir %></h2>
 	<h3>Contents:</h3>
-	<div id="content">
+	<div id="content" class="list-group">
 		<ul>
 		<% if(dir !== '/'){ %>
-			<li><a href="../">../</a></li>
+			<li class="list-group-item"><a href="../">../</a></li>
 		<% } %>
 		<% files.forEach(function(file){%>
-			<li><a href="<%= file %>"><%= file %></a></li>
+			<li class="list-group-item"><a href="<%= file %>"><%= file %></a></li>
 		<% }) %>
 		</ul>
 	</div>
 	 
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
