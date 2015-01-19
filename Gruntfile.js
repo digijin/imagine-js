@@ -18,7 +18,26 @@ module.exports = function(grunt){
 			dev:{
 				script: 'server/server.coffee',
 				options:{
-					watch: ['Gruntfile.js']
+					watch: ['Gruntfile.js', 'server/server.coffee'],
+					nodeArgs: ['--nodejs', '--debug'],
+					callback: function (nodemon) {
+						nodemon.on('log', function (event) {
+							console.log(event.colour);
+						});
+					}
+				}
+			}
+		},
+		'node-inspector': {
+			custom: {
+				options: {
+					'web-port': 1337,
+					'web-host': 'localhost',
+					'debug-port': 5858,
+					'save-live-edit': true,
+					'no-preload': true,
+					'stack-trace-limit': 4,
+					'hidden': ['node_modules']
 				}
 			}
 		},
@@ -198,6 +217,12 @@ module.exports = function(grunt){
 				options:{
 					logConcurrentOutput: true
 				}
+			},
+			server:{
+				tasks:['nodemon', 'node-inspector'],
+				options:{
+					logConcurrentOutput: true
+				}
 			}
 		},
 
@@ -216,7 +241,7 @@ module.exports = function(grunt){
 	});
 
 
-	grunt.registerTask('startServer', ['nodemon']);
+	grunt.registerTask('startServer', ['concurrent:server']);
 
 	grunt.registerTask('build', ['clean:temp', 'coffee', 'cjsx', 'concat', 'uglify']);
 

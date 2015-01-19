@@ -25,7 +25,8 @@
     "type": "git",
     "url": "https://github.com/digijin/imagine-js.git"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "dependencies": {
     "coffeelint": "^1.6.0",
     "express": "^4.10.4",
@@ -46,6 +47,8 @@
     "grunt-nodemon": "^0.3.0",
     "grunt-open": "^0.2.3",
     "matchdep": "^0.3.0",
-    "coffee-script": "^1.8.0"
+    "coffee-script": "^1.8.0",
+    "lodash": "^2.4.1",
+    "grunt-node-inspector": "^0.1.5"
   }
 }
