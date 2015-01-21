@@ -33,3 +33,5 @@ grunt
  look into use classes to optimise search for components
   # wtf there isnt an on key down that only returns true once per key press?
   # bug with indexof on ie
+  use _.extend or similar
+  browserify?
