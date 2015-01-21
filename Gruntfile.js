@@ -1,5 +1,6 @@
+var timer = require("grunt-timer");
 module.exports = function(grunt){
-
+	timer.init(grunt);
 	require('matchdep').filter('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
