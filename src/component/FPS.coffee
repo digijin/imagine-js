@@ -1,3 +1,6 @@
+unless Imagine
+  Imagine = {}
+
 # just a simple fps counter
 class Imagine.FPS
   lastFPS: []
@@ -17,3 +20,5 @@ class Imagine.FPS
 
       $ @element.raw
         .html fps + "FPS"
+
+module?.exports = Imagine.FPS

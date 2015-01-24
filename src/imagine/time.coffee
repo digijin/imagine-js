@@ -1,3 +1,6 @@
+unless Imagine
+  Imagine = {}
+
 # a class for managing time and time deltas
 # automatically instatniated by the imagine engine
 class Imagine.TimeAbstract
@@ -39,3 +42,4 @@ class Imagine.TimeAbstract
 
 Imagine.time = new Imagine.TimeAbstract()
 # Imagine.time = Imagine.Time
+module?.exports = Imagine.TimeAbstract

@@ -8,6 +8,7 @@ class Imagine
   # the objects to be tracked by imagine
   @objects: []
 
+  # @testsetst: new Imagine.InputAbstract()
 
   # processes objects to be added
   @process: (params) ->

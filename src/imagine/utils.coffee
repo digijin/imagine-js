@@ -1,3 +1,5 @@
+unless Imagine
+  Imagine = {}
 # bunch of convenience functions
 class Imagine.Utils
   # returns true if object is array
@@ -6,3 +8,4 @@ class Imagine.Utils
   typeIsArray: Array.isArray || ( value ) -> return {}.toString.call( value ) is '[object Array]'
 
 Imagine.utils = new Imagine.Utils()
+module?.exports = Imagine.Utils

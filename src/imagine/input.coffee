@@ -1,3 +1,8 @@
+
+
+unless Imagine
+  Imagine = {}
+
 # class to manage and track input
 class Imagine.InputAbstract
 
@@ -177,3 +182,5 @@ class Imagine.InputAbstract
 
 
 Imagine.Input = new Imagine.InputAbstract()
+
+module?.exports = Imagine.InputAbstract

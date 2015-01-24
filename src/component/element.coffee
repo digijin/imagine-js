@@ -1,3 +1,6 @@
+unless Imagine
+  Imagine = {}
+
 # handles interaction with html elements
 class Imagine.Element
   name: "element"
@@ -65,3 +68,4 @@ class Imagine.Element
     pos = @getPosition()
     @setPosition pos.left + x, pos.top + y
 
+module?.exports = Imagine.Element

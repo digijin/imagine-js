@@ -1,3 +1,6 @@
+unless Imagine
+  Imagine = {}
+
 # handles a lot of grunt work
 class Imagine.Engine
   fps: 0
@@ -182,3 +185,4 @@ class Imagine.Engine
 
 Imagine.engine = new Imagine.Engine()
 
+module?.exports = Imagine.Engine
