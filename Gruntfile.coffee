@@ -6,6 +6,15 @@ module.exports = (grunt) ->
 	require("matchdep").filter("grunt-*").forEach grunt.loadNpmTasks
 	grunt.initConfig
 		pkg: require("./package.json")
+
+		coffeeify: 
+			options:
+				debug: true
+				# alias: 
+				# 	'jquery-browserify': 'jquery'
+			game:
+				src: 'src/imagine.coffee'
+				dest: 'lib/imagine.js'
 		clean:
 			temp: ["temp"]
 			doc: ["doc"]
@@ -125,6 +134,7 @@ module.exports = (grunt) ->
 						"spec/imagine.component.spec.js"
 						"spec/imagine.spec.js"
 						"spec/imagine/engine.spec.js"
+						"spec/imagine/coffeeify.spec.js"
 					]
 
 			collider:
@@ -242,7 +252,8 @@ module.exports = (grunt) ->
 		"clean:temp"
 		"coffee"
 		"cjsx"
-		"concat"
+		"concat" #todo: alter this step
+		# "coffeeify"
 		"uglify"
 	]
 	grunt.registerTask "default", [

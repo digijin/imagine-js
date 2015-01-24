@@ -49,6 +49,7 @@
     "coffee-script": "^1.8.0",
     "lodash": "^2.4.1",
     "grunt-node-inspector": "^0.1.5",
-    "grunt-timer": "^0.5.8"
+    "grunt-timer": "^0.5.8",
+    "grunt-coffeeify": "^0.1.3"
   }
 }
