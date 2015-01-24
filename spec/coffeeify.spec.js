@@ -16,6 +16,7 @@ describe('coffeeify', function(){
 		describe('time', function(){
 			it("should have time defined", function(){
 				expect(Imagine.time).toBeDefined()
+				expect(Imagine.time.startTime).toBeDefined()
 			});
 		})
 	})

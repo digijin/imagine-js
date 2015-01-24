@@ -1,7 +1,7 @@
 
 
-unless Imagine
-  Imagine = {}
+# unless Imagine
+#   Imagine = {}
 
 # class to manage and track input
 class Imagine.InputAbstract

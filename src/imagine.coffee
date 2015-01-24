@@ -1,4 +1,6 @@
 
+# utils = require './imagine/utils.coffee'
+
 # main class
 class Imagine
   # iniotialises and object and registers it with imagine
@@ -20,7 +22,7 @@ class Imagine
         i++
     else
 
-      if isElement params
+      if Imagine.utils.isElement params
         el = new Imagine.Element params
         out = Imagine.process({}).addComponent(el)
       else
@@ -75,11 +77,16 @@ Time = require('./imagine/time.coffee')
 Imagine.time = new Time()
 Engine = require('./imagine/engine.coffee')
 Imagine.engine = new Engine()
-# Imagine.component = require './imagine/component.coffee'
-# Imagine.input = require './imagine/input.coffee'
-# Imagine.time = require './imagine/time.coffee'
-# Imagine.utils = require './imagine/utils.coffee'
 
+# Component = require './imagine/component.coffee'
+# Imagine.component = new Component()
+Input = require './imagine/input.coffee'
+Imagine.input = new Input()
+Utils = require './imagine/utils.coffee'
+Imagine.utils = new Utils()
+
+
+Imagine.Collider = require './component/collider.coffee'
 
 
 module?.exports = Imagine

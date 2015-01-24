@@ -1,5 +1,4 @@
-unless Imagine
-  Imagine = {}
+
 
 # just a simple fps counter
 class Imagine.FPS

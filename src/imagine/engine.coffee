@@ -1,5 +1,6 @@
-unless Imagine
-  Imagine = {}
+# debugger
+# unless window.Imagine
+  # Imagine = {}
 
 # handles a lot of grunt work
 class Imagine.Engine

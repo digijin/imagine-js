@@ -1,5 +1,4 @@
-unless Imagine
-  Imagine = {}
+
 
 # handles interaction with html elements
 class Imagine.Element

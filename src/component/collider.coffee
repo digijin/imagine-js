@@ -1,5 +1,3 @@
-unless Imagine
-  Imagine = {}
 
 # collider class
 # handles basic collision detection between box shaped objects
@@ -180,4 +178,4 @@ class Imagine.Collider
     outsideV = sq1.right <= sq2.left or sq2.right <= sq1.left
     not outsideV and not outsideH
 
-module?.exports = Imagine.Collision
+module?.exports = Imagine.Collider
