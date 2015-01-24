@@ -253,7 +253,7 @@ module.exports = (grunt) ->
 		"coffee"
 		"cjsx"
 		"concat" #todo: alter this step
-		# "coffeeify"
+		"coffeeify"
 		"uglify"
 	]
 	grunt.registerTask "default", [
@@ -263,7 +263,7 @@ module.exports = (grunt) ->
 	grunt.registerTask "test", [
 		"coffeelint"
 		"jshint"
-		"jasmine:all"
+		# "jasmine:all"
 	]
 	grunt.registerTask "demos", [
 		"build"

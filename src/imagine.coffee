@@ -69,10 +69,13 @@ class Imagine
       Imagine.objects.splice ind, 1
 
 
-# window.Imagine = Imagine
+window.Imagine = Imagine
 
+Time = require('./imagine/time.coffee')
+Imagine.time = new Time()
+Engine = require('./imagine/engine.coffee')
+Imagine.engine = new Engine()
 # Imagine.component = require './imagine/component.coffee'
-# Imagine.engine = require './imagine/engine.coffee'
 # Imagine.input = require './imagine/input.coffee'
 # Imagine.time = require './imagine/time.coffee'
 # Imagine.utils = require './imagine/utils.coffee'
