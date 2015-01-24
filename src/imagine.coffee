@@ -87,6 +87,7 @@ Imagine.utils = new Utils()
 
 
 Imagine.Collider = require './component/collider.coffee'
+Imagine.Element = require './component/element.coffee'
 
 
 module?.exports = Imagine

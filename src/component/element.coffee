@@ -7,7 +7,7 @@ class Imagine.Element
   _register: 'element'
   # constructor
   constructor: (@raw) ->
-    unless isElement @raw
+    unless Imagine.utils.isElement @raw
       throw new Error "Not a HTML object"
     @raw.getLocalRect = @getLocalRect
     @raw.move = @move

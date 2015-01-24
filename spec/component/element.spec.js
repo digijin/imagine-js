@@ -113,7 +113,7 @@ describe("Imagine/component/element", function(){
 			t = el.getPosition().top
 			l = el.getPosition().left
 
-			expect(isElement(el.raw)).toBe(true)
+			expect(Imagine.utils.isElement(el.raw)).toBe(true)
 			el.move(1,2)
 
 			// expect(el.offsetLeft).toBe("")

@@ -38,13 +38,17 @@ describe("Imagine/component/collider", function(){
 	describe("move", function(){
 
 		it("should slide along objects", function(){
+			// debugger
 			$('#square').css('top', 10);
 			expect($('#square').css('left')).toBe('0px');
 			expect($('#square').css('top')).toBe('10px');
 
+			// console.log(Imagine.Collider);
+
 			coll = Imagine($('#square')[0])
-				.addComponent(new Imagine.Collider())
-				.getComponent('collider')
+			console.log(coll);
+			coll.addComponent(new Imagine.Collider())
+			coll = coll.getComponent('collider')
 
 			Imagine($('#rectangle')[0]).addComponent(new Imagine.Collider());
 

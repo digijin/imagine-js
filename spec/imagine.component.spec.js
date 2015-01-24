@@ -81,9 +81,9 @@ describe('Imagine.Component', function(){
 
 
 
-	it('should be defined', function(){
-		expect(Imagine.component).toBeDefined()
-	})
+	// it('should be defined', function(){
+	// 	expect(Imagine.component).toBeDefined()
+	// })
 	
 	it('should reset components after a reset')
 	it('should run the start functions of components', function(){
