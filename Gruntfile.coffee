@@ -37,6 +37,17 @@ module.exports = (grunt) ->
 						"--debug"
 					]
 					callback: (nodemon) ->
+						nodemon.on "start", (event) ->
+							# console.log "yolo swag"
+							console.log " (                                         (     "
+							console.log " )\\ )                                      )\\ )  "
+							console.log "(()/(   )      ) (  ( (          (      ( (()/(  "
+							console.log " /(_)) (    ( /( )\\))()\\  (     ))\\     )\\ /(_)) "
+							console.log "(_))   )\\  ')(_)|(_))((_) )\\ ) /((_)   ((_|_))   "
+							console.log "|_ _|_((_))((_)_ (()(_|_)_(_/((_))    _ | / __|  "
+							console.log " | || '  \\() _` / _` || | ' \\)) -_)  | || \\__ \\  "
+							console.log "|___|_|_|_|\\__,_\\__, ||_|_||_|\\___|   \\__/|___/  "
+							console.log "                |___/                            "
 						nodemon.on "log", (event) ->
 							console.log event.colour
 							return
@@ -86,6 +97,7 @@ module.exports = (grunt) ->
 			pagereload:
 				options:
 					livereload: true #only one can livereload
+					event: ['changed', 'added', 'deleted']
 				files: [
 					# "Gruntfile.coffee"
 					"demos/**/*.*"
@@ -102,7 +114,10 @@ module.exports = (grunt) ->
 				]
 			
 			test: 
-				files: []
+				files: [
+					"spec/**/*.*"
+					"lib/imagine.js"
+				]
 				tasks: ["test"]
 
 			src:
@@ -120,7 +135,7 @@ module.exports = (grunt) ->
 			demos:
 				files: [
 					"Gruntfile.coffee"
-					"demos/**/*.cjsx"
+					"demos/**/*.*"
 				]
 				tasks: ["build-demos"]
 
@@ -218,11 +233,13 @@ module.exports = (grunt) ->
 		concurrent:
 			dev:
 				tasks: [
-					"watch:pagereload"
+					"newer:watch:pagereload"
+					"watch:test"
 					"watch:src"
 					"watch:spec"
 					"watch:demos"
 					"startServer"
+					"test"
 				]
 				options:
 					logConcurrentOutput: true
@@ -259,8 +276,8 @@ module.exports = (grunt) ->
 	]
 	grunt.registerTask "test", [
 		"coffeelint"
-		"jshint"
-		"jasmine:all"
+		# "jshint"
+		# "jasmine:all"
 	]
 	grunt.registerTask "demos", [
 		"build-demos"
@@ -280,7 +297,7 @@ module.exports = (grunt) ->
 
 	grunt.registerTask "build-src", [
 		"coffeeify:src"
-		"uglify:dist"
+		# "uglify:dist"
 	]
 
 	grunt.registerTask "build-spec", [
