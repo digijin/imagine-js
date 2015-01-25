@@ -9,7 +9,7 @@ $(document).ready ->
       dt = Imagine.time.deltaTime
       speed = 100
       left = parseFloat(@el.css("left"))
-      left += (dt * speed * Imagine.Input.getAxis("Horizontal"))
+      left += (dt * speed * Imagine.input.getAxis("Horizontal"))
       left = left.clamp(1, @el.parent().width() - @el.width() - 3)
       @el.css "left", left
       return

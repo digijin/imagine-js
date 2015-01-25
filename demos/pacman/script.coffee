@@ -55,37 +55,37 @@ class Character
         Imagine.destroy pickup
 
   checkNewDirection: ->
-    if Imagine.Input.isDown 'left'
+    if Imagine.input.isDown 'left'
       unless @isBlock @current.x-1, @current.y 
         @dir = {x: -1, y:0}
-    if Imagine.Input.isDown 'right'
+    if Imagine.input.isDown 'right'
       unless @isBlock @current.x+1, @current.y 
         @dir = {x: 1, y:0}
-    if Imagine.Input.isDown 'up'
+    if Imagine.input.isDown 'up'
       unless @isBlock @current.x, @current.y-1
         @dir = {x: 0, y:-1}
-    if Imagine.Input.isDown 'down'
+    if Imagine.input.isDown 'down'
       unless @isBlock @current.x, @current.y+1
         @dir = {x: 0, y:1}
 
   detectTurnAround: ->
     # look for turn around anytime
     if @dir.x is 1
-      if Imagine.Input.isDown 'left'
+      if Imagine.input.isDown 'left'
         @dir = {x: -1, y:0}
     else if @dir.x is -1
-      if Imagine.Input.isDown 'right'
+      if Imagine.input.isDown 'right'
         @dir = {x: 1, y:0}
 
     if @dir.y is 1
-      if Imagine.Input.isDown 'up'
+      if Imagine.input.isDown 'up'
         console.log "?"
         @dir = {x: 0, y:-1}
     else if @dir.y is -1
-      if Imagine.Input.isDown 'down'
+      if Imagine.input.isDown 'down'
         @dir = {x: 0, y:1}    
   update: ->
-    if Imagine.Input.isDown 'enter'
+    if Imagine.input.isDown 'enter'
       debugger
 
     

@@ -55,7 +55,7 @@ class Player
   requireComponent: [Imagine.Collider]
   speed: 300
   update: -> 
-    @collider.move 0, -Imagine.Input.getAxis("Vertical") * @speed * Imagine.time.deltaTime
+    @collider.move 0, -Imagine.input.getAxis("Vertical") * @speed * Imagine.time.deltaTime
 
 
 class Enemy

@@ -85,7 +85,7 @@ $(document).ready ->
 			.addComponent {
 				name: "scene"
 				update: ->
-					if Imagine.Input.getKeyDown 'escape'
+					if Imagine.input.getKeyDown 'escape'
 						initGame()
 			}
 			.getComponent "element"

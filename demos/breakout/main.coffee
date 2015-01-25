@@ -2,8 +2,8 @@ Player = () ->
 	name: 'player'
 	speed: 200
 	update: () ->
-		@collider.move Imagine.Input.getAxis('Horizontal') * Imagine.time.deltaTime * @speed, 0
-		# console.log Imagine.Input.getAxis('Horizontal'), Imagine.time.deltaTime, @speed
+		@collider.move Imagine.input.getAxis('Horizontal') * Imagine.time.deltaTime * @speed, 0
+		# console.log Imagine.input.getAxis('Horizontal'), Imagine.time.deltaTime, @speed
 
 
 Ball = () ->

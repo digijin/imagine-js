@@ -17,22 +17,22 @@ window.Player = ->
 		if left < scrLeft and scene.offsetLeft < 0
 			scEl.move scrLeft - left, 0
 
-		h = Imagine.Input.getAxis 'Horizontal'
-		if Imagine.Input.getKey 'shift'
+		h = Imagine.input.getAxis 'Horizontal'
+		if Imagine.input.getKey 'shift'
 			h*=2
 		@dirH = (@dirH+h)/2
 		@char.dirH = @dirH
-		# if Imagine.Input.getKeyDown 'left'
+		# if Imagine.input.getKeyDown 'left'
 		if h < 0
 		 	@char.faceLeft()
-		# if Imagine.Input.getKeyDown 'right'
+		# if Imagine.input.getKeyDown 'right'
 
 		if h > 0
 			@char.faceRight()
 
 
 
-		if Imagine.Input.getKeyDown 'up'
+		if Imagine.input.getKeyDown 'up'
 			@char.jump()
 	die: ->
 		Imagine Announce("GAME OVER<br /><sub>(esc to restart)</sub>")

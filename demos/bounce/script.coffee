@@ -1,5 +1,5 @@
 $(document).ready ->
-  Input = Imagine.Input
+  input = Imagine.input
   #Imagine.engine.setFPS 0 # pong bug
   Imagine
     element: $("#ball")
@@ -28,14 +28,14 @@ $(document).ready ->
       @dirV += dt * 0.4 #gravity
       
       #a little interaction
-      if Input.getKeyDown("left")
+      if input.getKeyDown("left")
         @dirH -= 0.3
-      else @dirH += 0.3  if Input.getKeyDown("right")
+      else @dirH += 0.3  if input.getKeyDown("right")
       
       #a little interaction
-      if Input.getKeyDown("up")
+      if input.getKeyDown("up")
         @dirV -= 0.3
-      else @dirV += 0.3  if Input.getKeyDown("down")
+      else @dirV += 0.3  if input.getKeyDown("down")
       @element.css "left", left + (dt * @dirH * speed)
       @element.css "top", top + (dt * @dirV * speed)
       return

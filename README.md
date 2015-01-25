@@ -40,4 +40,6 @@ grunt
  * bug with indexof on ie
  * use _.extend or similar to copy methods and properties from a Imagine.BaseComponent
  * bring closer to unity model
- * change caser of input
+ * change case of input
+ * work out bugs from "optimisation" of gruntfile
+
