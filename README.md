@@ -8,6 +8,11 @@ To compile (currently needed for anything to work):
  * run:
 ```
 npm install
+```
+
+ * or if that doesnt work
+```
+npm install
 npm install -g bower
 npm install -g grunt-cli
 npm install -g coffee-script

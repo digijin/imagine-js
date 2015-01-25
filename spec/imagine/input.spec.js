@@ -1,15 +1,15 @@
 describe('Imagine/Input', function(){
-	var Input = Imagine.Input; 
+	var Input = Imagine.input; 
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
 
-	it("should expose Imagine.Input", function(){
-		expect(Imagine.Input).toBeDefined();
+	it("should expose Imagine.input", function(){
+		expect(Imagine.input).toBeDefined();
 	});
 
-	it("should expose Imagine.Input.axes", function(){
-		expect(Imagine.Input.axes).toBeDefined();
+	it("should expose Imagine.input.axes", function(){
+		expect(Imagine.input.axes).toBeDefined();
 	});
 	it('should use notify function', function(){
 		var obj = {onKeyDown:function(){
@@ -54,7 +54,7 @@ describe('Imagine/Input', function(){
 	
 	describe('getKey', function(){
 		it("should be defined", function(){
-			expect(Imagine.Input.getKey).toBeDefined()
+			expect(Imagine.input.getKey).toBeDefined()
 		})
 	})
 
@@ -70,13 +70,13 @@ describe('Imagine/Input', function(){
 			spyOn(obj, "keydown");
 			Imagine(obj);
 
-			Imagine.Input.keydown(1);
+			Imagine.input.keydown(1);
 			expect(obj.keydown.calls.count()).toBe(1);
-			Imagine.Input.keydown(1);
+			Imagine.input.keydown(1);
 			expect(obj.keydown.calls.count()).toBe(1);
-			Imagine.Input.keydown(1);
+			Imagine.input.keydown(1);
 			expect(obj.keydown.calls.count()).toBe(1);
-			Imagine.Input.keydown(1);
+			Imagine.input.keydown(1);
 			expect(obj.keydown.calls.count()).toBe(1);
 
 		});
@@ -89,8 +89,8 @@ describe('Imagine/Input', function(){
 			spyOn(obj, "keyup");
 			Imagine(obj);
 
-			Imagine.Input.keydown(1);
-			Imagine.Input.keyup(1);
+			Imagine.input.keydown(1);
+			Imagine.input.keyup(1);
 			// console.log(JSON.stringify(obj.keydown.calls));
 			expect(obj.keydown).toHaveBeenCalled();
 			expect(obj.keyup).toHaveBeenCalled();

@@ -19,7 +19,7 @@ class Imagine.InputAbstract
       
       # use e.keyCode
       keyCode = (if e.keyCode then e.keyCode else e.charCode)
-      Imagine.Input.keypress keyCode
+      Imagine.input.keypress keyCode
       return
 
     Imagine.addEvent document, "keyup", (e) ->
@@ -27,7 +27,7 @@ class Imagine.InputAbstract
       keyCode = (if e.keyCode then e.keyCode else e.charCode)
       
       #console.log("up"+keyCode);
-      Imagine.Input.keyup keyCode
+      Imagine.input.keyup keyCode
       return
 
     Imagine.addEvent document, "keydown", (e) ->
@@ -35,7 +35,7 @@ class Imagine.InputAbstract
       keyCode = (if e.keyCode then e.keyCode else e.charCode)
       
       #console.log("down"+keyCode);
-      Imagine.Input.keydown keyCode
+      Imagine.input.keydown keyCode
       return
 
     # console.log @init
@@ -181,6 +181,6 @@ class Imagine.InputAbstract
     return
 
 
-Imagine.Input = new Imagine.InputAbstract()
+# Imagine.Input = new Imagine.InputAbstract()
 
 module?.exports = Imagine.InputAbstract

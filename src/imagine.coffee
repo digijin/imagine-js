@@ -86,9 +86,5 @@ Imagine.input = new Input()
 Imagine.utils = new Utils()
 
 
-# Imagine.Collider = require './component/collider.coffee'
-# Imagine.Element = require './component/element.coffee'
-# Imagine.FPS = require './component/FPS.coffee'
-
 
 module?.exports = Imagine

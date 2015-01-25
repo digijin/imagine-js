@@ -26,7 +26,7 @@ class Imagine.Engine
   update: ->
     #update Time;
     Imagine.time.update()
-    Imagine.Input.update()
+    Imagine.input.update()
     i = 0
 
     while i < Imagine.objects.length
@@ -154,7 +154,7 @@ class Imagine.Engine
   # reset the engine
   reset: ->
     Imagine.objects = []
-    Imagine.Input.reset()
+    Imagine.input.reset()
     Imagine.time.paused = false
     @inited = false
     @clearUpdate()
