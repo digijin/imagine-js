@@ -73,18 +73,16 @@ class Imagine
 
 window.Imagine = Imagine
 
-# fix this
+#todo: fix this
 
 Time = require('./imagine/time.coffee')
-Imagine.time = new Time()
 Engine = require('./imagine/engine.coffee')
-Imagine.engine = new Engine()
-
-# Component = require './imagine/component.coffee'
-# Imagine.component = new Component()
 Input = require './imagine/input.coffee'
-Imagine.input = new Input()
 Utils = require './imagine/utils.coffee'
+
+Imagine.time = new Time()
+Imagine.engine = new Engine()
+Imagine.input = new Input()
 Imagine.utils = new Utils()
 
 

@@ -17,9 +17,6 @@ class Imagine.FPS
 
       @lastFPS = []
 
-      # debugger
-      # $
-      #   .html fps + "FPS"
       @element.raw.innerHtml = fps + "FPS"
 
 module?.exports = Imagine.FPS
