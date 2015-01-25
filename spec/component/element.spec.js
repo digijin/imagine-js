@@ -109,7 +109,7 @@ describe("Imagine/component/element", function(){
 
 		it("should move the right amount", function(){
 
-			console.log(el);
+			// console.log(el);
 			t = el.getPosition().top
 			l = el.getPosition().left
 

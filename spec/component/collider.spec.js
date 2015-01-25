@@ -46,7 +46,7 @@ describe("Imagine/component/collider", function(){
 			// console.log(Imagine.Collider);
 
 			coll = Imagine($('#square')[0])
-			console.log(coll);
+			// console.log(coll);
 			coll.addComponent(new Imagine.Collider())
 			coll = coll.getComponent('collider')
 
