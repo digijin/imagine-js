@@ -95,6 +95,7 @@ module.exports = (grunt) ->
 		watch:
 			options:
 				spawn: false
+				interrupt:true
 			output:
 				options:
 					livereload: true #only one can livereload
@@ -123,7 +124,7 @@ module.exports = (grunt) ->
 				files: [
 					"Gruntfile.coffee"
 				]
-				tasks: ["build", "test"]
+				tasks: ["build"] #will trigger test after build by other watch targets
 
 			src:
 				files: [
@@ -134,7 +135,7 @@ module.exports = (grunt) ->
 				files: [
 					"spec/**/*.*"
 				]
-				tasks: ["build-spec", "test"]
+				tasks: ["build-spec"]
 			demos:
 				files: [
 					"demos/**/*.coffee"
@@ -240,7 +241,7 @@ module.exports = (grunt) ->
 				tasks: [
 					"watch:demos"
 					"watch:gruntfile"
-					"watch:lib"
+					"newer:watch:lib"
 					"watch:output"
 					"watch:spec"
 					"watch:src"
