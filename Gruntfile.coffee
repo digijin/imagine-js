@@ -102,7 +102,7 @@ module.exports = (grunt) ->
 					"Gruntfile.coffee"
 					"demos/**/*.cjsx"
 				]
-				tasks: ["build"]
+				tasks: ["buildDemos"]
 				options:
 					livereload: true
 
@@ -118,8 +118,6 @@ module.exports = (grunt) ->
 					
 					# display: 'short',
 					summary: true
-
-			
 			#following are only turned on manually for specific debugging
 			inorder:
 				src: "lib/imagine.js"
@@ -148,26 +146,23 @@ module.exports = (grunt) ->
 
 		jshint:
 			all: [ #, 'demos/**/*.js'
-				"src/imagine.js"
+				# "src/imagine.js"
 			]
 
 		concat:
 			options:
 				separator: ";\n"
-
-			dist:
-				src: [
-					"temp/polyfill/*.js"
-					"temp/imagine.js"
-					"temp/imagine/*.js"
-					"temp/component/*.js"
-				]
-				dest: "lib/imagine.js"
-
+			# dist:
+			# 	src: [
+			# 		"temp/polyfill/*.js"
+			# 		"temp/imagine.js"
+			# 		"temp/imagine/*.js"
+			# 		"temp/component/*.js"
+			# 	]
+			# 	dest: "lib/imagine.js"
 			spec:
 				src: ["spec/**/*.js"]
 				dest: "specrunner/all.spec.js"
-
 			platformer:
 				src: [
 					"demos/platformer/level/parser.js"
@@ -191,22 +186,11 @@ module.exports = (grunt) ->
 			dist:
 				files:
 					"lib/imagine.min.js": ["lib/imagine.js"]
-
 			platformer:
 				files:
 					"demos/platformer/all.min.js": ["demos/platformer/all.js"]
 
 		coffee:
-			compile:
-				options:
-					bare: true
-
-				cwd: "src"
-				src: ["**/*.coffee"]
-				dest: "temp"
-				expand: true
-				ext: ".js"
-
 			demos:
 				src: ["demos/**/*.coffee"]
 				dest: ""
@@ -217,11 +201,11 @@ module.exports = (grunt) ->
 			dev:
 				tasks: [
 					"watch:all"
+					# "watch:demos"
 					"startServer"
 				]
 				options:
 					logConcurrentOutput: true
-
 			demos:
 				tasks: [
 					"watch:demos"
@@ -229,7 +213,6 @@ module.exports = (grunt) ->
 				]
 				options:
 					logConcurrentOutput: true
-
 			server:
 				tasks: [
 					"nodemon"
@@ -249,10 +232,7 @@ module.exports = (grunt) ->
 
 	grunt.registerTask "startServer", ["concurrent:server"]
 	grunt.registerTask "build", [
-		"clean:temp"
-		"coffee"
-		"cjsx"
-		"concat" #todo: alter this step
+		"concat:spec" #todo: alter this step
 		"coffeeify"
 		"uglify"
 	]
@@ -266,8 +246,15 @@ module.exports = (grunt) ->
 		"jasmine:all"
 	]
 	grunt.registerTask "demos", [
+		"clean:temp"
+		"coffee"
+		"cjsx"
 		"build"
 		"concurrent:demos"
+	]
+	grunt.registerTask "buildDemos", [
+		"build"
+		"copy:platformer"
 	]
 	grunt.registerTask "postinstall", [
 		"bower-install-simple"
