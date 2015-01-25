@@ -93,16 +93,17 @@ module.exports = (grunt) ->
 					value: 200
 
 		watch:
-			
-			pagereload:
+			options:
+				spawn: false
+			output:
 				options:
 					livereload: true #only one can livereload
-					event: ['changed', 'added', 'deleted']
+					# event: ['changed', 'added', 'deleted']
 				files: [
 					# "Gruntfile.coffee"
-					"demos/**/*.*"
-					"spec/**/*.*"
-					"lib/**/*.*"
+					"demos/**/*.js"
+					"specrunner/all.spec.js"
+					"lib/imagine.min.js"
 					# "src/**/*.*"
 					# "sandpit/**/*.*"
 					# "specrunner/**/*.*"
@@ -112,32 +113,36 @@ module.exports = (grunt) ->
 					# "test"
 					# "codo"
 				]
-			
-			test: 
+			lib: 
 				files: [
-					"spec/**/*.*"
 					"lib/imagine.js"
 				]
-				tasks: ["test"]
+				tasks: ["uglify", "test"]
+
+			gruntfile:
+				files: [
+					"Gruntfile.coffee"
+				]
+				tasks: ["build", "test"]
 
 			src:
 				files: [
-					"Gruntfile.coffee"
 					"src/**/*.*"
 				]
 				tasks: ["build-src"]
 			spec:
 				files: [
-					"Gruntfile.coffee"
 					"spec/**/*.*"
 				]
-				tasks: ["build-spec"]
+				tasks: ["build-spec", "test"]
 			demos:
 				files: [
-					"Gruntfile.coffee"
-					"demos/**/*.*"
+					"demos/**/*.coffee"
+					"demos/**/*.cjsx"
 				]
-				tasks: ["build-demos"]
+				tasks: [
+					"build-demos"
+				]
 
 		jasmine:
 			all:
@@ -233,19 +238,19 @@ module.exports = (grunt) ->
 		concurrent:
 			dev:
 				tasks: [
-					"newer:watch:pagereload"
-					"watch:test"
-					"watch:src"
-					"watch:spec"
 					"watch:demos"
+					"watch:gruntfile"
+					"watch:lib"
+					"watch:output"
+					"watch:spec"
+					"watch:src"
 					"startServer"
-					"test"
 				]
 				options:
 					logConcurrentOutput: true
 			demos:
 				tasks: [
-					"watch:pagereload"
+					"watch:output"
 					"watch:demos"
 					"startServer"
 				]
@@ -277,7 +282,7 @@ module.exports = (grunt) ->
 	grunt.registerTask "test", [
 		"coffeelint"
 		# "jshint"
-		# "jasmine:all"
+		"jasmine:all"
 	]
 	grunt.registerTask "demos", [
 		"build-demos"
