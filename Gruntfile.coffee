@@ -1,7 +1,6 @@
 timer = require("grunt-timer")
 module.exports = (grunt) ->
-	timer.init grunt,
-		deferLogs: true
+	timer.init grunt
 
 	require("matchdep").filter("grunt-*").forEach grunt.loadNpmTasks
 	grunt.initConfig
@@ -12,9 +11,12 @@ module.exports = (grunt) ->
 				debug: true
 				# alias: 
 				# 	'jquery-browserify': 'jquery'
-			game:
+			src:
 				src: ['src/polyfill/*.coffee', 'src/imagine.coffee', 'src/component/*.coffee']
 				dest: 'lib/imagine.js'
+			spec:
+				src: ["spec/**/*.js"]
+				dest: "specrunner/all.spec.js"
 		clean:
 			temp: ["temp"]
 			doc: ["doc"]
@@ -80,31 +82,47 @@ module.exports = (grunt) ->
 					value: 200
 
 		watch:
-			all:
+			
+			pagereload:
+				options:
+					livereload: true #only one can livereload
 				files: [
-					"Gruntfile.coffee"
+					# "Gruntfile.coffee"
 					"demos/**/*.*"
 					"spec/**/*.*"
-					"src/**/*.*"
-					"sandpit/**/*.*"
-					"specrunner/**/*.*"
+					"lib/**/*.*"
+					# "src/**/*.*"
+					# "sandpit/**/*.*"
+					# "specrunner/**/*.*"
 				]
 				tasks: [
-					"build"
-					"test"
-					"codo"
+					# "build"
+					# "test"
+					# "codo"
 				]
-				options:
-					livereload: true
+			
+			test: 
+				files: []
+				tasks: ["test"]
 
+			src:
+				files: [
+					"Gruntfile.coffee"
+					"src/**/*.*"
+				]
+				tasks: ["build-src"]
+			spec:
+				files: [
+					"Gruntfile.coffee"
+					"spec/**/*.*"
+				]
+				tasks: ["build-spec"]
 			demos:
 				files: [
 					"Gruntfile.coffee"
 					"demos/**/*.cjsx"
 				]
-				tasks: ["buildDemos"]
-				options:
-					livereload: true
+				tasks: ["build-demos"]
 
 		jasmine:
 			all:
@@ -160,9 +178,9 @@ module.exports = (grunt) ->
 			# 		"temp/component/*.js"
 			# 	]
 			# 	dest: "lib/imagine.js"
-			spec:
-				src: ["spec/**/*.js"]
-				dest: "specrunner/all.spec.js"
+			# spec:
+			# 	src: ["spec/**/*.js"]
+			# 	dest: "specrunner/all.spec.js"
 			platformer:
 				src: [
 					"demos/platformer/level/parser.js"
@@ -200,14 +218,17 @@ module.exports = (grunt) ->
 		concurrent:
 			dev:
 				tasks: [
-					"watch:all"
-					# "watch:demos"
+					"watch:pagereload"
+					"watch:src"
+					"watch:spec"
+					"watch:demos"
 					"startServer"
 				]
 				options:
 					logConcurrentOutput: true
 			demos:
 				tasks: [
+					"watch:pagereload"
 					"watch:demos"
 					"startServer"
 				]
@@ -231,11 +252,7 @@ module.exports = (grunt) ->
 					production: false
 
 	grunt.registerTask "startServer", ["concurrent:server"]
-	grunt.registerTask "build", [
-		"concat:spec" #todo: alter this step
-		"coffeeify"
-		"uglify"
-	]
+
 	grunt.registerTask "default", [
 		"build"
 		"concurrent:dev"
@@ -246,20 +263,33 @@ module.exports = (grunt) ->
 		"jasmine:all"
 	]
 	grunt.registerTask "demos", [
-		"clean:temp"
-		"coffee"
-		"cjsx"
-		"build"
+		"build-demos"
 		"concurrent:demos"
 	]
-	grunt.registerTask "buildDemos", [
-		"build"
-		"copy:platformer"
+
+	grunt.registerTask "build", [
+		"build-src"
+		"build-spec"
+		"build-demos"
+	]
+	grunt.registerTask "build-demos", [
+		"coffee"
+		"cjsx"
+		"concat:platformer"
+	]
+
+	grunt.registerTask "build-src", [
+		"coffeeify:src"
+		"uglify:dist"
+	]
+
+	grunt.registerTask "build-spec", [
+		"coffeeify:spec"
 	]
 	grunt.registerTask "postinstall", [
 		"bower-install-simple"
 		"build"
-		"buildDemos"
 		"codo"
 	]
+
 	return
