@@ -1,4 +1,4 @@
-
+Imagine = require './../imagine.coffee'
 
 # handles interaction with html elements
 class Imagine.Element

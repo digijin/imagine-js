@@ -1,3 +1,4 @@
+Imagine = require './../imagine.coffee'
 
 # collider class
 # handles basic collision detection between box shaped objects

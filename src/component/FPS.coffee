@@ -1,4 +1,4 @@
-
+Imagine = require './../imagine.coffee'
 
 # just a simple fps counter
 class Imagine.FPS
