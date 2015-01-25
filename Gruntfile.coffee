@@ -259,6 +259,7 @@ module.exports = (grunt) ->
 	grunt.registerTask "postinstall", [
 		"bower-install-simple"
 		"build"
+		"buildDemos"
 		"codo"
 	]
 	return
