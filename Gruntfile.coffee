@@ -13,7 +13,7 @@ module.exports = (grunt) ->
 				# alias: 
 				# 	'jquery-browserify': 'jquery'
 			game:
-				src: 'src/imagine.coffee'
+				src: ['src/polyfill/*.coffee', 'src/imagine.coffee', 'src/component/*.coffee']
 				dest: 'lib/imagine.js'
 		clean:
 			temp: ["temp"]
@@ -263,7 +263,7 @@ module.exports = (grunt) ->
 	grunt.registerTask "test", [
 		"coffeelint"
 		"jshint"
-		# "jasmine:all"
+		"jasmine:all"
 	]
 	grunt.registerTask "demos", [
 		"build"

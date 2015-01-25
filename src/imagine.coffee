@@ -73,6 +73,8 @@ class Imagine
 
 window.Imagine = Imagine
 
+# fix this
+
 Time = require('./imagine/time.coffee')
 Imagine.time = new Time()
 Engine = require('./imagine/engine.coffee')
@@ -86,8 +88,9 @@ Utils = require './imagine/utils.coffee'
 Imagine.utils = new Utils()
 
 
-Imagine.Collider = require './component/collider.coffee'
-Imagine.Element = require './component/element.coffee'
+# Imagine.Collider = require './component/collider.coffee'
+# Imagine.Element = require './component/element.coffee'
+# Imagine.FPS = require './component/FPS.coffee'
 
 
 module?.exports = Imagine
