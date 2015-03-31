@@ -17,20 +17,22 @@ module.exports = function(config) {
     files: [
     {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       'lib/imagine.js',
-      'spec/**/*.spec.js'
+      'spec/**/*.spec.js',
+      'spec/**/*.spec.coffee'
     ],
 
 
     // list of files to exclude
     exclude: [
-      // 'spec/component/collider.spec.js',
-      // 'spec/component/element.spec.js'
+      'spec/component/collider.spec.js',
+      'spec/component/element.spec.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        '**/*.coffee': ['coffee'],
         '**/*.html': []
     },
 

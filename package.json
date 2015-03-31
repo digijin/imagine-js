@@ -28,7 +28,8 @@
   "devDependencies": {
     "jasmine-core": "~2.2.0",
     "karma-jasmine": "~0.3.5",
-    "karma-chrome-launcher": "~0.1.7"
+    "karma-chrome-launcher": "~0.1.7",
+    "karma-coffee-preprocessor": "~0.2.1"
   },
   "dependencies": {
     "coffeelint": "^1.6.0",
@@ -56,6 +57,7 @@
     "grunt-timer": "^0.5.8",
     "grunt-coffeeify": "^0.1.3",
     "grunt-newer": "^1.1.0",
-    "karma": "~0.12.31"
+    "karma": "~0.12.31",
+    "karma-jasmine": "~0.2.0"
   }
 }

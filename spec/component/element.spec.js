@@ -1,8 +1,6 @@
 if(jasmine.getFixtures){
 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 }
-
-
 describe("Imagine/component/element", function(){
 
 	var el, raw;
