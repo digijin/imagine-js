@@ -10,12 +10,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'fixture'],
 
 
     // list of files / patterns to load in the browser
     files: [
-    {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
+    // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
+      'spec/fixtures/*.html',
       'lib/imagine.js',
       'spec/**/*.spec.js',
       'spec/**/*.spec.coffee'
@@ -24,8 +25,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'spec/component/collider.spec.js',
-      'spec/component/element.spec.js'
+      // 'spec/component/collider.spec.js',
+      // 'spec/component/element.spec.js'
     ],
 
 
@@ -33,7 +34,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         '**/*.coffee': ['coffee'],
-        '**/*.html': []
+        '**/*.html': ['html2js'],
+        '**/*.json': ['html2js']
     },
 
 
