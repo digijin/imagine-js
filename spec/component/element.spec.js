@@ -4,12 +4,35 @@ if(jasmine.getFixtures){
 describe("Imagine/component/element", function(){
 
 	var el, raw;
-	beforeEach(function() {
+	beforeEach(function(){
 		Imagine.engine.reset();
-		loadFixtures('offset.html');
-		raw = $('#square')[0]
+
+		if(fixture){
+			this.result = fixture.load('offset.html');	
+		}else{
+			loadFixtures('offset.html');
+		}
+		
+		raw = document.getElementById('square');
 		el = new Imagine.Element(raw);
+	})
+		
+	afterEach(function(){
+		fixture.cleanup()
 	});
+
+	it('basics', function(){
+		expect(document.getElementById).toBeDefined();
+		expect(document.getElementById('square')).toBeDefined();
+		expect(raw).toBeDefined();
+		expect(el).toBeDefined();
+
+		expect($).toBeDefined()
+
+		// expect(fixture.el.firstChild).toBe(this.result[0][0]);
+	});
+	
+
 
 	it("should be defined", function(){
 		expect(Imagine.Element).toBeDefined();
@@ -42,7 +65,6 @@ describe("Imagine/component/element", function(){
 
 	describe("raw", function(){
 		it("should be the object passed into the constructor", function(){
-			
 			var comp = new Imagine.Element(raw)
 			expect(comp.raw).toBe(raw);
 		})
