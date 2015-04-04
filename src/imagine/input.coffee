@@ -4,7 +4,7 @@
 #   Imagine = {}
 
 # class to manage and track input
-class Imagine.InputAbstract
+class Imagine.Input
 
   axes: {}
   mapping: {}
@@ -14,6 +14,8 @@ class Imagine.InputAbstract
 
   # constructor
   constructor: ->
+    Mouse = require './input/mouse.coffee'
+    @mouse = new Mouse()
     Imagine.addEvent document, "keypress", (e) ->
       e = e or window.event
       
@@ -181,6 +183,7 @@ class Imagine.InputAbstract
     return
 
 
-# Imagine.Input = new Imagine.InputAbstract()
 
-module?.exports = Imagine.InputAbstract
+
+
+module?.exports = Imagine.Input

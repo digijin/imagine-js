@@ -16,6 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
+      "bower_components/jquery/dist/jquery.js",
+      "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
       'spec/fixtures/*.html',
       'lib/imagine.js',
       'spec/**/*.spec.js',
@@ -26,6 +28,7 @@ module.exports = function(config) {
     // list of files to exclude
     exclude: [
       // 'spec/component/collider.spec.js',
+      // 'spec/imagine/input/mouse.spec.coffee'
       // 'spec/component/element.spec.js'
     ],
 
@@ -64,7 +67,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
 
     // Continuous Integration mode

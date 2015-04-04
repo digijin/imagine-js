@@ -7,7 +7,11 @@ describe("Imagine/component/collider", function(){
 
 	beforeEach(function() {
 		Imagine.engine.reset();
-        loadFixtures('collider.html');
+		if(fixture){
+			this.result = fixture.load('collider.html');	
+		}else{
+			loadFixtures('collider.html');
+		}
     });
 
 

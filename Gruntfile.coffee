@@ -15,7 +15,7 @@ module.exports = (grunt) ->
 				src: ['src/polyfill/*.coffee', 'src/imagine.coffee', 'src/component/*.coffee']
 				dest: 'lib/imagine.js'
 			spec:
-				src: ["spec/**/*.js"]
+				src: ["spec/**/*.js", "spec/**/*.coffee"]
 				dest: "specrunner/all.spec.js"
 		clean:
 			temp: ["temp"]
@@ -145,43 +145,43 @@ module.exports = (grunt) ->
 					"build-demos"
 				]
 
-		jasmine:
-			all:
-				src: "lib/imagine.js"
-				options:
-					vendor: [
-						"bower_components/jquery/dist/jquery.js"
-						"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
-					]
-					specs: "spec/**/*.spec.js"
+		# jasmine:
+		# 	all:
+		# 		src: "lib/imagine.js"
+		# 		options:
+		# 			vendor: [
+		# 				"bower_components/jquery/dist/jquery.js"
+		# 				"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
+		# 			]
+		# 			specs: "spec/**/*.spec.js"
 					
-					# display: 'short',
-					summary: true
-			#following are only turned on manually for specific debugging
-			inorder:
-				src: "lib/imagine.js"
-				options:
-					vendor: [
-						"bower_components/jquery/dist/jquery.js"
-						"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
-					]
-					specs: [
-						"spec/component/collider.spec.js"
-						"spec/component/element.spec.js"
-						"spec/imagine.component.spec.js"
-						"spec/imagine.spec.js"
-						"spec/imagine/engine.spec.js"
-						"spec/imagine/coffeeify.spec.js"
-					]
+		# 			# display: 'short',
+		# 			summary: true
+		# 	#following are only turned on manually for specific debugging
+		# 	inorder:
+		# 		src: "lib/imagine.js"
+		# 		options:
+		# 			vendor: [
+		# 				"bower_components/jquery/dist/jquery.js"
+		# 				"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
+		# 			]
+		# 			specs: [
+		# 				"spec/component/collider.spec.js"
+		# 				"spec/component/element.spec.js"
+		# 				"spec/imagine.component.spec.js"
+		# 				"spec/imagine.spec.js"
+		# 				"spec/imagine/engine.spec.js"
+		# 				"spec/imagine/coffeeify.spec.js"
+		# 			]
 
-			collider:
-				src: "lib/imagine.js"
-				options:
-					vendor: [
-						"bower_components/jquery/dist/jquery.js"
-						"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
-					]
-					specs: "spec/component/collider.spec.js"
+		# 	collider:
+		# 		src: "lib/imagine.js"
+		# 		options:
+		# 			vendor: [
+		# 				"bower_components/jquery/dist/jquery.js"
+		# 				"bower_components/jasmine-jquery/lib/jasmine-jquery.js"
+		# 			]
+		# 			specs: "spec/component/collider.spec.js"
 
 		jshint:
 			all: [ #, 'demos/**/*.js'
@@ -283,7 +283,7 @@ module.exports = (grunt) ->
 	grunt.registerTask "test", [
 		"coffeelint"
 		# "jshint"
-		"jasmine:all"
+		# "jasmine:all"
 	]
 	grunt.registerTask "demos", [
 		"build-demos"
