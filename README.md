@@ -14,11 +14,15 @@ npm install
 ```
 npm install
 npm install -g bower
-npm install -g grunt-cli
-npm install -g coffee-script
+npm install -g gulp-cli
 bower install
-grunt
 ```
+
+ * new shit
+ ```
+webpack
+karma start
+ ```
 
 ### Features
 
@@ -32,7 +36,7 @@ grunt
 
 
 
- todo: 
+ todo:
  * imagine.config
  * look into use classes to optimise search for components
   * turn on and off auto class appending (?)
@@ -41,4 +45,3 @@ grunt
  * use _.extend or similar to copy methods and properties from a Imagine.BaseComponent
  * bring closer to unity model
  * work out bugs from "optimisation" of gruntfile
-

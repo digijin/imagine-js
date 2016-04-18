@@ -1,10 +1,8 @@
 
-// Imagine = require('../src/imagine')
-console.log("yolo");
+Imagine = require('../src/imagine')
 
 describe('basic', function(){
   it("should be defined", function(){
-
     expect(window.Imagine).toBeDefined();
   })
 });
