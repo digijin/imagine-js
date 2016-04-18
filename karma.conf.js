@@ -35,7 +35,7 @@ module.exports = function(config) {
         // '**/*.coffee': ['coffee'],
         // '**/*.html': ['html2js'],
         // '**/*.json': ['html2js']
-        '**/*.js': ['webpack']
+        'spec/**/*.js': ['webpack']
     },
 
     webpack: require('./webpack.config.js'),

@@ -3,7 +3,10 @@
 console.log("yolo");
 
 describe('basic', function(){
-  expect(window.Imagine).toBeDefined();
+  it("should be defined", function(){
+
+    expect(window.Imagine).toBeDefined();
+  })
 });
 
 
