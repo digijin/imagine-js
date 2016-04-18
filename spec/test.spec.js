@@ -1,5 +1,5 @@
 
-Imagine = require('../src/imagine')
+// Imagine = require('../src/imagine')
 
 describe('basic', function(){
   it("should be defined", function(){
