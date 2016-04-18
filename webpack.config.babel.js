@@ -8,10 +8,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.css$/, loader: "style!css" },
             {
-              test: '/\.js?$/',
-              exclude: /(node_modules|bower_components)/,
+              test: '/\.js/',
               loader: 'babel', // 'babel-loader' is also a legal name to reference
               query: {
                 presets: ['es2015']
