@@ -1,4 +1,4 @@
-import path from 'path';
+var path = require('path');
 
 module.exports = {
     entry: "./src/imagine.js",
@@ -10,7 +10,7 @@ module.exports = {
         loaders: [
             {
               test: '/\.js/',
-              loader: 'babel', // 'babel-loader' is also a legal name to reference
+              loader: 'babel-loader',
               query: {
                 presets: ['es2015']
               }

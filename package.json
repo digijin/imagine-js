@@ -68,5 +68,10 @@
     "lodash": "^2.4.1",
     "matchdep": "^0.3.0",
     "webpack": "^1.13.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
