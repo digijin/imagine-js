@@ -1,6 +1,7 @@
 // Karma configuration
 // Generated on Tue Mar 31 2015 22:19:45 GMT+1100 (AUS Eastern Daylight Time)
-
+var webpackConf = require('./webpack.config.js');
+webpackConf.entry = [];
 module.exports = function(config) {
   config.set({
 
@@ -35,10 +36,10 @@ module.exports = function(config) {
         // '**/*.coffee': ['coffee'],
         // '**/*.html': ['html2js'],
         // '**/*.json': ['html2js']
-        'spec/**/*.js': ['webpack']
+        // '**/*spec.js': ['webpack']
     },
 
-    webpack: require('./webpack.config.js'),
+    webpack: webpackConf,
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

@@ -42,7 +42,7 @@
     "express": "^4.10.4",
     "gulp": "^3.9.1",
     "gulp-eslint": "^2.0.0",
-    "karma": "^0.12.37",
+    "karma": "^0.13.22",
     "karma-jasmine": "~0.2.0",
     "karma-webpack": "^1.7.0",
     "lodash": "^2.4.1",

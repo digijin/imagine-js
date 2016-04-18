@@ -1,7 +1,7 @@
 'use strict';
 
 // import _ from 'underscore';
-console.log("yolo");
+console.log("imagine.js");
 
 export default class Imagine {
   constructor() {
