@@ -8,3 +8,5 @@ export default class Imagine {
     this.objects = [];
   }
 }
+
+window.Imagine = Imagine;

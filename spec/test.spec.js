@@ -1,3 +1,12 @@
+
+// Imagine = require('../src/imagine')
+console.log("yolo");
+
+describe('basic', function(){
+  expect(window.Imagine).toBeDefined();
+});
+
+
 // describe('jasmine', function(){
 // 	it("should find 'waits'", function(){
 // 		waits(1000);
@@ -28,7 +37,7 @@
 //     done();
 //   });
 
-    
+
 
 //   describe("long asynchronous specs", function() {
 //     var originalTimeout;
@@ -48,4 +57,3 @@
 //     });
 //   });
 // });
-
