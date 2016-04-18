@@ -1,6 +1,7 @@
 node_modules
 temp/
 lib/imagine.js
+lib/imagine.js.map
 lib/imagine.min.js
 specrunner/all.spec.js
 bower_components

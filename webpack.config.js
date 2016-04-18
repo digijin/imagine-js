@@ -13,7 +13,7 @@ module.exports = {
     entry: path.resolve(dir_js, 'imagine.js'),
     output: {
         path: dir_build,
-        filename: 'bundle.js'
+        filename: 'imagine.js'
     },
     devServer: {
         contentBase: dir_build,
