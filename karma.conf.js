@@ -1,7 +1,8 @@
 // Karma configuration
 // Generated on Tue Mar 31 2015 22:19:45 GMT+1100 (AUS Eastern Daylight Time)
 var webpackConf = require('./webpack.config.js');
-webpackConf.entry = [];
+delete webpackConf.entry;
+
 module.exports = function(config) {
   config.set({
 
@@ -19,7 +20,7 @@ module.exports = function(config) {
       // 'lib/imagine.js',
       // 'spec/**/*.spec.js',
       // 'spec/**/*.spec.coffee'
-      'spec/test.spec.js'
+      'spec/imagine.spec.js'
     ],
 
 
@@ -39,19 +40,7 @@ module.exports = function(config) {
         '**/*spec.js': ['webpack']
     },
 
-    webpack: {
-      module: {
-        loaders: [
-          {test:/\.js$/, loader: 'babel'}
-        ]
-      },
-      resolve: {
-        extensions: [
-          '',
-          '.js'
-        ]
-      }
-    },
+    webpack: webpackConf,
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
