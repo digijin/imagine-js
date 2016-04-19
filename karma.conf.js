@@ -2,7 +2,13 @@
 // Generated on Tue Mar 31 2015 22:19:45 GMT+1100 (AUS Eastern Daylight Time)
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
-
+webpackConf.module.loaders[0].loader = 'isparta';
+// webpackConf.module.preLoaders = [
+//   {
+//       test: /\.js$/,
+//       loader: 'isparta'
+//   }
+// ];
 module.exports = function(config) {
   config.set({
 
@@ -38,6 +44,7 @@ module.exports = function(config) {
         // '**/*.html': ['html2js'],
         // '**/*.json': ['html2js']
         '**/*spec.js': ['webpack']
+        // '**/*.js': ['coverage']
     },
 
     webpack: webpackConf,
@@ -45,7 +52,13 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter: {
+      type: 'text'
+      // type : 'html',
+      // dir : 'coverage/'
+    },
 
     // web server port
     port: 9876,

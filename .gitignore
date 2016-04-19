@@ -10,3 +10,4 @@ doc/
 _SpecRunner.html
 demos/**/*.js
 demos/**/**/*.js
+coverage
