@@ -8,7 +8,7 @@ class Imagine {
     this.process(params);
   }
   process(params) {
-   if (Array.isArray(params)) {
+   if (utils.isArray(params)) {
      let i = 0;
 
      while (i < params.length) {
@@ -28,6 +28,7 @@ class Imagine {
  }
  register(object){
    this.objects.push(object);
+   return object;
  }
  reset(){
    this.objects = [];

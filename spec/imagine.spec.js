@@ -31,37 +31,37 @@ describe('Imagine base', function(){
 	});
 
 
-	// it('should accept an array of objects', function(){
-	// 	Imagine.engine.reset();
-	// 	Imagine([{},{}]);
-	// 	expect(Imagine.objects.length).toBe(2);
-	// })
+	it('should accept an array of objects', function(){
+		imagine.reset();
+		imagine.process([{},{}]);
+		expect(imagine.objects.length).toBe(2);
+	});
+
+	it("should return the object it made", function(){
+		expect(imagine.register({})).toBeDefined();
+		expect(imagine.register({test:"string"}).test).toBe("string");
+	});
+
+	// it("should take a htmlElement and turn it into a generic element for chaining", function(){
+	// 	div = document.createElement('div');
+	// 	obj = imagine.process(div);
+	// 	expect(obj.getComponent('element')).toBeDefined();
+	// 	expect(obj.getComponent('element').raw).toBe(div);
+	// });
 //
-// 	it("should return the object it made", function(){
-// 		expect(Imagine({})).toBeDefined()
-// 		expect(Imagine({test:"string"}).test).toBe("string")
-// 	})
+	describe("getComponent", function(){
 //
-// 	it("should take a htmlElement and turn it into a generic element for chaining", function(){
-// 		div = document.createElement('div')
-// 		obj = Imagine(div)
-// 		expect(obj.getComponent('element')).toBeDefined()
-// 		expect(obj.getComponent('element').raw).toBe(div)
-// 	})
+		it("should be defined", function(){
+			expect(Imagine.getComponent).toBeDefined();
+		});
 //
-// 	describe("getComponent", function(){
-//
-// 		it("should be defined", function(){
-// 			expect(Imagine.getComponent).toBeDefined();
-// 		})
-//
-// 		it("should have a getComponent that searches all objects", function(){
-// 			com = {name:'test'}
-// 			Imagine({}).addComponent(com)
-// 			expect(Imagine.getComponent).toBeDefined()
-// 			expect(Imagine.getComponent('test')).toBeDefined()
-// 			expect(Imagine.getComponent('test')).toBe(com)
-// 		})
+		// it("should have a getComponent that searches all objects", function(){
+		// 	com = {name:'test'};
+		// 	Imagine({}).addComponent(com);
+		// 	expect(Imagine.getComponent).toBeDefined();
+		// 	expect(Imagine.getComponent('test')).toBeDefined();
+		// 	expect(Imagine.getComponent('test')).toBe(com);
+		// });
 // 		it("should have a getComponents that searches all objects", function(){
 // 			com1 = {name:'test', unique:"a"}
 // 			com2 = {name:'test', unique:"b"}
@@ -71,7 +71,7 @@ describe('Imagine base', function(){
 // 			expect(Imagine.getComponents('test').length).toBe(2)
 // 		})
 //
-// 	})
+	});
 // 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 //
 // 	it("should turn a object passed into initializer into the first component and return that", function(){
@@ -79,7 +79,7 @@ describe('Imagine base', function(){
 // 	});
 // })
 //
-// describe('Tags', function(){
+	describe('Tags', function(){
 // 	beforeEach(function() {
 // 		Imagine.engine.reset();
 // 	});
@@ -104,9 +104,9 @@ describe('Imagine base', function(){
 // 		expect(Imagine({}).removeTag).toBeDefined();
 // 	})
 // 	it("should have working removeTag")
-// })
+	});
 //
-// describe('notify', function(){
+	describe('notify', function(){
 // 	it("shuold have notify defined", function(){
 // 		expect(Imagine.notify).toBeDefined()
 // 	});
@@ -123,11 +123,11 @@ describe('Imagine base', function(){
 // 		expect(com2.func).toHaveBeenCalled()
 //
 // 	})
-// })
-//
-//
-//
-// describe('Objects', function(){
+	});
+
+
+
+	describe('Objects', function(){
 //
 // 	beforeEach(function() {
 // 		Imagine.engine.reset();
@@ -163,5 +163,5 @@ describe('Imagine base', function(){
 // 	it("should return a component, not the object", function(){
 // 		var comp = {name:"dummy"}
 // 		expect(Imagine(comp)).toBe(comp);
-// 	})
+	});
 });
