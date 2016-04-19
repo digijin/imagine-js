@@ -1,31 +1,35 @@
-Imagine = require('../src/imagine.js');
+var Imagine = require('../src/imagine.js');
+var imagine = new Imagine();
 // import Imagine from '../src/imagine.js'
 describe('Imagine base', function(){
 	it('should exist', function(){
 		expect(Imagine).toBeDefined();
 	});
-});
-
-	// beforeEach(function() {
-	// 	Imagine.engine.reset();
-	// });
+	it('should be a class', function(){
+		var imagine = new Imagine();
+	});
 
 
-// 	describe('destroy', function(){
-// 		it("should exist", function (){
-// 			expect(Imagine.destroy).toBeDefined();
-// 		});
-// 		it("should destroy", function(){
-//
-// 			var obj = {}
-// 			Imagine(obj);
-// 			expect(Imagine.objects.length).toBe(1);
-// 			Imagine.destroy(obj);
-// 			expect(Imagine.objects.length).toBe(0);
-//
-// 		})
-// 	})
-//
+	beforeEach(function() {
+		imagine.reset();
+	});
+
+
+	describe('destroy', function(){
+		it("should exist", function (){
+			expect(imagine.destroy).toBeDefined();
+		});
+		it("should destroy", function(){
+
+			var obj = {};
+			imagine.register(obj);
+			expect(imagine.objects.length).toBe(1);
+			imagine.destroy(obj);
+			expect(imagine.objects.length).toBe(0);
+
+		});
+	});
+
 
 	// it('should accept an array of objects', function(){
 	// 	Imagine.engine.reset();
@@ -160,3 +164,4 @@ describe('Imagine base', function(){
 // 		var comp = {name:"dummy"}
 // 		expect(Imagine(comp)).toBe(comp);
 // 	})
+});

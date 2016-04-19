@@ -50,11 +50,14 @@ module.exports = function(config) {
     reporters: ['progress', 'coverage'],
 
     coverageReporter: {
-      type: 'text'
-      // type : 'html',
-      // dir : 'coverage/'
+      reporters:[
+        {type: 'text'},
+        {
+          type : 'html',
+          dir : 'coverage/'
+        }
+      ]
     },
-
     // web server port
     port: 9876,
 
