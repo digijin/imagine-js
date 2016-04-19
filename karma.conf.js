@@ -1,14 +1,9 @@
 // Karma configuration
-// Generated on Tue Mar 31 2015 22:19:45 GMT+1100 (AUS Eastern Daylight Time)
+
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
-webpackConf.module.loaders[0].loader = 'isparta';
-// webpackConf.module.preLoaders = [
-//   {
-//       test: /\.js$/,
-//       loader: 'isparta'
-//   }
-// ];
+webpackConf.module.loaders[0].loader = 'isparta'; //instrument
+
 module.exports = function(config) {
   config.set({
 
