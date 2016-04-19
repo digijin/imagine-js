@@ -16,7 +16,7 @@ module.exports = function(config) {
       // "bower_components/jquery/dist/jquery.js",
       // "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
       // 'spec/fixtures/*.html',
-      'lib/imagine.js',
+      // 'lib/imagine.js',
       // 'spec/**/*.spec.js',
       // 'spec/**/*.spec.coffee'
       'spec/test.spec.js'
@@ -36,10 +36,22 @@ module.exports = function(config) {
         // '**/*.coffee': ['coffee'],
         // '**/*.html': ['html2js'],
         // '**/*.json': ['html2js']
-        // '**/*spec.js': ['webpack']
+        '**/*spec.js': ['webpack']
     },
 
-    webpack: webpackConf,
+    webpack: {
+      module: {
+        loaders: [
+          {test:/\.js$/, loader: 'babel'}
+        ]
+      },
+      resolve: {
+        extensions: [
+          '',
+          '.js'
+        ]
+      }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

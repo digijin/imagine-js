@@ -4,8 +4,15 @@
 console.log("imagine.js");
 
 export default class Imagine {
-  constructor() {
+  constructor(params) {
     this.objects = [];
+
+    this.engine = require('./imagine/engine.js');
+
+    return Imagine.process(params);
+  }
+  process(params) {
+
   }
 }
 
