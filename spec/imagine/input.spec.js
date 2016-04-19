@@ -1,5 +1,5 @@
 describe('Imagine/Input', function(){
-	var Input = Imagine.input; 
+	var Input = Imagine.input;
 	beforeEach(function() {
 		Imagine.engine.reset();
 	});
@@ -14,12 +14,12 @@ describe('Imagine/Input', function(){
 	it('should use notify function', function(){
 		var obj = {onKeyDown:function(){
 
-		}}
+		}};
 		spyOn(obj, "onKeyDown");
-		Imagine(obj)
+		Imagine(obj);
 		Input.keydown("left");
 		expect(obj.onKeyDown).toHaveBeenCalled();
-	})
+	});
 
 
 	describe("getAxis", function(){
@@ -27,13 +27,13 @@ describe('Imagine/Input', function(){
 			expect(Input.getAxis).toBeDefined();
 		});
 
-		
+
 		it("should assign keypressed to axes", function(){
 			expect(Input.getAxis).toBeDefined();
 			expect(Input.getAxis("Horizontal")).toBe(0);
-			
+
 			Input.keydown("left");
-			
+
 			expect(Input.getAxis("Horizontal")).toBe(-1);
 
 			Input.keydown("right");
@@ -51,22 +51,22 @@ describe('Imagine/Input', function(){
 		});
 
 	});
-	
+
 	describe('getKey', function(){
 		it("should be defined", function(){
-			expect(Imagine.input.getKey).toBeDefined()
-		})
-	})
+			expect(Imagine.input.getKey).toBeDefined();
+		});
+	});
 
 
 	describe('keyup keydown', function(){
 
-		
+
 
 		it("should ignore keydowns if the key is down", function(){
 			var obj = {
 				keydown:function(){}
-			}
+			};
 			spyOn(obj, "keydown");
 			Imagine(obj);
 
@@ -84,7 +84,7 @@ describe('Imagine/Input', function(){
 			var obj = {
 				keydown:function(){},
 				keyup:function(){}
-			}
+			};
 			spyOn(obj, "keydown");
 			spyOn(obj, "keyup");
 			Imagine(obj);
@@ -178,5 +178,5 @@ describe('Imagine/Input', function(){
 			expect(Input.axes.test).toBeDefined();
 			expect(Input.axes.test).toEqual(params);
 		});
-	})
-})
+	});
+});

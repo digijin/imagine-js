@@ -8,10 +8,10 @@ describe("utils", function(){
 			expect(Imagine.utils.typeIsArray).toBeDefined();
 		});
 		it("should detect an array", function(){
-			expect(Imagine.utils.typeIsArray([])).toBe(true)
-		})
+			expect(Imagine.utils.typeIsArray([])).toBe(true);
+		});
 		it("should detect an object", function(){
-			expect(Imagine.utils.typeIsArray({})).toBe(false)
-		})
-	})
-})
+			expect(Imagine.utils.typeIsArray({})).toBe(false);
+		});
+	});
+});

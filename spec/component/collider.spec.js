@@ -8,7 +8,7 @@ describe("Imagine/component/collider", function(){
 	beforeEach(function() {
 		Imagine.engine.reset();
 		if(fixture){
-			this.result = fixture.load('collider.html');	
+			this.result = fixture.load('collider.html');
 		}else{
 			loadFixtures('collider.html');
 		}
@@ -20,17 +20,17 @@ describe("Imagine/component/collider", function(){
 		expect($('#square')).toBeDefined();
 		expect($('#square').length).toBe(1);
 		expect($('#square').width()).toBe(10);
-	})
+	});
 
 	it("should be defined", function(){
 		expect(Imagine.Collider).toBeDefined();
 
-	})
+	});
 	it("should be searchable", function(){
 		var coll = new Imagine.Collider();
 		expect(coll.name).toBe('collider');
 		expect(coll.tags.indexOf('collider')).not.toBe(-1);
-	})
+	});
 
 	describe("start", function(){
 		// requires jquery
@@ -40,7 +40,7 @@ describe("Imagine/component/collider", function(){
 		// 	expect(coll.element).toBeDefined();
 		// 	//getComponent('element')
 		// })
-	})
+	});
 
 	describe("move", function(){
 
@@ -52,10 +52,10 @@ describe("Imagine/component/collider", function(){
 
 			// console.log(Imagine.Collider);
 
-			coll = Imagine($('#square')[0])
+			coll = Imagine($('#square')[0]);
 			// console.log(coll);
-			coll.addComponent(new Imagine.Collider())
-			coll = coll.getComponent('collider')
+			coll.addComponent(new Imagine.Collider());
+			coll = coll.getComponent('collider');
 
 			Imagine($('#rectangle')[0]).addComponent(new Imagine.Collider());
 
@@ -64,7 +64,7 @@ describe("Imagine/component/collider", function(){
 			expect($('#square').css('left')).toBe('20px');
 
 
-		})
+		});
 
 		it("should call element.move", function(){
 			div = $('#square')[0];
@@ -79,7 +79,7 @@ describe("Imagine/component/collider", function(){
 			coll.move(1,1);
 			expect(el.move).toHaveBeenCalled();
 
-		})
+		});
 
 		it("should be defined", function(){
 			expect(new Imagine.Collider().move).toBeDefined();
@@ -99,9 +99,9 @@ describe("Imagine/component/collider", function(){
 			//debugging tests...
 			// expect(sq).toBeDefined();
 			// expect(sq[0]).toBeDefined();
-			
+
 			// sq.css("left", "1px");
-			
+
 			// expect(typeof sq.attr("style")).toBe("string");
 			// expect(sq.attr("style")).toBe("left: 1px;");
 
@@ -121,7 +121,7 @@ describe("Imagine/component/collider", function(){
 			isq.move(20, 10);
 			expect(sq.css("top")).toBe('15px');
 			expect(sq.css("left")).toBe('30px');
-		})
+		});
 
 
 		describe("collision", function(){
@@ -150,7 +150,7 @@ describe("Imagine/component/collider", function(){
 
 				expect(sq.css("top")).toBe("10px");
 				expect(sq.css("left")).toBe("110px");
-			})
+			});
 			it("should not have edge issues", function(){
 				sq.css("left", 100);
 				sq.css("top", 0);
@@ -159,7 +159,7 @@ describe("Imagine/component/collider", function(){
 
 				expect(sq.css("top")).toBe("10px");
 				expect(sq.css("left")).toBe("110px");
-			})
+			});
 
 			//RECTANGLE is x=20 y=20 w=20 h=10 b=30 r=40
 			//SQUARE is w&h = 10
@@ -169,7 +169,7 @@ describe("Imagine/component/collider", function(){
 				collision = isq.move(0, 15);
 				expect(collision).toBeDefined();
 				expect(collision.collider).toBeDefined();
-			})
+			});
 
 			it("should hit top", function(){
 				sq.css("left", 20);
@@ -256,16 +256,16 @@ describe("Imagine/component/collider", function(){
 				isq.move(10, 40);
 				expect(sq.css("left")).toBe('60px');
 				expect(sq.css("top")).toBe('45px');
-			})
+			});
 
 
 			it("should reset between tests", function(){
 				expect(sq.css("left")).toBe("0px");
-			})
+			});
 
 
 
-		})
+		});
 
 		describe("notify", function(){
 			var sq, rec, isq, irec, obj;
@@ -275,27 +275,27 @@ describe("Imagine/component/collider", function(){
 
 				obj = {name: 'dummy', onCollision:function(){
 					// console.log("called");
-				}}
+				}};
 				spyOn(obj, "onCollision").and.callThrough();
 
 				irec = Imagine(rec[0]).addComponent(new Imagine.Collider()).getComponent("collider");
 				isq = Imagine(sq[0])
 					.addComponent(new Imagine.Collider())
 					.addComponent(obj)
-					.getComponent('collider')
+					.getComponent('collider');
 
 
 				sq.css("left", 20);
 				sq.css("top", 0);
-			})
+			});
 
 			it("should notify a function on collision", function(){
-				expect(isq.getComponent('dummy')).toBe(obj)
+				expect(isq.getComponent('dummy')).toBe(obj);
 
 				collision = isq.move(0, 15);
 				expect(collision).toBeDefined();
 
-				expect(obj.onCollision).toHaveBeenCalled()
+				expect(obj.onCollision).toHaveBeenCalled();
 				args = obj.onCollision.calls.mostRecent().args[0];
 				expect(args).toBeDefined();
 				// expect(args.collider.getComponent('element')).toBe(rec)
@@ -304,38 +304,38 @@ describe("Imagine/component/collider", function(){
 			it("should notify a component added after the collider", function(){
 				var newobj = {name: 'postadd', onCollision:function(){
 					// console.log("called");
-				}}
+				}};
 				spyOn(newobj, "onCollision").and.callThrough();
 
-				isq.addComponent(newobj)
+				isq.addComponent(newobj);
 				collision = isq.move(0, 15);
 
-				expect(newobj.onCollision).toHaveBeenCalled()
-				expect(obj.onCollision).toHaveBeenCalled()
+				expect(newobj.onCollision).toHaveBeenCalled();
+				expect(obj.onCollision).toHaveBeenCalled();
 
-			})
+			});
 
 			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
 					// console.log("called");
-				}}
+				}};
 				spyOn(obj, "onCollision").and.callThrough();
 
-				irec.addComponent(obj)
+				irec.addComponent(obj);
 
 				collision = isq.move(0, 15);
 				expect(collision).toBeDefined();
 
-				expect(obj.onCollision).toHaveBeenCalled()
+				expect(obj.onCollision).toHaveBeenCalled();
 
-			})
+			});
 
-		})
-	
+		});
 
-		it("should pass collided objects on collision")
-		it("should be able to tell what side it collided with")
-	})
+
+		it("should pass collided objects on collision");
+		it("should be able to tell what side it collided with");
+	});
 	describe("ignoreSide", function(){
 		var sq, rec, isq, irec;
 
@@ -344,11 +344,11 @@ describe("Imagine/component/collider", function(){
 			beforeEach(function(){
 				sq = $('#square');
 				rec = $('#rectangle');
-				isq = Imagine(sq[0]).addComponent(new Imagine.Collider()).getComponent("collider");
+				isq = Imagine(sq[0]).addCompnent(new Imagine.Collider()).getComponent("collider");
 				irec = Imagine(rec[0]).addComponent(new Imagine.Collider()).getComponent("collider");
-			})
+			});
 			it("like top", function(){
-				irec.ignoreSides = ["top"]
+				irec.ignoreSides = ["top"];
 				sq.css("left", 20);
 				sq.css("top", 0);
 				collision = isq.move(0, 15);
@@ -356,7 +356,7 @@ describe("Imagine/component/collider", function(){
 
 			});
 			it("shouldnt hit bottom", function(){
-				irec.ignoreSides = ["bottom"]
+				irec.ignoreSides = ["bottom"];
 				sq.css("left", 20);
 				sq.css("top", 40);
 				collision = isq.move(0, -15);
@@ -364,7 +364,7 @@ describe("Imagine/component/collider", function(){
 			});
 
 			it("shouldnt hit left", function(){
-				irec.ignoreSides = ["left"]
+				irec.ignoreSides = ["left"];
 				sq.css("left", 0);
 				sq.css("top", 20);
 				collision = isq.move(15, 0);
@@ -372,26 +372,26 @@ describe("Imagine/component/collider", function(){
 			});
 
 			it("shouldnt hit right", function(){
-				irec.ignoreSides = ["right"]
+				irec.ignoreSides = ["right"];
 				sq.css("left", 50);
 				sq.css("top", 20);
 				collision = isq.move(-15, 0);
 				expect(sq.css("left")).toBe("35px");
 			});
-		})
-	})
+		});
+	});
 
 	describe("collidesWith", function(){
-		it("should take a html element as an input")
-		it("should take a rect object as input")
-		it("should look at obj[0]and use it if it is a html element")//jq assist
-	})
+		it("should take a html element as an input");
+		it("should take a rect object as input");
+		it("should look at obj[0]and use it if it is a html element");//jq assist
+	});
 	describe("compareSquares", function(){
 		it("should have basic expectations", function(){
 			var coll = new Imagine.Collider();
 			expect(coll).toBeDefined();
 			expect(coll.compareSquares).toBeDefined();
-		})
+		});
 
 		it("should return false when squares apart", function(){
 			var coll = new Imagine.Collider();
@@ -406,9 +406,9 @@ describe("Imagine/component/collider", function(){
 			expect(coll.compareSquares(sq2, sq1)).toBe(false);
 
 
-		})
+		});
 
-		it('TODO: sohuld reimplement this spec now that its not testing for sliding against objects')
+		it('TODO: sohuld reimplement this spec now that its not testing for sliding against objects');
 		// it("should return true when squares together", function(){
 		// 	var coll = new Imagine.Collider();
 		// 	var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
@@ -432,7 +432,7 @@ describe("Imagine/component/collider", function(){
 		// 	expect(coll.compareSquares(sq2, sq1)).toBe(true);
 
 		// });
-		
-			
-	})
-})
+
+
+	});
+});

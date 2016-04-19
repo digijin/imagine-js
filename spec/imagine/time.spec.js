@@ -15,11 +15,11 @@ describe('Imagine/time', function(){
 
 	describe("pause", function(){
 		it("should define paused", function(){
-			expect(Imagine.time.paused).toBeDefined()
-		})
+			expect(Imagine.time.paused).toBeDefined();
+		});
 		it("should define pause", function(){
-			expect(Imagine.time.pause).toBeDefined()
-		})
+			expect(Imagine.time.pause).toBeDefined();
+		});
 
 		it("should stop the flow of time", function(done){
 			Imagine.engine.setFPS(60);
@@ -27,7 +27,7 @@ describe('Imagine/time', function(){
 				update: function(){
 					// console.log("wat");
 				}
-			}
+			};
 			spyOn(obj, "update").and.callThrough();
 			Imagine.time.pause();
 			// expect(Imagine.time.paused).toBe(true)
@@ -38,21 +38,21 @@ describe('Imagine/time', function(){
 				done();
 			}, 50);
 
-		})
+		});
 		it("should restart on reset", function(){
 			Imagine.time.pause();
 			expect(Imagine.time.paused).toBe(true);
 			Imagine.engine.reset();
 			expect(Imagine.time.paused).toBe(false);
-		})
-	})
+		});
+	});
 
 	describe('update', function(){
 		it("should call update", function(){
 			var obj = {update:function(){}};
 			spyOn(obj, 'update');
 			Imagine(obj);
-			expect(Imagine.engine.forceUpdate).toBeDefined()
+			expect(Imagine.engine.forceUpdate).toBeDefined();
 			Imagine.engine.forceUpdate();
 			expect(obj.update).toHaveBeenCalled();
 		});
@@ -67,14 +67,14 @@ describe('Imagine/time', function(){
 			spyOn(window, 'requestAnimationFrame');
 			Imagine.engine.setFPS(10);
 			expect(window.requestAnimationFrame).not.toHaveBeenCalled();
-		})
+		});
 
 		it('should call requestAnimationFrame if fps=0', function(){
 
 			spyOn(window, 'requestAnimationFrame');
 			Imagine.engine.setFPS(0);
 			expect(window.requestAnimationFrame).toHaveBeenCalled();
-		})
+		});
 
 		it("should update deltaTime properly", function(done){
 			var counter = 0;
@@ -82,7 +82,7 @@ describe('Imagine/time', function(){
 				update: function(){
 					counter += Imagine.time.deltaTime;
 				}
-			}
+			};
 			spyOn(obj, "update").and.callThrough();
 			Imagine.engine.setFPS(60);
 			Imagine({}).addComponent(obj);
@@ -97,7 +97,6 @@ describe('Imagine/time', function(){
 			}, 50);
 		});
 
-	})
+	});
 
-})
-
+});

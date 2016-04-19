@@ -1,4 +1,10 @@
+Imagine = require('../src/imagine.js');
+// import Imagine from '../src/imagine.js'
 describe('Imagine base', function(){
+	it('should exist', function(){
+		expect(Imagine).toBeDefined();
+	});
+});
 
 	// beforeEach(function() {
 	// 	Imagine.engine.reset();
@@ -20,9 +26,7 @@ describe('Imagine base', function(){
 // 		})
 // 	})
 //
-	it('should exist', function(){
-		expect(Imagine).toBeDefined();
-	})
+
 	// it('should accept an array of objects', function(){
 	// 	Imagine.engine.reset();
 	// 	Imagine([{},{}]);
@@ -156,5 +160,3 @@ describe('Imagine base', function(){
 // 		var comp = {name:"dummy"}
 // 		expect(Imagine(comp)).toBe(comp);
 // 	})
-
-})

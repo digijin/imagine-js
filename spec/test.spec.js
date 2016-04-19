@@ -1,10 +1,11 @@
 
-Imagine = require('../src/imagine.js')
+Imagine = require('../src/imagine.js');
+// import Imagine from '../src/imagine.js';
 
 describe('basic', function(){
   it("should be defined", function(){
     expect(window.Imagine).toBeDefined();
-  })
+  });
 });
 
 

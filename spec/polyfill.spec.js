@@ -6,4 +6,4 @@ describe('Polyfills', function(){
 	it('console.log', function(){
 		expect(console.log).toBeDefined();
 	});
-})
+});
