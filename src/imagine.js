@@ -9,7 +9,7 @@ class Imagine {
   constructor(params) {
     this.objects = [];
     if(params)
-    this.register(params);
+      this.register(params);
   }
   // enable object to be tracked by Imagine
   register(params) {

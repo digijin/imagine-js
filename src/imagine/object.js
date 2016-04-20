@@ -31,7 +31,7 @@ module.exports = {
     return (this.tags.indexOf(tag) > -1) ? true:false;
   },
   removeTag: function(tag){
-    let ind = this.tags.indexOf(tag)
+    let ind = this.tags.indexOf(tag);
     if(ind >-1){
       this.tags.splice(ind, 1);
     }

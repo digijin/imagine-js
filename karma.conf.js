@@ -23,7 +23,9 @@ module.exports = function(config) {
       // 'spec/**/*.spec.coffee'
       'spec/imagine.spec.js',
       'spec/imagine/utils.spec.js',
-      'spec/imagine/object.spec.js'
+      'spec/imagine/object.spec.js',
+      'spec/imagine/time.spec.js',
+      'spec/imagine/engine.spec.js'
     ],
 
 
@@ -73,7 +75,8 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    browsers: ['Chrome'],//, 'Firefox'
+    browsers: ['Chrome'],
+    // browsers: ['Chrome', 'Firefox'],
 
     singleRun: false
   });
