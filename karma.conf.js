@@ -22,7 +22,8 @@ module.exports = function(config) {
       // 'spec/**/*.spec.js',
       // 'spec/**/*.spec.coffee'
       'spec/imagine.spec.js',
-      'spec/imagine/utils.spec.js'
+      'spec/imagine/utils.spec.js',
+      'spec/imagine/object.spec.js'
     ],
 
 

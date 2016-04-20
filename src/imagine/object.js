@@ -1,9 +1,15 @@
 module.exports = {
-  addComponent: () => {},
-  getComponent: () => {},
-  addTag: () => {},
-  getTag: () => {},
-  hasTag: () => {},
-  removeTag: () => {},
-  notify: () => {}
+  addComponent: function(com) {
+      if(!com){
+        throw new Error('component undefined');
+      }
+      com.object = this;
+      return com;
+  },
+  getComponent: function(){},
+  addTag: function(){},
+  getTag: function(){},
+  hasTag: function(){},
+  removeTag: function(){},
+  notify: function(){}
 };

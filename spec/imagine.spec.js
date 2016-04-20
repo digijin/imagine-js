@@ -40,6 +40,9 @@ describe('Imagine', function(){
 			expect(obj.removeTag).toBeDefined();
 			expect(obj.notify).toBeDefined();
 		});
+		it('should error if passed nothing', function(){
+			expect(function(){imagine.register();}).toThrow();
+		});
 	});
 
 	describe('reset', function(){
@@ -87,9 +90,9 @@ describe('Imagine', function(){
 //
 	});
 	describe('notify', function(){
-// 	it("shuold have notify defined", function(){
-// 		expect(Imagine.notify).toBeDefined()
-// 	});
+	it("shuold have notify defined", function(){
+		expect(imagine.notify).toBeDefined();
+	});
 // 	it("sohuld notify all components", function(){
 // 		com1 = {func:function(){}}
 // 		com2 = {func:function(){}}
