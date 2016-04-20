@@ -17,8 +17,27 @@ describe('component/object', function(){
       var com = obj.addComponent({com:'test'});
       expect(com.com).toBe('test');
     });
-    iit('should set a reference to the object', function(){
+    it('should set a reference to the object', function(){
       expect(obj.addComponent({}).object).toBe(obj);
+    });
+    it('should add it to the objects componets', function(){
+      expect(obj.addComponent({}).object.components.length).toBe(1);
+    });
+    it('should copy functions onto the component', function(){
+      var com = obj.addComponent({});
+      expect(com.addComponent).toBeDefined();
+      expect(com.getComponent).toBeDefined();
+      expect(com.addTag).toBeDefined();
+      expect(com.getTag).toBeDefined();
+      expect(com.hasTag).toBeDefined();
+      expect(com.removeTag).toBeDefined();
+      expect(com.notify).toBeDefined();
+    });
+    it('should call start on component', function(){
+      var com = {start:function(){}};
+      spyOn(com, 'start');
+      obj.addComponent(com);
+      expect(com.start).toHaveBeenCalled()
     });
   });
 });

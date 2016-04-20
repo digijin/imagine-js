@@ -37,8 +37,13 @@ class Imagine {
     if(!object){
       throw new Error('object undefined');
     }
-    for(let func of _.keys(objectFunctions)){
-      object[func] = objectFunctions[func].bind(object);
+    for(let key of _.keys(objectFunctions)){
+      if(typeof objectFunctions[key] == 'function'){
+          object[key] = objectFunctions[key].bind(object);
+      }else{
+        object[key] = _.clone(objectFunctions[key]);
+      }
+
     }
     this.objects.push(object);
     return object;
