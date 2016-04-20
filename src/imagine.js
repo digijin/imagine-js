@@ -24,7 +24,7 @@ class Imagine {
 
       if (utils.isElement(params)) {
         let el = new Element(params);
-        var out = this.register({}).addComponent(el);
+        var out = this.register().addComponent(el);
       } else {
         var out = this.registerObject(params);
       }
@@ -32,11 +32,12 @@ class Imagine {
     return out;
   }
   //private
-  registerObject(object){
+  registerObject(com){
     //  _.assign(object, objectFunctions);
-    if(!object){
-      throw new Error('object undefined');
-    }
+    let object = {};
+    // if(!object){
+    //   throw new Error('object undefined');
+    // }
     for(let key of _.keys(objectFunctions)){
       if(typeof objectFunctions[key] == 'function'){
           object[key] = objectFunctions[key].bind(object);
@@ -46,7 +47,14 @@ class Imagine {
 
     }
     this.objects.push(object);
-    return object;
+    if(com){
+      object.addComponent(com);
+      return com;
+    }else{
+      return object;
+    }
+
+
   }
   reset(){
     this.objects = [];

@@ -4,7 +4,7 @@ var obj = {};
 describe('component/object', function(){
   beforeEach(function(){
     imagine.reset();
-    obj = imagine.register({});
+    obj = imagine.register();
   });
   describe('addComponent', function(){
     it('should be defined', function(){
