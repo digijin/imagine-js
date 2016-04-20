@@ -21,13 +21,20 @@ describe('Imagine', function(){
 	});
 
 	describe('register', function(){
+		it('should take nothing to return an object with no components', function(){
+			var obj = imagine.register();
+			expect(obj.components.length).toBe(0);
+		});
+		it('should take what its given and make it a component', function(){
+			expect(imagine.register({}).object.components.length).toBe(1);
+		});
 		it('should accept an array of objects', function(){
 			imagine.reset();
 			imagine.register([{},{}]);
 			expect(imagine.objects.length).toBe(2);
 		});
 
-		it("should return the object it made", function(){
+		it("should return the component it made", function(){
 			expect(imagine.register({})).toBeDefined();
 			expect(imagine.register({test:"string"}).test).toBe("string");
 		});
