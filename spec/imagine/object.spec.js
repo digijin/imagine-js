@@ -61,4 +61,30 @@ describe('component/object', function(){
       expect(obj.hasTag('swag')).toBe(false);
     });
   });
+  describe('removeTag', function(){
+    it('should remove the tag', function(){
+      expect(obj.hasTag("swag")).toBe(false);
+      obj.addTag('pimp');
+      obj.addTag('swag');
+      obj.addTag('yolo');
+      expect(obj.hasTag("swag")).toBe(true);
+      obj.removeTag('swag');
+      expect(obj.hasTag("swag")).toBe(false);
+    });
+  });
+  describe('notify', function(){
+    it('should notify all components on object', function(){
+      var com = {myfunc:function(){}};
+      spyOn(com, "myfunc");
+      obj.addComponent(com);
+      obj.notify('myfunc');
+      expect(com.myfunc).toHaveBeenCalled();
+    });
+    it('should have the right scope', function(){
+      var com = {}
+      com.myfunc = function(){expect(this).toBe(com);}
+      obj.addComponent(com);
+      obj.notify('myfunc');
+    });
+  });
 });

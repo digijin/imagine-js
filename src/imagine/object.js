@@ -28,6 +28,20 @@ module.exports = {
   hasTag: function(tag){
     return (this.tags.indexOf(tag) > -1) ? true:false;
   },
-  removeTag: function(){},
-  notify: function(){}
+  removeTag: function(tag){
+    let ind = this.tags.indexOf(tag)
+    if(ind >-1){
+      this.tags.splice(ind, 1);
+    }
+  },
+  notify: function(func, arg){
+    for(let i in this.components){
+      let com = this.components[i];
+      if(com[func]){
+        if(typeof com[func] === 'function'){
+          com[func].apply(com, [arg]);
+        }
+      }
+    }
+  }
 };
