@@ -1,17 +1,52 @@
 var Imagine = require('../src/imagine.js');
 var imagine = new Imagine();
 // import Imagine from '../src/imagine.js'
-describe('Imagine base', function(){
+describe('Imagine', function(){
+
 	it('should exist', function(){
 		expect(Imagine).toBeDefined();
 	});
 	it('should be a class', function(){
 		var imagine = new Imagine();
 	});
-
-
 	beforeEach(function() {
 		imagine.reset();
+	});
+
+	describe('register', function(){
+		it('should accept an array of objects', function(){
+			imagine.reset();
+			imagine.register([{},{}]);
+			expect(imagine.objects.length).toBe(2);
+		});
+
+		it("should return the object it made", function(){
+			expect(imagine.register({})).toBeDefined();
+			expect(imagine.register({test:"string"}).test).toBe("string");
+		});
+		// it("should take a htmlElement and turn it into a generic element for chaining", function(){
+		// 	div = document.createElement('div');
+		// 	obj = imagine.register(div);
+		// 	expect(obj.getComponent('element')).toBeDefined();
+		// 	expect(obj.getComponent('element').raw).toBe(div);
+		// });
+		it('should attach functions', function(){
+			var obj = imagine.register({});
+			expect(obj.addComponent).toBeDefined();
+			expect(obj.getComponent).toBeDefined();
+			expect(obj.addTag).toBeDefined();
+			expect(obj.getTag).toBeDefined();
+			expect(obj.hasTag).toBeDefined();
+			expect(obj.removeTag).toBeDefined();
+			expect(obj.notify).toBeDefined();
+		});
+	});
+
+	describe('reset', function(){
+		it('should set objects to an empty array', function(){
+			imagine.reset();
+			expect(imagine.objects.length).toBe(0);
+		});
 	});
 
 
@@ -30,31 +65,10 @@ describe('Imagine base', function(){
 		});
 	});
 
-
-	it('should accept an array of objects', function(){
-		imagine.reset();
-		imagine.process([{},{}]);
-		expect(imagine.objects.length).toBe(2);
-	});
-
-	it("should return the object it made", function(){
-		expect(imagine.register({})).toBeDefined();
-		expect(imagine.register({test:"string"}).test).toBe("string");
-	});
-
-	// it("should take a htmlElement and turn it into a generic element for chaining", function(){
-	// 	div = document.createElement('div');
-	// 	obj = imagine.process(div);
-	// 	expect(obj.getComponent('element')).toBeDefined();
-	// 	expect(obj.getComponent('element').raw).toBe(div);
-	// });
-//
 	describe("getComponent", function(){
-//
 		it("should be defined", function(){
-			expect(Imagine.getComponent).toBeDefined();
+			expect(imagine.getComponent).toBeDefined();
 		});
-//
 		// it("should have a getComponent that searches all objects", function(){
 		// 	com = {name:'test'};
 		// 	Imagine({}).addComponent(com);
@@ -72,6 +86,25 @@ describe('Imagine base', function(){
 // 		})
 //
 	});
+	describe('notify', function(){
+// 	it("shuold have notify defined", function(){
+// 		expect(Imagine.notify).toBeDefined()
+// 	});
+// 	it("sohuld notify all components", function(){
+// 		com1 = {func:function(){}}
+// 		com2 = {func:function(){}}
+// 		spyOn(com1, "func")
+// 		spyOn(com2, "func")
+// 		Imagine(com1);
+// 		Imagine(com2);
+//
+// 		Imagine.notify('func');
+// 		expect(com1.func).toHaveBeenCalled()
+// 		expect(com2.func).toHaveBeenCalled()
+//
+// 	})
+	});
+
 // 	//e.g. Imagine($('#id')).addComponent(ball).addComponent(gravity)
 //
 // 	it("should turn a object passed into initializer into the first component and return that", function(){
@@ -79,7 +112,7 @@ describe('Imagine base', function(){
 // 	});
 // })
 //
-	describe('Tags', function(){
+	// describe('Tags', function(){
 // 	beforeEach(function() {
 // 		Imagine.engine.reset();
 // 	});
@@ -104,26 +137,8 @@ describe('Imagine base', function(){
 // 		expect(Imagine({}).removeTag).toBeDefined();
 // 	})
 // 	it("should have working removeTag")
-	});
+	// });
 //
-	describe('notify', function(){
-// 	it("shuold have notify defined", function(){
-// 		expect(Imagine.notify).toBeDefined()
-// 	});
-// 	it("sohuld notify all components", function(){
-// 		com1 = {func:function(){}}
-// 		com2 = {func:function(){}}
-// 		spyOn(com1, "func")
-// 		spyOn(com2, "func")
-// 		Imagine(com1);
-// 		Imagine(com2);
-//
-// 		Imagine.notify('func');
-// 		expect(com1.func).toHaveBeenCalled()
-// 		expect(com2.func).toHaveBeenCalled()
-//
-// 	})
-	});
 
 
 

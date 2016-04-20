@@ -1,18 +1,21 @@
 'use strict';
 
-let utils = require('./imagine/utils.js');
+const utils = require('./imagine/utils.js');
+const objectFunctions = require('./imagine/object.js');
+const _ = require('lodash');
 
 class Imagine {
   constructor(params) {
     this.objects = [];
-    this.process(params);
+    this.register(params);
   }
-  process(params) {
+  // enable object to be tracked by Imagine
+  register(params) {
    if (utils.isArray(params)) {
      let i = 0;
 
      while (i < params.length) {
-       this.process(params[i]);//recurse
+       this.register(params[i]);//recurse
        i++;
      }
    } else {
@@ -21,27 +24,28 @@ class Imagine {
        let el = new Imagine.Element(params);
        var out = this.process({}).addComponent(el);
      } else {
-       var out = this.register(params);
+       var out = this.registerObject(params);
      }
    }
    return out;
  }
- register(object){
+ //private
+ registerObject(object){
+   _.assign(object, objectFunctions);
    this.objects.push(object);
    return object;
  }
  reset(){
    this.objects = [];
  }
- addEvent(element, eventName, callback) {
-   if(element.addEventListener){
-     element.addEventListener(eventName, callback, false);
-   }else if(element.attachEvent){
-     element.attachEvent('on'+eventName, callback);
-   }else{
-     element["on"+eventName] = callback;
+
+ destroy(obj){
+   for(let obj in this.objects){
+     const ind = this.objects.indexOf(obj);
+     this.objects.splice(ind, 1);
    }
  }
+
  getComponent(name){
    for(let obj of this.objects){
      const com = obj.getComponent(name);
@@ -63,12 +67,6 @@ class Imagine {
  notify(func){
    for(let obj of this.objects){
      obj.notify(func);
-   }
- }
- destroy(obj){
-   for(let obj in this.objects){
-     const ind = this.objects.indexOf(obj);
-     this.objects.splice(ind, 1);
    }
  }
 }
