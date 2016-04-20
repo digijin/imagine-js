@@ -36,6 +36,17 @@ describe('Imagine/time', function(){
 		it("should define pause", function(){
 			expect(time.pause).toBeDefined();
 		});
+		it('should be able to take no params', function(){
+			var paused = time.paused;
+			time.pause();
+			expect(paused).not.toBe(time.paused);
+		});
+		it('should take boolz yo', function(){
+			time.pause(true);
+			expect(time.paused).toBe(true);
+			time.pause(false);
+			expect(time.paused).toBe(false);
+		});
 
 		it("should stop the flow of time", function(done){
 			time.setFPS(60);

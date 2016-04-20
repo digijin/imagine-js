@@ -1,7 +1,9 @@
 module.exports = class Time{
+
   constructor(){
     this.init();
   }
+
   init(){
     let d = new Date();
     this.paused = false;
@@ -12,9 +14,11 @@ module.exports = class Time{
     this.fps = 0;
     this.listeners = [];
   }
+
   reset(){
     this.init();
   }
+
   pause(toPause){
     if(toPause === undefined){
       this.paused = !this.paused;
@@ -27,6 +31,7 @@ module.exports = class Time{
       this.setFPS(this.getFPS());
     }
   }
+
   update(){
     let d = new Date();
     let dt = d.getTime();
@@ -37,6 +42,7 @@ module.exports = class Time{
       listener();
     }
   }
+
   addListener(func){
     if(typeof func === 'function'){
       this.listeners.push(func);
@@ -44,10 +50,12 @@ module.exports = class Time{
       throw new Error('Listener not a function');
     }
   }
+
   clearUpdate(){
     clearInterval(this.updateId);
     cancelAnimationFrame(this.updateId);
   }
+
   setFPS(fps){
     this.clearUpdate();
     this.fps = fps;
@@ -59,10 +67,8 @@ module.exports = class Time{
       this.updateId = setInterval(this.update.bind(this), this.frameGap);
     }
   }
+
   getFPS(){
     return this.fps;
   }
-
-
-
 }

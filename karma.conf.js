@@ -25,12 +25,16 @@ module.exports = function(config) {
       'spec/imagine/utils.spec.js',
       'spec/imagine/object.spec.js',
       'spec/imagine/time.spec.js',
-      'spec/imagine/engine.spec.js'
+      'spec/imagine/input.spec.js',
+      'spec/polyfill.spec.js',
+      'spec/test.spec.js',
+      // 'spec/imagine/engine.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      'spec/imagine/engine.spec.js' //fuck that guy
       // 'spec/component/collider.spec.js',
       // 'spec/imagine/input/mouse.spec.coffee'
       // 'spec/component/element.spec.js'
