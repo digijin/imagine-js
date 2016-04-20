@@ -35,7 +35,6 @@ describe('Imagine', function(){
 			expect(obj.addComponent).toBeDefined();
 			expect(obj.getComponent).toBeDefined();
 			expect(obj.addTag).toBeDefined();
-			expect(obj.getTag).toBeDefined();
 			expect(obj.hasTag).toBeDefined();
 			expect(obj.removeTag).toBeDefined();
 			expect(obj.notify).toBeDefined();

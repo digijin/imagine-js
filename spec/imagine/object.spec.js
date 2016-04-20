@@ -28,7 +28,6 @@ describe('component/object', function(){
       expect(com.addComponent).toBeDefined();
       expect(com.getComponent).toBeDefined();
       expect(com.addTag).toBeDefined();
-      expect(com.getTag).toBeDefined();
       expect(com.hasTag).toBeDefined();
       expect(com.removeTag).toBeDefined();
       expect(com.notify).toBeDefined();
@@ -37,7 +36,29 @@ describe('component/object', function(){
       var com = {start:function(){}};
       spyOn(com, 'start');
       obj.addComponent(com);
-      expect(com.start).toHaveBeenCalled()
+      expect(com.start).toHaveBeenCalled();
+    });
+  });
+  describe('getComponent', function(){
+    it('should find a component by type', function(){
+      obj.addComponent({type: 'test'});
+			expect(obj.getComponent('test')).toBeDefined();
+    });
+  });
+  describe('addTag', function(){
+    it('should add a tag', function(){
+      expect(obj.tags.length).toBe(0);
+      obj.addTag("swag");
+      expect(obj.tags.length).toBe(1);
+    });
+  });
+  describe('hasTag', function(){
+    it('should return true if object has a tag', function(){
+      obj.addTag("swag");
+      expect(obj.hasTag('swag')).toBe(true);
+    });
+    it('should return false if object doesnt have a tag', function(){
+      expect(obj.hasTag('swag')).toBe(false);
     });
   });
 });

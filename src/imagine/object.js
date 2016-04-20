@@ -16,10 +16,18 @@ module.exports = {
       if(com.start) com.start();
       return com;
   },
-  getComponent: function(){},
-  addTag: function(){},
-  getTag: function(){},
-  hasTag: function(){},
+  getComponent: function(type){
+    for(let i in this.components){
+      let com = this.components[i]
+      if(com.type === type) return com;
+    }
+  },
+  addTag: function(tag){
+    this.tags.push(tag);
+  },
+  hasTag: function(tag){
+    return (this.tags.indexOf(tag) > -1) ? true:false;
+  },
   removeTag: function(){},
   notify: function(){}
 };
