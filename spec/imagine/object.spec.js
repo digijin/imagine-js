@@ -44,6 +44,10 @@ describe('component/object', function(){
       obj.addComponent({type: 'test'});
 			expect(obj.getComponent('test')).toBeDefined();
     });
+    it('should return nothing if there is nothing', function(){
+      obj.addComponent({type: 'nothing'});
+      expect(obj.getComponent('test')).not.toBeDefined();
+    });
   });
   describe('addTag', function(){
     it('should add a tag', function(){
@@ -71,18 +75,26 @@ describe('component/object', function(){
       obj.removeTag('swag');
       expect(obj.hasTag("swag")).toBe(false);
     });
+    it('should do nothing if there is no tag', function(){
+      obj.addTag('abc');
+      obj.addTag('def');
+      obj.removeTag('swag');
+      expect(obj.tags.length).toBe(2);
+    });
   });
   describe('notify', function(){
     it('should notify all components on object', function(){
       var com = {myfunc:function(){}};
       spyOn(com, "myfunc");
       obj.addComponent(com);
+      obj.addComponent({});
+      obj.addComponent({myfunc:'not a function'});
       obj.notify('myfunc');
       expect(com.myfunc).toHaveBeenCalled();
     });
     it('should have the right scope', function(){
-      var com = {}
-      com.myfunc = function(){expect(this).toBe(com);}
+      var com = {};
+      com.myfunc = function(){expect(this).toBe(com);};
       obj.addComponent(com);
       obj.notify('myfunc');
     });

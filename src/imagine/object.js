@@ -18,8 +18,10 @@ module.exports = {
   },
   getComponent: function(type){
     for(let i in this.components){
-      let com = this.components[i]
-      if(com.type === type) return com;
+      let com = this.components[i];
+      if(com.type === type){
+        return com;
+      }
     }
   },
   addTag: function(tag){
