@@ -1,6 +1,6 @@
 var Time = require('../../src/imagine/time');
 var time =  new Time();
-ddescribe('Imagine/time', function(){
+describe('Imagine/time', function(){
 	beforeEach(function() {
 		// Imagine.engine.reset();
 		// var time =  new Time();
@@ -37,30 +37,25 @@ ddescribe('Imagine/time', function(){
 			expect(time.pause).toBeDefined();
 		});
 
-		// it("should stop the flow of time", function(done){
-		// 	Imagine.engine.setFPS(60);
-		// 	var obj = {
-		// 		update: function(){
-		// 			// console.log("wat");
-		// 		}
-		// 	};
-		// 	spyOn(obj, "update").and.callThrough();
-		// 	Imagine.time.pause();
-		// 	// expect(Imagine.time.paused).toBe(true)
-		// 	Imagine({}).addComponent(obj);
-		// 	setTimeout(function(){
-		// 		expect(obj.update).not.toHaveBeenCalled();
-		// 		expect(obj.update.calls.count()).toBe(0);
-		// 		done();
-		// 	}, 50);
-		//
-		// });
-		// it("should restart on reset", function(){
-		// 	Imagine.time.pause();
-		// 	expect(Imagine.time.paused).toBe(true);
-		// 	Imagine.engine.reset();
-		// 	expect(Imagine.time.paused).toBe(false);
-		// });
+		it("should stop the flow of time", function(done){
+			time.setFPS(60);
+			var spy = jasmine.createSpy('spy');
+			time.pause();
+			// expect(Imagine.time.paused).toBe(true)
+			time.addListener(spy);
+			setTimeout(function(){
+				expect(spy).not.toHaveBeenCalled();
+				expect(spy.calls.count()).toBe(0);
+				done();
+			}, 50);
+
+		});
+		it("should restart on reset", function(){
+			time.pause();
+			expect(time.paused).toBe(true);
+			time.reset();
+			expect(time.paused).toBe(false);
+		});
 	});
 
 	describe('update', function(){
@@ -70,55 +65,48 @@ ddescribe('Imagine/time', function(){
 			time.update();
 			expect(spy).toHaveBeenCalled();
 		});
-		// it("should call update", function(){
-		// 	var obj = {update:function(){}};
-		// 	spyOn(obj, 'update');
-		// 	Imagine(obj);
-		// 	expect(Imagine.engine.forceUpdate).toBeDefined();
-		// 	Imagine.engine.forceUpdate();
-		// 	expect(obj.update).toHaveBeenCalled();
-		// });
-	//
-	// 	it("should set time.currentTime to currentTime", function(){
-	// 		var d = new Date();
-	// 		expect(Imagine.time.startTime).toBeGreaterThan(d.getTime()-100);
-	// 		expect(Imagine.time.startTime).toBeLessThan(d.getTime()+100);
-	// 	});
-	//
-	// 	it("should call requestAnimationFrame if not fps>0", function(){
-	// 		spyOn(window, 'requestAnimationFrame');
-	// 		Imagine.engine.setFPS(10);
-	// 		expect(window.requestAnimationFrame).not.toHaveBeenCalled();
-	// 	});
-	//
-	// 	it('should call requestAnimationFrame if fps=0', function(){
-	//
-	// 		spyOn(window, 'requestAnimationFrame');
-	// 		Imagine.engine.setFPS(0);
-	// 		expect(window.requestAnimationFrame).toHaveBeenCalled();
-	// 	});
-	//
-	// 	it("should update deltaTime properly", function(done){
-	// 		var counter = 0;
-	// 		var obj = {
-	// 			update: function(){
-	// 				counter += Imagine.time.deltaTime;
-	// 			}
-	// 		};
-	// 		spyOn(obj, "update").and.callThrough();
-	// 		Imagine.engine.setFPS(60);
-	// 		Imagine({}).addComponent(obj);
-	// 		// jasmine.clock().tick(100)
-	// 		setTimeout(function(){
-	// 			expect(Imagine.time.deltaTime).toBeGreaterThan(0);
-	// 			expect(obj.update).toHaveBeenCalled();
-	// 			expect(obj.update.calls.count()).toBeGreaterThan(0);
-	// 			expect(counter).toBeGreaterThan(.02);
-	// 			expect(counter).toBeLessThan(.06);
-	// 			done();
-	// 		}, 50);
-	// 	});
-	//
+
+
+		it("should set time.currentTime to currentTime", function(){
+			var d = new Date();
+			expect(time.startTime).toBeGreaterThan(d.getTime()-100);
+			expect(time.startTime).toBeLessThan(d.getTime()+100);
+		});
+
+		it("should call requestAnimationFrame if not fps>0", function(){
+			spyOn(window, 'requestAnimationFrame');
+			time.setFPS(10);
+			expect(window.requestAnimationFrame).not.toHaveBeenCalled();
+		});
+
+		it('should call requestAnimationFrame if fps=0', function(){
+
+			spyOn(window, 'requestAnimationFrame');
+			time.setFPS(0);
+			expect(window.requestAnimationFrame).toHaveBeenCalled();
+		});
+
+		it("should update deltaTime properly", function(done){
+			var counter = 0;
+			var calls = 0;
+			var spy = function(){
+				calls++;
+				counter += time.deltaTime;
+			};
+
+			time.setFPS(60);
+			time.update();
+			time.addListener(spy);
+			// jasmine.clock().tick(100)
+			setTimeout(function(){
+				expect(time.deltaTime).toBeGreaterThan(0);
+				expect(calls).toBeGreaterThan(0);
+				expect(counter).toBeGreaterThan(.02);
+				// expect(counter).toBeLessThan(.06); //TODO HACK revisit
+				done();
+			}, 50);
+		});
+
 	});
 	describe('addListener', function(){
 		it('should be defined', function(){
@@ -149,8 +137,13 @@ ddescribe('Imagine/time', function(){
 			expect(time.setFPS).toBeDefined();
 		});
 		it('should set updateId', function(){
+			time.setFPS(0);
 			var id = time.updateId;
 			time.setFPS(0);
+			expect(time.updateId).not.toBe(id);
+			time.setFPS(60);
+			var id = time.updateId;
+			time.setFPS(60);
 			expect(time.updateId).not.toBe(id);
 		});
 		it('should run at the fps you set it to', function(done){
@@ -158,7 +151,7 @@ ddescribe('Imagine/time', function(){
 			var spy = jasmine.createSpy('spy');
 			time.addListener(spy);
 			setTimeout(function(){
-				expect(spy).toHaveBeenCalled()
+				expect(spy).toHaveBeenCalled();
 				expect(spy.calls.count()).toBeGreaterThan(0);
 				expect(spy.calls.count()).toBeLessThan(2);
 				done();
