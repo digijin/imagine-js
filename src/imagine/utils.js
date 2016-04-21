@@ -21,12 +21,16 @@ class Utils {
   }
 
   static addEvent(element, eventName, callback) {
+    let cb = function(e){
+      e = e || window.event;
+      callback(e);
+    }
     if(element.addEventListener){
-      element.addEventListener(eventName, callback, false);
+      element.addEventListener(eventName, cb, false);
     }else if(element.attachEvent){
-      element.attachEvent('on'+eventName, callback);
+      element.attachEvent('on'+eventName, cb);
     }else{
-      element["on"+eventName] = callback;
+      element["on"+eventName] = cb;
     }
   }
 };
