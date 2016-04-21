@@ -89,6 +89,14 @@ describe('Imagine/Input', function(){
 			input.keydown(1);
 			expect(spy).toHaveBeenCalled();
 		});
+		it('should have correct status across updates', function(){
+			input.keydown(1);
+			input.update();
+			input.keyup(1);
+			input.keydown(1);
+			input.update();
+			expect(input.getKeyDown(1)).toBe(true);
+		});
 	});
 
 	describe('reset', function(){});
@@ -112,6 +120,17 @@ describe('Imagine/Input', function(){
 			expect(input.getKey).toBeDefined();
 		});
 
+	});
+
+	describe('getKeyUp', function(){
+		it('should work across updates', function(){
+			input.keydown(1);
+			input.update();
+			expect(input.getKeyUp(1)).toBe(false);
+			input.keyup(1);
+			input.update();
+			expect(input.getKeyUp(1)).toBe(true);
+		});
 	});
 
 
