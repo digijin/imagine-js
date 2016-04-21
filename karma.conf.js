@@ -9,7 +9,7 @@ module.exports = function(config) {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-    frameworks: ['jasmine'],//, 'fixture'
+    frameworks: ['jasmine', 'fixture'],//
 
 
     // list of files / patterns to load in the browser
@@ -17,7 +17,7 @@ module.exports = function(config) {
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       // "bower_components/jquery/dist/jquery.js",
       // "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
-      // 'spec/fixtures/*.html',
+      'spec/fixtures/*.html',
       // 'lib/imagine.js',
       // 'spec/**/*.spec.js',
       // 'spec/**/*.spec.coffee'

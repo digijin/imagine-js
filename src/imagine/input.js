@@ -69,6 +69,7 @@ module.exports = class Input{
     this.keyChanging[keyCode] = "up";
     this.notify(['onKeyUp', keyCode]);
   }
+
   keydown(keyCode){
     keyCode = this.map(keyCode);
     let firstdown = false;
@@ -88,21 +89,25 @@ module.exports = class Input{
     this.keyStatus[keyCode] = true;
 
   }
+
   reset(){
     this.keyStatus = {};
     this.keyChanging = {};
     this.keyChanged = {};
   }
+
   map(key){
     if(typeof key === 'number') return key;
     if(this.mapping.hasOwnProperty(key)) return this.mapping[key];
     return parseInt(key);
   }
+
   getKey(keyCode){
     keyCode = this.map(keyCode);
     if(this.keyStatus.hasOwnProperty(keyCode)) return this.keyStatus[keyCode];
     return false;
   }
+
   getKeyDown(keyCode){
     keyCode = this.map(keyCode);
     if(this.keyChanged.hasOwnProperty(keyCode)){
@@ -112,6 +117,7 @@ module.exports = class Input{
     }
     return false;
   }
+
   getKeyUp(keyCode){
     keyCode = this.map(keyCode);
     if(this.keyChanged.hasOwnProperty(keyCode)){
