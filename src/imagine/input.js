@@ -33,10 +33,11 @@ module.exports = class Input{
     this.config = _.clone(this.defaults);
     this.axes = this.config.axes;
     this.mapping = this.config.mapping;
-    utils.addEvent(document, 'keypress', (e) => {
-      keyCode = e.keyCode ? e.keyCode : e.charCode;
-      this.keypress(keyCode);
-    });
+    this.listeners = [];
+    // utils.addEvent(document, 'keypress', (e) => {
+    //   keyCode = e.keyCode ? e.keyCode : e.charCode;
+    //   this.keypress(keyCode);
+    // });
     utils.addEvent(document, 'keyup', (e) => {
       keyCode = e.keyCode ? e.keyCode : e.charCode;
       this.keyup(keyCode);
@@ -47,11 +48,26 @@ module.exports = class Input{
     });
 
   }
-  keypress(keyCode){/*unused*/}
+
+  addListener(func){
+    if(typeof func === 'function'){
+      this.listeners.push(func);
+    }else{
+      throw new Error('Listener not a function');
+    }
+  }
+
+  notify(event){
+    for(let listener of this.listeners){
+      listener(event);
+    }
+  }
+
   keyup(keyCode){
     keyCode = this.map(keyCode);
     this.keyStatus[keyCode] = false;
     this.keyChanging[keyCode] = "up";
+
   }
   keydown(keyCode){
     keyCode = this.map(keyCode);

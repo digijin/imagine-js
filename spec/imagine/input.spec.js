@@ -25,6 +25,31 @@ describe('Imagine/Input', function(){
 	// });
 	//
 	//
+
+	describe('addListener', function(){
+		it('should be defined', function(){
+			expect(input.addListener).toBeDefined();
+			expect(input.listeners).toBeDefined();
+		});
+		it('should error if not given a function', function(){
+			expect(function(){input.addListener(123);}).toThrow();
+		});
+		it('should add function to listeners', function(){
+			var func = function(){};
+			input.addListener(func);
+			expect(input.listeners.length).toBe(1);
+			expect(input.listeners[0]).toBe(func);
+		});
+	});
+	describe('notify', function(){
+		it('should notify all listeners of event', function(){
+			var spy = jasmine.createSpy('spy');
+			input.addListener(spy);
+			input.notify('yolo');
+			expect(spy).toHaveBeenCalled();
+			expect(spy.calls.all()[0].args[0]).toBe('yolo');
+		});
+	});
 	describe("getAxis", function(){
 
 		it("should have getAxis", function(){
@@ -152,7 +177,7 @@ describe('Imagine/Input', function(){
 		});
 
 	});
-	
+
 	describe('addAxis', function(){
 
 		it("should add stuff given to addAxis to axes", function(){

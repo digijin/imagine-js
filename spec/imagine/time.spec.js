@@ -134,6 +134,17 @@ describe('Imagine/time', function(){
 			expect(time.listeners[0]).toBe(func);
 		});
 	});
+
+	describe('notify', function(){
+		it('should notify all listeners of event', function(){
+			var spy = jasmine.createSpy('spy');
+			time.addListener(spy);
+			time.notify('yolo');
+			expect(spy).toHaveBeenCalled();
+			expect(spy.calls.all()[0].args[0]).toBe('yolo');
+		});
+	});
+
 	describe('clearUpdate', function(){
 		it('should call clearInterval and cancelAnimationFrame', function(){
 			spyOn(window, 'clearInterval');
