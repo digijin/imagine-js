@@ -71,4 +71,4 @@ module.exports = class Time{
   getFPS(){
     return this.fps;
   }
-}
+};

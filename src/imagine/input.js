@@ -22,7 +22,7 @@ const defaults = {
     ctrl: 17,
     escape: 27
   }
-}
+};
 
 module.exports = class Input{
   constructor(){
@@ -98,4 +98,4 @@ module.exports = class Input{
     this.axes[axisName] = axis;
   }
 
-}
+};

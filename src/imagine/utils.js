@@ -24,7 +24,7 @@ class Utils {
     let cb = function(e){
       e = e || window.event;
       callback(e);
-    }
+    };
     if(element.addEventListener){
       element.addEventListener(eventName, cb, false);
     }else if(element.attachEvent){
