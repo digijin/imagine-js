@@ -25,6 +25,47 @@ describe('Imagine/Input', function(){
 	// });
 	//
 	//
+	describe('constructor', function(){
+		describe('listens to', function(){
+			describe('chrome', function(){
+				it('keydown', function(){
+					spyOn(input, 'keydown');
+					var event = document.createEvent('Event');
+				  event.keyCode = 1;
+				  event.initEvent('keydown');
+				  document.dispatchEvent(event);
+					expect(input.keydown).toHaveBeenCalled();
+				});
+				it('keyup', function(){
+					spyOn(input, 'keyup');
+					var event = document.createEvent('Event');
+				  event.keyCode = 1;
+				  event.initEvent('keyup');
+				  document.dispatchEvent(event);
+					expect(input.keyup).toHaveBeenCalled();
+				});
+			});
+			describe('firefox', function(){
+				it('keydown', function(){
+					spyOn(input, 'keydown');
+					var event = document.createEvent('Event');
+				  event.charCode = 1;
+				  event.initEvent('keydown');
+				  document.dispatchEvent(event);
+					expect(input.keydown).toHaveBeenCalled();
+				});
+				it('keyup', function(){
+					spyOn(input, 'keyup');
+					var event = document.createEvent('Event');
+				  event.charCode = 1;
+				  event.initEvent('keyup');
+				  document.dispatchEvent(event);
+					expect(input.keyup).toHaveBeenCalled();
+				});
+			});
+		});
+
+	});
 
 	describe('addListener', function(){
 		it('should be defined', function(){
@@ -45,7 +86,7 @@ describe('Imagine/Input', function(){
 		it('should notify all listeners of event', function(){
 			var spy = jasmine.createSpy('spy');
 			input.addListener(spy);
-			input.notify('yolo');
+			input.notify(['yolo']);
 			expect(spy).toHaveBeenCalled();
 			expect(spy.calls.all()[0].args[0]).toBe('yolo');
 		});

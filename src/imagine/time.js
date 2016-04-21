@@ -38,7 +38,7 @@ module.exports = class Time{
     this.currentTime = dt - this.startTime;
     this.deltaTime = (dt - this.lastTime) / 1000;
     this.lastTime = dt;
-    this.notify('update');
+    this.notify(['update']);
   }
 
   addListener(func){
@@ -48,10 +48,10 @@ module.exports = class Time{
       throw new Error('Listener not a function');
     }
   }
-  
-  notify(event){
+
+  notify(params){
     for(let listener of this.listeners){
-      listener(event);
+      listener.apply(null, params);
     }
   }
 

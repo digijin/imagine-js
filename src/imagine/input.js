@@ -39,11 +39,11 @@ module.exports = class Input{
     //   this.keypress(keyCode);
     // });
     utils.addEvent(document, 'keyup', (e) => {
-      keyCode = e.keyCode ? e.keyCode : e.charCode;
+      let keyCode = e.keyCode ? e.keyCode : e.charCode;
       this.keyup(keyCode);
     });
     utils.addEvent(document, 'keydown', (e) => {
-      keyCode = e.keyCode ? e.keyCode : e.charCode;
+      let keyCode = e.keyCode ? e.keyCode : e.charCode;
       this.keydown(keyCode);
     });
 
@@ -57,9 +57,9 @@ module.exports = class Input{
     }
   }
 
-  notify(event){
+  notify(params){
     for(let listener of this.listeners){
-      listener(event);
+      listener.apply(null, params);
     }
   }
 
@@ -67,7 +67,7 @@ module.exports = class Input{
     keyCode = this.map(keyCode);
     this.keyStatus[keyCode] = false;
     this.keyChanging[keyCode] = "up";
-
+    this.notify(['onKeyUp', keyCode]);
   }
   keydown(keyCode){
     keyCode = this.map(keyCode);
@@ -83,6 +83,7 @@ module.exports = class Input{
     }
     if(firstdown){
       //notify
+      this.notify(['onKeyDown', keyCode]);
     }
     this.keyStatus[keyCode] = true;
 
