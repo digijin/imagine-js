@@ -2,6 +2,7 @@ var Input = require('../../src/imagine/input');
 var input = new Input();
 
 describe('Imagine/Input', function(){
+
 	beforeEach(function() {
 		// Imagine.engine.reset();
 	});
@@ -25,39 +26,32 @@ describe('Imagine/Input', function(){
 	//
 	//
 	describe("getAxis", function(){
+
 		it("should have getAxis", function(){
 			expect(input.getAxis).toBeDefined();
 		});
 
-
 		it("should assign keypressed to axes", function(){
 			expect(input.getAxis).toBeDefined();
 			expect(input.getAxis("Horizontal")).toBe(0);
-
 			input.keydown("left");
-
 			expect(input.getAxis("Horizontal")).toBe(-1);
-
 			input.keydown("right");
-
 			expect(input.getAxis("Horizontal")).toBe(0);
-
 			input.keyup("left");
-
 			expect(input.getAxis("Horizontal")).toBe(1);
-
 			input.keyup("right");
-
 			expect(input.getAxis("Horizontal")).toBe(0);
-
 		});
 
 	});
 
 	describe('getKey', function(){
+
 		it("should be defined", function(){
 			expect(input.getKey).toBeDefined();
 		});
+
 	});
 
 
@@ -129,35 +123,25 @@ describe('Imagine/Input', function(){
 			expect(input.getKeyDown(1)).toBe(false);
 			expect(input.getKeyUp("left")).toBe(false);
 			expect(input.getKeyUp(1)).toBe(false);
-
 			input.keydown("left");
 			input.keydown(1);
-
 			input.update();
-
 			expect(input.getKeyDown("left")).toBe(true);
 			expect(input.getKeyDown(1)).toBe(true);
-
 			input.keyup("left");
 			input.keyup(1);
-
 			input.update();
-
 			expect(input.getKeyDown("left")).toBe(false);
 			expect(input.getKeyDown(1)).toBe(false);
-
 			expect(input.getKeyUp("left")).toBe(true);
 			expect(input.getKeyUp(1)).toBe(true);
-
 			input.update();
-
 			expect(input.getKeyUp("left")).toBe(false);
 			expect(input.getKeyUp(1)).toBe(false);
 		});
 
-
-		it("should expose getButton");
 	});
+
 	describe('map', function(){
 
 		it("should map keycodes to certain keywords", function(){
@@ -166,7 +150,9 @@ describe('Imagine/Input', function(){
 			expect(input.map("up")).toEqual(38);
 			expect(input.map("40")).toEqual(40);
 		});
+
 	});
+	
 	describe('addAxis', function(){
 
 		it("should add stuff given to addAxis to axes", function(){
@@ -176,5 +162,7 @@ describe('Imagine/Input', function(){
 			expect(input.axes.test).toBeDefined();
 			expect(input.axes.test).toEqual(params);
 		});
+
 	});
+
 });
