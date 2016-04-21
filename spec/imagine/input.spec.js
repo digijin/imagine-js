@@ -4,27 +4,9 @@ var input = new Input();
 describe('Imagine/Input', function(){
 
 	beforeEach(function() {
-		// Imagine.engine.reset();
+		input.reset();
 	});
 
-	it("should expose Imagine.input", function(){
-		expect(input).toBeDefined();
-	});
-
-	it("should expose Imagine.input.axes", function(){
-		expect(input.axes).toBeDefined();
-	});
-	// it('should use notify function', function(){
-	// 	var obj = {onKeyDown:function(){
-	//
-	// 	}};
-	// 	spyOn(obj, "onKeyDown");
-	// 	Imagine(obj);
-	// 	input.keydown("left");
-	// 	expect(obj.onKeyDown).toHaveBeenCalled();
-	// });
-	//
-	//
 	describe('constructor', function(){
 		describe('listens to', function(){
 			describe('chrome', function(){
@@ -91,6 +73,48 @@ describe('Imagine/Input', function(){
 			expect(spy.calls.all()[0].args[0]).toBe('yolo');
 		});
 	});
+
+	describe('keyup', function(){
+		it('should notify', function(){
+			var spy = jasmine.createSpy('spy');
+			input.addListener(spy);
+			input.keyup(1);
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+	describe('keydown', function(){
+		it('should notify', function(){
+			var spy = jasmine.createSpy('spy');
+			input.addListener(spy);
+			input.keydown(1);
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	describe('reset', function(){});
+
+
+	describe('map', function(){
+
+		it("should map keycodes to certain keywords", function(){
+			expect(input.map(123)).toEqual(123);
+			expect(input.map("left")).toEqual(37);
+			expect(input.map("up")).toEqual(38);
+			expect(input.map("40")).toEqual(40);
+		});
+
+	});
+
+
+	describe('getKey', function(){
+
+		it("should be defined", function(){
+			expect(input.getKey).toBeDefined();
+		});
+
+	});
+
+
 	describe("getAxis", function(){
 
 		it("should have getAxis", function(){
@@ -112,50 +136,34 @@ describe('Imagine/Input', function(){
 
 	});
 
-	describe('getKey', function(){
 
-		it("should be defined", function(){
-			expect(input.getKey).toBeDefined();
+	describe('addAxis', function(){
+
+		it("should add stuff given to addAxis to axes", function(){
+			expect(input.addAxis).toBeDefined();
+			var params = {"abc": 123};
+			input.addAxis("test", params);
+			expect(input.axes.test).toBeDefined();
+			expect(input.axes.test).toEqual(params);
 		});
 
 	});
 
+	describe('keyup keydown integration', function(){
 
-	describe('keyup keydown', function(){
+		it("should ignore keydowns if the key is down", function(){
+			var spy = jasmine.createSpy('spy');
+			input.addListener(spy);
+			input.keydown(1);
+			expect(spy.calls.count()).toBe(1);
+			input.keydown(1);
+			expect(spy.calls.count()).toBe(1);
+			input.keydown(1);
+			expect(spy.calls.count()).toBe(1);
+			input.keydown(1);
+			expect(spy.calls.count()).toBe(1);
 
-		// it("should ignore keydowns if the key is down", function(){
-		// 	var obj = {
-		// 		keydown:function(){}
-		// 	};
-		// 	spyOn(obj, "keydown");
-		// 	Imagine(obj);
-		//
-		// 	input.keydown(1);
-		// 	expect(obj.keydown.calls.count()).toBe(1);
-		// 	input.keydown(1);
-		// 	expect(obj.keydown.calls.count()).toBe(1);
-		// 	input.keydown(1);
-		// 	expect(obj.keydown.calls.count()).toBe(1);
-		// 	input.keydown(1);
-		// 	expect(obj.keydown.calls.count()).toBe(1);
-		//
-		// });
-		// it("should call key function on objects on key events", function(){
-		// 	var obj = {
-		// 		keydown:function(){},
-		// 		keyup:function(){}
-		// 	};
-		// 	spyOn(obj, "keydown");
-		// 	spyOn(obj, "keyup");
-		// 	Imagine(obj);
-		//
-		// 	Imagine.input.keydown(1);
-		// 	Imagine.input.keyup(1);
-		// 	// console.log(JSON.stringify(obj.keydown.calls));
-		// 	expect(obj.keydown).toHaveBeenCalled();
-		// 	expect(obj.keyup).toHaveBeenCalled();
-		//
-		// });
+		});
 
 		it("should track status of keys", function(){
 			input.keydown(1);
@@ -204,29 +212,6 @@ describe('Imagine/Input', function(){
 			input.update();
 			expect(input.getKeyUp("left")).toBe(false);
 			expect(input.getKeyUp(1)).toBe(false);
-		});
-
-	});
-
-	describe('map', function(){
-
-		it("should map keycodes to certain keywords", function(){
-			expect(input.map(123)).toEqual(123);
-			expect(input.map("left")).toEqual(37);
-			expect(input.map("up")).toEqual(38);
-			expect(input.map("40")).toEqual(40);
-		});
-
-	});
-
-	describe('addAxis', function(){
-
-		it("should add stuff given to addAxis to axes", function(){
-			expect(input.addAxis).toBeDefined();
-			var params = {"abc": 123};
-			input.addAxis("test", params);
-			expect(input.axes.test).toBeDefined();
-			expect(input.axes.test).toEqual(params);
 		});
 
 	});
