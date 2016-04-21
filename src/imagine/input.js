@@ -48,8 +48,29 @@ module.exports = class Input{
 
   }
   keypress(keyCode){/*unused*/}
-  keyup(keyCode){/*unused*/}
-  keydown(keyCode){/*unused*/}
+  keyup(keyCode){
+    keyCode = this.map(keyCode);
+    this.keyStatus[keyCode] = false;
+    this.keyChanging[keyCode] = "up";
+  }
+  keydown(keyCode){
+    keyCode = this.map(keyCode);
+    let firstdown = false;
+    if(this.keyStatus.hasOwnProperty(keyCode)){
+      if(this.keyStatus[keyCode] !== true){
+        firstdown = true;
+        this.keyChanging[keyCode] = "down";
+      }
+    }else{
+      firstdown = true;
+      this.keyChanging[keyCode] = "down";
+    }
+    if(firstdown){
+      //notify
+    }
+    this.keyStatus[keyCode] = true;
+
+  }
   reset(){
     this.keyStatus = {};
     this.keyChanging = {};
@@ -85,8 +106,8 @@ module.exports = class Input{
   }
 
   getAxis(axis){
-    let pos = this.isDown(this.axes[axis].positive);
-    let neg = this.isDown(this.axes[axis].negative);
+    let pos = this.getKey(this.axes[axis].positive);
+    let neg = this.getKey(this.axes[axis].negative);
     return (pos?1:0) + (neg?-1:0);
   }
   update(){
