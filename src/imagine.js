@@ -78,7 +78,7 @@ class Imagine {
   getComponents(name){
     let out = [];
     for(let obj of this.objects){
-      com = obj.getComponent(name);
+      let com = obj.getComponent(name);
       if(com){
         out.push(com);
       }

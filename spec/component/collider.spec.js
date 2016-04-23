@@ -1,5 +1,7 @@
 var Collider = require('src/component/collider');
 var $ = require('jquery');
+var Imagine = require('src/imagine');
+var imagine = new Imagine();
 
 if(jasmine.getFixtures){
 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
@@ -56,12 +58,12 @@ describe("Imagine/component/collider", function(){
 
 			// console.log(Imagine.Collider);
 
-			coll = Imagine($('#square')[0]);
+			coll = imagine.register($('#square')[0]);
 			// console.log(coll);
-			coll.addComponent(new Imagine.Collider());
+			coll.addComponent(new Collider());
 			coll = coll.getComponent('collider');
 
-			Imagine($('#rectangle')[0]).addComponent(new Collider());
+			imagine.register($('#rectangle')[0]).addComponent(new Collider());
 
 			coll.move(20, 0);
 
@@ -72,7 +74,7 @@ describe("Imagine/component/collider", function(){
 
 		it("should call element.move", function(){
 			div = $('#square')[0];
-			coll = new Imagine.Collider();
+			coll = new Collider();
 			im = Imagine(div).addComponent(coll);
 
 			expect(im.getComponent('collider')).toBe(coll);

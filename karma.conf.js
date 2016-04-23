@@ -15,30 +15,15 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
-      // "bower_components/jquery/dist/jquery.js",
-      // "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
       'spec/fixtures/*.html',
-      // 'lib/imagine.js',
       'spec/**/*.spec.js',
-      // 'spec/**/*.spec.coffee,
-      // 'spec/imagine.spec.js',
-      // 'spec/imagine/utils.spec.js',
-      // 'spec/imagine/object.spec.js',
-      // 'spec/imagine/time.spec.js',
-      // 'spec/imagine/input.spec.js',
-      // 'spec/polyfill.spec.js',
-      // 'spec/test.spec.js',
-      // 'spec/component/element.spec.js'
     ],
-
 
     // list of files to exclude
     exclude: [
       'spec/imagine/engine.spec.js', //fuck that guy
       'spec/imagine.component.spec.js', //he should be put somewhere else
-      // 'spec/component/collider.spec.js',
-      // 'spec/imagine/input/mouse.spec.coffee'
-      // 'spec/component/element.spec.js'
+      'spec/component/collider.spec.js', //TODO
     ],
 
     // preprocess matching files before serving them to the browser
