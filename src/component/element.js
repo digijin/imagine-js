@@ -32,7 +32,7 @@ module.exports = class Element {
     this._pos = {
       left: this.raw.offsetLeft,
       top: this.raw.offsetTop
-    }
+    };
   }
   getPosition(){
     if(!this._pos) this.posInit();

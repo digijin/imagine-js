@@ -8,8 +8,11 @@ describe('Imagine/Input', function(){
 	});
 
 	describe('constructor', function(){
+
 		describe('listens to', function(){
+
 			describe('chrome', function(){
+
 				it('keydown', function(){
 					spyOn(input, 'keydown');
 					var event = document.createEvent('Event');
@@ -18,6 +21,7 @@ describe('Imagine/Input', function(){
 				  document.dispatchEvent(event);
 					expect(input.keydown).toHaveBeenCalled();
 				});
+
 				it('keyup', function(){
 					spyOn(input, 'keyup');
 					var event = document.createEvent('Event');
@@ -26,8 +30,11 @@ describe('Imagine/Input', function(){
 				  document.dispatchEvent(event);
 					expect(input.keyup).toHaveBeenCalled();
 				});
+
 			});
+
 			describe('firefox', function(){
+
 				it('keydown', function(){
 					spyOn(input, 'keydown');
 					var event = document.createEvent('Event');
@@ -36,6 +43,7 @@ describe('Imagine/Input', function(){
 				  document.dispatchEvent(event);
 					expect(input.keydown).toHaveBeenCalled();
 				});
+
 				it('keyup', function(){
 					spyOn(input, 'keyup');
 					var event = document.createEvent('Event');
@@ -44,27 +52,35 @@ describe('Imagine/Input', function(){
 				  document.dispatchEvent(event);
 					expect(input.keyup).toHaveBeenCalled();
 				});
+
 			});
+
 		});
 
 	});
 
 	describe('addListener', function(){
+
 		it('should be defined', function(){
 			expect(input.addListener).toBeDefined();
 			expect(input.listeners).toBeDefined();
 		});
+
 		it('should error if not given a function', function(){
 			expect(function(){input.addListener(123);}).toThrow();
 		});
+
 		it('should add function to listeners', function(){
 			var func = function(){};
 			input.addListener(func);
 			expect(input.listeners.length).toBe(1);
 			expect(input.listeners[0]).toBe(func);
 		});
+
 	});
+
 	describe('notify', function(){
+
 		it('should notify all listeners of event', function(){
 			var spy = jasmine.createSpy('spy');
 			input.addListener(spy);
@@ -72,23 +88,29 @@ describe('Imagine/Input', function(){
 			expect(spy).toHaveBeenCalled();
 			expect(spy.calls.all()[0].args[0]).toBe('yolo');
 		});
+
 	});
 
 	describe('keyup', function(){
+
 		it('should notify', function(){
 			var spy = jasmine.createSpy('spy');
 			input.addListener(spy);
 			input.keyup(1);
 			expect(spy).toHaveBeenCalled();
 		});
+
 	});
+
 	describe('keydown', function(){
+
 		it('should notify', function(){
 			var spy = jasmine.createSpy('spy');
 			input.addListener(spy);
 			input.keydown(1);
 			expect(spy).toHaveBeenCalled();
 		});
+
 		it('should have correct status across updates', function(){
 			input.keydown(1);
 			input.update();
@@ -97,10 +119,10 @@ describe('Imagine/Input', function(){
 			input.update();
 			expect(input.getKeyDown(1)).toBe(true);
 		});
+
 	});
 
 	describe('reset', function(){});
-
 
 	describe('map', function(){
 
@@ -113,7 +135,6 @@ describe('Imagine/Input', function(){
 
 	});
 
-
 	describe('getKey', function(){
 
 		it("should be defined", function(){
@@ -123,6 +144,7 @@ describe('Imagine/Input', function(){
 	});
 
 	describe('getKeyUp', function(){
+
 		it('should work across updates', function(){
 			input.keydown(1);
 			input.update();
@@ -131,6 +153,7 @@ describe('Imagine/Input', function(){
 			input.update();
 			expect(input.getKeyUp(1)).toBe(true);
 		});
+
 	});
 
 
@@ -154,7 +177,6 @@ describe('Imagine/Input', function(){
 		});
 
 	});
-
 
 	describe('addAxis', function(){
 

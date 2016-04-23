@@ -11,7 +11,6 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine', 'fixture'],//
 
-
     // list of files / patterns to load in the browser
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
@@ -29,11 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        // '**/*.coffee': ['coffee'],
-        // '**/*.html': ['html2js'],
-        // '**/*.json': ['html2js']
         '**/*spec.js': ['webpack']
-        // '**/*.js': ['coverage']
     },
 
     webpack: webpackConf,

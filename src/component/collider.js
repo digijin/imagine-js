@@ -18,7 +18,7 @@ module.exports = class Collider{
       right: pos.right,
       bottom: pos.bottom,
       left: pos.left,
-    }
+    };
     if(y<0){
       check.top +=y;
     }else{
@@ -80,4 +80,4 @@ module.exports = class Collider{
     this.element.move(x, y);
 
   }
-}
+};

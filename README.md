@@ -8,18 +8,6 @@ To compile (currently needed for anything to work):
  * run:
 ```
 npm install
-```
-
- * or if that doesnt work
-```
-npm install
-npm install -g bower
-npm install -g gulp-cli
-bower install
-```
-
- * new shit
- ```
 webpack
 karma start
  ```
@@ -44,4 +32,3 @@ karma start
  * bug with indexof on ie
  * use _.extend or similar to copy methods and properties from a Imagine.BaseComponent
  * bring closer to unity model
- * work out bugs from "optimisation" of gruntfile

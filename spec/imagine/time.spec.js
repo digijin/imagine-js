@@ -1,6 +1,7 @@
 var Time = require('../../src/imagine/time');
 var time =  new Time();
 describe('Imagine/time', function(){
+
 	beforeEach(function() {
 		// Imagine.engine.reset();
 		// var time =  new Time();
@@ -16,31 +17,40 @@ describe('Imagine/time', function(){
 	});
 
 	describe('constructor', function(){
+
 		it('should set starttime and lasttime', function(){
 			time = new Time();
 			expect(time.startTime>0).toBe(true);
 			expect(time.startTime).toBe(time.lastTime);
 		});
+
 	});
+
 	describe('reset', function(){
+
 		it('should clear listeners', function(){
 			time.addListener(function(){});
 			time.reset();
 			expect(time.listeners.length).toBe(0);
 		});
+
 	});
 	describe("pause", function(){
+
 		it("should define paused", function(){
 			expect(time.paused).toBeDefined();
 		});
+
 		it("should define pause", function(){
 			expect(time.pause).toBeDefined();
 		});
+
 		it('should be able to take no params', function(){
 			var paused = time.paused;
 			time.pause();
 			expect(paused).not.toBe(time.paused);
 		});
+
 		it('should take boolz yo', function(){
 			time.pause(true);
 			expect(time.paused).toBe(true);
@@ -59,24 +69,25 @@ describe('Imagine/time', function(){
 				expect(spy.calls.count()).toBe(0);
 				done();
 			}, 50);
-
 		});
+
 		it("should restart on reset", function(){
 			time.pause();
 			expect(time.paused).toBe(true);
 			time.reset();
 			expect(time.paused).toBe(false);
 		});
+
 	});
 
 	describe('update', function(){
+
 		it('should call listeners', function(){
 			spy = jasmine.createSpy('spy');
 			time.addListener(spy);
 			time.update();
 			expect(spy).toHaveBeenCalled();
 		});
-
 
 		it("should set time.currentTime to currentTime", function(){
 			var d = new Date();
@@ -119,23 +130,29 @@ describe('Imagine/time', function(){
 		});
 
 	});
+
 	describe('addListener', function(){
+
 		it('should be defined', function(){
 			expect(time.addListener).toBeDefined();
 			expect(time.listeners).toBeDefined();
 		});
+
 		it('should error if not given a function', function(){
 			expect(function(){time.addListener(123);}).toThrow();
 		});
+
 		it('should add function to listeners', function(){
 			var func = function(){};
 			time.addListener(func);
 			expect(time.listeners.length).toBe(1);
 			expect(time.listeners[0]).toBe(func);
 		});
+
 	});
 
 	describe('notify', function(){
+
 		it('should notify all listeners of event', function(){
 			var spy = jasmine.createSpy('spy');
 			time.addListener(spy);
@@ -143,9 +160,11 @@ describe('Imagine/time', function(){
 			expect(spy).toHaveBeenCalled();
 			expect(spy.calls.all()[0].args[0]).toBe('yolo');
 		});
+
 	});
 
 	describe('clearUpdate', function(){
+
 		it('should call clearInterval and cancelAnimationFrame', function(){
 			spyOn(window, 'clearInterval');
 			spyOn(window, 'cancelAnimationFrame');
@@ -153,11 +172,14 @@ describe('Imagine/time', function(){
 			expect(window.clearInterval).toHaveBeenCalled();
 			expect(window.cancelAnimationFrame).toHaveBeenCalled();
 		});
+
 	});
 	describe('setFPS', function(){
+
 		it('should be defined', function(){
 			expect(time.setFPS).toBeDefined();
 		});
+
 		it('should set updateId', function(){
 			time.setFPS(0);
 			var id = time.updateId;
@@ -168,6 +190,7 @@ describe('Imagine/time', function(){
 			time.setFPS(60);
 			expect(time.updateId).not.toBe(id);
 		});
+
 		it('should run at the fps you set it to', function(done){
 			time.setFPS(40);
 			var spy = jasmine.createSpy('spy');
@@ -188,9 +211,11 @@ describe('Imagine/time', function(){
 	});
 
 	describe('getFPS', function(){
+
 		it('should be defined', function(){
 			expect(time.getFPS).toBeDefined();
 		});
+
 		it('should get the fps prevously set', function(){
 			time.setFPS(10);
 			expect(time.getFPS()).toBe(10);
