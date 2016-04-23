@@ -20,7 +20,7 @@ module.exports = function(config) {
       'spec/fixtures/*.html',
       // 'lib/imagine.js',
       // 'spec/**/*.spec.js',
-      // 'spec/**/*.spec.coffee'
+      // 'spec/**/*.spec.coffee,
       'spec/imagine.spec.js',
       'spec/imagine/utils.spec.js',
       'spec/imagine/object.spec.js',
@@ -28,7 +28,7 @@ module.exports = function(config) {
       'spec/imagine/input.spec.js',
       'spec/polyfill.spec.js',
       'spec/test.spec.js',
-      // 'spec/imagine/engine.spec.js'
+      'spec/component/element.spec.js'
     ],
 
 

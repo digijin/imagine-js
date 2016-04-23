@@ -23,6 +23,10 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 test: dir_js,
+            },
+            {
+                test: /\.html$/,
+                loader: "html"
             }
         ]
     },
