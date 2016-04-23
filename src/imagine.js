@@ -44,8 +44,8 @@ class Imagine {
       }else{
         object[key] = _.clone(objectFunctions[key]);
       }
-
     }
+    object.engine = this;
     this.objects.push(object);
     if(com){
       object.addComponent(com);

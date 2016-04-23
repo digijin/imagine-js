@@ -63,6 +63,11 @@ describe('Imagine', function(){
 			expect(obj.notify).toBeDefined();
 		});
 
+		it('shuld attach a reference to the engine', function(){
+			var obj = imagine.register();
+			expect(obj.engine).toBe(imagine);
+		})
+
 	});
 
 	describe('reset', function(){
@@ -139,5 +144,5 @@ describe('Imagine', function(){
 		});
 
 	});
-	
+
 });

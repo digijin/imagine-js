@@ -19,22 +19,23 @@ module.exports = function(config) {
       // "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
       'spec/fixtures/*.html',
       // 'lib/imagine.js',
-      // 'spec/**/*.spec.js',
+      'spec/**/*.spec.js',
       // 'spec/**/*.spec.coffee,
-      'spec/imagine.spec.js',
-      'spec/imagine/utils.spec.js',
-      'spec/imagine/object.spec.js',
-      'spec/imagine/time.spec.js',
-      'spec/imagine/input.spec.js',
-      'spec/polyfill.spec.js',
-      'spec/test.spec.js',
-      'spec/component/element.spec.js'
+      // 'spec/imagine.spec.js',
+      // 'spec/imagine/utils.spec.js',
+      // 'spec/imagine/object.spec.js',
+      // 'spec/imagine/time.spec.js',
+      // 'spec/imagine/input.spec.js',
+      // 'spec/polyfill.spec.js',
+      // 'spec/test.spec.js',
+      // 'spec/component/element.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'spec/imagine/engine.spec.js' //fuck that guy
+      'spec/imagine/engine.spec.js', //fuck that guy
+      'spec/imagine.component.spec.js', //he should be put somewhere else
       // 'spec/component/collider.spec.js',
       // 'spec/imagine/input/mouse.spec.coffee'
       // 'spec/component/element.spec.js'

@@ -1,3 +1,6 @@
+var Collider = require('src/component/collider');
+var $ = require('jquery');
+
 if(jasmine.getFixtures){
 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 }
@@ -6,13 +9,14 @@ if(jasmine.getFixtures){
 describe("Imagine/component/collider", function(){
 
 	beforeEach(function() {
-		Imagine.engine.reset();
-		if(fixture){
-			this.result = fixture.load('collider.html');
-		}else{
-			loadFixtures('collider.html');
-		}
-    });
+		// Imagine.engine.reset();
+		// if(fixture){
+		// 	this.result = fixture.load('collider.html');
+		// }else{
+		// 	loadFixtures('collider.html');
+		// }
+		fixture.set(require('spec/fixtures/offset.html'));
+  });
 
 
 
@@ -23,12 +27,12 @@ describe("Imagine/component/collider", function(){
 	});
 
 	it("should be defined", function(){
-		expect(Imagine.Collider).toBeDefined();
+		expect(Collider).toBeDefined();
 
 	});
 	it("should be searchable", function(){
-		var coll = new Imagine.Collider();
-		expect(coll.name).toBe('collider');
+		var coll = new Collider();
+		expect(coll.type).toBe('collider');
 		expect(coll.tags.indexOf('collider')).not.toBe(-1);
 	});
 
@@ -57,7 +61,7 @@ describe("Imagine/component/collider", function(){
 			coll.addComponent(new Imagine.Collider());
 			coll = coll.getComponent('collider');
 
-			Imagine($('#rectangle')[0]).addComponent(new Imagine.Collider());
+			Imagine($('#rectangle')[0]).addComponent(new Collider());
 
 			coll.move(20, 0);
 
@@ -82,11 +86,11 @@ describe("Imagine/component/collider", function(){
 		});
 
 		it("should be defined", function(){
-			expect(new Imagine.Collider().move).toBeDefined();
+			expect(new Collider().move).toBeDefined();
 		});
 		it("should move an object", function(){
 			div = $('#square')[0];
-			coll = new Imagine.Collider();
+			coll = new Collider();
 			Imagine(div).addComponent(coll);
 			var origPos = div.getBoundingClientRect();
 			coll.move(1,1);
@@ -109,7 +113,7 @@ describe("Imagine/component/collider", function(){
 			// sq.css("left", "0px");
 
 			expect(sq.css("left")).toBe('0px');
-			var isq = Imagine(sq[0]).addComponent(new Imagine.Collider()).getComponent("collider");
+			var isq = Imagine(sq[0]).addComponent(new Collider()).getComponent("collider");
 			isq.move(10, 5);
 
 			// expect(JSON.stringify(sq[0].getBoundingClientRect())).toBe(1);
@@ -129,11 +133,11 @@ describe("Imagine/component/collider", function(){
 			beforeEach(function(){
 				sq = $('#square');
 				rec = $('#rectangle');
-				isq = Imagine(sq[0]).addComponent(new Imagine.Collider()).getComponent("collider");
-				irec = Imagine(rec[0]).addComponent(new Imagine.Collider()).getComponent("collider");
+				isq = Imagine(sq[0]).addComponent(new Collider()).getComponent("collider");
+				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
 
-				m1 = Imagine($("#multi1")[0]).addComponent(new Imagine.Collider());
-				m2 = Imagine($("#multi2")[0]).addComponent(new Imagine.Collider());
+				m1 = Imagine($("#multi1")[0]).addComponent(new Collider());
+				m2 = Imagine($("#multi2")[0]).addComponent(new Collider());
 			});
 
 			it("should collide with multiple", function(){
@@ -278,9 +282,9 @@ describe("Imagine/component/collider", function(){
 				}};
 				spyOn(obj, "onCollision").and.callThrough();
 
-				irec = Imagine(rec[0]).addComponent(new Imagine.Collider()).getComponent("collider");
+				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
 				isq = Imagine(sq[0])
-					.addComponent(new Imagine.Collider())
+					.addComponent(new Collider())
 					.addComponent(obj)
 					.getComponent('collider');
 
@@ -344,8 +348,8 @@ describe("Imagine/component/collider", function(){
 			beforeEach(function(){
 				sq = $('#square');
 				rec = $('#rectangle');
-				isq = Imagine(sq[0]).addCompnent(new Imagine.Collider()).getComponent("collider");
-				irec = Imagine(rec[0]).addComponent(new Imagine.Collider()).getComponent("collider");
+				isq = Imagine(sq[0]).addCompnent(new Collider()).getComponent("collider");
+				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
 			});
 			it("like top", function(){
 				irec.ignoreSides = ["top"];
@@ -388,13 +392,13 @@ describe("Imagine/component/collider", function(){
 	});
 	describe("compareSquares", function(){
 		it("should have basic expectations", function(){
-			var coll = new Imagine.Collider();
+			var coll = new Collider();
 			expect(coll).toBeDefined();
 			expect(coll.compareSquares).toBeDefined();
 		});
 
 		it("should return false when squares apart", function(){
-			var coll = new Imagine.Collider();
+			var coll = new Collider();
 			var sq1 = {	top:1,	left:1,	bottom:2,	right:2};
 			var sq2 = {	top:11,	left:11,bottom:12,	right:12};
 			expect(coll.compareSquares(sq1, sq2)).toBe(false);
