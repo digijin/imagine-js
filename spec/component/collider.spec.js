@@ -280,9 +280,7 @@ describe("Imagine/component/collider", function(){
 				sq = $('#square');
 				rec = $('#rectangle');
 
-				obj = {name: 'dummy', onCollision:function(){
-					// console.log("called");
-				}};
+				obj = {type: 'dummy', onCollision:function(){}};
 				spyOn(obj, "onCollision").and.callThrough();
 
 				irec = imagine.register(rec[0]).addComponent(new Collider()).getComponent("collider");
@@ -323,9 +321,7 @@ describe("Imagine/component/collider", function(){
 			});
 
 			it("should notify both collision objects", function(){
-				var obj = {name: 'dummy', onCollision:function(){
-					// console.log("called");
-				}};
+				var obj = {type: 'dummy', onCollision:function(){}};
 				spyOn(obj, "onCollision").and.callThrough();
 
 				irec.addComponent(obj);

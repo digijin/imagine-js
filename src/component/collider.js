@@ -70,7 +70,7 @@ module.exports = class Collider{
               }
               collision.side.push('left');
             }else if (isRight && check.left < obj.right && (coll.ignoreSides.indexOf("right")===-1)) {
-              
+
               if(!this.isTrigger||coll.isTrigger){
                 x = (obj.right) - pos.left;
               }
@@ -86,6 +86,7 @@ module.exports = class Collider{
       }
     }
     this.element.move(x, y);
+    // console.log("collisions", collisions);
     for(let coll of collisions){
       this.notify('onCollision', coll);
       let side = coll.side.map(function(obj){
@@ -99,11 +100,14 @@ module.exports = class Collider{
           case 'bottom':
             return 'top';
         }
-        coll.collider.notify('onCollision', {
-          side: side,
-          collider: this
-        });
       });
+      // console.log("asd");
+      // console.log(coll.collider.object.getComponents());
+      coll.collider.notify('onCollision', {
+        side: side,
+        collider: this
+      });
+
     }
     // console.log(collisions);
     switch(collisions.length){
