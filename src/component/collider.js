@@ -45,7 +45,7 @@ module.exports = class Collider{
             };
             let height = pos.height || (pos.bottom - pos.top);
             let width = pos.width || (pos.right - pos.left);
-            if(pos.bottom <= obj.top && check.bottom > obj.top && !(coll.ignoreSides.indexOf("top")>=-1)){
+            if((pos.bottom <= obj.top) && (check.bottom > obj.top) && (coll.ignoreSides.indexOf("top")===-1)){
 
               if(!this.isTrigger||coll.isTrigger){
                 y = (obj.top - height) - check.top;
@@ -99,6 +99,22 @@ module.exports = class Collider{
         });
       });
     }
+    // console.log(collisions);
+    switch(collisions.length){
+      case 0:
+        return false;
+      case 1:
+        return collisions[0];
+      default:
+        let side = collisions.map(function(i){
+          return i.side[0];
+        });
+        return {
+          side: side,
+          collisions: collisions
+        }
+    }
+    return;
 
   }
 

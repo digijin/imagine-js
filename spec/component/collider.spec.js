@@ -180,7 +180,8 @@ describe("Imagine/component/collider", function(){
 			it("should hit top", function(){
 				sq.css("left", 20);
 				sq.css("top", 0);
-				collision = isq.move(0, 15);
+				var collision = isq.move(0, 15);
+				console.log(collision);
 				expect(sq.css("top")).toBe("10px");
 				expect(collision.side[0]).toBe("top");
 				collision = isq.move(0, 1);
@@ -321,7 +322,7 @@ describe("Imagine/component/collider", function(){
 
 			});
 
-			iit("should notify both collision objects", function(){
+			it("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
 					// console.log("called");
 				}};
