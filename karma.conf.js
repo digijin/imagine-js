@@ -20,9 +20,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'spec/imagine/engine.spec.js', //fuck that guy
       'spec/imagine.component.spec.js', //he should be put somewhere else
-      // 'spec/component/collider.spec.js', //TODO
     ],
 
     // preprocess matching files before serving them to the browser
