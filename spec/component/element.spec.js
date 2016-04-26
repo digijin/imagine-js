@@ -118,6 +118,7 @@ describe("Imagine/component/element", function(){
 			expect(diff).toBeLessThan(0.3);//for phantom, 0.0005 for browsers
 		});
 
+
 		it("shuold handle rounding errors");
 			//css = 1.5px
 			//move(1px)
@@ -154,6 +155,13 @@ describe("Imagine/component/element", function(){
 			// expect(el.rect().left).toBe(l+2)
 		});
 
+	});
+	describe('moveTo', function(){
+		it('should move', function(){
+			el.moveTo(1,2);
+			expect(el.getPosition().top).toBe(2);
+			expect(el.getPosition().left).toBe(1);
+		});
 	});
 
 	describe('position', function(){
