@@ -17,7 +17,7 @@ describe("Imagine/component/collider", function(){
 		// }else{
 		// 	loadFixtures('collider.html');
 		// }
-		fixture.set(require('spec/fixtures/offset.html'));
+		fixture.set(require('spec/fixtures/collider.html'));
   });
 
 
@@ -75,7 +75,7 @@ describe("Imagine/component/collider", function(){
 		it("should call element.move", function(){
 			div = $('#square')[0];
 			coll = new Collider();
-			im = Imagine(div).addComponent(coll);
+			im = imagine.register(div).addComponent(coll);
 
 			expect(im.getComponent('collider')).toBe(coll);
 
@@ -93,7 +93,7 @@ describe("Imagine/component/collider", function(){
 		it("should move an object", function(){
 			div = $('#square')[0];
 			coll = new Collider();
-			Imagine(div).addComponent(coll);
+			imagine.register(div).addComponent(coll);
 			var origPos = div.getBoundingClientRect();
 			coll.move(1,1);
 			expect(div.getBoundingClientRect().top).not.toBe(origPos.top);
@@ -115,7 +115,7 @@ describe("Imagine/component/collider", function(){
 			// sq.css("left", "0px");
 
 			expect(sq.css("left")).toBe('0px');
-			var isq = Imagine(sq[0]).addComponent(new Collider()).getComponent("collider");
+			var isq = imagine.register(sq[0]).addComponent(new Collider()).getComponent("collider");
 			isq.move(10, 5);
 
 			// expect(JSON.stringify(sq[0].getBoundingClientRect())).toBe(1);
@@ -135,11 +135,11 @@ describe("Imagine/component/collider", function(){
 			beforeEach(function(){
 				sq = $('#square');
 				rec = $('#rectangle');
-				isq = Imagine(sq[0]).addComponent(new Collider()).getComponent("collider");
-				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
+				isq = imagine.register(sq[0]).addComponent(new Collider()).getComponent("collider");
+				irec = imagine.register(rec[0]).addComponent(new Collider()).getComponent("collider");
 
-				m1 = Imagine($("#multi1")[0]).addComponent(new Collider());
-				m2 = Imagine($("#multi2")[0]).addComponent(new Collider());
+				m1 = imagine.register($("#multi1")[0]).addComponent(new Collider());
+				m2 = imagine.register($("#multi2")[0]).addComponent(new Collider());
 			});
 
 			it("should collide with multiple", function(){
@@ -284,8 +284,8 @@ describe("Imagine/component/collider", function(){
 				}};
 				spyOn(obj, "onCollision").and.callThrough();
 
-				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
-				isq = Imagine(sq[0])
+				irec = imagine.register(rec[0]).addComponent(new Collider()).getComponent("collider");
+				isq = imagine.register(sq[0])
 					.addComponent(new Collider())
 					.addComponent(obj)
 					.getComponent('collider');
@@ -321,7 +321,7 @@ describe("Imagine/component/collider", function(){
 
 			});
 
-			it("should notify both collision objects", function(){
+			iit("should notify both collision objects", function(){
 				var obj = {name: 'dummy', onCollision:function(){
 					// console.log("called");
 				}};
@@ -350,8 +350,8 @@ describe("Imagine/component/collider", function(){
 			beforeEach(function(){
 				sq = $('#square');
 				rec = $('#rectangle');
-				isq = Imagine(sq[0]).addCompnent(new Collider()).getComponent("collider");
-				irec = Imagine(rec[0]).addComponent(new Collider()).getComponent("collider");
+				isq = imagine.register(sq[0]).addComponent(new Collider()).getComponent("collider");
+				irec = imagine.register(rec[0]).addComponent(new Collider()).getComponent("collider");
 			});
 			it("like top", function(){
 				irec.ignoreSides = ["top"];

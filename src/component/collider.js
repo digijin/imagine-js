@@ -33,16 +33,18 @@ module.exports = class Collider{
     let collisions = [];
     for(let coll of colls){
       if(this !== coll){
+        // console.log(coll.object.components);
         let el = coll.getComponent('element');
-        if(element){
+        if(this.element){
+          // console.log(el);
           let obj = el.raw.getBoundingClientRect();
           if(this.compareSquares(check, obj)){
-            collision = {
+            let collision = {
               side: [],
               collider: coll
             };
-            let height = pos.height || pos.bottom - pos.top;
-            let width = pos.width || pos.right - pos.left;
+            let height = pos.height || (pos.bottom - pos.top);
+            let width = pos.width || (pos.right - pos.left);
             if(pos.bottom <= obj.top && check.bottom > obj.top && !(coll.ignoreSides.indexOf("top")>=-1)){
 
               if(!this.isTrigger||coll.isTrigger){
@@ -78,6 +80,37 @@ module.exports = class Collider{
       }
     }
     this.element.move(x, y);
+    for(let coll of collisions){
+      this.notify('onCollision', coll);
+      let side = coll.side.map(function(obj){
+        switch(obj){
+          case 'left':
+            return 'right';
+          case 'right':
+            return 'left';
+          case 'top':
+            return 'bottom';
+          case 'bottom':
+            return 'top';
+        }
+        coll.collider.notify('onCollision', {
+          side: side,
+          collider: this
+        });
+      });
+    }
 
+  }
+
+  collidesWith(obj){
+    let myrect = this.element.raw.getBoundingClientRect();
+    let obrect = obj.getBoundingClientRect();
+    return this.compareSquares(myrect, obrect);
+  }
+
+  compareSquares(sq1, sq2){
+    let outsideH = (sq1.bottom <= sq2.top) || (sq2.bottom <= sq1.top);
+    let outsideV = (sq1.right <= sq2.left) || (sq2.right <= sq1.left);
+    return !outsideV && !outsideH;
   }
 };
