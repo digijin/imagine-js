@@ -22,10 +22,10 @@ describe 'imagine.mouse', ->
 
 
 	describe 'events', ->
-		it 'should fire onmousedown'
-		it 'should fire onmouseup'
-		it 'should fire onmousemove'
-		it 'should fire onmousewheel'
+		# it 'should fire onmousedown'
+		# it 'should fire onmouseup'
+		# it 'should fire onmousemove'
+		# it 'should fire onmousewheel'
 
 	describe 'getLastPosition', ->
 		it 'should be defined', ->

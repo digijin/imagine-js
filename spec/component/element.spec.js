@@ -17,7 +17,6 @@ describe("Imagine/component/element", function(){
 		// 	loadFixtures('offset.html');
 		// }
 		fixture.set(require('spec/fixtures/offset.html'));
-
 		raw = document.getElementById('square');
 		el = new Element(raw);
 	});
@@ -26,19 +25,13 @@ describe("Imagine/component/element", function(){
 		fixture.cleanup();
 	});
 
-	it('basics', function(){
+	it('test basics', function(){
 		expect(document.getElementById).toBeDefined();
 		expect(document.getElementById('square')).toBeDefined();
 		expect(raw).toBeDefined();
 		expect(el).toBeDefined();
-
-
 		expect($).toBeDefined();
-
-		// expect(fixture.el.firstChild).toBe(this.result[0][0]);
 	});
-
-
 
 	it("should be defined", function(){
 		expect(Element).toBeDefined();
@@ -78,9 +71,9 @@ describe("Imagine/component/element", function(){
 
 
 	describe("getLocalRect", function(){
-		it("should work with border");
-		it("should work with margin");
-		it("should work with padding");
+		// it("should work with border");
+		// it("should work with margin");
+		// it("should work with padding");
 		it("should be defined", function(){
 			var div = document.createElement("DIV");
 			var comp = new Element(div);
@@ -102,24 +95,18 @@ describe("Imagine/component/element", function(){
 	describe("move", function(){
 
 		it('should be precise', function(){
-
 			el.move(1,1);//prime it
-
 			start = el.getLocalRect().left;
-
 			amnt = 1.2345;
 			el.move(amnt, 0);
 			now = el.getLocalRect().left;
-
 			expected = now-start;
-
 			diff = Math.abs(expected - amnt);
-
 			expect(diff).toBeLessThan(0.3);//for phantom, 0.0005 for browsers
 		});
 
 
-		it("shuold handle rounding errors");
+		// it("shuold handle rounding errors");
 			//css = 1.5px
 			//move(1px)
 			//expect css = 2px;
@@ -127,48 +114,40 @@ describe("Imagine/component/element", function(){
 		it("should have move", function(){
 			expect(el.move).toBeDefined();
 		});
+
 		it("should have moveTo", function(){
 			expect(el.moveTo).toBeDefined();
-
 		});
 
 		it("should move the right amount", function(){
-
-			// console.log(el);
 			t = el.getPosition().top;
 			l = el.getPosition().left;
-
 			expect(utils.isElement(el.raw)).toBe(true);
 			el.move(1,2);
-
-			// expect(el.offsetLeft).toBe("")
-			// expect(el.style.left).toBe("sometihng")
-
-
 			expect(el.getPosition().top).toBe(t+2);
 			expect(el.getPosition().left).toBe(l+1);
-
-			// expect($(el).position().left).toBe(el.rect().left)
-
-			// el.move(1,2)
-			// expect(el.rect().top).toBe(t+4)
-			// expect(el.rect().left).toBe(l+2)
 		});
 
 	});
+
 	describe('moveTo', function(){
+
 		it('should move', function(){
 			el.moveTo(1,2);
 			expect(el.getPosition().top).toBe(2);
 			expect(el.getPosition().left).toBe(1);
 		});
+
 	});
 
 	describe('position', function(){
+
 		describe('get', function(){
+
 			it("should be defined", function(){
 				expect(el.getPosition).toBeDefined();
 			});
+
 			it("should detect itself if not set", function(){
 				otop = el.raw.offsetTop;
 				left = el.raw.offsetLeft;
@@ -176,11 +155,15 @@ describe("Imagine/component/element", function(){
 				expect(pos.top).toBe(otop);
 				expect(pos.left).toBe(left);
 			});
+
 		});
+
 		describe('set', function(){
+
 			it("should be defined", function(){
 				expect(el.setPosition).toBeDefined();
 			});
+
 			it("should return itself for chaining", function(){
 				expect(el.setPosition(1,2)).toBe(el);
 			});
@@ -190,8 +173,8 @@ describe("Imagine/component/element", function(){
 				expect(el.raw.style.left).toBe('3px');
 				expect(el.raw.style.top).toBe('4px');
 			});
-		});
 
+		});
 
 		it("should set and return the stored position", function(){
 			el.setPosition(5,6);
@@ -199,5 +182,7 @@ describe("Imagine/component/element", function(){
 			expect(pos.left).toBe(5);
 			expect(pos.top).toBe(6);
 		});
+
 	});
+
 });
