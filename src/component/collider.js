@@ -43,15 +43,17 @@ module.exports = class Collider{
               side: [],
               collider: coll
             };
-            let height = pos.height || (pos.bottom - pos.top);
-            let width = pos.width || (pos.right - pos.left);
-            if((pos.bottom <= obj.top) && (check.bottom > obj.top) && (coll.ignoreSides.indexOf("top")===-1)){
+            const height = pos.height || (pos.bottom - pos.top);
+            const width = pos.width || (pos.right - pos.left);
+            const isAbove = pos.bottom <= obj.top;
+            const isBelow = obj.bottom <= pos.top;
+            if(isAbove && (check.bottom > obj.top) && (coll.ignoreSides.indexOf("top")===-1)){
 
               if(!this.isTrigger||coll.isTrigger){
                 y = (obj.top - height) - check.top;
               }
               collision.side.push('top');
-            }else if (obj.bottom <= pos.top && check.top < obj.bottom && !(coll.ignoreSides.indexOf("bottom")>=-1)) {
+            }else if (isBelow && check.top < obj.bottom && (coll.ignoreSides.indexOf("bottom")===-1)) {
               if(!this.isTrigger||coll.isTrigger){
 
                 y = (obj.bottom) - pos.top;
@@ -59,14 +61,18 @@ module.exports = class Collider{
               collision.side.push('bottom');
             }
             ///
-            if(pos.right <= obj.left && check.right > obj.left && !(coll.ignoreSides.indexOf("left")>=-1)){
+            const isLeft  = pos.right <= obj.left;
+            const isRight = obj.right <= pos.left;
+            // console.log(isLeft, check.right > obj.left, (coll.ignoreSides.indexOf("left")===-1));
+            if(isLeft && check.right > obj.left && (coll.ignoreSides.indexOf("left")===-1)){
               if(!this.isTrigger||coll.isTrigger){
-                y = (obj.left - width) - check.left;
+                x = (obj.left - width) - check.left;
               }
-              collision.side.push('top');
-            }else if (obj.right <= pos.left && check.left < obj.right && !(coll.ignoreSides.indexOf("right")>=-1)) {
+              collision.side.push('left');
+            }else if (isRight && check.left < obj.right && (coll.ignoreSides.indexOf("right")===-1)) {
+              
               if(!this.isTrigger||coll.isTrigger){
-                y = (obj.bottom) - pos.left;
+                x = (obj.right) - pos.left;
               }
               collision.side.push('right');
             }
@@ -112,7 +118,7 @@ module.exports = class Collider{
         return {
           side: side,
           collisions: collisions
-        }
+        };
     }
     return;
 
