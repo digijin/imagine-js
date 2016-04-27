@@ -4,12 +4,27 @@ const utils = require('./imagine/utils.js');
 const objectFunctions = require('./imagine/object.js');
 const _ = require('lodash');
 const Element = require('./component/element.js');
+const Time = require('./imagine/time');
+const Input = require('./imagine/input');
 
 class Imagine {
   constructor(params) {
     this.objects = [];
+    this.time = new Time();
+    this.input = new Input();
+    this.time.addListener(this.update.bind(this));
     if(params)
       this.register(params);
+  }
+
+  update(){
+    //time already updates because it calls this
+    this.input.update();
+    for(var obj of this.objects){
+      for(var comp of obj.components){
+        if(comp.update) comp.update();
+      }
+    }
   }
   // enable object to be tracked by Imagine
   register(params) {

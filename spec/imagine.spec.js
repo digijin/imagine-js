@@ -22,6 +22,57 @@ describe('Imagine', function(){
 			expect(imagine.objects.length).toBe(1);
 		});
 
+		describe('time', function(){
+
+			it('should be attached', function(){
+				expect(imagine.time).toBeDefined();
+				expect(imagine.time.constructor.name).toBe("Time");
+			});
+
+		});
+
+		describe('input', function(){
+
+			it('should be attached', function(){
+				expect(imagine.input).toBeDefined();
+				expect(imagine.input.constructor.name).toBe("Input");
+			});
+
+			it('should listen to time', function(){
+				//HACK all functions are bound at instantiation
+				//HACK and cannot be replaced with spies post constructor
+
+				spyOn(imagine.input, 'update');
+				var spy = jasmine.createSpy('spy');
+				imagine.input.update = spy;
+				imagine.time.update();
+				expect(spy).toHaveBeenCalled();
+			});
+
+		});
+
+	});
+
+	describe('update', function(){
+		it('should exist', function(){
+			expect(imagine.update).toBeDefined();
+		});
+		it('should update objects when time updates', function(){
+			var spy = jasmine.createSpy('dummy');
+			var obj = {update:spy};
+			imagine.register(obj);
+			imagine.time.update();
+			expect(spy).toHaveBeenCalled();
+		});
+		it('should update comps in the right context', function(done){
+			var obj = {update:function(){
+				expect(this===obj).toBe(true);
+				done();
+			}};
+			imagine.register(obj);
+			imagine.time.update();
+		});
+
 	});
 
 	describe('register', function(){

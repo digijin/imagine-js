@@ -47,6 +47,9 @@ module.exports = class Input{
       this.keydown(keyCode);
     });
 
+    //bind my functions
+    this.update = this.update.bind(this);
+
   }
 
   addListener(func){
