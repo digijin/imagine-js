@@ -91,6 +91,20 @@ describe('Imagine/time', function(){
 
 	describe('update', function(){
 
+		it("should call raf if fps=0", function(){
+			spyOn(window, 'requestAnimationFrame');
+			time.setFPS(0);
+			time.update();
+			expect(window.requestAnimationFrame).toHaveBeenCalled();
+		});
+
+		it('shouldnt call raf if fps !=0 ', function(){
+				spyOn(window, 'requestAnimationFrame');
+				time.setFPS(1);
+				time.update();
+				expect(window.requestAnimationFrame).not.toHaveBeenCalled();
+		})
+
 		it('should call listeners', function(){
 			spy = jasmine.createSpy('spy');
 			time.addListener(spy);

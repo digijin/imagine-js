@@ -13,9 +13,9 @@ module.exports = class Time{
     this.startTime = this.lastTime;
     this.fps = 0;
     this.listeners = [];
-    this.setFPS(0);
-
     this.update = this.update.bind(this);
+    this.setFPS(0);
+    console.log("init Imagine.Time");
   }
 
   reset(){
@@ -42,6 +42,7 @@ module.exports = class Time{
     this.deltaTime = (dt - this.lastTime) / 1000;
     this.lastTime = dt;
     this.notify(['update']);
+    // console.log("update");
     if(this.fps === 0){
       // console.log("raf");
       this.updateId = requestAnimationFrame(this.update);
@@ -72,7 +73,8 @@ module.exports = class Time{
     this.fps = fps;
     if(this.fps === 0){
       this.frameGap = 0;
-      this.updateId = requestAnimationFrame(this.update.bind(this));
+      console.log("requesting raf");
+      this.updateId = requestAnimationFrame(this.update);
     }else{
       this.frameGap = 1000 / this.fps;
       this.updateId = setInterval(this.update.bind(this), this.frameGap);
