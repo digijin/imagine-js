@@ -13,6 +13,9 @@ module.exports = class Time{
     this.startTime = this.lastTime;
     this.fps = 0;
     this.listeners = [];
+    this.setFPS(0);
+
+    this.update = this.update.bind(this);
   }
 
   reset(){
@@ -39,6 +42,10 @@ module.exports = class Time{
     this.deltaTime = (dt - this.lastTime) / 1000;
     this.lastTime = dt;
     this.notify(['update']);
+    if(this.fps === 0){
+      // console.log("raf");
+      this.updateId = requestAnimationFrame(this.update);
+    }
   }
 
   addListener(func){

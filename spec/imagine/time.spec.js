@@ -24,6 +24,15 @@ describe('Imagine/time', function(){
 			expect(time.startTime).toBe(time.lastTime);
 		});
 
+		it('should work from spinup', function(done){
+			var spy = jasmine.createSpy('spy');
+			time.addListener(spy);
+			setTimeout(function(){
+				expect(spy).toHaveBeenCalled();
+				done();
+			}, 1000);
+		});
+
 	});
 
 	describe('reset', function(){

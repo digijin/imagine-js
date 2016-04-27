@@ -106,4 +106,5 @@ class Imagine {
     }
   }
 }
+window.Imagine = Imagine;
 module.exports = Imagine;
