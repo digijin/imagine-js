@@ -34,7 +34,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['coverage', 'screenshot'], //'progress', 
 
     coverageReporter: {
       reporters:[
@@ -61,6 +61,35 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     // browsers: ['Chrome', 'Firefox'],
 
-    singleRun: false
+    singleRun: false,
+
+    customLaunchers:{
+      'screenshot': {
+        base: 'Chrome',
+
+      }
+    }
+
+    // //screenshot mode
+    // browsers: ['PhantomJS_custom'],
+    // customLaunchers: {
+    //   'PhantomJS_custom': {
+    //     base: 'PhantomJS',
+    //     options: {
+    //       windowName: 'my-window',
+    //       settings: {
+    //         webSecurityEnabled: false
+    //       },
+    //     },
+    //     flags: ['--load-images=true'],
+    //     // debug: true
+    //   }
+    // },
+    //
+    // phantomjsLauncher: {
+    //   // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+    //   exitOnResourceError: true
+    // }
+
   });
 };

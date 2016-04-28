@@ -1,12 +1,16 @@
 var Collider = require('src/component/collider');
 var $ = require('jquery');
+var _ = require('lodash');
 var Imagine = require('src/imagine');
 var imagine = new Imagine();
 
 if(jasmine.getFixtures){
 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 }
-
+// console.log(_.keys(window.top).sort());
+window.top.hello = "world";
+console.info("hello");
+// console.log(jasmine.getEnv());
 describe("Imagine/component/collider", function(){
 
 	beforeEach(function() {
@@ -17,6 +21,13 @@ describe("Imagine/component/collider", function(){
 		// 	loadFixtures('collider.html');
 		// }
 		fixture.set(require('spec/fixtures/collider.html'));
+  });
+
+  describe("screenshots", function(){
+    it('should find driver', function(){
+
+			expect(driver).toBeDefined();
+		});
   });
 
 	it("should load fixtures", function(){

@@ -1,6 +1,6 @@
 {
   "name": "imagine",
-  "version": "0.0.2-dev",
+  "version": "0.1.0",
   "description": "component engine framework",
   "keywords": [
     "coffeescript",
@@ -9,10 +9,10 @@
     "game",
     "component"
   ],
-  "main": "Gruntfile.js",
+  "main": "gulpfile.babel.js",
   "scripts": {
-    "start": "grunt",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "test": "karma start"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
@@ -48,9 +48,11 @@
     "karma": "^0.13.22",
     "karma-coverage": "^0.5.5",
     "karma-jasmine": "~0.2.0",
+    "karma-phantomjs-launcher": "^1.0.0",
     "karma-webpack": "^1.7.0",
     "lodash": "^2.4.1",
     "matchdep": "^0.3.0",
+    "phantomjs-prebuilt": "^2.1.7",
     "webpack": "^1.13.0",
     "webpack-stream": "^3.1.0"
   },
