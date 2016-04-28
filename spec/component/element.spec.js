@@ -2,9 +2,9 @@ var Element = require('src/component/element');
 var $ = require('jquery');
 var utils = require('src/imagine/utils');
 
-if(jasmine.getFixtures){
-	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
-}
+// if(jasmine.getFixtures){
+// 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
+// }
 describe("Imagine/component/element", function(){
 
 	var el, raw;

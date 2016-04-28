@@ -8,6 +8,4 @@ bower_components
 doc/
 .grunt/
 _SpecRunner.html
-demos/**/*.js
-demos/**/**/*.js
 coverage

@@ -15,7 +15,6 @@ module.exports = class Time{
     this.listeners = [];
     this.update = this.update.bind(this);
     this.setFPS(0);
-    console.log("init Imagine.Time");
   }
 
   reset(){
@@ -73,7 +72,6 @@ module.exports = class Time{
     this.fps = fps;
     if(this.fps === 0){
       this.frameGap = 0;
-      console.log("requesting raf");
       this.updateId = requestAnimationFrame(this.update);
     }else{
       this.frameGap = 1000 / this.fps;
