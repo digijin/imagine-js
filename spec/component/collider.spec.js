@@ -9,7 +9,7 @@ if(jasmine.getFixtures){
 }
 // console.log(_.keys(window.top).sort());
 window.top.hello = "world";
-console.info("hello");
+console.info('screenshot:');
 // console.log(jasmine.getEnv());
 describe("Imagine/component/collider", function(){
 
