@@ -106,5 +106,6 @@ class Imagine {
     }
   }
 }
+Imagine.Collider = require('./component/collider');
 window.Imagine = Imagine;
 module.exports = Imagine;
