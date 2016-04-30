@@ -8,8 +8,6 @@ if(jasmine.getFixtures){
 	jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 }
 // console.log(_.keys(window.top).sort());
-window.top.hello = "world";
-console.info('screenshot:');
 // console.log(jasmine.getEnv());
 describe("Imagine/component/collider", function(){
 
