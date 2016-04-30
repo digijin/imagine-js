@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	Imagine.engine.setFPS(10)
+	var engine = new Imagine();
+	engine.time.setFPS(10)
 	var obj = {
 		start:function(){
 			console.log(this);

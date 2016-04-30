@@ -110,6 +110,12 @@ class Imagine {
     }
   }
 }
+
 Imagine.Collider = require('./component/collider');
+Imagine.Element = Element;
+Imagine.FPS = require('./component/FPS');
+Imagine.Time = Time;
+Imagine.Input = Input;
+
 window.Imagine = Imagine;
 module.exports = Imagine;

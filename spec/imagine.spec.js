@@ -153,7 +153,6 @@ describe('Imagine', function(){
 			expect(imagine.objects.length).toBe(3);
 			imagine.destroy(b);
 			expect(imagine.objects.length).toBe(2);
-			console.log(imagine.getComponent('a'));
 			expect(imagine.getComponent('a')).toBeDefined();
 			expect(imagine.getComponent('b')).not.toBeDefined();
 			expect(imagine.getComponent('c')).toBeDefined();
