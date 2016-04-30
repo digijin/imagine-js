@@ -1,21 +1,21 @@
 {
-  "name": "imagine",
+  "name": "imagine-engine",
   "version": "0.1.0",
   "description": "component engine framework",
   "keywords": [
-    "coffeescript",
     "framework",
     "animation",
     "game",
     "component"
   ],
-  "main": "gulpfile.babel.js",
+  "main": "lib/imagine.js",
   "scripts": {
     "start": "gulp",
     "test": "karma start"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
+    "gulp": "./node_modules/gulp-cli/bin/gulp",
     "bower": "./node_modules/bower/bin/bower"
   },
   "author": "digijin <james@digijin.com> (http://digijin.com)",
