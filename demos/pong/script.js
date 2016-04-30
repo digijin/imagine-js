@@ -1,6 +1,6 @@
 (function() {
   var Ball, Enemy, Player, boxheight, boxright, enemyScore, paddleheight, player, playerScore;
-
+  var engine = new Imagine();
   player = void 0;
 
   playerScore = 0;
@@ -16,7 +16,7 @@
   Ball = (function() {
     function Ball() {}
 
-    Ball.prototype.name = 'ball';
+    Ball.prototype.type = 'ball';
 
     Ball.prototype.requireComponent = [Imagine.Collider];
 
@@ -39,8 +39,8 @@
 
     Ball.prototype.update = function() {
       var left, pos, top;
-      this.collider.move(this.dirH * Imagine.time.deltaTime, this.dirV * Imagine.time.deltaTime);
-      pos = this.element.getPosition();
+      this.getComponent('collider').move(this.dirH * engine.time.deltaTime, this.dirV * engine.time.deltaTime);
+      pos = this.getComponent('element').getPosition();
       top = pos.top;
       left = pos.left;
       if (top < 0 && this.dirV < 0) {
@@ -65,7 +65,7 @@
       var x, y;
       x = boxright / 2;
       y = boxheight / 2;
-      return this.element.moveTo(x, y);
+      return this.getComponent('element').moveTo(x, y);
     };
 
     return Ball;
@@ -80,7 +80,7 @@
     Player.prototype.speed = 300;
 
     Player.prototype.update = function() {
-      return this.collider.move(0, -Imagine.input.getAxis("Vertical") * this.speed * Imagine.time.deltaTime);
+      return this.getComponent('collider').move(0, -engine.input.getAxis("Vertical") * this.speed * engine.time.deltaTime);
     };
 
     return Player;
@@ -96,13 +96,13 @@
 
     Enemy.prototype.update = function() {
       var ball, ballpos, mepos;
-      ball = Imagine.getComponent('ball');
-      ballpos = ball.element.getPosition().top;
-      mepos = this.element.getPosition().top + (paddleheight / 2);
+      ball = engine.getComponent('ball');
+      ballpos = ball.getComponent('element').getPosition().top;
+      mepos = this.getComponent('element').getPosition().top + (paddleheight / 2);
       if (ballpos > mepos) {
-        return this.collider.move(0, this.speed * Imagine.time.deltaTime);
+        return this.getComponent('collider').move(0, this.speed * engine.time.deltaTime);
       } else {
-        return this.collider.move(0, -this.speed * Imagine.time.deltaTime);
+        return this.getComponent('collider').move(0, -this.speed * engine.time.deltaTime);
       }
     };
 
@@ -111,9 +111,9 @@
   })();
 
   $(document).ready(function() {
-    Imagine($("#ball")[0]).addComponent(new Ball());
-    Imagine($("#right")[0]).addComponent(new Enemy());
-    return Imagine($("#left")[0]).addComponent(new Player());
+    engine.register($("#ball")[0]).addComponent(new Ball()).addComponent(new Imagine.Collider());
+    engine.register($("#right")[0]).addComponent(new Enemy()).addComponent(new Imagine.Collider());
+    return engine.register($("#left")[0]).addComponent(new Player()).addComponent(new Imagine.Collider());
   });
 
 }).call(this);

@@ -1,6 +1,6 @@
 (function() {
   var Person;
-
+  var engine = new Imagine();
   Person = (function() {
     function Person() {}
 
@@ -38,7 +38,7 @@
 
   $(document).ready(function() {
     addPerson();
-    return Imagine($('#fps')[0]).addComponent(new Imagine.FPS());
+    return engine.register($('#fps')[0]).addComponent(new Imagine.FPS());
   });
 
   window.addPerson = function(num) {
@@ -50,7 +50,7 @@
     for (_i = 1; 1 <= num ? _i <= num : _i >= num; 1 <= num ? _i++ : _i--) {
       html = $("<div class='person' />");
       $('#container').append(html);
-      _results.push(Imagine(html[0]).addComponent(new Person()).element.move(Math.random() * 300, Math.random() * 300));
+      _results.push(engine.register(html[0]).addComponent(new Person()).element.move(Math.random() * 300, Math.random() * 300));
     }
     return _results;
   };

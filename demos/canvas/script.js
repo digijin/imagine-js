@@ -1,6 +1,8 @@
 (function() {
   var Person, View;
 
+  var engine = new Imagine();
+
   View = (function() {
     function View() {}
 
@@ -61,9 +63,9 @@
   $(document).ready(function() {
     window.canvas = document.getElementById('stage');
     window.context = canvas.getContext('2d');
-    Imagine(new View());
-    Imagine(new Person());
-    return Imagine($('#fps')[0]).addComponent(new Imagine.FPS());
+    engine.register(new View());
+    engine.register(new Person());
+    return engine.register($('#fps')[0]).addComponent(new Imagine.FPS());
   });
 
   window.addPerson = function(num) {
@@ -73,7 +75,7 @@
     }
     _results = [];
     for (_i = 1; 1 <= num ? _i <= num : _i >= num; 1 <= num ? _i++ : _i--) {
-      _results.push(Imagine(new Person()));
+      _results.push(engine.register(new Person()));
     }
     return _results;
   };

@@ -6,7 +6,7 @@
   map = ['1111111111111111111', '1        1        1', '1 11 111 1 111 11 1', '1                 1', '1 11 1 11111 1 11 1', '1    1   1   1    1', '1111 111 1 111 1111', '1111 1       1 1111', '1111 1 11111 1 1111', '       11111       ', '1111 1 11111 1 1111', '1111 1       1 1111', '1111 1 11111 1 1111', '1        1        1', '1 11 111 1 111 11 1', '1  1           1  1', '11 1 1 11111 1 1 11', '1    1   1   1    1', '1 111111 1 111111 1', '1                 1', '1111111111111111111'];
 
   blockSize = 16;
-
+  var engine = new Imagine();
   Character = (function() {
     function Character() {}
 
@@ -30,7 +30,7 @@
     };
 
     Character.prototype.setPosition = function() {
-      return this.element.setPosition(blockSize * (this.current.x + this.offset.x), blockSize * (this.current.y + this.offset.y));
+      return this.getComponent('element').setPosition(blockSize * (this.current.x + this.offset.x), blockSize * (this.current.y + this.offset.y));
     };
 
     Character.prototype.isBlock = function(x, y) {
@@ -51,13 +51,13 @@
 
     Character.prototype.detectPickup = function() {
       var pickup, pickups, _i, _len, _results;
-      pickups = Imagine.getComponents('pickup');
+      pickups = engine.getComponents('pickup');
       _results = [];
       for (_i = 0, _len = pickups.length; _i < _len; _i++) {
         pickup = pickups[_i];
         if (this.collider.collidesWith(pickup.element.raw)) {
           pickup.element.raw.parentNode.removeChild(pickup.element.raw);
-          _results.push(Imagine.destroy(pickup));
+          _results.push(engine.destroy(pickup));
         } else {
           _results.push(void 0);
         }
@@ -66,7 +66,7 @@
     };
 
     Character.prototype.checkNewDirection = function() {
-      if (Imagine.input.isDown('left')) {
+      if (engine.input.getKey('left')) {
         if (!this.isBlock(this.current.x - 1, this.current.y)) {
           this.dir = {
             x: -1,
@@ -74,7 +74,7 @@
           };
         }
       }
-      if (Imagine.input.isDown('right')) {
+      if (engine.input.getKey('right')) {
         if (!this.isBlock(this.current.x + 1, this.current.y)) {
           this.dir = {
             x: 1,
@@ -82,7 +82,7 @@
           };
         }
       }
-      if (Imagine.input.isDown('up')) {
+      if (engine.input.getKey('up')) {
         if (!this.isBlock(this.current.x, this.current.y - 1)) {
           this.dir = {
             x: 0,
@@ -90,7 +90,7 @@
           };
         }
       }
-      if (Imagine.input.isDown('down')) {
+      if (engine.input.getKey('down')) {
         if (!this.isBlock(this.current.x, this.current.y + 1)) {
           return this.dir = {
             x: 0,
@@ -102,14 +102,14 @@
 
     Character.prototype.detectTurnAround = function() {
       if (this.dir.x === 1) {
-        if (Imagine.input.isDown('left')) {
+        if (engine.input.getKey('left')) {
           this.dir = {
             x: -1,
             y: 0
           };
         }
       } else if (this.dir.x === -1) {
-        if (Imagine.input.isDown('right')) {
+        if (engine.input.getKey('right')) {
           this.dir = {
             x: 1,
             y: 0
@@ -117,7 +117,7 @@
         }
       }
       if (this.dir.y === 1) {
-        if (Imagine.input.isDown('up')) {
+        if (engine.input.getKey('up')) {
           console.log("?");
           return this.dir = {
             x: 0,
@@ -125,7 +125,7 @@
           };
         }
       } else if (this.dir.y === -1) {
-        if (Imagine.input.isDown('down')) {
+        if (engine.input.getKey('down')) {
           return this.dir = {
             x: 0,
             y: 1
@@ -135,14 +135,14 @@
     };
 
     Character.prototype.update = function() {
-      if (Imagine.input.isDown('enter')) {
+      if (engine.input.getKey('enter')) {
         debugger;
       }
       if (this.dir.x === 0 && this.dir.y === 0) {
         this.checkNewDirection();
       }
-      this.offset.x += this.dir.x * Imagine.time.deltaTime * this.speed;
-      this.offset.y += this.dir.y * Imagine.time.deltaTime * this.speed;
+      this.offset.x += this.dir.x * engine.time.deltaTime * this.speed;
+      this.offset.y += this.dir.y * engine.time.deltaTime * this.speed;
       if (Math.abs(this.offset.x) > 1 || Math.abs(this.offset.y) > 1) {
         this.newNode();
       }
@@ -260,7 +260,7 @@
     };
 
     Pickup.prototype.setPosition = function() {
-      return this.element.setPosition((blockSize * this.pos.x) + 4, (blockSize * this.pos.y) + 4);
+      return this.getComponent('element').setPosition((blockSize * this.pos.x) + 4, (blockSize * this.pos.y) + 4);
     };
 
     return Pickup;
@@ -282,7 +282,7 @@
       el = document.createElement('div');
       el.className = 'pacman';
       this.container.appendChild(el);
-      return Imagine(el).addComponent(new Imagine.Collider()).addComponent(new Player());
+      return engine.register(el).addComponent(new Imagine.Collider()).addComponent(new Player());
     };
 
     addEnemy = function() {
@@ -290,7 +290,7 @@
       el = document.createElement('div');
       el.className = 'ghost';
       this.container.appendChild(el);
-      return Imagine(el).addComponent(new Enemy());
+      return engine.register(el).addComponent(new Enemy());
     };
 
     addPickup = function(x, y) {
@@ -298,7 +298,7 @@
       el = document.createElement('div');
       el.className = 'pickup';
       this.container.appendChild(el);
-      return Imagine(el).addComponent(new Pickup(x, y));
+      return engine.register(el).addComponent(new Pickup(x, y));
     };
 
     drawBG = function() {
