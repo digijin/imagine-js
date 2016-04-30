@@ -23,13 +23,6 @@ describe("Imagine/component/collider", function(){
 		fixture.set(require('spec/fixtures/collider.html'));
   });
 
-  describe("screenshots", function(){
-    it('should find driver', function(){
-
-			expect(driver).toBeDefined();
-		});
-  });
-
 	it("should load fixtures", function(){
 		expect($('#square')).toBeDefined();
 		expect($('#square').length).toBe(1);

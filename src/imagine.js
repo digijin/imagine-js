@@ -76,10 +76,14 @@ class Imagine {
   }
 
   destroy(obj){
-    for(let obj in this.objects){
-      const ind = this.objects.indexOf(obj);
-      this.objects.splice(ind, 1);
+    if(obj.object){
+      obj = obj.object;
     }
+    // for(let obj in this.objects){
+    const ind = this.objects.indexOf(obj);
+    if(ind>-1)
+      this.objects.splice(ind, 1);
+    // }
   }
 
   getComponent(name){

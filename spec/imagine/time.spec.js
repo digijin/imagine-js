@@ -103,7 +103,7 @@ describe('Imagine/time', function(){
 				time.setFPS(1);
 				time.update();
 				expect(window.requestAnimationFrame).not.toHaveBeenCalled();
-		})
+		});
 
 		it('should call listeners', function(){
 			spy = jasmine.createSpy('spy');

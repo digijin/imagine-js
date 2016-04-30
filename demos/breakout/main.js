@@ -1,5 +1,6 @@
 (function() {
   var engine = new Imagine();
+  window.engine = engine;
   var Ball, Block, Player,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
