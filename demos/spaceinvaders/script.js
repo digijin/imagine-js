@@ -1,22 +1,23 @@
 (function() {
+  var engine = new Imagine();
   $(document).ready(function() {
     Number.prototype.clamp = function(min, max) {
       return Math.min(Math.max(this, min), max);
     };
-    Imagine.engine.setFPS(60);
-    Imagine({
+    engine.time.setFPS(60);
+    engine.register({
       el: $("#player"),
       update: function() {
         var dt, left, speed;
-        dt = Imagine.time.deltaTime;
+        dt = engine.time.deltaTime;
         speed = 100;
         left = parseFloat(this.el.css("left"));
-        left += dt * speed * Imagine.input.getAxis("Horizontal");
+        left += dt * speed * engine.input.getAxis("Horizontal");
         left = left.clamp(1, this.el.parent().width() - this.el.width() - 3);
         this.el.css("left", left);
       }
     });
-    Imagine({
+    engine.register({
       el: $("#enemyGroup"),
       speed: 100,
       downSpeed: 10,
@@ -28,7 +29,7 @@
       },
       update: function() {
         var dt, left, max, top;
-        dt = Imagine.time.deltaTime;
+        dt = engine.time.deltaTime;
         left = parseFloat(this.el.css("left"));
         top = parseFloat(this.el.css("top"));
         switch (this.stage) {
