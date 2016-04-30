@@ -11,7 +11,8 @@ module.exports = {
     entry: path.resolve(dir_js, 'imagine.js'),
     output: {
         path: dir_build,
-        filename: 'imagine.js'
+        filename: 'imagine.js',
+        libraryTarget: 'umd'
     },
     // devServer: {
     //     contentBase: dir_build,
