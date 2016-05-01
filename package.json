@@ -1,6 +1,6 @@
 {
   "name": "imagine-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "component engine framework",
   "keywords": [
     "framework",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "jasmine-core": "~2.2.0",
-    "karma-jasmine": "~0.3.5",
+    "karma-jasmine": "~0.2.0",
     "karma-chrome-launcher": "~0.1.7",
     "karma-fixture": "~0.2.3",
     "karma-html2js-preprocessor": "~0.1.0",
@@ -41,15 +41,13 @@
     "jquery": "^2.2.3",
     "karma": "^0.13.22",
     "karma-coverage": "^0.5.5",
-    "karma-jasmine": "~0.2.0",
     "karma-webpack": "^1.7.0",
     "lodash": "^2.4.1",
     "matchdep": "^0.3.0",
     "webpack": "^1.13.0",
     "webpack-stream": "^3.1.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "babel": {
     "presets": [
       "es2015"
