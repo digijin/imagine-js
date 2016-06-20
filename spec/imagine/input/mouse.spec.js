@@ -2,11 +2,30 @@ var Mouse = require('src/imagine/input/mouse');
 var mouse = new Mouse();
 describe('imagine/input/mouse', function(){
 	beforeEach(function(){
-		pending();
+		// pending();
 	});
 
 	it('should be defined', function(){
 		expect(mouse).toBeDefined();
+	});
+
+	describe('events', () => {
+		it('should trigger mousedown', () => {
+				spyOn(mouse, 'mousedown');
+				mouse.attachListeners();
+				var event = document.createEvent('Event');
+				event.initEvent('mousedown');
+				document.dispatchEvent(event);
+				expect(mouse.mousedown).toHaveBeenCalled();
+		});
+		it('should trigger mouseup', () => {
+				spyOn(mouse, 'mouseup');
+				mouse.attachListeners();
+				var event = document.createEvent('Event');
+				event.initEvent('mouseup');
+				document.dispatchEvent(event);
+				expect(mouse.mouseup).toHaveBeenCalled();
+		});
 	});
 
 	describe('delta', function(){
