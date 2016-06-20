@@ -72,6 +72,16 @@ describe('Imagine', function(){
 			imagine.register(obj);
 			imagine.time.update();
 		});
+		it('shuld pass time object with deltatime', function(done){
+			var obj = {update:function(time){
+				expect(time.deltaTime).toBeDefined();
+				done();
+			}};
+			spyOn(obj, 'update');
+			imagine.register(obj);
+			imagine.time.update();
+			// expect(obj.update).toHaveBeenCalled();
+		});
 
 	});
 

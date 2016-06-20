@@ -22,7 +22,7 @@ class Imagine {
     this.input.update();
     for(var obj of this.objects){
       for(var comp of obj.components){
-        if(comp.update) comp.update();
+        if(comp.update) comp.update(this.time);
       }
     }
   }
