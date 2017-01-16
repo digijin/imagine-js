@@ -1,6 +1,6 @@
 var Mouse = require('src/imagine/input/mouse');
 var mouse = new Mouse();
-describe('imagine/input/mouse', function(){
+xdescribe('imagine/input/mouse', function(){
 	beforeEach(function(){
 		// pending();
 	});

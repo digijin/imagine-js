@@ -1,3 +1,5 @@
+// @flow
+
 'use strict';
 
 const utils = require('./imagine/utils.js');
@@ -6,9 +8,24 @@ const _ = require('lodash');
 const Element = require('./component/element.js');
 const Time = require('./imagine/time');
 const Input = require('./imagine/input');
+const Collider = require('./component/collider');
+
+export type GameObject = {
+  AddComponent: Function
+}
 
 class Imagine {
-  constructor(params) {
+  static Input:Input;
+  static Time:Time;
+  static FPS:Object;
+  static Element:Element;
+  static Collider:Collider;
+
+  objects:Array<Object>;
+  input:Input;
+  register: Function;
+  time: Time;
+  constructor(params:Object) {
     this.objects = [];
     this.time = new Time();
     this.input = new Input();
@@ -27,27 +44,29 @@ class Imagine {
     }
   }
   // enable object to be tracked by Imagine
-  register(params) {
+  register(params:Object):GameObject {
+    var out: Object = {}
+    //todo: split this out for stricter typing
     if (utils.isArray(params)) {
       let i = 0;
 
       while (i < params.length) {
-        this.register(params[i]);//recurse
+        out = this.register(params[i]);//recurse
         i++;
       }
     } else {
 
       if (utils.isElement(params)) {
         let el = new Element(params);
-        var out = this.register().addComponent(el);
+        out = this.register().addComponent(el);
       } else {
-        var out = this.registerObject(params);
+        out = this.registerObject(params);
       }
     }
     return out;
   }
   //private
-  registerObject(com){
+  registerObject(com:Object){
     //  _.assign(object, objectFunctions);
     let object = {};
     // if(!object){
@@ -75,7 +94,7 @@ class Imagine {
     this.objects = [];
   }
 
-  destroy(obj){
+  destroy(obj:Object){
     if(obj.object){
       obj = obj.object;
     }
@@ -86,7 +105,7 @@ class Imagine {
     // }
   }
 
-  getComponent(name){
+  getComponent(name:string){
     for(let obj of this.objects){
       const com = obj.getComponent(name);
       if(com){
@@ -94,7 +113,7 @@ class Imagine {
       }
     }
   }
-  getComponents(name){
+  getComponents(name:string){
     let out = [];
     for(let obj of this.objects){
       let com = obj.getComponent(name);
@@ -104,14 +123,14 @@ class Imagine {
     }
     return out;
   }
-  notify(func){
+  notify(func:Object){
     for(let obj of this.objects){
       obj.notify(func);
     }
   }
 }
 
-Imagine.Collider = require('./component/collider');
+Imagine.Collider = Collider
 Imagine.Element = Element;
 Imagine.FPS = require('./component/FPS');
 Imagine.Time = Time;
