@@ -6,7 +6,6 @@ node_modules
 sandpit
 spec
 specrunner
-src
 Dockerfile
 Gruntfile.coffee
 gulpfile.babel.js

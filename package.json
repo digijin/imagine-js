@@ -1,6 +1,6 @@
 {
   "name": "imagine-engine",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "component engine framework",
   "keywords": [
     "framework",
@@ -8,7 +8,7 @@
     "game",
     "component"
   ],
-  "main": "lib/imagine.js",
+  "main": "src/imagine.js",
   "scripts": {
     "start": "gulp",
     "test": "karma start"
