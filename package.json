@@ -8,7 +8,7 @@
     "game",
     "component"
   ],
-  "main": "src/imagine.js",
+  "main": "lib/imagine.js",
   "scripts": {
     "start": "gulp",
     "test": "karma start"
